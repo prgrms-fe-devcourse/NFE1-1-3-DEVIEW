@@ -31,6 +31,14 @@ export default {
       DEFAULT: "8px",
       lg: "10px",
       full: "50%"
+    },
+    fontSize: {
+      12: "0.75rem",
+      14: "0.875rem",
+      16: "1rem",
+      20: "1.25rem",
+      24: "1.5rem",
+      28: "1.75rem"
     }
   },
 
