@@ -24,20 +24,28 @@ export default {
       lightgreen: "#44CF86",
       yellow: "#EEDD60",
       lightyellow: "#FFF8C9"
+    },
+    borderRadius: {
+      none: "0",
+      sm: "4px",
+      DEFAULT: "8px",
+      lg: "10px",
+      full: "50%"
     }
   },
+
   plugins: [
     ({ addUtilities }) => {
       addUtilities({
-        ".custom": {
-          "@apply mx-auto lg:max-w-[1140px] md:max-w-[720px] sm:max-w-[576px]": ""
+        ".flex-center": {
+          "@apply flex justify-center items-center": ""
         }
       });
     },
     ({ addComponents }) => {
       addComponents({
-        ".custom-comp": {
-          "@apply flex": ""
+        ".primary-btn": {
+          "@apply bg-primary w-full rounded": ""
         }
       });
     }
