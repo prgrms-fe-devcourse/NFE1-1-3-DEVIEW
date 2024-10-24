@@ -42,6 +42,9 @@ export default {
     },
     boxShadow: {
       DEFAULT: "0px 4px 4px 0px rgba(0, 0, 0, 0.15)"
+    },
+    maxWidth: {
+      DEFAULT: "1440px"
     }
   },
 
