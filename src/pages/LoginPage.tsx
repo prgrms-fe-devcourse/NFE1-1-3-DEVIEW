@@ -1,8 +1,8 @@
 import { Logo } from "@components/Common/Logo";
-import { IdInput } from "@components/LoginPage/IdInput";
-import { PasswordInput } from "@components/LoginPage/PasswordInput";
-import { INPUT_REGEX } from "@constants/regexList";
+import { IdInput } from "@components/Common/IdInput";
+import { PasswordInput } from "@components/Common/PasswordInput";
 import { Link } from "react-router-dom";
+import { AUTH_INPUT_VALIDATION } from "@constants/authInputValidation";
 
 export default function LoginPage() {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -11,7 +11,8 @@ export default function LoginPage() {
     const formData = new FormData(target);
     const [id, password] = [formData.get("id") as string, formData.get("password") as string];
 
-    const isValid = INPUT_REGEX.id.test(id) && INPUT_REGEX.password.test(password);
+    const isValid = AUTH_INPUT_VALIDATION.id.regexp.test(id) && AUTH_INPUT_VALIDATION.password.regexp.test(password);
+
     if (isValid) {
       console.log("Valid");
       /*

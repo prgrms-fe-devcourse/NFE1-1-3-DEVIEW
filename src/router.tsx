@@ -1,6 +1,6 @@
 import Footer from "@components/Common/Footer";
 import Header from "@components/Common/Header";
-import RegisterPage from "@pages/AssignPage";
+import RegisterPage from "@pages/RegisterPage";
 import ErrorPage from "@pages/ErrorPage";
 import LoginPage from "@pages/LoginPage";
 import MainPage from "@pages/MainPage";
