@@ -12,7 +12,11 @@
 
   input,
   textarea {
-    @apply border border-black outline-none;
+    @apply w-full rounded-lg p-6 text-20 outline-none ring-1 ring-lightgray transition-shadow;
+  }
+  input:focus,
+  textarea:focus {
+    @apply ring-primary;
   }
 
   textarea {
