@@ -19,8 +19,6 @@ export default function RegisterPage() {
       formData.get("group") as string
     ];
 
-    console.log({ id, password, confirmPassword, name, group });
-
     const isIdValid = AUTH_INPUT_VALIDATION.id.regexp.test(id);
     const isPasswordValid = AUTH_INPUT_VALIDATION.password.regexp.test(password);
     const isConfirmPasswordValid = password === confirmPassword;
@@ -30,14 +28,17 @@ export default function RegisterPage() {
 
     if (isValid) {
       console.log("Valid");
+      console.log({ id, password, confirmPassword, name, group });
       /*
       todo BackEnd로 회원가입 요청 전송
       ? 성공 시 -> 로그인 페이지로 리다이렉트
       * 실패 시 -> "회원 가입에 실패했습니다."
       */
     } else {
-      if (password !== confirmPassword) alert("비밀번호가 일치하지 않습니다.");
-      else console.log("Invalid");
+      if (!isIdValid) alert(AUTH_INPUT_VALIDATION.id.errorMessage);
+      else if (!isPasswordValid) alert(AUTH_INPUT_VALIDATION.password.errorMessage);
+      else if (!isConfirmPasswordValid) alert("비밀번호가 일치하지 않습니다.");
+      else if (!isNameValid) alert(AUTH_INPUT_VALIDATION.name.errorMessage);
     }
   };
   return (
