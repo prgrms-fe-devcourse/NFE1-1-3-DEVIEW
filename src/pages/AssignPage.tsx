@@ -1,3 +1,3 @@
-export default function AssignPage() {
-  return <div>AssignPage</div>;
+export default function RegisterPage() {
+  return <div>RegisterPage</div>;
 }

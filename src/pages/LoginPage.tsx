@@ -28,7 +28,7 @@ export default function LoginPage() {
         <IdInput />
         <PasswordInput />
         <button className="primary-btn mb-5">로그인</button>
-        <Link className="text-btn mx-auto w-fit" type="button" to="/assign">
+        <Link className="text-btn mx-auto w-fit" type="button" to="/register">
           회원가입
         </Link>
       </form>
