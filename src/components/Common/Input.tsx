@@ -15,7 +15,7 @@ export const Input = ({ name, text, errorMessage, pattern, ...rest }: InputProps
     const newValue = e.target.value;
     setValue(newValue);
 
-    if (value.length === 1) {
+    if (newValue.length === 0) {
       setError("");
       return;
     }
