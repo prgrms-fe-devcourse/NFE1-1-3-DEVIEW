@@ -1,6 +1,7 @@
 import { Logo } from "@components/Common/Logo";
 import { IdInput } from "@components/LoginPage/IdInput";
 import { PasswordInput } from "@components/LoginPage/PasswordInput";
+import { Link } from "react-router-dom";
 
 export default function LoginPage() {
   return (
@@ -10,7 +11,9 @@ export default function LoginPage() {
         <IdInput />
         <PasswordInput />
         <button className="primary-btn mb-5">로그인</button>
-        <button className="text-btn">회원가입</button>
+        <Link className="text-btn mx-auto w-fit" type="button" to="/assign">
+          회원가입
+        </Link>
       </form>
     </div>
   );
