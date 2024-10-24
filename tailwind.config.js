@@ -39,6 +39,9 @@ export default {
       20: "1.25rem",
       24: "1.5rem",
       28: "1.75rem"
+    },
+    boxShadow: {
+      DEFAULT: "0px 4px 4px 0px rgba(0, 0, 0, 0.15)"
     }
   },
 
