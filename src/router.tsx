@@ -1,9 +1,9 @@
-import App from "@/App";
 import Footer from "@components/Footer";
 import Header from "@components/Header";
 import AssignPage from "@pages/AssignPage";
 import ErrorPage from "@pages/ErrorPage";
 import LoginPage from "@pages/LoginPage";
+import MainPage from "@pages/MainPage";
 import MyPage from "@pages/MyPage";
 import PostCreatePage from "@pages/PostCreatePage";
 import PostDetailPage from "@pages/PostDetailPage";
@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <App />
+        element: <MainPage />
       },
       {
         path: "/post",
