@@ -60,6 +60,9 @@ export default {
       addComponents({
         ".primary-btn": {
           "@apply bg-primary w-full rounded p-6 text-white-pure": ""
+        },
+        ".text-btn": {
+          "@apply text-gray hover:underline": ""
         }
       });
     }
