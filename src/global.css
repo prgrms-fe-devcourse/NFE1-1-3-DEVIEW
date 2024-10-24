@@ -6,4 +6,20 @@
   #root {
     @apply font-Pretendard;
   }
+  * {
+    @apply box-border;
+  }
+
+  input,
+  textarea {
+    @apply border border-black outline-none;
+  }
+
+  textarea {
+    @apply resize-none;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
 }
