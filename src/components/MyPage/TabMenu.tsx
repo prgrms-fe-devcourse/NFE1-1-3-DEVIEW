@@ -4,24 +4,43 @@ import { LikesContent } from "@components/MyPage/LikesContent";
 import { PostsContent } from "@components/MyPage/PostsContent";
 import { useEffect, useState } from "react";
 
+type Post = {
+  id: number;
+  post: string;
+};
+
+type Comment = {
+  _id: string;
+  post_id: string;
+  author: string;
+  content: string;
+  created_at: string;
+  recommend: number;
+  post_title?: string;
+};
+
+type Like = {
+  id: number;
+  likedItem: string;
+};
+
+type UserInfo = {
+  _id?: string;
+  username?: string;
+  email?: string;
+  password?: string;
+  team?: string;
+  created_at?: string;
+};
+
 export const TabMenu = () => {
   const [activeTab, setActiveTab] = useState("posts");
 
   // TODO: 임시데이터, 백엔드랑 연결하기
-  const [postsList, setPostsList] = useState<{ id: number; post: string }[]>([]);
-  const [commentsList, setCommentsList] = useState<
-    {
-      _id: string;
-      post_id: string;
-      author: string;
-      content: string;
-      created_at: string;
-      recommend: number;
-      post_title?: string;
-    }[]
-  >([]);
-  const [likesList, setLikesList] = useState<{ id: number; likedItem: string }[]>([]);
-  const [infoList, setInfoList] = useState<{ name?: string; id?: string; password?: string; department?: string }>({});
+  const [postsList, setPostsList] = useState<Post[]>([]);
+  const [commentsList, setCommentsList] = useState<Comment[]>([]);
+  const [likesList, setLikesList] = useState<Like[]>([]);
+  const [infoList, setInfoList] = useState<UserInfo>({});
 
   useEffect(() => {
     setPostsList([{ id: 1, post: "내 게시글" }]);
@@ -35,20 +54,17 @@ export const TabMenu = () => {
         created_at: "2024-10-23",
         recommend: 10,
         post_title: "React Router를 사용해 navigate하는 방법이 뭔가요?"
-      },
-      {
-        _id: "2",
-        post_id: "post2",
-        author: "user2",
-        content:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever ···",
-        created_at: "2024-10-24",
-        recommend: 11,
-        post_title: "React Router를 사용해 navigate하는 방법이 뭔가요?"
       }
     ]);
     setLikesList([{ id: 1, likedItem: "좋아요" }]);
-    setInfoList({ name: "이름", id: "유저ID", password: "비밀번호", department: "소속" });
+    setInfoList({
+      _id: "1",
+      username: "홍길동",
+      email: "test1234@test.com",
+      password: "test1212",
+      team: "학생",
+      created_at: "2024-10-25"
+    });
   }, []);
 
   const renderContent = () => {
