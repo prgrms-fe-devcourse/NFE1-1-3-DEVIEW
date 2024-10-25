@@ -17,12 +17,12 @@ export const VersionContainer = () => {
           <VersionCountBtn addOrMinus="+" versionCount={} />
           <VersionCountBtn addOrMinus="-" />
         </div> */}
-        <div>
+        <div className="flex gap-[3%]">
           <LanSelectBtn />
           <input
             value={value}
             onChange={onChange}
-            className="text-gray"
+            className="h-16 text-gray w-[77%]"
             type="text"
             placeholder="버전을 입력해주세요"
             defaultChecked
