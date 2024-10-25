@@ -1,10 +1,10 @@
 import { Logo } from "@components/Common/Logo";
 import { IdInput } from "@components/Common/IdInput";
 import { PasswordInput } from "@components/Common/PasswordInput";
-import { Radio } from "@components/RegisterPage/Radio";
 import { ConfirmPasswordInput } from "@components/RegisterPage/ConfirmPasswordInput";
-import { NameInput } from "@pages/NameInput";
 import { AUTH_INPUT_VALIDATION } from "@constants/authInputValidation";
+import { NameInput } from "@components/Common/NameInput";
+import { Radio } from "@components/Common/Radio";
 
 export default function RegisterPage() {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -42,7 +42,7 @@ export default function RegisterPage() {
     }
   };
   return (
-    <div className="max-w-sm mx-auto h-[100vh]">
+    <div className="mx-auto h-[100vh] max-w-sm">
       <form className="flex h-full flex-col justify-center" onSubmit={onSubmit}>
         <Logo className="mb-5 self-center" />
         <IdInput />
