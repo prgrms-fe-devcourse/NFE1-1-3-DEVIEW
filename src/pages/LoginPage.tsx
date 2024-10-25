@@ -15,11 +15,7 @@ export default function LoginPage() {
     const isIdValid = AUTH_INPUT_VALIDATION.id.regexp.test(id);
     const isPasswordValid = AUTH_INPUT_VALIDATION.password.regexp.test(password);
     const isValid = isIdValid && isPasswordValid;
-    /*
-      todo BackEnd로 요청 전송
-      ? 성공 시 -> 로그인 정보 저장(로컬 스토리지? 쿠키?) 및 메인으로 리다이렉트
-      * 실패 시 -> "아이디 또는 비밀번호가 잘못되었습니다!" 알림 및 form reset
-      */
+
     if (isValid) {
       login({ id, password }).then((data) => {
         console.log(data);
