@@ -12,7 +12,7 @@ export const Radio = ({ text, name, id, value }: RadioProps) => {
       htmlFor={id}
     >
       {text}
-      <input id={id} type="radio" name={name} value={value} hidden />
+      <input autoComplete="off" id={id} type="radio" name={name} value={value} hidden />
     </label>
   );
 };

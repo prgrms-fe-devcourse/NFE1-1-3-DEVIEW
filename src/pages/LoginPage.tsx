@@ -1,29 +1,42 @@
 import { Logo } from "@components/Common/Logo";
 import { IdInput } from "@components/Common/IdInput";
 import { PasswordInput } from "@components/Common/PasswordInput";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AUTH_INPUT_VALIDATION } from "@constants/authInputValidation";
+import { login } from "@services/login";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const target = e.target as HTMLFormElement;
-    const formData = new FormData(target);
-    const [id, password] = [formData.get("id") as string, formData.get("password") as string];
-
-    const isValid = AUTH_INPUT_VALIDATION.id.regexp.test(id) && AUTH_INPUT_VALIDATION.password.regexp.test(password);
-
-    if (isValid) {
-      console.log("Valid");
-      /*
+    const $form = e.target as HTMLFormElement;
+    const formData = new FormData($form);
+    const [id, password] = [formData.get("userId") as string, formData.get("password") as string];
+    const isIdValid = AUTH_INPUT_VALIDATION.id.regexp.test(id);
+    const isPasswordValid = AUTH_INPUT_VALIDATION.password.regexp.test(password);
+    const isValid = isIdValid && isPasswordValid;
+    /*
       todo BackEnd로 요청 전송
       ? 성공 시 -> 로그인 정보 저장(로컬 스토리지? 쿠키?) 및 메인으로 리다이렉트
       * 실패 시 -> "아이디 또는 비밀번호가 잘못되었습니다!" 알림 및 form reset
       */
-    } else console.log("Invalid");
+    if (isValid) {
+      login({ id, password }).then((data) => {
+        console.log(data);
+        //todo axios interceptor 이용하여 토큰 헤더에 포함
+        //todo userInfo localStorage 및 전역 상태에 저장
+        navigate("/");
+      });
+    } else if (!isIdValid) {
+      alert(AUTH_INPUT_VALIDATION.id.errorMessage);
+      ($form["userId"] as HTMLInputElement).focus();
+    } else if (isPasswordValid) {
+      alert(AUTH_INPUT_VALIDATION.password.errorMessage);
+      ($form["password"] as HTMLInputElement).focus();
+    }
   };
   return (
-    <div className="max-w-sm mx-auto h-[100vh]">
+    <div className="mx-auto h-[100vh] max-w-sm">
       <form className="flex h-full flex-col justify-center" onSubmit={onSubmit}>
         <Logo className="mb-5 self-center" />
         <IdInput />
