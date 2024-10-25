@@ -1,3 +1,4 @@
+import { TabMenu } from "@components/MyPage/TabMenu";
 import { UserProfile } from "@components/MyPage/UserProfile";
 
 export default function MyPage() {
@@ -5,8 +6,9 @@ export default function MyPage() {
   const userNickname = "Sample Nickname";
 
   return (
-    <div className="mx-4 max-w md:mx-auto">
+    <div className="mx-4 flex max-w flex-col gap-6 py-12 md:gap-12 xl:mx-auto">
       <UserProfile nickname={userNickname} />
+      <TabMenu />
     </div>
   );
 }
