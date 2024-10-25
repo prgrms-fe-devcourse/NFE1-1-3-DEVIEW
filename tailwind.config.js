@@ -23,7 +23,8 @@ export default {
       skyblue: "#50C6E1",
       lightgreen: "#44CF86",
       yellow: "#EEDD60",
-      lightyellow: "#FFF8C9"
+      lightyellow: "#FFF8C9",
+      red: "#ff3333"
     },
     borderRadius: {
       none: "0",
@@ -44,7 +45,8 @@ export default {
       DEFAULT: "0px 4px 4px 0px rgba(0, 0, 0, 0.15)"
     },
     maxWidth: {
-      DEFAULT: "1440px"
+      DEFAULT: "1440px",
+      sm: "768px"
     }
   },
 
