@@ -1,4 +1,6 @@
 import { useState } from "react";
+import LanSelectBtn from "@components/PostCreatePage/LanSelectBtn";
+import VersionAddBtn from "@components/PostCreatePage/VersionAddBtn";
 export const VersionContainer = () => {
   const [value, setValue] = useState("");
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -11,7 +13,10 @@ export const VersionContainer = () => {
         <h2 className="text-24 font-semibold">언어와 버전을 입력해주세요</h2>
         <p className="text-20 font-medium text-primary">답변자가 더 좋은 답변을 할 수 있게 정확히 기입해주세요.</p>
         <p className="text-20 font-medium text-primary">첫번째 언어의 아이콘이 해당 게시글의 아이콘으로 지정됩니다.</p>
+        <VersionAddBtn addOrMinus="+" />
+        <VersionAddBtn addOrMinus="-" />
         <div>
+          <LanSelectBtn />
           <input
             value={value}
             onChange={onChange}

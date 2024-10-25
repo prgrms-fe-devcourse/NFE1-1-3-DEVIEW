@@ -1,3 +1,5 @@
 export const LanSelectBtn = () => {
-  return <select className="">LanSelectBtn</select>;
+  return <select className=""></select>;
 };
+
+export default LanSelectBtn;
