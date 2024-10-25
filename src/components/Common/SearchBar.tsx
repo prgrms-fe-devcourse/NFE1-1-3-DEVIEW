@@ -1,7 +1,7 @@
 export const SearchBar = () => {
   return (
-    <div className="max-w-3xl relative w-full">
-      <input type="text" placeholder="검색어를 입력해주세요" className="prdddd-10 h-11" />
+    <div className="relative w-full">
+      <input type="text" placeholder="검색어를 입력해주세요" className="h-11 pr-10" />
       <button className="absolute right-4 top-1/2 -translate-y-1/2 transform">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
           <path
