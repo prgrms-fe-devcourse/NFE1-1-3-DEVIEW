@@ -18,7 +18,9 @@ export const router = createBrowserRouter([
     element: (
       <>
         <Header />
-        <Outlet />
+        <div id="wrapper">
+          <Outlet />
+        </div>
         <Footer />
       </>
     ),
