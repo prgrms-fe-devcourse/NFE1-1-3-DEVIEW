@@ -4,7 +4,7 @@ type UserProfileProps = {
 
 export const UserProfile = ({ nickname }: UserProfileProps) => {
   return (
-    <div className="flex items-center gap-4 border-2 border-solid border-pink">
+    <div className="flex items-center gap-4">
       <div className="h-20 w-20 overflow-hidden rounded-full md:h-36 md:w-36">
         <img
           className="h-auto w-full"
@@ -12,7 +12,7 @@ export const UserProfile = ({ nickname }: UserProfileProps) => {
           alt="프로필 이미지"
         />
       </div>
-      <span className="text-16 md:text-24">{nickname}</span>
+      <span className="text-16 text-secondary md:text-24">{nickname}</span>
     </div>
   );
 };
