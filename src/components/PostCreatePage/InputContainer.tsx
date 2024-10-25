@@ -5,7 +5,7 @@ type questionProps = {
   placeholder: string;
 };
 
-export const PostInputContainer = ({ category, explain, placeholder }: questionProps) => {
+export const InputContainer = ({ category, explain, placeholder }: questionProps) => {
   const [value, setValue] = useState("");
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
@@ -29,4 +29,4 @@ export const PostInputContainer = ({ category, explain, placeholder }: questionP
   );
 };
 
-export default PostInputContainer;
+export default InputContainer;
