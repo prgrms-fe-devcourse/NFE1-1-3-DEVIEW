@@ -1,7 +1,7 @@
 import { Input } from "@components/Common/Input";
 import { AUTH_INPUT_VALIDATION } from "@constants/authInputValidation";
 
-export const IdInput = () => {
+export const IdInput = ({ defaultValue, disabled }: { defaultValue?: string; disabled?: boolean }) => {
   return (
     <Input
       name="id"
@@ -11,6 +11,8 @@ export const IdInput = () => {
       maxLength={15}
       autoFocus
       required
+      defaultValue={defaultValue}
+      disabled={disabled}
     />
   );
 };
