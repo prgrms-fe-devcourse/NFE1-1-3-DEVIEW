@@ -6,6 +6,7 @@
   #root {
     @apply font-Pretendard;
   }
+
   * {
     @apply box-border;
   }
@@ -25,5 +26,19 @@
 
   button {
     @apply cursor-pointer;
+  }
+
+  html,
+  body,
+  #root {
+    @apply h-full;
+  }
+
+  #wrapper {
+    @apply min-h-full pb-40;
+  }
+
+  footer {
+    @apply relative h-40 -translate-y-full transform;
   }
 }
