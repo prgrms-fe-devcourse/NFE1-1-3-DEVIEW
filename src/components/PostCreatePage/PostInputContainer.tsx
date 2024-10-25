@@ -4,7 +4,7 @@ type questionProps = {
   placeholder: string;
 };
 
-export const Question = ({ category, explain, placeholder }: questionProps) => {
+export const PostInputContainer = ({ category, explain, placeholder }: questionProps) => {
   return (
     <div className="w-full rounded-lg border-2 border-solid border-gray py-7 pl-3 pr-6">
       <div className="flex flex-col gap-3">
@@ -16,4 +16,4 @@ export const Question = ({ category, explain, placeholder }: questionProps) => {
   );
 };
 
-export default Question;
+export default PostInputContainer;
