@@ -36,7 +36,7 @@ export const DetailContainer = ({ category, explain, placeholder, value }: Detai
         <textarea
           ref={textareaRef}
           onChange={changeInput}
-          className="min-h-[88px] w-full resize-none overflow-hidden"
+          className="min-h-[88px] w-full resize-none overflow-hidden text-gray"
           placeholder={placeholder}
           maxLength={1000}
         />
