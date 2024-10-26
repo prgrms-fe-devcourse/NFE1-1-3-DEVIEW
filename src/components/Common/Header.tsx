@@ -3,12 +3,37 @@ import { Logo } from "@components/Common/Logo";
 import { SearchBar } from "@components/Common/SearchBar";
 import { Link } from "react-router-dom";
 import { HeaderMenu } from "@components/Common/HeaderMenu";
+import { SearchFilter } from "@components/Common/SearchFilter";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 
   const onClick = () => {
     setIsMenuOpen((prev) => !prev);
+  };
+
+  const onSelectFilter = (filter: string) => {
+    if (!selectedFilters.includes(filter)) {
+      setSelectedFilters((prev) => [...prev, filter]);
+    }
+    setIsFilterVisible(true);
+  };
+
+  const onDeleteFilter = (filter: string) => {
+    setSelectedFilters((prev) => prev.filter((f) => f !== filter));
+  };
+
+  const onClearFilters = () => {
+    setSelectedFilters([]);
+  };
+
+  const onFocus = () => {
+    setIsFilterVisible(true);
+  };
+  const onCloseFilter = () => {
+    setIsFilterVisible(false);
   };
 
   return (
@@ -22,30 +47,47 @@ export const Header = () => {
           </button>
           <div className="flex-grow text-center">
             <Link to="/" className="flex justify-center">
-              <Logo />
+              <Logo className="h-10 w-44 md:h-auto md:w-auto" />
             </Link>
           </div>
           <nav className="hidden md:ml-8 md:flex md:space-x-8">
-            <Link className="text-lg text-gray" type="button" to="/post">
+            <Link
+              className="text-lg text-gray hover:border-b hover:border-solid hover:border-primary hover:font-bold hover:text-primary"
+              type="button"
+              to="/post"
+            >
               게시글
             </Link>
-            <Link className="text-lg text-gray" type="button" to="/rank">
+            <Link
+              className="text-lg text-gray hover:border-b hover:border-solid hover:border-primary hover:font-bold hover:text-primary"
+              type="button"
+              to="/rank"
+            >
               유저랭킹
             </Link>
           </nav>
         </div>
         <div className="w-full md:mx-16 md:w-auto md:flex-grow">
-          <SearchBar />
+          <SearchBar selectedFilters={selectedFilters} onDeleteFilter={onDeleteFilter} onFocus={onFocus} />
         </div>
         <div className="hidden md:flex md:space-x-2">
-          <Link className="lightgray-btn h-10 w-24 p-1 flex-center" type="button" to="/login">
+          <Link className="lightgray-btn h-10 w-24 p-1 flex-center hover:opacity-80" type="button" to="/login">
             로그인
           </Link>
-          <Link className="primary-btn h-10 w-24 p-1 flex-center" type="button" to="/assign">
+          <Link className="primary-btn h-10 w-24 p-1 flex-center hover:opacity-80" type="button" to="/assign">
             회원가입
           </Link>
         </div>
       </header>
+      {isFilterVisible && (
+        <>
+          <SearchFilter onSelectFilter={onSelectFilter} onClearFilters={onClearFilters} />
+          <div
+            className="fixed inset-x-0 top-36 z-10 h-[calc(100vh-9rem)] bg-black bg-opacity-10 backdrop-blur-sm md:top-36"
+            onClick={onCloseFilter}
+          />
+        </>
+      )}
 
       {isMenuOpen && (
         <>
