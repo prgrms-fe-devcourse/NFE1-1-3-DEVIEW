@@ -6,7 +6,7 @@ import { ConfirmPasswordInput } from "@components/RegisterPage/ConfirmPasswordIn
 import { NameInput } from "@pages/NameInput";
 import { AUTH_INPUT_VALIDATION } from "@constants/authInputValidation";
 import { useNavigate } from "react-router-dom";
-import { register } from "@services/register";
+import { register } from "@services/auth/register";
 import { UserInfo } from "@customTypes/userInfo";
 
 export default function RegisterPage() {

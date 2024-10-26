@@ -3,7 +3,7 @@ import { IdInput } from "@components/Common/IdInput";
 import { PasswordInput } from "@components/Common/PasswordInput";
 import { Link, useNavigate } from "react-router-dom";
 import { AUTH_INPUT_VALIDATION } from "@constants/authInputValidation";
-import { login } from "@services/login";
+import { login } from "@services/auth/login";
 
 export default function LoginPage() {
   const navigate = useNavigate();
