@@ -4,6 +4,7 @@ import { PasswordInput } from "@components/Common/PasswordInput";
 import { Link, useNavigate } from "react-router-dom";
 import { AUTH_INPUT_VALIDATION } from "@constants/authInputValidation";
 import { login } from "@services/auth/login";
+import { AccessTokenStorage } from "@utils/localStorage";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ export default function LoginPage() {
         console.log(data);
         //todo axios interceptor 이용하여 토큰 헤더에 포함
         //todo userInfo localStorage 및 전역 상태에 저장
+        AccessTokenStorage.setToken(data.accessToken);
         navigate("/");
       });
     } else if (!isIdValid) {
