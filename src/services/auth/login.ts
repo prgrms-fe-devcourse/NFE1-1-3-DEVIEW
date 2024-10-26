@@ -7,7 +7,7 @@ type LoginRequestProps = {
 };
 
 type LoginResponseProps = {
-  token: string;
+  accessToken: string;
   userInfo: UserInfo;
 };
 
