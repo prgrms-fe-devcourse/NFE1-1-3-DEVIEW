@@ -1,4 +1,5 @@
 import { UserInfo } from "@customTypes/userInfo";
+import axiosInstance from "@services/axiosInstance";
 import { AccessTokenStorage } from "@utils/localStorage";
 import axios from "axios";
 
@@ -6,7 +7,7 @@ type MyselfResponseProps = UserInfo;
 
 export async function myself(): Promise<MyselfResponseProps> {
   try {
-    const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/auth/myself`, {
+    const response = await axiosInstance.get("/auth/myself", {
       headers: {
         Authorization: AccessTokenStorage.getAuthorizationHeader()
       }

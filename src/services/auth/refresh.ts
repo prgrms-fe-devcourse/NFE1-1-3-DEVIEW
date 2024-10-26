@@ -1,3 +1,4 @@
+import axiosInstance from "@services/axiosInstance";
 import axios from "axios";
 
 type RefreshResponseProps = {
@@ -6,7 +7,7 @@ type RefreshResponseProps = {
 
 export async function refresh(): Promise<RefreshResponseProps> {
   try {
-    const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/refresh`);
+    const response = await axiosInstance.post("/refresh");
     return Promise.resolve(response.data);
   } catch (error) {
     if (axios.isAxiosError(error)) {

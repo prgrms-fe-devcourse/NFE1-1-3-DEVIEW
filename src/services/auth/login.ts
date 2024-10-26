@@ -1,4 +1,5 @@
 import { UserInfo } from "@customTypes/userInfo";
+import axiosInstance from "@services/axiosInstance";
 import axios from "axios";
 
 type LoginRequestProps = {
@@ -13,7 +14,7 @@ type LoginResponseProps = {
 
 export async function login(req: LoginRequestProps): Promise<LoginResponseProps> {
   try {
-    const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/auth/login`, req, { withCredentials: true });
+    const response = await axiosInstance.post("/auth/login", req, { withCredentials: true });
     console.log(response.data);
     return Promise.resolve(response.data);
   } catch (error) {

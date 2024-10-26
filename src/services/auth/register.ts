@@ -1,4 +1,5 @@
 import { UserInfo } from "@customTypes/userInfo";
+import axiosInstance from "@services/axiosInstance";
 import axios from "axios";
 
 type RegisterRequestProps = UserInfo & {
@@ -7,7 +8,7 @@ type RegisterRequestProps = UserInfo & {
 
 export async function register(req: RegisterRequestProps): Promise<void> {
   try {
-    const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/auth/register`, req);
+    const response = await axiosInstance.post(`/auth/register`, req);
     return Promise.resolve(response.data);
   } catch (error) {
     if (axios.isAxiosError(error)) {

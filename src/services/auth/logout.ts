@@ -1,10 +1,11 @@
+import axiosInstance from "@services/axiosInstance";
 import { AccessTokenStorage } from "@utils/localStorage";
 import axios from "axios";
 
 export async function logout() {
   try {
-    await axios.post(
-      `${import.meta.env.VITE_SERVER_URL}/auth/logout`,
+    await axiosInstance.post(
+      "/auth/logout",
       {},
       {
         withCredentials: true
