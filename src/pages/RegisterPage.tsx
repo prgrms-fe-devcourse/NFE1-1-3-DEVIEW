@@ -52,7 +52,7 @@ export default function RegisterPage() {
     }
   };
   return (
-    <div className="max-w-sm mx-auto h-[100vh]">
+    <div className="mx-auto h-[100vh] max-w-sm">
       <form className="flex h-full flex-col justify-center" onSubmit={onSubmit}>
         <Logo className="mb-5 self-center" />
         <IdInput />
