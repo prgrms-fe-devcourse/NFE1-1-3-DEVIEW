@@ -61,7 +61,7 @@ export default function RegisterPage() {
         <NameInput />
 
         <div className="mb-5 flex items-center justify-between gap-10">
-          <Radio id="student" name="group" text="학생" value="학생" />
+          <Radio id="student" name="group" text="학생" value="학생" defaultChecked />
           <Radio id="seeker" name="group" text="취준생" value="취준생" />
           <Radio id="developer" name="group" text="개발자" value="개발자" />
           <Radio id="etc" name="group" text="기타" value="기타" />
