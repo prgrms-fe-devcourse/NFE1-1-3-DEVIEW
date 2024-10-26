@@ -1,6 +1,6 @@
 import Footer from "@components/Common/Footer";
 import { Header } from "@components/Common/Header";
-import AssignPage from "@pages/AssignPage";
+import RegisterPage from "@pages/RegisterPage";
 import ErrorPage from "@pages/ErrorPage";
 import LoginPage from "@pages/LoginPage";
 import MainPage from "@pages/MainPage";
@@ -18,7 +18,9 @@ export const router = createBrowserRouter([
     element: (
       <>
         <Header />
-        <Outlet />
+        <div id="wrapper">
+          <Outlet />
+        </div>
         <Footer />
       </>
     ),
@@ -59,7 +61,7 @@ export const router = createBrowserRouter([
     element: <LoginPage />
   },
   {
-    path: "/assign",
-    element: <AssignPage />
+    path: "/register",
+    element: <RegisterPage />
   }
 ]);

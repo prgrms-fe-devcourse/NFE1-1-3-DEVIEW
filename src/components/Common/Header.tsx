@@ -74,7 +74,7 @@ export const Header = () => {
           <Link className="lightgray-btn h-10 w-24 p-1 flex-center hover:opacity-80" type="button" to="/login">
             로그인
           </Link>
-          <Link className="primary-btn h-10 w-24 p-1 flex-center hover:opacity-80" type="button" to="/assign">
+          <Link className="primary-btn h-10 w-24 p-1 flex-center hover:opacity-80" type="button" to="/register">
             회원가입
           </Link>
         </div>
