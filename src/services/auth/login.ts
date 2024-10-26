@@ -19,16 +19,15 @@ export async function login(req: LoginRequestProps): Promise<LoginResponseProps>
   } catch (error) {
     if (axios.isAxiosError(error)) {
       if (error.response) {
-        console.log(error.response);
-        return Promise.reject(new Error("로그인 실패"));
+        alert(error.response.data.message);
+        return Promise.reject(new Error(error.response.data.message));
       }
     }
     if (error instanceof Error) {
       console.error(error);
       alert(error.message);
     }
-    console.error("An unexpected error occurred:", error);
-    alert("An unexpected error occurred");
+    alert("예상치 못한 에러가 발생했습니다.");
     return Promise.reject(error);
   }
 }
