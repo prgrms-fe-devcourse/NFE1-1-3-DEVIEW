@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { HeaderMenu } from "@components/Common/HeaderMenu";
 import { SearchFilter } from "@components/Common/SearchFilter";
 
-export const Header = () => {
+export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isFilterVisible, setIsFilterVisible] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
@@ -97,4 +97,4 @@ export const Header = () => {
       )}
     </div>
   );
-};
+}

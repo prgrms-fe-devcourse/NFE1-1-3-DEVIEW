@@ -1,5 +1,5 @@
 import Footer from "@components/Common/Footer";
-import { Header } from "@components/Common/Header";
+import Header from "@components/Common/Header";
 import RegisterPage from "@pages/RegisterPage";
 import ErrorPage from "@pages/ErrorPage";
 import LoginPage from "@pages/LoginPage";
