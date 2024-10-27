@@ -14,7 +14,8 @@ class RefreshTokenError extends Error {
 
 export async function refresh(): Promise<RefreshResponseProps> {
   try {
-    const response = await axiosInstance.post<RefreshResponseProps>("/refresh");
+    const response = await axiosInstance.post<RefreshResponseProps>("/auth/refresh");
+    console.log("AccessToken이 갱신되었습니다. 로그인하지 않고 계속해서 이용 가능합니다.");
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
