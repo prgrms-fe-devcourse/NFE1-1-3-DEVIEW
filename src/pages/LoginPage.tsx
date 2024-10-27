@@ -20,11 +20,13 @@ export default function LoginPage() {
     const isValid = isIdValid && isPasswordValid;
 
     if (isValid) {
-      login({ id, password }).then((data) => {
-        AccessTokenStorage.setToken(data.accessToken);
-        setUserInfo(data.userInfo);
-        navigate("/");
-      });
+      login({ id, password })
+        .then((data) => {
+          AccessTokenStorage.setToken(data.accessToken);
+          setUserInfo(data.userInfo);
+          navigate("/");
+        })
+        .catch((error) => alert(error));
     } else if (!isIdValid) {
       alert(AUTH_INPUT_VALIDATION.id.errorMessage);
       ($form["userId"] as HTMLInputElement).focus();
