@@ -1,8 +1,9 @@
+import { ErrorResponse } from "@customTypes/errorResponse";
 import axiosInstance from "@services/axiosInstance";
 import { AccessTokenStorage } from "@utils/localStorage";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
-export async function logout() {
+export async function logout(): Promise<void> {
   try {
     await axiosInstance.post(
       "/auth/logout",
@@ -15,15 +16,16 @@ export async function logout() {
     location.reload();
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      if (error.response) {
-        return Promise.reject(new Error("로그아웃 실패"));
+      const axiosError = error as AxiosError<ErrorResponse>;
+      if (axiosError.response) {
+        console.error("로그아웃 실패:", axiosError.response.data);
+        throw new Error(axiosError.response.data.message || "로그아웃 실패");
+      } else if (axiosError.request) {
+        console.error("요청 에러:", axiosError.request);
+        throw new Error("서버에 연결할 수 없습니다. 네트워크를 확인해 주세요.");
       }
     }
-    if (error instanceof Error) {
-      console.error(error);
-      alert(error.message);
-    }
-    alert("An unexpected error occurred");
-    return Promise.reject(error);
+    console.error("예상치 못한 에러 발생:", error);
+    throw new Error("예상치 못한 에러가 발생했습니다. 다시 시도해 주세요.");
   }
 }
