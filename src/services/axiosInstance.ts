@@ -32,6 +32,7 @@ axiosInstance.interceptors.response.use(
       } catch (refreshError) {
         // 토큰 갱신 오류 처리, 있을 경우
         console.error("토큰 갱신 실패: 다시 로그인 해주세요.", refreshError);
+        alert("작업 사항을 저장하신 후, 다시 로그인 해주세요.");
         return Promise.reject(refreshError);
       }
     }
