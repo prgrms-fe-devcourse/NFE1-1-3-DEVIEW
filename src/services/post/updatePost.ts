@@ -4,15 +4,15 @@ import axiosInstance from "@services/axiosInstance";
 import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
-type CreatePostRequestProps = Pick<CommonPostRequestProps, "title" | "content" | "devDependencies">;
+type UpdatePostRequestProps = Pick<CommonPostRequestProps, "postId" | "title" | "content" | "devDependencies">;
 
-type CreatePostResponseProps = Omit<Post, "author"> & {
+type UpdatePostResponseProps = Omit<Post, "author"> & {
   author: string;
 };
 
-export async function createPost(req: CreatePostRequestProps): Promise<CreatePostResponseProps> {
+export async function updatePost({ postId, ...rest }: UpdatePostRequestProps): Promise<UpdatePostResponseProps> {
   try {
-    const response = await axiosInstance.post<CreatePostResponseProps>("/post", req, {
+    const response = await axiosInstance.put<UpdatePostResponseProps>(`/post/${postId}`, rest, {
       headers: {
         Authorization: AccessTokenStorage.getAuthorizationHeader()
       }
@@ -22,7 +22,7 @@ export async function createPost(req: CreatePostRequestProps): Promise<CreatePos
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError<ErrorResponse>;
       if (axiosError.response) {
-        console.error("게시물 생성 실패", axiosError.response.data);
+        console.error("ErrorMessage", axiosError.response.data);
         throw new Error(axiosError.response.data.message || "요청 실패");
       } else if (axiosError.request) {
         console.error("요청 에러:", axiosError.request);

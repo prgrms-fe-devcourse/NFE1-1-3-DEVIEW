@@ -20,11 +20,12 @@ export type PostDetail = Post & {
   scraped: boolean;
 };
 
-export type CommonPostRequestProps = {
+export type CommonPostRequestProps = Pick<Post, "title" | "content" | "devDependencies"> & {
   postId: string;
   page: number;
   limit: number;
 };
+
 export type CommonPostResponseProps = {
   posts: Post[];
   scraps: Post[];
