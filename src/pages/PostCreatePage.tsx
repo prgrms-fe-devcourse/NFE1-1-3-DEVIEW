@@ -60,15 +60,17 @@ export default function PostCreatePage() {
     });
   }, []);
 
+  // mx-[7.1%] my-[4.69rem]
   return (
-    <form onSubmit={onSubmit} className="mx-[7.1%] my-[4.69rem] flex flex-col gap-12">
-      <h1 className="text-28 font-bold">공개 질문하기</h1>
+    <form onSubmit={onSubmit} className="m-auto my-[4.69rem] flex max-w-[1200px] flex-col gap-12">
+      <h1 className="text-24 font-bold">공개 질문하기</h1>
 
       <TitleContainer
         category="제목"
         explain="질문하시고 싶은 내용을 잘 전달할 수 있는 제목을 선택해주세요."
         placeholder="제목은 50자 이내로 작성해주세요."
         value={state.title}
+        maxLength={50}
         onChange={(e) => dispatch({ type: "SET_TITLE", payload: e.target.value })}
       />
 
@@ -77,6 +79,7 @@ export default function PostCreatePage() {
         explain="질문하시고 싶은 내용을 자세하게 작성해주세요."
         placeholder="1000자 이내로 자유롭게 내용을 작성해주세요."
         value={state.content}
+        maxLength={1000}
         onChange={(e) => dispatch({ type: "SET_CONTENT", payload: e.target.value })}
       />
 
