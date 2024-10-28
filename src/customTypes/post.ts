@@ -15,6 +15,11 @@ export type Post = {
   __v: number;
 };
 
+export type PostDetail = Post & {
+  liked: boolean;
+  scraped: boolean;
+};
+
 export type CommonPostRequestProps = {
   postId: string;
   page: number;
