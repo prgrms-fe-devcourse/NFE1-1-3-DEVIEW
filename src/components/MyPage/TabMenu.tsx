@@ -112,7 +112,7 @@ export const TabMenu = () => {
             className={`inline-block px-1 py-2 text-16 md:px-4 md:text-24 ${activeTab === "likes" ? "border-b-4 border-secondary text-secondary" : "hover:text-secondary"}`}
             onClick={() => setActiveTab("likes")}
           >
-            좋아요
+            스크랩
           </button>
         </li>
         <li>
