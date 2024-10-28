@@ -1,55 +1,55 @@
 // 버전 데이터 인터페이스
-export interface VersionData {
+export type VersionData = {
   id: string;
   lan: string;
   version: string;
-}
+};
 
 // 폼 상태 인터페이스
-export interface PostFormState {
+export type PostFormState = {
   title: string;
   content: string;
   code: string; // 코드 에디터 내용
   versions: VersionData[];
-}
+};
 
 // 각 액션별 페이로드 타입 정의
-export interface SetTitleAction {
+export type SetTitleAction = {
   type: "SET_TITLE";
   payload: string;
-}
+};
 
-export interface SetContentAction {
+export type SetContentAction = {
   type: "SET_CONTENT";
   payload: string;
-}
+};
 
-export interface SetCodeAction {
+export type SetCodeAction = {
   type: "SET_CODE";
   payload: string;
-}
+};
 
-export interface AddVersionAction {
+export type AddVersionAction = {
   type: "ADD_VERSION";
-}
+};
 
-export interface RemoveVersionAction {
+export type RemoveVersionAction = {
   type: "REMOVE_VERSION";
   payload: string; // version id
-}
+};
 
-export interface UpdateVersionAction {
+export type UpdateVersionAction = {
   type: "UPDATE_VERSION";
   payload: {
     id: string;
     field: "lan" | "version";
     value: string;
   };
-}
+};
 
 export type ResetFormAction = {
   type: "RESET_FORM";
-}
+};
 
 // 모든 가능한 액션 타입 통합
 export type PostFormAction =
