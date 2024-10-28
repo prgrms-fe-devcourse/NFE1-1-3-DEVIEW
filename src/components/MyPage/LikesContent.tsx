@@ -1,14 +1,15 @@
+import { PostListItem } from "@components/Common/PostListItem";
+import { PostInfo } from "@customTypes/postInfo";
+
 type LikesContentProps = {
-  data: { id: number; likedItem: string }[];
+  data: PostInfo[];
 };
 
 export const LikesContent = ({ data }: LikesContentProps) => {
   return (
     <div className="">
-      {data.map((like) => (
-        <div key={like.id}>
-          <p>likes: {like.likedItem}</p>
-        </div>
+      {data.map((post) => (
+        <PostListItem key={post._id} postItem={post} />
       ))}
     </div>
   );
