@@ -2,7 +2,7 @@ import { CommentsContent } from "@components/MyPage/CommentsContent";
 import { InfoContent } from "@components/MyPage/InfoContent";
 import { LikesContent } from "@components/MyPage/LikesContent";
 import { PostsContent } from "@components/MyPage/PostsContent";
-import { CommentInfo } from "@customTypes/commentInfo";
+import { TComment } from "@customTypes/comment";
 import { TPost } from "@customTypes/post";
 import { useEffect, useState } from "react";
 
@@ -18,9 +18,10 @@ type UserInfo = {
 export const TabMenu = () => {
   const [activeTab, setActiveTab] = useState("posts");
 
+  // TODO: 유저 타입 처리하기
   // TODO: 임시데이터, 백엔드랑 연결하기
   const [postsList, setPostsList] = useState<TPost[]>([]);
-  const [commentsList, setCommentsList] = useState<CommentInfo[]>([]);
+  const [commentsList, setCommentsList] = useState<TComment[]>([]);
   const [likesList, setLikesList] = useState<TPost[]>([]);
   const [infoList, setInfoList] = useState<UserInfo>({});
 
@@ -47,13 +48,15 @@ export const TabMenu = () => {
     setCommentsList([
       {
         _id: "1",
-        post_id: "post1",
+        postId: "post1",
+        content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
         author: "user1",
-        content:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever ···",
-        created_at: "2024-10-23",
-        recommend: 10,
-        post_title: "React Router를 사용해 navigate하는 방법이 뭔가요?"
+        thumbsCount: 10,
+        createdAt: "2024-10-23",
+        updatedAt: "2024-10-24",
+        __v: "0",
+        thumbed: false,
+        postTitle: "React Router를 사용해 navigate하는 방법이 뭔가요?"
       }
     ]);
     setLikesList([
