@@ -2,27 +2,9 @@ import { CommentsContent } from "@components/MyPage/CommentsContent";
 import { InfoContent } from "@components/MyPage/InfoContent";
 import { LikesContent } from "@components/MyPage/LikesContent";
 import { PostsContent } from "@components/MyPage/PostsContent";
+import { CommentInfo } from "@customTypes/commentInfo";
+import { PostInfo } from "@customTypes/postInfo";
 import { useEffect, useState } from "react";
-
-type Post = {
-  id: number;
-  post: string;
-};
-
-type Comment = {
-  _id: string;
-  post_id: string;
-  author: string;
-  content: string;
-  created_at: string;
-  recommend: number;
-  post_title?: string;
-};
-
-type Like = {
-  id: number;
-  likedItem: string;
-};
 
 type UserInfo = {
   _id?: string;
@@ -37,13 +19,25 @@ export const TabMenu = () => {
   const [activeTab, setActiveTab] = useState("posts");
 
   // TODO: 임시데이터, 백엔드랑 연결하기
-  const [postsList, setPostsList] = useState<Post[]>([]);
-  const [commentsList, setCommentsList] = useState<Comment[]>([]);
-  const [likesList, setLikesList] = useState<Like[]>([]);
+  const [postsList, setPostsList] = useState<PostInfo[]>([]);
+  const [commentsList, setCommentsList] = useState<CommentInfo[]>([]);
+  const [likesList, setLikesList] = useState<PostInfo[]>([]);
   const [infoList, setInfoList] = useState<UserInfo>({});
 
   useEffect(() => {
-    setPostsList([{ id: 1, post: "내 게시글" }]);
+    setPostsList([
+      {
+        _id: 1,
+        title: "React Router를 사용해 navigate하는 방법이 뭔가요?",
+        devDependencies: ["React", "Python"],
+        content: "React Router를 사용하여 페이지 간 이동을 구현하고 싶습니다. 어떻게 해야 할까요?",
+        author: "홍길동",
+        created_at: new Date("2024-10-23"),
+        recommend: 15,
+        comment: 5,
+        view: 1200
+      }
+    ]);
     setCommentsList([
       {
         _id: "1",
@@ -56,7 +50,19 @@ export const TabMenu = () => {
         post_title: "React Router를 사용해 navigate하는 방법이 뭔가요?"
       }
     ]);
-    setLikesList([{ id: 1, likedItem: "좋아요" }]);
+    setLikesList([
+      {
+        _id: 1,
+        title: "React Router를 사용해 navigate하는 방법이 뭔가요?",
+        devDependencies: ["React", "JavaScript"],
+        content: "React Router를 사용하여 페이지 간 이동을 구현하고 싶습니다. 어떻게 해야 할까요?",
+        author: "홍길서",
+        created_at: new Date("2024-10-23"),
+        recommend: 35,
+        comment: 2,
+        view: 1234
+      }
+    ]);
     setInfoList({
       _id: "1",
       username: "홍길동",

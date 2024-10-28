@@ -1,14 +1,15 @@
+import { PostListItem } from "@components/Common/PostListItem";
+import { PostInfo } from "@customTypes/postInfo";
+
 type PostsContentProps = {
-  data: { id: number; post: string }[];
+  data: PostInfo[];
 };
 
 export const PostsContent = ({ data }: PostsContentProps) => {
   return (
     <div className="">
       {data.map((post) => (
-        <div key={post.id}>
-          <p>post: {post.post}</p>
-        </div>
+        <PostListItem key={post._id} postItem={post} />
       ))}
     </div>
   );
