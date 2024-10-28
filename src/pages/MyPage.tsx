@@ -4,7 +4,7 @@ import { UserInfo } from "@customTypes/userInfo";
 import { useEffect, useState } from "react";
 
 export default function MyPage() {
-  // TODO: 백엔드에서 데이터 받아오기
+  // TODO: api 연결하기 (유저 정보, 내 게시글, 내 댓글, 스크랩)
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   useEffect(() => {
     setUserInfo({
