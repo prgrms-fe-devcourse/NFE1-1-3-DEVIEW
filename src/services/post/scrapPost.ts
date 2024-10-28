@@ -1,12 +1,12 @@
 import { ErrorResponse } from "@customTypes/errorResponse";
-import { CommonPostRequestProps, PostDetail } from "@customTypes/post";
+import { CommonPostRequestProps, TPostDetail } from "@customTypes/post";
 import axiosInstance from "@services/axiosInstance";
 import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
 type ScrapPostRequestProps = Pick<CommonPostRequestProps, "postId">;
 
-type ScrapPostResponseProps = Pick<PostDetail, "scraped" | "scrapsCount"> & {
+type ScrapPostResponseProps = Pick<TPostDetail, "scraped" | "scrapsCount"> & {
   message: string;
 };
 

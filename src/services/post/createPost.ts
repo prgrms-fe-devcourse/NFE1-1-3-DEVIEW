@@ -1,12 +1,12 @@
 import { ErrorResponse } from "@customTypes/errorResponse";
-import { CommonPostRequestProps, Post } from "@customTypes/post";
+import { CommonPostRequestProps, TPost } from "@customTypes/post";
 import axiosInstance from "@services/axiosInstance";
 import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
 type CreatePostRequestProps = Pick<CommonPostRequestProps, "title" | "content" | "devDependencies">;
 
-type CreatePostResponseProps = Omit<Post, "author"> & {
+type CreatePostResponseProps = Omit<TPost, "author"> & {
   author: string;
 };
 

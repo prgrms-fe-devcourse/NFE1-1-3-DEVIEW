@@ -1,4 +1,4 @@
-export type Post = {
+export type TPost = {
   _id: string;
   title: string;
   content: string;
@@ -15,20 +15,20 @@ export type Post = {
   __v: number;
 };
 
-export type PostDetail = Post & {
+export type TPostDetail = TPost & {
   liked: boolean;
   scraped: boolean;
 };
 
-export type CommonPostRequestProps = Pick<Post, "title" | "content" | "devDependencies"> & {
+export type CommonPostRequestProps = Pick<TPost, "title" | "content" | "devDependencies"> & {
   postId: string;
   page: number;
   limit: number;
 };
 
 export type CommonPostResponseProps = {
-  posts: Post[];
-  scraps: Post[];
+  posts: TPost[];
+  scraps: TPost[];
   currentPage: number;
   totalPages: number;
   totalPosts: number;

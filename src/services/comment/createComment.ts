@@ -1,20 +1,21 @@
+import { TComment, CommonCommentRequestProps } from "@customTypes/comment";
 import { ErrorResponse } from "@customTypes/errorResponse";
-import { CommonPostRequestProps, TPostDetail } from "@customTypes/post";
 import axiosInstance from "@services/axiosInstance";
 import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
-type LikePostRequestProps = Pick<CommonPostRequestProps, "postId">;
+type CreateCommentRequestProps = Pick<CommonCommentRequestProps, "content" | "postId">;
 
-type LikePostResponseProps = Pick<TPostDetail, "likesCount" | "liked"> & {
-  message: string;
-};
+type CreateCommentResponseProps = Omit<TComment, "thumbed">;
 
-export async function likePost({ postId }: LikePostRequestProps): Promise<LikePostResponseProps> {
+export async function createComment({
+  postId,
+  content
+}: CreateCommentRequestProps): Promise<CreateCommentResponseProps> {
   try {
-    const response = await axiosInstance.post<LikePostResponseProps>(
-      `/post/${postId}/like`,
-      {},
+    const response = await axiosInstance.post<CreateCommentResponseProps>(
+      `/comment`,
+      { postId, content },
       {
         headers: {
           Authorization: AccessTokenStorage.getAuthorizationHeader()
@@ -26,7 +27,7 @@ export async function likePost({ postId }: LikePostRequestProps): Promise<LikePo
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError<ErrorResponse>;
       if (axiosError.response) {
-        console.error("게시물 좋아요 실패", axiosError.response.data);
+        console.error("댓글 생성 실패", axiosError.response.data);
         throw new Error(axiosError.response.data.message || "요청 실패");
       } else if (axiosError.request) {
         console.error("요청 에러:", axiosError.request);

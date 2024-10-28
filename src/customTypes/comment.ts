@@ -1,4 +1,4 @@
-export type Comment = {
+export type TComment = {
   _id: string;
   postId: string;
   content: string;
@@ -10,14 +10,14 @@ export type Comment = {
   thumbed: boolean;
 };
 
-export type CommonCommentRequestProps = Pick<Comment, "postId" | "content"> & {
+export type CommonCommentRequestProps = Pick<TComment, "postId" | "content"> & {
   commentId: string;
   page: number;
   limit: number;
 };
 
 export type CommonCommentResponseProps = {
-  comments: Comment[];
+  comments: TComment[];
   currentPage: number;
   totalPages: number;
   totalComments: number;

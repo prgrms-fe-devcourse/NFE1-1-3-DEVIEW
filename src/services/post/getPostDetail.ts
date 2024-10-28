@@ -1,11 +1,11 @@
 import { ErrorResponse } from "@customTypes/errorResponse";
-import { CommonPostRequestProps, PostDetail } from "@customTypes/post";
+import { CommonPostRequestProps, TPostDetail } from "@customTypes/post";
 import axiosInstance from "@services/axiosInstance";
 import axios, { AxiosError } from "axios";
 
 type GetPostDetailRequestProps = Pick<CommonPostRequestProps, "postId">;
 
-type GetPostDetailResponseProps = PostDetail;
+type GetPostDetailResponseProps = TPostDetail;
 
 export async function getPostDetail({ postId }: GetPostDetailRequestProps): Promise<GetPostDetailResponseProps> {
   try {
