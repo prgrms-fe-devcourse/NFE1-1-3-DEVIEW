@@ -4,10 +4,11 @@ type DetailContainerProps = {
   category: string;
   explain: string;
   placeholder: string;
-  value: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
-export const DetailContainer = ({ category, explain, placeholder, value }: DetailContainerProps) => {
+export const DetailContainer = ({ category, explain, placeholder, value, onChange }: DetailContainerProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   // 텍스트 영역 크기 조절을 위한 함수
@@ -19,13 +20,14 @@ export const DetailContainer = ({ category, explain, placeholder, value }: Detai
     }
   };
 
+  // 초기 높이 조절 및 value 변경 시 높이 조절
   useEffect(() => {
     adjustHeight();
-  }, []);
+  }, [value]);
 
-  const changeInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    onChange(e);
     adjustHeight();
-    value(e);
   };
 
   return (
@@ -35,7 +37,8 @@ export const DetailContainer = ({ category, explain, placeholder, value }: Detai
         <p className="text-20 font-medium text-primary">{explain}</p>
         <textarea
           ref={textareaRef}
-          onChange={changeInput}
+          value={value}
+          onChange={handleChange}
           className="min-h-[88px] w-full resize-none overflow-hidden text-gray"
           placeholder={placeholder}
           maxLength={1000}

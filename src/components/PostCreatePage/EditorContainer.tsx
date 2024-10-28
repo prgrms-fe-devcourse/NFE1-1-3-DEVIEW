@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
@@ -15,24 +15,26 @@ interface CustomModule {
   toolbar: ToolbarOptions[][];
 }
 
-export const EditorContainer = () => {
-  const [value, setValue] = useState("");
+interface EditorContainerProps {
+  value: string;
+  onChange: (value: string) => void;
+}
 
-  const modules = useMemo(
-    () =>
-      ({
-        toolbar: [
-          [{ header: [1, 2, 3, false] }],
-          ["bold", "italic", "underline", "strike"],
-          ["code", "code-block"],
-          ["blockquote"],
-          [{ list: "ordered" }, { list: "bullet" }],
-          [{ script: "sub" }, { script: "super" }],
-          [{ indent: "-1" }, { indent: "+1" }],
-          ["link"],
-          ["clean"]
-        ]
-      }) as CustomModule,
+export const EditorContainer = ({ value, onChange }: EditorContainerProps) => {
+  const modules = useMemo<CustomModule>(
+    () => ({
+      toolbar: [
+        [{ header: [1, 2, 3, false] }],
+        ["bold", "italic", "underline", "strike"],
+        ["code", "code-block"],
+        ["blockquote"],
+        [{ list: "ordered" }, { list: "bullet" }],
+        [{ script: "sub" }, { script: "super" }],
+        [{ indent: "-1" }, { indent: "+1" }],
+        ["link"],
+        ["clean"]
+      ]
+    }),
     []
   );
 
@@ -61,7 +63,7 @@ export const EditorContainer = () => {
           <ReactQuill
             theme="snow"
             value={value}
-            onChange={setValue}
+            onChange={onChange}
             modules={modules}
             formats={formats}
             placeholder="코드를 입력해주세요"
