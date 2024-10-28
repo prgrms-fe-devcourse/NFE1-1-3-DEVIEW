@@ -1,4 +1,4 @@
-import { DevDependencies } from "@customTypes/postInfo";
+import { DevDependencies } from "@customTypes/post";
 
 type PostListIconProps = {
   devDependencies: DevDependencies | string;
