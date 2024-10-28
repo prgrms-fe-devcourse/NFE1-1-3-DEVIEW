@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { HeaderMenu } from "@components/Common/HeaderMenu";
 import { SearchFilter } from "@components/Common/SearchFilter";
 import { HeaderLoginMenu } from "@components/Common/HeaderLoginMenu";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,9 +43,7 @@ export default function Header() {
       <header className="relative mx-auto flex h-36 max-w flex-col items-center justify-between p-4 md:h-28 md:flex-row">
         <div className="flex w-full items-center md:w-auto">
           <button className="mr-4 md:hidden" onClick={onClick}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="13" fill="none">
-              <path fill="#000" d="M0 12.5v-2h18v2H0Zm0-5v-2h18v2H0Zm0-5v-2h18v2H0Z" />
-            </svg>
+            <GiHamburgerMenu className="h- w-8" />
           </button>
           <div className="flex-grow text-center">
             <Link to="/" className="flex justify-center">
@@ -87,7 +86,7 @@ export default function Header() {
       {isMenuOpen && (
         <>
           <div className="fixed inset-0 z-40 bg-black bg-opacity-20 backdrop-blur-sm" onClick={onClick} />
-          <HeaderMenu />
+          <HeaderMenu onClick={onClick} />
         </>
       )}
     </div>
