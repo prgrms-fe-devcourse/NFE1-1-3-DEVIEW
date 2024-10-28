@@ -42,13 +42,13 @@ export const InfoContent = ({ data }: InfoContentProps) => {
           <NameInput defaultValue={data.username} />
           <PasswordInput defaultValue={data.password} />
 
-          <div className="mb-5 flex items-center justify-between gap-10">
+          <div className="mb-5 flex items-center justify-between gap-1 md:gap-10">
             <Radio id="student" name="group" text="학생" value="학생" defaultChecked={data.team === "학생"} />
             <Radio id="seeker" name="group" text="취준생" value="취준생" defaultChecked={data.team === "취준생"} />
             <Radio id="developer" name="group" text="개발자" value="개발자" defaultChecked={data.team === "개발자"} />
             <Radio id="etc" name="group" text="기타" value="기타" defaultChecked={data.team === "기타"} />
           </div>
-          <button type="submit" className="primary-btn p-7">
+          <button type="submit" className="primary-btn p-6 text-14 md:p-7 md:text-20">
             저장
           </button>
         </form>
