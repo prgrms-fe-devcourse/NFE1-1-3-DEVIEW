@@ -4,10 +4,10 @@ import { PasswordInput } from "@components/Common/PasswordInput";
 import { ConfirmPasswordInput } from "@components/RegisterPage/ConfirmPasswordInput";
 import { AUTH_INPUT_VALIDATION } from "@constants/authInputValidation";
 import { NameInput } from "@components/Common/NameInput";
-import { Radio } from "@components/Common/Radio";
 import { useNavigate } from "react-router-dom";
 import { register } from "@services/auth/register";
 import { UserInfo } from "@customTypes/userInfo";
+import { Radio } from "@components/Common/Radio";
 
 export default function RegisterPage() {
   const navigate = useNavigate();

@@ -62,7 +62,7 @@ export const TabMenu = () => {
       username: "홍길동",
       email: "test1234@test.com",
       password: "test1212",
-      team: "학생",
+      team: "개발자",
       created_at: "2024-10-25"
     });
   }, []);
