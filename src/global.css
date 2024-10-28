@@ -25,7 +25,11 @@
   }
 
   button {
-    @apply cursor-pointer;
+    @apply cursor-pointer outline-none;
+  }
+
+  a {
+    @apply outline-none;
   }
 
   html,
