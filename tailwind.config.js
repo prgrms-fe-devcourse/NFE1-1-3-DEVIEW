@@ -66,6 +66,12 @@ export default {
         ".primary-btn": {
           "@apply bg-primary w-full rounded p-6 text-white-pure": ""
         },
+        ".lightgray-btn": {
+          "@apply bg-lightgray w-full rounded p-6 text-black": ""
+        },
+        ".gray-btn": {
+          "@apply bg-gray w-full rounded p-6 text-black": ""
+        },
         ".text-btn": {
           "@apply text-gray hover:underline": ""
         }
