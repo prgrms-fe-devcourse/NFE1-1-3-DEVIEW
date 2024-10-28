@@ -28,7 +28,7 @@ export default function PostCreatePage() {
     return true;
   }, [state.title, state.content, state.code, state.versions]);
 
-  const handleSubmit = useCallback(
+  const onSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
@@ -47,13 +47,13 @@ export default function PostCreatePage() {
     [state, validateForm]
   );
 
-  const handleReset = useCallback(() => {
+  const onReset = useCallback(() => {
     if (window.confirm("작성 중인 내용이 모두 초기화됩니다. 계속하시겠습니까?")) {
       dispatch({ type: "RESET_FORM" });
     }
   }, []);
 
-  const handleVersionChange = useCallback((id: string, field: "lan" | "version", value: string) => {
+  const onVersionChange = useCallback((id: string, field: "lan" | "version", value: string) => {
     dispatch({
       type: "UPDATE_VERSION",
       payload: { id, field, value }
@@ -61,7 +61,7 @@ export default function PostCreatePage() {
   }, []);
 
   return (
-    <form onSubmit={handleSubmit} className="mx-[7.1%] my-[4.69rem] flex flex-col gap-12">
+    <form onSubmit={onSubmit} className="mx-[7.1%] my-[4.69rem] flex flex-col gap-12">
       <h1 className="text-28 font-bold">공개 질문하기</h1>
 
       <TitleContainer
@@ -87,8 +87,8 @@ export default function PostCreatePage() {
           version={state.versions[0].version}
           onAddVersion={() => dispatch({ type: "ADD_VERSION" })}
           onRemove={() => dispatch({ type: "REMOVE_VERSION", payload: state.versions[0].id })}
-          onChange={(e) => handleVersionChange(state.versions[0].id, "lan", e.target.value)}
-          onChangeVersion={(e) => handleVersionChange(state.versions[0].id, "version", e.target.value)}
+          onChange={(e) => onVersionChange(state.versions[0].id, "lan", e.target.value)}
+          onChangeVersion={(e) => onVersionChange(state.versions[0].id, "version", e.target.value)}
         />
       )}
 
@@ -97,7 +97,7 @@ export default function PostCreatePage() {
       <div className="flex w-full justify-end gap-2">
         <button
           type="button"
-          onClick={handleReset}
+          onClick={onReset}
           className="min-w-44 max-w-[12.5rem] rounded-lg bg-gray px-3 py-4 text-20 font-semibold text-white-pure"
         >
           초기화하기
