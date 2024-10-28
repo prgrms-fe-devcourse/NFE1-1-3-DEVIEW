@@ -36,7 +36,7 @@ export const Input = ({ name, text, errorMessage, pattern, ...rest }: InputProps
   if (errorMessage && !pattern) throw new Error("에러 메시지는 있는데 에러를 판단할 패턴이 없습니다.");
   return (
     <div className="relative mb-6">
-      {text && <p className="mb-3 text-secondary">{text}</p>}
+      {text && <p className="mb-3 text-14 text-secondary md:text-20">{text}</p>}
       <input autoComplete="off" name={name} value={value} onChange={onChange} {...rest} />
       {error && <p className="absolute mt-1 text-red">{error}</p>}
     </div>
