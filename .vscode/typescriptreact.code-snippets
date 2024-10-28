@@ -8,7 +8,7 @@
       "  $2",
       "}",
       "",
-      "export const ${1:${TM_FILENAME_BASE}} = ({ $2 }) => {",
+      "export const ${1:${TM_FILENAME_BASE}} = ({ $2 }: ${1:${TM_FILENAME_BASE}}Props ) => {",
       "  return (",
       "    <div className=\"\">",
       "      ${1:${TM_FILENAME_BASE}}",

@@ -5,6 +5,9 @@ export default {
     extend: {
       fontFamily: {
         Pretendard: ["Pretendard"]
+      },
+      backgroundImage: {
+        ranked: "url('/src/assets/Ranked.svg')"
       }
     },
     colors: {

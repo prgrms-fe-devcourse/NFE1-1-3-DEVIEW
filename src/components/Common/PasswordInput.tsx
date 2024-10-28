@@ -4,6 +4,7 @@ import { AUTH_INPUT_VALIDATION } from "@constants/authInputValidation";
 export const PasswordInput = ({ defaultValue }: { defaultValue?: string }) => {
   return (
     <Input
+      autoComplete="off"
       text="비밀번호"
       name="password"
       type="password"

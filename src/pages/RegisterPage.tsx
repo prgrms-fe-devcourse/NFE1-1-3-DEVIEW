@@ -5,35 +5,45 @@ import { ConfirmPasswordInput } from "@components/RegisterPage/ConfirmPasswordIn
 import { AUTH_INPUT_VALIDATION } from "@constants/authInputValidation";
 import { NameInput } from "@components/Common/NameInput";
 import { Radio } from "@components/Common/Radio";
+import { useNavigate } from "react-router-dom";
+import { register } from "@services/auth/register";
+import { UserInfo } from "@customTypes/userInfo";
 
 export default function RegisterPage() {
+  const navigate = useNavigate();
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const target = e.target as HTMLFormElement;
     const formData = new FormData(target);
-    const [id, password, confirmPassword, name, group] = [
-      formData.get("id") as string,
+    const [id, password, confirmPassword, username, group] = [
+      formData.get("userId") as UserInfo["id"],
       formData.get("password") as string,
       formData.get("confirm_password") as string,
-      formData.get("name") as string,
-      formData.get("group") as string
+      formData.get("name") as UserInfo["username"],
+      formData.get("group") as UserInfo["group"]
     ];
 
     const isIdValid = AUTH_INPUT_VALIDATION.id.regexp.test(id);
     const isPasswordValid = AUTH_INPUT_VALIDATION.password.regexp.test(password);
     const isConfirmPasswordValid = password === confirmPassword;
-    const isNameValid = AUTH_INPUT_VALIDATION.name.regexp.test(name);
+    const isNameValid = AUTH_INPUT_VALIDATION.name.regexp.test(username);
 
     const isValid = isIdValid && isPasswordValid && isConfirmPasswordValid && isNameValid;
 
     if (isValid) {
-      console.log("Valid");
-      console.log({ id, password, confirmPassword, name, group });
-      /*
-      todo BackEnd로 회원가입 요청 전송
-      ? 성공 시 -> 로그인 페이지로 리다이렉트
-      * 실패 시 -> "회원 가입에 실패했습니다."
-      */
+      register({
+        group,
+        id,
+        password,
+        username
+      })
+        .then(() => {
+          navigate("/login"); // 성공 시 로그인 페이지로 리다이렉트
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("회원 가입에 실패했습니다.");
+        });
     } else {
       if (!isIdValid) alert(AUTH_INPUT_VALIDATION.id.errorMessage);
       else if (!isPasswordValid) alert(AUTH_INPUT_VALIDATION.password.errorMessage);
@@ -51,7 +61,7 @@ export default function RegisterPage() {
         <NameInput />
 
         <div className="mb-5 flex items-center justify-between gap-10">
-          <Radio id="student" name="group" text="학생" value="학생" />
+          <Radio id="student" name="group" text="학생" value="학생" defaultChecked />
           <Radio id="seeker" name="group" text="취준생" value="취준생" />
           <Radio id="developer" name="group" text="개발자" value="개발자" />
           <Radio id="etc" name="group" text="기타" value="기타" />

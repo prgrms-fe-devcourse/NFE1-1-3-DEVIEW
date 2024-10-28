@@ -37,7 +37,7 @@ export const Input = ({ name, text, errorMessage, pattern, ...rest }: InputProps
   return (
     <div className="relative mb-6">
       {text && <p className="mb-3 text-secondary">{text}</p>}
-      <input name={name} value={value} onChange={onChange} {...rest} />
+      <input autoComplete="off" name={name} value={value} onChange={onChange} {...rest} />
       {error && <p className="absolute mt-1 text-red">{error}</p>}
     </div>
   );
