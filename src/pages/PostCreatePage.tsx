@@ -63,7 +63,7 @@ export default function PostCreatePage() {
   // mx-[7.1%] my-[4.69rem]
   return (
     <form onSubmit={onSubmit} className="m-auto my-[4.69rem] flex max-w-[1200px] flex-col gap-12">
-      <h1 className="text-24 font-bold">공개 질문하기</h1>
+      <h1 className="text-24 font-semibold">공개 질문하기</h1>
 
       <TitleContainer
         category="제목"
@@ -101,13 +101,13 @@ export default function PostCreatePage() {
         <button
           type="button"
           onClick={onReset}
-          className="min-w-44 max-w-[12.5rem] rounded-lg bg-gray px-3 py-4 text-20 font-semibold text-white-pure"
+          className="min-w-44 max-w-[12.5rem] rounded-lg bg-gray px-3 py-4 text-20 font-semibold text-white-pure hover:opacity-80"
         >
           초기화하기
         </button>
         <button
           type="submit"
-          className="min-w-44 max-w-[12.5rem] rounded-lg bg-primary px-3 py-4 text-20 font-semibold text-white-pure"
+          className="min-w-44 max-w-[12.5rem] rounded-lg bg-primary px-3 py-4 text-20 font-semibold text-white-pure hover:opacity-80"
         >
           질문하기
         </button>
