@@ -1,7 +1,7 @@
-import { PostInfo } from "@customTypes/postInfo";
+import { TPost } from "@customTypes/post";
 import { PostListIcon } from "@components/Common/PostListIcon";
 
-export const PostListItem = ({ postItem, ranked }: { postItem: PostInfo; ranked?: number }) => {
+export const PostListItem = ({ postItem, ranked }: { postItem: TPost; ranked?: number }) => {
   // 숫자 포맷함수
   // 1000이상일 경우 '만','천' 단위로 표시
   // 소수점 한자리 이후로 내림처리
@@ -18,8 +18,9 @@ export const PostListItem = ({ postItem, ranked }: { postItem: PostInfo; ranked?
     return (Math.floor(num / (digit / 10)) / 10).toFixed(1) + unit;
   };
 
-  const formatDate = (create_at: Date) => {
-    return `${create_at.getFullYear()}년 ${create_at.getMonth()}월 ${create_at.getDate()}일`;
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return `${date.getFullYear()}년 ${date.getMonth()}월 ${date.getDate()}일`;
   };
 
   return (
@@ -34,7 +35,7 @@ export const PostListItem = ({ postItem, ranked }: { postItem: PostInfo; ranked?
         <div className="flex flex-col gap-2.5">
           <div className="flex gap-2">
             <div className="text-24">{postItem.title}</div>
-            <div className="flex items-end text-14 text-gray">{formatDate(postItem.created_at)}</div>
+            <div className="flex items-end text-14 text-gray">{formatDate(postItem.createdAt)}</div>
           </div>
           <div className="flex gap-2.5">
             {postItem.devDependencies.map((v, i) => {
@@ -48,18 +49,18 @@ export const PostListItem = ({ postItem, ranked }: { postItem: PostInfo; ranked?
           <div className="flex gap-2.5">
             <div className="flex gap-1 font-bold">
               <div className="text-pink">♥</div>
-              <div>{postItem.recommend}</div>
+              <div>{postItem.likesCount}</div>
             </div>
             <div className="flex gap-1 font-bold">
               <div>답변</div>
-              <div>{postItem.comment}</div>
+              <div>{postItem.commentsCount}</div>
             </div>
             <div className="flex gap-1 text-gray">
               <div>조회수</div>
-              <div>{formatNumber(postItem.view)}</div>
+              <div>{formatNumber(postItem.viewsCount)}</div>
             </div>
             <div className="flex gap-1 text-primary">
-              <div className="underline">{postItem.author}</div>
+              <div className="underline">{postItem.author.username}</div>
             </div>
           </div>
         </div>
