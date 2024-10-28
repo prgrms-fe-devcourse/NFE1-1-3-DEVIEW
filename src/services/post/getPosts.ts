@@ -1,19 +1,24 @@
 import { ErrorResponse } from "@customTypes/errorResponse";
+import { CommonPostRequestProps, CommonPostResponseProps } from "@customTypes/post";
 import axiosInstance from "@services/axiosInstance";
-import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
-export async function logout(): Promise<void> {
+type GetPostsRequestProps = Omit<CommonPostRequestProps, "postId">;
+
+type GetPostsResponseProps = Omit<CommonPostResponseProps, "scraps">;
+
+export async function getPosts({ page, limit }: GetPostsRequestProps): Promise<GetPostsResponseProps> {
   try {
-    await axiosInstance.post("/auth/logout");
-    AccessTokenStorage.removeToken();
-    location.reload();
+    const response = await axiosInstance.get<GetPostsResponseProps>(`/post`, {
+      params: { page, limit }
+    });
+    return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError<ErrorResponse>;
       if (axiosError.response) {
-        console.error("로그아웃 실패:", axiosError.response.data);
-        throw new Error(axiosError.response.data.message || "로그아웃 실패");
+        console.error("ErrorMessage", axiosError.response.data);
+        throw new Error(axiosError.response.data.message || "요청 실패");
       } else if (axiosError.request) {
         console.error("요청 에러:", axiosError.request);
         throw new Error("서버에 연결할 수 없습니다. 네트워크를 확인해 주세요.");

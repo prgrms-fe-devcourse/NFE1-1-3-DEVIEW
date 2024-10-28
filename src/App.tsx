@@ -9,7 +9,7 @@ export const App = () => {
   const { setUserInfo } = useUserStore();
 
   useEffect(() => {
-    //todo initial login
+    // 자동 로그인
     if (AccessTokenStorage.hasToken()) {
       getUserInfo().then((data) => {
         setUserInfo(data);

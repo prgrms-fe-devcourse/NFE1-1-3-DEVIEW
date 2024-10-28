@@ -15,7 +15,7 @@ type LoginResponseProps = {
 
 export async function login(req: LoginRequestProps): Promise<LoginResponseProps> {
   try {
-    const response = await axiosInstance.post("/auth/login", req, { withCredentials: true });
+    const response = await axiosInstance.post("/auth/login", req);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
