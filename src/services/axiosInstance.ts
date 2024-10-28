@@ -18,8 +18,8 @@ axiosInstance.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    // 오류 상태가 401이고 메시지가 "invalid token"인지 확인
-    if (error.response?.status === 401 && error.response?.data?.message === "Invalid token") {
+    // 오류 상태가 401이고 "TOKEN_EXPIRED" 에러인지 확인
+    if (error.response?.status === 401 && error.response?.data?.error === "TOKEN_EXPIRED") {
       try {
         // 토큰 갱신 시도
         const { accessToken } = await refresh();
