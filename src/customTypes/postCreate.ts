@@ -5,6 +5,7 @@ export type VersionData = {
   version: string;
 };
 
+
 // 폼 상태 인터페이스
 export type PostFormState = {
   title: string;

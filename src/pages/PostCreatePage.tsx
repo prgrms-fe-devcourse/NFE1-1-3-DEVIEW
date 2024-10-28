@@ -1,5 +1,11 @@
-import { TitleContainer, DetailContainer, VersionContainer, EditorContainer } from "@components/PostCreatePage";
-import { postFormReducer, initialState } from "@utils/postCreate/postFormReducer";
+import {
+  TitleContainer,
+  DetailContainer,
+  VersionContainer,
+  EditorContainer,
+  FormActionBtn
+} from "@/components/PostCreatePage";
+import { postFormReducer, initialState } from "@utils/postCreate";
 import { useReducer, FormEvent, useCallback } from "react";
 
 export default function PostCreatePage() {
@@ -18,24 +24,20 @@ export default function PostCreatePage() {
       alert("코드를 입력해주세요.");
       return false;
     }
-
     const hasEmptyVersion = state.versions.some((v) => !v.lan || !v.version.trim());
     if (hasEmptyVersion) {
       alert("모든 버전 정보를 입력해주세요.");
       return false;
     }
-
     return true;
   }, [state.title, state.content, state.code, state.versions]);
 
   const onSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-
       if (!validateForm()) {
         return;
       }
-
       try {
         // TODO: API 호출 로직 구현
         console.log("Submit Data:", state);
@@ -60,9 +62,16 @@ export default function PostCreatePage() {
     });
   }, []);
 
-  // mx-[7.1%] my-[4.69rem]
+  const onRemoveVersion = useCallback((id: string) => {
+    dispatch({ type: "REMOVE_VERSION", payload: id });
+  }, []);
+
+  const onAddVersion = useCallback(() => {
+    dispatch({ type: "ADD_VERSION" });
+  }, []);
+
   return (
-    <form onSubmit={onSubmit} className="m-auto my-[4.69rem] flex max-w-[1200px] flex-col gap-12">
+    <form onSubmit={onSubmit} className="m-auto my-[5.313rem] flex max-w-[1240px] flex-col gap-12 px-5">
       <h1 className="text-24 font-semibold">공개 질문하기</h1>
 
       <TitleContainer
@@ -83,34 +92,18 @@ export default function PostCreatePage() {
         onChange={(e) => dispatch({ type: "SET_CONTENT", payload: e.target.value })}
       />
 
-      {state.versions.length > 0 && (
-        <VersionContainer
-          id={state.versions[0].id}
-          lan={state.versions[0].lan}
-          version={state.versions[0].version}
-          onAddVersion={() => dispatch({ type: "ADD_VERSION" })}
-          onRemove={() => dispatch({ type: "REMOVE_VERSION", payload: state.versions[0].id })}
-          onChange={(e) => onVersionChange(state.versions[0].id, "lan", e.target.value)}
-          onChangeVersion={(e) => onVersionChange(state.versions[0].id, "version", e.target.value)}
-        />
-      )}
+      <VersionContainer
+        state={state}
+        onAddVersion={onAddVersion}
+        onRemove={onRemoveVersion}
+        onChange={onVersionChange}
+      />
 
       <EditorContainer value={state.code} onChange={(newValue) => dispatch({ type: "SET_CODE", payload: newValue })} />
 
-      <div className="flex w-full justify-end gap-2">
-        <button
-          type="button"
-          onClick={onReset}
-          className="min-w-44 max-w-[12.5rem] rounded-lg bg-gray px-3 py-4 text-20 font-semibold text-white-pure hover:opacity-80"
-        >
-          초기화하기
-        </button>
-        <button
-          type="submit"
-          className="min-w-44 max-w-[12.5rem] rounded-lg bg-primary px-3 py-4 text-20 font-semibold text-white-pure hover:opacity-80"
-        >
-          질문하기
-        </button>
+      <div className="flex w-full justify-end gap-6">
+        <FormActionBtn content="내용 초기화하기" type="reset" onClick={onReset} />
+        <FormActionBtn color="primary" content="질문하기" type="submit" />
       </div>
     </form>
   );
