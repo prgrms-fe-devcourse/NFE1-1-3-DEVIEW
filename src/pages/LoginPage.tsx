@@ -3,9 +3,12 @@ import { IdInput } from "@components/Common/IdInput";
 import { PasswordInput } from "@components/Common/PasswordInput";
 import { Link, useNavigate } from "react-router-dom";
 import { AUTH_INPUT_VALIDATION } from "@constants/authInputValidation";
-import { login } from "@services/login";
+import { login } from "@services/auth/login";
+import { AccessTokenStorage } from "@utils/localStorage";
+import { useUserStore } from "@stores/userStore";
 
 export default function LoginPage() {
+  const { setUserInfo } = useUserStore();
   const navigate = useNavigate();
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -17,12 +20,13 @@ export default function LoginPage() {
     const isValid = isIdValid && isPasswordValid;
 
     if (isValid) {
-      login({ id, password }).then((data) => {
-        console.log(data);
-        //todo axios interceptor 이용하여 토큰 헤더에 포함
-        //todo userInfo localStorage 및 전역 상태에 저장
-        navigate("/");
-      });
+      login({ id, password })
+        .then((data) => {
+          AccessTokenStorage.setToken(data.accessToken);
+          setUserInfo(data.userInfo);
+          navigate("/");
+        })
+        .catch((error) => alert(error));
     } else if (!isIdValid) {
       alert(AUTH_INPUT_VALIDATION.id.errorMessage);
       ($form["userId"] as HTMLInputElement).focus();
