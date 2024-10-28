@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type InputProps = {
   name: string;
@@ -10,6 +10,12 @@ type InputProps = {
 export const Input = ({ name, text, errorMessage, pattern, ...rest }: InputProps) => {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (rest.defaultValue !== undefined) {
+      setValue(rest.defaultValue as string);
+    }
+  }, [rest.defaultValue]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
