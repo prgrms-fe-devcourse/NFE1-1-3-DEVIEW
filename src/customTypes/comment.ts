@@ -8,6 +8,7 @@ export type TComment = {
   updatedAt: string;
   __v: string;
   thumbed: boolean;
+  postTitle?: string;
 };
 
 export type CommonCommentRequestProps = Pick<TComment, "postId" | "content"> & {

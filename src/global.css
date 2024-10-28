@@ -13,7 +13,7 @@
 
   input,
   textarea {
-    @apply w-full rounded-lg p-6 text-20 outline-none ring-1 ring-lightgray transition-shadow;
+    @apply w-full rounded-lg p-5 text-14 outline-none ring-1 ring-lightgray transition-shadow md:p-6 md:text-20;
   }
   input:focus,
   textarea:focus {

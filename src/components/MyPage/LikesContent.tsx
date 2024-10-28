@@ -1,8 +1,8 @@
 import { PostListItem } from "@components/Common/PostListItem";
-import { PostInfo } from "@customTypes/postInfo";
+import { TPost } from "@customTypes/post";
 
 type LikesContentProps = {
-  data: PostInfo[];
+  data: TPost[];
 };
 
 export const LikesContent = ({ data }: LikesContentProps) => {

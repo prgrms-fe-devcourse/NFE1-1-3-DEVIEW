@@ -23,7 +23,7 @@ export const CheckPassword = ({ onSuccess, correctPassword }: CheckPasswordProps
   return (
     <form className="flex flex-col border-2" onSubmit={onSubmit}>
       <PasswordInput />
-      <button type="submit" className="primary-btn p-7">
+      <button type="submit" className="primary-btn mt-4 p-6 text-14 md:p-7 md:text-20">
         확인
       </button>
     </form>
