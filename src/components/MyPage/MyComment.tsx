@@ -1,15 +1,8 @@
+import { CommentInfo } from "@customTypes/commentInfo";
 import { useNavigate } from "react-router-dom";
 
 type MyCommentProps = {
-  comment: {
-    _id: string;
-    post_id: string;
-    author: string;
-    content: string;
-    created_at: string;
-    recommend: number;
-    post_title?: string;
-  };
+  comment: CommentInfo;
 };
 
 export const MyComment = ({ comment }: MyCommentProps) => {
@@ -19,7 +12,7 @@ export const MyComment = ({ comment }: MyCommentProps) => {
   };
   return (
     <div
-      className="group flex cursor-pointer flex-col gap-2 border-b-2 border-solid border-gray py-2 md:gap-4 md:py-4"
+      className="group flex cursor-pointer flex-col gap-2 border-b-2 border-solid border-primary border-opacity-40 py-2 md:gap-4 md:py-4"
       onClick={onClick}
     >
       <p className="truncate text-justify text-14 text-black md:text-20">{comment.content}</p>

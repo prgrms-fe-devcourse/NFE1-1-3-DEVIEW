@@ -1,15 +1,8 @@
 import { MyComment } from "@components/MyPage/MyComment";
+import { CommentInfo } from "@customTypes/commentInfo";
 
 type CommentsContentProps = {
-  data: {
-    _id: string;
-    post_id: string;
-    author: string;
-    content: string;
-    created_at: string;
-    recommend: number;
-    post_title?: string;
-  }[];
+  data: CommentInfo[];
 };
 
 export const CommentsContent = ({ data }: CommentsContentProps) => {

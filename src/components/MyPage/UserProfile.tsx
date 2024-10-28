@@ -1,8 +1,10 @@
+import { UserInfo } from "@customTypes/userInfo";
+
 type UserProfileProps = {
-  nickname: string;
+  userInfo: UserInfo;
 };
 
-export const UserProfile = ({ nickname }: UserProfileProps) => {
+export const UserProfile = ({ userInfo }: UserProfileProps) => {
   return (
     <div className="flex items-center gap-4">
       <div className="h-20 w-20 overflow-hidden rounded-full md:h-36 md:w-36">
@@ -12,7 +14,10 @@ export const UserProfile = ({ nickname }: UserProfileProps) => {
           alt="프로필 이미지"
         />
       </div>
-      <span className="text-16 text-secondary md:text-24">{nickname}</span>
+      <span className="text-16 text-secondary md:text-24">
+        {userInfo.username}
+        {userInfo.group && `(${userInfo.group})`}
+      </span>
     </div>
   );
 };
