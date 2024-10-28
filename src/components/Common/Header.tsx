@@ -4,6 +4,7 @@ import { SearchBar } from "@components/Common/SearchBar";
 import { Link } from "react-router-dom";
 import { HeaderMenu } from "@components/Common/HeaderMenu";
 import { SearchFilter } from "@components/Common/SearchFilter";
+import { HeaderLoginMenu } from "@components/Common/HeaderLoginMenu";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,7 +39,7 @@ export default function Header() {
 
   return (
     <div className="shadow">
-      <header className="mx-auto flex h-36 max-w flex-col items-center justify-between p-4 md:h-28 md:flex-row">
+      <header className="relative mx-auto flex h-36 max-w flex-col items-center justify-between p-4 md:h-28 md:flex-row">
         <div className="flex w-full items-center md:w-auto">
           <button className="mr-4 md:hidden" onClick={onClick}>
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="13" fill="none">
@@ -70,15 +71,9 @@ export default function Header() {
         <div className="w-full md:mx-16 md:w-auto md:flex-grow">
           <SearchBar selectedFilters={selectedFilters} onDeleteFilter={onDeleteFilter} onFocus={onFocus} />
         </div>
-        <div className="hidden md:flex md:space-x-2">
-          <Link className="lightgray-btn h-10 w-24 p-1 flex-center hover:opacity-80" type="button" to="/login">
-            로그인
-          </Link>
-          <Link className="primary-btn h-10 w-24 p-1 flex-center hover:opacity-80" type="button" to="/register">
-            회원가입
-          </Link>
-        </div>
+        <HeaderLoginMenu />
       </header>
+
       {isFilterVisible && (
         <>
           <SearchFilter onSelectFilter={onSelectFilter} onClearFilters={onClearFilters} />
