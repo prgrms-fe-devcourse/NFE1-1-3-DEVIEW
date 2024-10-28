@@ -19,7 +19,7 @@
       "): Promise<${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}}ResponseProps> {",
       "  try {",
       "    const response = await axiosInstance.post<${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}}ResponseProps>(",
-      "      '/${3:${endpoint}}',",
+      "      `/${3:${endpoint}}`,",
       "      req",
       "    );",
       "    return response.data;",
