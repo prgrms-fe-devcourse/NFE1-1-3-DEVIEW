@@ -1,8 +1,8 @@
 import { MyComment } from "@components/MyPage/MyComment";
-import { CommentInfo } from "@customTypes/commentInfo";
+import { TComment } from "@customTypes/comment";
 
 type CommentsContentProps = {
-  data: CommentInfo[];
+  data: TComment[];
 };
 
 export const CommentsContent = ({ data }: CommentsContentProps) => {
