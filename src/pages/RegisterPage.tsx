@@ -1,13 +1,13 @@
 import { Logo } from "@components/Common/Logo";
 import { IdInput } from "@components/Common/IdInput";
 import { PasswordInput } from "@components/Common/PasswordInput";
-import { Radio } from "@components/RegisterPage/Radio";
 import { ConfirmPasswordInput } from "@components/RegisterPage/ConfirmPasswordInput";
-import { NameInput } from "@pages/NameInput";
 import { AUTH_INPUT_VALIDATION } from "@constants/authInputValidation";
+import { NameInput } from "@components/Common/NameInput";
 import { useNavigate } from "react-router-dom";
 import { register } from "@services/auth/register";
 import { UserInfo } from "@customTypes/userInfo";
+import { Radio } from "@components/Common/Radio";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
