@@ -3,7 +3,7 @@ import { InfoContent } from "@components/MyPage/InfoContent";
 import { LikesContent } from "@components/MyPage/LikesContent";
 import { PostsContent } from "@components/MyPage/PostsContent";
 import { CommentInfo } from "@customTypes/commentInfo";
-import { PostInfo } from "@customTypes/postInfo";
+import { TPost } from "@customTypes/post";
 import { useEffect, useState } from "react";
 
 type UserInfo = {
@@ -19,23 +19,29 @@ export const TabMenu = () => {
   const [activeTab, setActiveTab] = useState("posts");
 
   // TODO: 임시데이터, 백엔드랑 연결하기
-  const [postsList, setPostsList] = useState<PostInfo[]>([]);
+  const [postsList, setPostsList] = useState<TPost[]>([]);
   const [commentsList, setCommentsList] = useState<CommentInfo[]>([]);
-  const [likesList, setLikesList] = useState<PostInfo[]>([]);
+  const [likesList, setLikesList] = useState<TPost[]>([]);
   const [infoList, setInfoList] = useState<UserInfo>({});
 
   useEffect(() => {
     setPostsList([
       {
-        _id: 1,
+        _id: "1",
         title: "React Router를 사용해 navigate하는 방법이 뭔가요?",
-        devDependencies: ["React", "Python"],
         content: "React Router를 사용하여 페이지 간 이동을 구현하고 싶습니다. 어떻게 해야 할까요?",
-        author: "홍길동",
-        created_at: new Date("2024-10-23"),
-        recommend: 15,
-        comment: 5,
-        view: 1200
+        author: {
+          _id: "author1",
+          username: "홍길동"
+        },
+        devDependencies: ["React", "Python"],
+        likesCount: 15,
+        viewsCount: 1200,
+        scrapsCount: 5,
+        commentsCount: 10,
+        createdAt: "2024-10-23",
+        updatedAt: "2024-10-24",
+        __v: 0
       }
     ]);
     setCommentsList([
@@ -52,15 +58,21 @@ export const TabMenu = () => {
     ]);
     setLikesList([
       {
-        _id: 1,
+        _id: "2",
         title: "React Router를 사용해 navigate하는 방법이 뭔가요?",
-        devDependencies: ["React", "JavaScript"],
         content: "React Router를 사용하여 페이지 간 이동을 구현하고 싶습니다. 어떻게 해야 할까요?",
-        author: "홍길서",
-        created_at: new Date("2024-10-23"),
-        recommend: 35,
-        comment: 2,
-        view: 1234
+        author: {
+          _id: "author2",
+          username: "홍길서"
+        },
+        devDependencies: ["React", "JavaScript"],
+        likesCount: 35,
+        viewsCount: 1234,
+        scrapsCount: 8,
+        commentsCount: 5,
+        createdAt: "2024-10-23",
+        updatedAt: "2024-10-24",
+        __v: 0
       }
     ]);
     setInfoList({
