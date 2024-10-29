@@ -1,13 +1,20 @@
 import { ErrorResponse } from "@customTypes/errorResponse";
+import { PaginationRequestProps } from "@customTypes/pagination";
 import { CommonPostResponseProps } from "@customTypes/post";
 import axiosInstance from "@services/axiosInstance";
 import axios, { AxiosError } from "axios";
 
+type GetPopularPostsRequestProps = PaginationRequestProps;
 type GetPopularPostsResponseProps = CommonPostResponseProps;
 
-export async function getPopularPosts(): Promise<GetPopularPostsResponseProps> {
+export async function getPopularPosts({
+  page,
+  limit
+}: GetPopularPostsRequestProps): Promise<GetPopularPostsResponseProps> {
   try {
-    const response = await axiosInstance.get<GetPopularPostsResponseProps>(`/post/popular`);
+    const response = await axiosInstance.get<GetPopularPostsResponseProps>(`/post/popular`, {
+      params: { page, limit }
+    });
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
