@@ -1,10 +1,5 @@
-import {
-  TitleContainer,
-  DetailContainer,
-  VersionContainer,
-  EditorContainer,
-  ActionBtn
-} from "@components/PostCreatePage";
+import { TitleContainer, DetailContainer, VersionContainer, EditorContainer } from "@components/PostCreatePage";
+import { ActionBtn } from "@/components/Common";
 import { postFormReducer, initialState } from "@utils/postCreate";
 import { useReducer, FormEvent, useCallback } from "react";
 
