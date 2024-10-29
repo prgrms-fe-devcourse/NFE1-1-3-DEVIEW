@@ -3,8 +3,8 @@ import {
   DetailContainer,
   VersionContainer,
   EditorContainer,
-  FormActionBtn
-} from "@/components/PostCreatePage";
+  ActionBtn
+} from "@components/PostCreatePage";
 import { postFormReducer, initialState } from "@utils/postCreate";
 import { useReducer, FormEvent, useCallback } from "react";
 
@@ -102,8 +102,8 @@ export default function PostCreatePage() {
       <EditorContainer value={state.code} onChange={(newValue) => dispatch({ type: "SET_CODE", payload: newValue })} />
 
       <div className="flex w-full justify-end gap-6">
-        <FormActionBtn content="내용 초기화하기" type="reset" onClick={onReset} />
-        <FormActionBtn color="primary" content="질문하기" type="submit" />
+        <ActionBtn content="내용 초기화하기" type="reset" onClick={onReset} />
+        <ActionBtn color="primary" content="질문하기" type="submit" />
       </div>
     </form>
   );
