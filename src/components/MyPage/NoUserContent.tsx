@@ -29,7 +29,7 @@ export const NoUserContent = ({ type }: NoUserContentProps) => {
   return (
     <div className="m-auto flex flex-col items-center gap-4 py-5">
       {getIcon()}
-      <p className="text-14 text-secondary md:text-20">{getMessage()}</p>
+      <p className="text-14 text-secondary md:text-16">{getMessage()}</p>
     </div>
   );
 };
