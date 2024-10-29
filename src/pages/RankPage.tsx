@@ -17,7 +17,7 @@ const rankData = [
 
 export default function RankPage() {
   return (
-    <div className="mx-auto max-w p-8">
+    <div className="mx-auto max-w p-16">
       <RankTable data={rankData} />
     </div>
   );
