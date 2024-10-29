@@ -1,7 +1,7 @@
-import { TitleContainer, DetailContainer, VersionContainer, EditorContainer } from "@components/PostCreatePage";
 import { ActionBtn } from "@/components/Common";
-import { postFormReducer, initialState } from "@utils/postCreate";
-import { useReducer, FormEvent, useCallback } from "react";
+import { DetailContainer, EditorContainer, TitleContainer, VersionContainer } from "@components/PostCreatePage";
+import { initialState, postFormReducer } from "@utils/postCreate";
+import { FormEvent, useCallback, useReducer } from "react";
 
 export default function PostCreatePage() {
   const [state, dispatch] = useReducer(postFormReducer, initialState);
