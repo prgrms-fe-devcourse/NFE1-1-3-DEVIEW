@@ -1,7 +1,6 @@
 import { PasswordInput } from "@components/Common/PasswordInput";
 import { checkPassword } from "@services/auth/checkPassword";
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
 
 type CheckPasswordProps = {
   onSuccess: () => void;

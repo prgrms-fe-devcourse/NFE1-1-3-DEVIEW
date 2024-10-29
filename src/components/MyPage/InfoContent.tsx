@@ -36,7 +36,7 @@ export const InfoContent = () => {
 
   if (isLoading) {
     return (
-      <div className="flex h-screen items-center justify-center">
+      <div className="flex">
         <Loading />
       </div>
     );
@@ -71,7 +71,7 @@ export const InfoContent = () => {
         <form className="" onSubmit={onSubmit}>
           <IdInput defaultValue={userInfo.id} disabled={true} />
           <NameInput defaultValue={userInfo.username} />
-          <PasswordInput defaultValue="password" />
+          <PasswordInput />
 
           <div className="mb-5 flex items-center justify-between gap-1 md:gap-10">
             <Radio id="student" name="group" text="학생" value="학생" defaultChecked={userInfo.group === "학생"} />

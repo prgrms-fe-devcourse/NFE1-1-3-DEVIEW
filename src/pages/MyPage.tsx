@@ -17,7 +17,7 @@ export default function MyPage() {
 
   if (isLoading) {
     return (
-      <div className="flex h-screen items-center justify-center">
+      <div className="flex">
         <Loading />
       </div>
     );
@@ -28,7 +28,7 @@ export default function MyPage() {
   }
 
   return (
-    <div className="mx-4 flex max-w flex-col gap-6 py-12 md:gap-12 xl:mx-auto">
+    <div className="mx-4 flex max-w flex-col gap-6 py-12 md:gap-12 2xl:mx-auto">
       {userInfo && <UserProfile userInfo={userInfo} />}
       <TabMenu />
     </div>
