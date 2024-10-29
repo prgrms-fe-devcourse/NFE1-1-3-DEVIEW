@@ -1,16 +1,25 @@
 import { CommonCommentResponseProps } from "@customTypes/comment";
 import { ErrorResponse } from "@customTypes/errorResponse";
+import { PaginationRequestProps } from "@customTypes/pagination";
 import axiosInstance from "@services/axiosInstance";
 import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
+type GetUserCommentsRequestProps = PaginationRequestProps;
 type GetUserCommentsResponseProps = CommonCommentResponseProps;
 
-export async function getUserComments(): Promise<GetUserCommentsResponseProps> {
+export async function getUserComments({
+  page,
+  limit
+}: GetUserCommentsRequestProps): Promise<GetUserCommentsResponseProps> {
   try {
     const response = await axiosInstance.get<GetUserCommentsResponseProps>(`/comment/user`, {
       headers: {
         Authorization: AccessTokenStorage.getAuthorizationHeader()
+      },
+      params: {
+        page,
+        limit
       }
     });
     return response.data;
