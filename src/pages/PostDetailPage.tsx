@@ -1,6 +1,7 @@
-import { EditDelete, PostDetailHeader, Feedback, CommentContainer } from "@components/PostDetailPage";
+import { EditDelete, PostDetailHeader, Feedback, CommentContainer, CodeViewer } from "@components/PostDetailPage";
 import { PostMeta } from "@customTypes/postDetail";
 import { useParams } from "react-router-dom";
+
 export default function PostDetailPage() {
   const { id } = useParams<{ id: string }>();
   const postMeta: PostMeta = {
@@ -24,7 +25,9 @@ export default function PostDetailPage() {
         architecto autem non quis sapiente saepe maiores <br />
         ipsa soluta magni est. Neque mollitia eaque est vitae assumenda.
       </article>
-      <section>코드 및 부연 설명 섹션</section>
+      <section>
+        <CodeViewer />
+      </section>
       <Feedback />
       <section>댓글 섹션</section>
       <CommentContainer />
