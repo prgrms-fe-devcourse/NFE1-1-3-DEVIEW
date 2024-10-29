@@ -12,31 +12,11 @@ export const TabMenu = () => {
 
   // TODO: 유저 타입 처리하기
   // TODO: 임시데이터, 백엔드랑 연결하기
-  const [postsList, setPostsList] = useState<TPost[]>([]);
   const [commentsList, setCommentsList] = useState<TComment[]>([]);
   const [likesList, setLikesList] = useState<TPost[]>([]);
   const [infoList, setInfoList] = useState<UserInfo | null>(null);
 
   useEffect(() => {
-    setPostsList([
-      {
-        _id: "1",
-        title: "React Router를 사용해 navigate하는 방법이 뭔가요?",
-        content: "React Router를 사용하여 페이지 간 이동을 구현하고 싶습니다. 어떻게 해야 할까요?",
-        author: {
-          _id: "author1",
-          username: "홍길동"
-        },
-        devDependencies: ["React", "Python"],
-        likesCount: 15,
-        viewsCount: 1200,
-        scrapsCount: 5,
-        commentsCount: 10,
-        createdAt: "2024-10-23",
-        updatedAt: "2024-10-24",
-        __v: 0
-      }
-    ]);
     setCommentsList([
       {
         _id: "1",
@@ -80,7 +60,7 @@ export const TabMenu = () => {
   const renderContent = () => {
     switch (activeTab) {
       case "posts":
-        return <PostsContent data={postsList} />;
+        return <PostsContent />;
       case "comments":
         return <CommentsContent data={commentsList} />;
       case "likes":
