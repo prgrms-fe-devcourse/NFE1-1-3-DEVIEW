@@ -1,4 +1,4 @@
-import { EditDelete, PostDetailHeader } from "@components/PostDetailPage";
+import { EditDelete, PostDetailHeader, Feedback, CommentContainer } from "@components/PostDetailPage";
 import { PostMeta } from "@customTypes/postDetail";
 import { useParams } from "react-router-dom";
 export default function PostDetailPage() {
@@ -17,11 +17,17 @@ export default function PostDetailPage() {
         <PostDetailHeader title="React Router를 사용해 navigate하는 방법이 뭔가요?" meta={postMeta} />
         <EditDelete />
       </section>
-      <article className="text-16">상세 설명</article>
+      <article className="text-16 font-medium">
+        Lorem ipsum dolor sit amet <br />
+        consectetur adipisicing elit. <br />
+        Voluptatibus, doloribus perferendis rerum expedita <br />
+        architecto autem non quis sapiente saepe maiores <br />
+        ipsa soluta magni est. Neque mollitia eaque est vitae assumenda.
+      </article>
       <section>코드 및 부연 설명 섹션</section>
-      <div>좋아요 신고</div>
+      <Feedback />
       <section>댓글 섹션</section>
-      <section>댓글 리스트 섹션</section>
+      <CommentContainer />
     </section>
   );
 }

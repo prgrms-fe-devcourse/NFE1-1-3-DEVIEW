@@ -5,7 +5,7 @@ type PostMetaListProps = {
   meta: PostMeta;
 };
 
-const PostMetaList = ({ meta }: PostMetaListProps) => {
+export const PostMetaList = ({ meta }: PostMetaListProps) => {
   const metaItems = [
     { label: "작성일", value: meta.createdAt },
     { label: "조회수", value: meta.views },
