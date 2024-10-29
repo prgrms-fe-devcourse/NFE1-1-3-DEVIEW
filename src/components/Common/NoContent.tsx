@@ -8,13 +8,13 @@ export const NoContent = ({ type }: NoContentProps) => {
   const getIcon = () => {
     switch (type) {
       case "post":
-        return <TbClipboardText className="h-11 w-11 text-secondary" />;
+        return <TbClipboardText className="h-8 w-8 text-secondary md:h-11 md:w-11" />;
       case "comment":
-        return <TbMessageCircleExclamation className="h-11 w-11 text-secondary" />;
+        return <TbMessageCircleExclamation className="h-8 w-8 text-secondary md:h-11 md:w-11" />;
       case "scrap":
-        return <TbBookmark className="h-11 w-11 text-secondary" />;
+        return <TbBookmark className="h-8 w-8 text-secondary md:h-11 md:w-11" />;
       case "search":
-        return <TbAlertTriangle className="h-11 w-11 text-secondary" />;
+        return <TbAlertTriangle className="h-8 w-8 text-secondary md:h-11 md:w-11" />;
     }
   };
 

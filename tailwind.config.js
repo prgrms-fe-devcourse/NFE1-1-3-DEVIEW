@@ -8,6 +8,9 @@ export default {
       },
       backgroundImage: {
         ranked: "url('/src/assets/Ranked.svg')"
+      },
+      screens: {
+        "2xl": "1440px"
       }
     },
     colors: {

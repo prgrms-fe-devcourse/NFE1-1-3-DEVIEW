@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 type InputProps = {
   name: string;
   text?: string;
   errorMessage?: string;
   pattern?: RegExp;
+  togglePassword?: boolean;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "pattern">;
 
-export const Input = ({ name, text, errorMessage, pattern, ...rest }: InputProps) => {
+export const Input = ({ name, text, errorMessage, pattern, togglePassword, ...rest }: InputProps) => {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     if (rest.defaultValue !== undefined) {
@@ -37,7 +40,23 @@ export const Input = ({ name, text, errorMessage, pattern, ...rest }: InputProps
   return (
     <div className="relative mb-6">
       {text && <p className="mb-3 text-14 text-secondary md:text-20">{text}</p>}
-      <input autoComplete="off" name={name} value={value} onChange={onChange} {...rest} />
+      <input
+        autoComplete="off"
+        name={name}
+        value={value}
+        onChange={onChange}
+        {...rest}
+        type={togglePassword ? (showPassword ? "text" : "password") : rest.type}
+      />
+      {togglePassword && (
+        <button
+          type="button"
+          className="absolute right-3 top-1/2 translate-y-1/3 transform text-gray md:translate-y-1/2"
+          onClick={() => setShowPassword(!showPassword)}
+        >
+          {showPassword ? <FaEyeSlash /> : <FaEye />}
+        </button>
+      )}
       {error && <p className="absolute mt-1 text-red">{error}</p>}
     </div>
   );

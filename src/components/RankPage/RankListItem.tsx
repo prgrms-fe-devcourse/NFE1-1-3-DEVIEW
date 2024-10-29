@@ -1,9 +1,6 @@
-interface RankListItemProps {
-  rank: number;
-  name: string;
-  team: string;
-  recommend: number;
-}
+import { TRank } from "@customTypes/rank";
+
+type RankListItemProps = TRank;
 
 export const RankListItem = ({ rank, name, team, recommend }: RankListItemProps) => {
   return (

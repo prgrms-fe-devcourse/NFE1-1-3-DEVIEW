@@ -1,12 +1,8 @@
 import { DevDependencies } from "@customTypes/post";
-
+import { devIconsDocs } from "@constants/devIconUrls";
 type PostListIconProps = {
-  devDependencies: DevDependencies | string;
+  devDependencies: DevDependencies;
 };
 export const PostListIcon = ({ devDependencies }: PostListIconProps) => {
-  return (
-    <div className="h-14 w-14">
-      <img src={`/assets/dev_icons/${devDependencies}.svg`} />
-    </div>
-  );
+  return <div className={`h-14 w-14 bg-contain ${devIconsDocs[devDependencies].iconUrl}`}></div>;
 };
