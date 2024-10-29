@@ -27,8 +27,6 @@ export type TPostDetail = TPost & {
 
 export type CommonPostRequestProps = Pick<TPost, "title" | "content" | "devDependencies"> & {
   postId: string;
-  page: number;
-  limit: number;
 };
 
 export type CommonPostResponseProps = {

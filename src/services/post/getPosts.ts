@@ -1,9 +1,10 @@
 import { ErrorResponse } from "@customTypes/errorResponse";
+import { PaginationRequestProps } from "@customTypes/pagination";
 import { CommonPostRequestProps, CommonPostResponseProps } from "@customTypes/post";
 import axiosInstance from "@services/axiosInstance";
 import axios, { AxiosError } from "axios";
 
-type GetPostsRequestProps = Omit<CommonPostRequestProps, "postId">;
+type GetPostsRequestProps = Omit<CommonPostRequestProps, "postId"> & PaginationRequestProps;
 
 type GetPostsResponseProps = CommonPostResponseProps;
 

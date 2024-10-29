@@ -1,10 +1,11 @@
 import { CommonCommentRequestProps, CommonCommentResponseProps } from "@customTypes/comment";
 import { ErrorResponse } from "@customTypes/errorResponse";
+import { PaginationRequestProps } from "@customTypes/pagination";
 import axiosInstance from "@services/axiosInstance";
 import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
-type GetCommentsRequestProps = Pick<CommonCommentRequestProps, "postId" | "page" | "limit">;
+type GetCommentsRequestProps = Pick<CommonCommentRequestProps, "postId"> & PaginationRequestProps;
 type GetCommentsResponseProps = CommonCommentResponseProps;
 
 export async function getComments({ postId, page, limit }: GetCommentsRequestProps): Promise<GetCommentsResponseProps> {
