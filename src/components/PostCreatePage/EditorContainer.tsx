@@ -11,14 +11,14 @@ type ToolbarOptions =
   | { script: string }
   | { indent: string };
 
-interface CustomModule {
+type CustomModule = {
   toolbar: ToolbarOptions[][];
-}
+};
 
-interface EditorContainerProps {
+type EditorContainerProps = {
   value: string;
   onChange: (value: string) => void;
-}
+};
 
 export const EditorContainer = ({ value, onChange }: EditorContainerProps) => {
   const modules = useMemo<CustomModule>(
@@ -55,11 +55,11 @@ export const EditorContainer = ({ value, onChange }: EditorContainerProps) => {
   ];
 
   return (
-    <div className="flex w-full flex-col gap-4 rounded-lg border-2 border-solid border-gray py-7 pl-3 pr-6">
+    <div className="flex w-full flex-col gap-4 rounded-lg border border-solid border-gray py-7 pl-3 pr-6 shadow">
       <div className="flex flex-col gap-3">
-        <h2 className="text-24 font-semibold">질문하고 싶은 코드를 작성해주세요</h2>
-        <p className="text-20 font-medium text-primary">주석으로 설명을 추가해주세요.</p>
-        <div className="h-[80vh]">
+        <h2 className="text-20 font-semibold">질문하고 싶은 코드를 작성해주세요</h2>
+        <p className="text-16 font-medium text-primary">주석으로 설명을 추가해주세요.</p>
+        <div className="relative h-[60vh]">
           <ReactQuill
             theme="snow"
             value={value}
@@ -67,7 +67,7 @@ export const EditorContainer = ({ value, onChange }: EditorContainerProps) => {
             modules={modules}
             formats={formats}
             placeholder="코드를 입력해주세요"
-            className="h-[95%]"
+            className="absolute h-[92%] w-full"
           />
         </div>
       </div>

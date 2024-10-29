@@ -5,10 +5,18 @@ type DetailContainerProps = {
   explain: string;
   placeholder: string;
   value: string;
+  maxLength: number;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
-export const DetailContainer = ({ category, explain, placeholder, value, onChange }: DetailContainerProps) => {
+export const DetailContainer = ({
+  category,
+  explain,
+  placeholder,
+  value,
+  onChange,
+  maxLength
+}: DetailContainerProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   // 텍스트 영역 크기 조절을 위한 함수
@@ -31,18 +39,21 @@ export const DetailContainer = ({ category, explain, placeholder, value, onChang
   };
 
   return (
-    <div className="w-full rounded-lg border-2 border-solid border-gray py-7 pl-3 pr-6">
+    <div className="relative w-full rounded-lg border border-solid border-gray py-7 pl-3 pr-6 shadow">
       <div className="flex flex-col gap-3">
-        <h2 className="text-24 font-semibold">{category}</h2>
-        <p className="text-20 font-medium text-primary">{explain}</p>
+        <h2 className="text-20 font-semibold">{category}</h2>
+        <p className="text-16 font-medium text-primary">{explain}</p>
         <textarea
           ref={textareaRef}
           value={value}
           onChange={handleChange}
-          className="min-h-[88px] w-full resize-none overflow-hidden text-gray"
+          className="min-h-[88px] w-full resize-none overflow-hidden text-14 text-gray"
           placeholder={placeholder}
-          maxLength={1000}
+          maxLength={maxLength}
         />
+        <span className="text-sm absolute bottom-9 right-8 text-12 text-gray">
+          {value.length}/{maxLength}
+        </span>
       </div>
     </div>
   );
