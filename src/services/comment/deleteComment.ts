@@ -24,7 +24,7 @@ export async function deleteComment({ commentId }: DeleteCommentRequestProps): P
       const axiosError = error as AxiosError<ErrorResponse>;
 
       if (axiosError.response) {
-        console.error("ErrorMessage", axiosError.response.data);
+        console.error("댓글 삭제 실패", axiosError.response.data);
         throw new Error(axiosError.response.data.message || "요청 실패");
       }
 

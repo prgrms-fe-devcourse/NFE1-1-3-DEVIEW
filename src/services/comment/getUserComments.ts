@@ -1,24 +1,30 @@
 import { CommonCommentResponseProps } from "@customTypes/comment";
 import { ErrorResponse } from "@customTypes/errorResponse";
+import { PaginationRequestProps } from "@customTypes/pagination";
 import axiosInstance from "@services/axiosInstance";
 import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
+type GetUserCommentsRequestProps = PaginationRequestProps;
 type GetUserCommentsResponseProps = CommonCommentResponseProps;
 
-export async function getUserComments(): Promise<GetUserCommentsResponseProps> {
+export async function getUserComments({
+  page,
+  limit
+}: GetUserCommentsRequestProps): Promise<GetUserCommentsResponseProps> {
   try {
     const response = await axiosInstance.get<GetUserCommentsResponseProps>(`/comment/user`, {
       headers: {
         Authorization: AccessTokenStorage.getAuthorizationHeader()
-      }
+      },
+      params: { page, limit }
     });
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError<ErrorResponse>;
       if (axiosError.response) {
-        console.error("ErrorMessage", axiosError.response.data);
+        console.error("작성한 댓글 불러오기 실패", axiosError.response.data);
         throw new Error(axiosError.response.data.message || "요청 실패");
       } else if (axiosError.request) {
         console.error("요청 에러:", axiosError.request);

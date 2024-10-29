@@ -13,8 +13,6 @@ export type TComment = {
 
 export type CommonCommentRequestProps = Pick<TComment, "postId" | "content"> & {
   commentId: string;
-  page: number;
-  limit: number;
 };
 
 export type CommonCommentResponseProps = {

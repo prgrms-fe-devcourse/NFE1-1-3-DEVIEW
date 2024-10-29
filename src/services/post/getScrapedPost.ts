@@ -1,16 +1,25 @@
 import { ErrorResponse } from "@customTypes/errorResponse";
+import { PaginationRequestProps } from "@customTypes/pagination";
 import { CommonPostResponseProps } from "@customTypes/post";
 import axiosInstance from "@services/axiosInstance";
 import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
-type GetScrapedPostResponseProps = Omit<CommonPostResponseProps, "posts">;
+type GetScrapedPostRequestProps = PaginationRequestProps;
+type GetScrapedPostResponseProps = CommonPostResponseProps;
 
-export async function getScrapedPost(): Promise<GetScrapedPostResponseProps> {
+export async function getScrapedPost({
+  page,
+  limit
+}: GetScrapedPostRequestProps): Promise<GetScrapedPostResponseProps> {
   try {
     const response = await axiosInstance.get<GetScrapedPostResponseProps>(`/post/scraps`, {
       headers: {
         Authorization: AccessTokenStorage.getAuthorizationHeader()
+      },
+      params: {
+        page,
+        limit
       }
     });
     return response.data;
