@@ -4,16 +4,10 @@ import { PasswordInput } from "@components/Common/PasswordInput";
 import { CheckPassword } from "@components/MyPage/CheckPassword";
 import { Radio } from "@components/Common/Radio";
 import { useState } from "react";
+import { UserInfo } from "@customTypes/userInfo";
 
 type InfoContentProps = {
-  data: {
-    _id?: string;
-    username?: string;
-    email?: string;
-    password?: string;
-    team?: string;
-    created_at?: string;
-  };
+  data: UserInfo;
 };
 
 export const InfoContent = ({ data }: InfoContentProps) => {
@@ -35,18 +29,18 @@ export const InfoContent = ({ data }: InfoContentProps) => {
   return (
     <div className="mx-auto max-w-[768px] py-4">
       {!isVerified ? (
-        <CheckPassword onSuccess={() => setIsVerified(true)} correctPassword={data.password ?? ""} />
+        <CheckPassword onSuccess={() => setIsVerified(true)} correctPassword="password" />
       ) : (
         <form className="" onSubmit={onSubmit}>
-          <IdInput defaultValue={data.email} disabled={true} />
+          <IdInput defaultValue={data.id} disabled={true} />
           <NameInput defaultValue={data.username} />
-          <PasswordInput defaultValue={data.password} />
+          <PasswordInput defaultValue="password" />
 
           <div className="mb-5 flex items-center justify-between gap-1 md:gap-10">
-            <Radio id="student" name="group" text="학생" value="학생" defaultChecked={data.team === "학생"} />
-            <Radio id="seeker" name="group" text="취준생" value="취준생" defaultChecked={data.team === "취준생"} />
-            <Radio id="developer" name="group" text="개발자" value="개발자" defaultChecked={data.team === "개발자"} />
-            <Radio id="etc" name="group" text="기타" value="기타" defaultChecked={data.team === "기타"} />
+            <Radio id="student" name="group" text="학생" value="학생" defaultChecked={data.group === "학생"} />
+            <Radio id="seeker" name="group" text="취준생" value="취준생" defaultChecked={data.group === "취준생"} />
+            <Radio id="developer" name="group" text="개발자" value="개발자" defaultChecked={data.group === "개발자"} />
+            <Radio id="etc" name="group" text="기타" value="기타" defaultChecked={data.group === "기타"} />
           </div>
           <button type="submit" className="primary-btn p-6 text-14 md:p-7 md:text-20">
             저장

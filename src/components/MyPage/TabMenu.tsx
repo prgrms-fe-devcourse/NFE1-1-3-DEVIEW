@@ -4,16 +4,8 @@ import { LikesContent } from "@components/MyPage/LikesContent";
 import { PostsContent } from "@components/MyPage/PostsContent";
 import { TComment } from "@customTypes/comment";
 import { TPost } from "@customTypes/post";
+import { UserInfo } from "@customTypes/userInfo";
 import { useEffect, useState } from "react";
-
-type UserInfo = {
-  _id?: string;
-  username?: string;
-  email?: string;
-  password?: string;
-  team?: string;
-  created_at?: string;
-};
 
 export const TabMenu = () => {
   const [activeTab, setActiveTab] = useState("posts");
@@ -23,7 +15,7 @@ export const TabMenu = () => {
   const [postsList, setPostsList] = useState<TPost[]>([]);
   const [commentsList, setCommentsList] = useState<TComment[]>([]);
   const [likesList, setLikesList] = useState<TPost[]>([]);
-  const [infoList, setInfoList] = useState<UserInfo>({});
+  const [infoList, setInfoList] = useState<UserInfo | null>(null);
 
   useEffect(() => {
     setPostsList([
@@ -79,12 +71,9 @@ export const TabMenu = () => {
       }
     ]);
     setInfoList({
-      _id: "1",
+      id: "user123",
       username: "홍길동",
-      email: "test1234@test.com",
-      password: "test1212",
-      team: "개발자",
-      created_at: "2024-10-25"
+      group: "개발자"
     });
   }, []);
 
@@ -97,7 +86,7 @@ export const TabMenu = () => {
       case "likes":
         return <LikesContent data={likesList} />;
       case "info":
-        return <InfoContent data={infoList} />;
+        return infoList ? <InfoContent data={infoList} /> : null;
       default:
         return null;
     }
@@ -108,7 +97,7 @@ export const TabMenu = () => {
       <ul className="text-sm text-gray-500 flex border-b text-center font-medium">
         <li className="mr-4 md:mr-24">
           <button
-            className={`inline-block px-1 py-2 text-16 md:px-4 md:text-24 ${activeTab === "posts" ? "border-b-4 border-secondary text-secondary" : "hover:text-secondary"}`}
+            className={`inline-block px-1 py-2 text-16 md:px-4 md:text-20 ${activeTab === "posts" ? "border-b-4 border-secondary text-secondary" : "hover:text-secondary"}`}
             onClick={() => setActiveTab("posts")}
           >
             내 게시글
@@ -116,7 +105,7 @@ export const TabMenu = () => {
         </li>
         <li className="mr-4 md:mr-24">
           <button
-            className={`inline-block px-1 py-2 text-16 md:px-4 md:text-24 ${activeTab === "comments" ? "border-b-4 border-secondary text-secondary" : "hover:text-secondary"}`}
+            className={`inline-block px-1 py-2 text-16 md:px-4 md:text-20 ${activeTab === "comments" ? "border-b-4 border-secondary text-secondary" : "hover:text-secondary"}`}
             onClick={() => setActiveTab("comments")}
           >
             내 댓글
@@ -124,7 +113,7 @@ export const TabMenu = () => {
         </li>
         <li className="mr-4 md:mr-24">
           <button
-            className={`inline-block px-1 py-2 text-16 md:px-4 md:text-24 ${activeTab === "likes" ? "border-b-4 border-secondary text-secondary" : "hover:text-secondary"}`}
+            className={`inline-block px-1 py-2 text-16 md:px-4 md:text-20 ${activeTab === "likes" ? "border-b-4 border-secondary text-secondary" : "hover:text-secondary"}`}
             onClick={() => setActiveTab("likes")}
           >
             스크랩
@@ -132,7 +121,7 @@ export const TabMenu = () => {
         </li>
         <li>
           <button
-            className={`inline-block px-1 py-2 text-16 md:px-4 md:text-24 ${activeTab === "info" ? "border-b-4 border-secondary text-secondary" : "hover:text-secondary"}`}
+            className={`inline-block px-1 py-2 text-16 md:px-4 md:text-20 ${activeTab === "info" ? "border-b-4 border-secondary text-secondary" : "hover:text-secondary"}`}
             onClick={() => setActiveTab("info")}
           >
             내 정보
