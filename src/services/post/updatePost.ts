@@ -22,7 +22,7 @@ export async function updatePost({ postId, ...rest }: UpdatePostRequestProps): P
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError<ErrorResponse>;
       if (axiosError.response) {
-        console.error("ErrorMessage", axiosError.response.data);
+        console.error("게시물 수정 실패", axiosError.response.data);
         throw new Error(axiosError.response.data.message || "요청 실패");
       } else if (axiosError.request) {
         console.error("요청 에러:", axiosError.request);

@@ -18,7 +18,7 @@ export async function getPosts({ page, limit }: GetPostsRequestProps): Promise<G
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError<ErrorResponse>;
       if (axiosError.response) {
-        console.error("ErrorMessage", axiosError.response.data);
+        console.error("게시물 가져오기 실패", axiosError.response.data);
         throw new Error(axiosError.response.data.message || "요청 실패");
       } else if (axiosError.request) {
         console.error("요청 에러:", axiosError.request);
