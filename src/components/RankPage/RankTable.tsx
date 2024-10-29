@@ -14,7 +14,7 @@ interface RankTableProps {
 
 export const RankTable = ({ data }: RankTableProps) => {
   return (
-    <table className="w-full table-fixed border-separate rounded-lg border border-solid border-lightgray shadow">
+    <table className="mx-auto w-full table-fixed border-separate rounded-lg border border-solid border-lightgray shadow md:w-3/4">
       <RankHeader />
       <tbody>
         {data.map((item, index) => (
