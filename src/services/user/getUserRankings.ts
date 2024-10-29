@@ -1,28 +1,33 @@
 import { ErrorResponse } from "@customTypes/errorResponse";
 import { PaginationRequestProps } from "@customTypes/pagination";
-import { CommonPostRequestProps, CommonPostResponseProps } from "@customTypes/post";
+import { UserInfo } from "@customTypes/userInfo";
 import axiosInstance from "@services/axiosInstance";
-import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
-type GetUserPostsRequestProps = Omit<CommonPostRequestProps, "postId"> & PaginationRequestProps;
+type GetUserRankingsRequestProps = PaginationRequestProps;
 
-type GetUserPostsResponseProps = CommonPostResponseProps;
+type GetUserRankingsResponseProps = {
+  currentPage: number;
+  totalPages: number;
+  userRanking: (UserInfo & {
+    totalThumbsCount: number;
+  })[];
+};
 
-export async function getUserPosts({ page, limit }: GetUserPostsRequestProps): Promise<GetUserPostsResponseProps> {
+export async function getUserRankings({
+  page,
+  limit
+}: GetUserRankingsRequestProps): Promise<GetUserRankingsResponseProps> {
   try {
-    const response = await axiosInstance.get<GetUserPostsResponseProps>("/post/user", {
-      params: { page, limit },
-      headers: {
-        Authorization: AccessTokenStorage.getAuthorizationHeader()
-      }
+    const response = await axiosInstance.get<GetUserRankingsResponseProps>(`/user/rankings`, {
+      params: { page, limit }
     });
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError<ErrorResponse>;
       if (axiosError.response) {
-        console.error("내 게시물 가져오기 실패", axiosError.response.data);
+        console.error("유저 랭킹 목록 조회 실패", axiosError.response.data);
         throw new Error(axiosError.response.data.message || "요청 실패");
       } else if (axiosError.request) {
         console.error("요청 에러:", axiosError.request);

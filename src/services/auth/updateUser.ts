@@ -1,28 +1,33 @@
 import { ErrorResponse } from "@customTypes/errorResponse";
-import { PaginationRequestProps } from "@customTypes/pagination";
-import { CommonPostRequestProps, CommonPostResponseProps } from "@customTypes/post";
+import { UserInfo } from "@customTypes/userInfo";
 import axiosInstance from "@services/axiosInstance";
 import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
-type GetUserPostsRequestProps = Omit<CommonPostRequestProps, "postId"> & PaginationRequestProps;
+type UpdateUserRequestProps = Omit<UserInfo, "id"> & {
+  password: string;
+};
+type UpdateUserResponseProps = {
+  message: string;
+};
 
-type GetUserPostsResponseProps = CommonPostResponseProps;
-
-export async function getUserPosts({ page, limit }: GetUserPostsRequestProps): Promise<GetUserPostsResponseProps> {
+export async function updateUser({ group, password, username }: UpdateUserRequestProps): Promise<void> {
   try {
-    const response = await axiosInstance.get<GetUserPostsResponseProps>("/post/user", {
-      params: { page, limit },
-      headers: {
-        Authorization: AccessTokenStorage.getAuthorizationHeader()
+    const response = await axiosInstance.put<UpdateUserResponseProps>(
+      `/auth/update`,
+      { group, password, username },
+      {
+        headers: {
+          Authorization: AccessTokenStorage.getAuthorizationHeader()
+        }
       }
-    });
-    return response.data;
+    );
+    console.log(response.data.message);
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError<ErrorResponse>;
       if (axiosError.response) {
-        console.error("내 게시물 가져오기 실패", axiosError.response.data);
+        console.error("사용자 정보 수정 실패", axiosError.response.data);
         throw new Error(axiosError.response.data.message || "요청 실패");
       } else if (axiosError.request) {
         console.error("요청 에러:", axiosError.request);

@@ -1,20 +1,22 @@
 import { ErrorResponse } from "@customTypes/errorResponse";
 import { PaginationRequestProps } from "@customTypes/pagination";
-import { CommonPostRequestProps, CommonPostResponseProps } from "@customTypes/post";
+import { TPost } from "@customTypes/post";
 import axiosInstance from "@services/axiosInstance";
-import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
-type GetUserPostsRequestProps = Omit<CommonPostRequestProps, "postId"> & PaginationRequestProps;
+// 페이지네이션 처리는 되어있지 않습니다.
+// 기본 limit은 1로 한 개만 전송됩니다.
+type GetMostViewedPostsRequestProps = Partial<Pick<PaginationRequestProps, "limit">>;
 
-type GetUserPostsResponseProps = CommonPostResponseProps;
+type GetMostViewedPostsResponseProps = TPost[];
 
-export async function getUserPosts({ page, limit }: GetUserPostsRequestProps): Promise<GetUserPostsResponseProps> {
+export async function getMostViewedPosts({
+  limit
+}: GetMostViewedPostsRequestProps): Promise<GetMostViewedPostsResponseProps> {
   try {
-    const response = await axiosInstance.get<GetUserPostsResponseProps>("/post/user", {
-      params: { page, limit },
-      headers: {
-        Authorization: AccessTokenStorage.getAuthorizationHeader()
+    const response = await axiosInstance.get<GetMostViewedPostsResponseProps>(`/post/most-viewed`, {
+      params: {
+        limit
       }
     });
     return response.data;
@@ -22,7 +24,7 @@ export async function getUserPosts({ page, limit }: GetUserPostsRequestProps): P
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError<ErrorResponse>;
       if (axiosError.response) {
-        console.error("내 게시물 가져오기 실패", axiosError.response.data);
+        console.error("최다 조회수 게시물 조회 실패", axiosError.response.data);
         throw new Error(axiosError.response.data.message || "요청 실패");
       } else if (axiosError.request) {
         console.error("요청 에러:", axiosError.request);

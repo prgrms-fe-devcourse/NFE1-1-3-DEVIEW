@@ -1,10 +1,11 @@
 import { CommonCommentRequestProps, CommonCommentResponseProps } from "@customTypes/comment";
 import { ErrorResponse } from "@customTypes/errorResponse";
+import { PaginationRequestProps } from "@customTypes/pagination";
 import axiosInstance from "@services/axiosInstance";
 import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
-type GetCommentsRequestProps = Pick<CommonCommentRequestProps, "postId" | "page" | "limit">;
+type GetCommentsRequestProps = Pick<CommonCommentRequestProps, "postId"> & PaginationRequestProps;
 type GetCommentsResponseProps = CommonCommentResponseProps;
 
 export async function getComments({ postId, page, limit }: GetCommentsRequestProps): Promise<GetCommentsResponseProps> {
@@ -20,7 +21,7 @@ export async function getComments({ postId, page, limit }: GetCommentsRequestPro
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError<ErrorResponse>;
       if (axiosError.response) {
-        console.error("ErrorMessage", axiosError.response.data);
+        console.error("댓글 조회 실패", axiosError.response.data);
         throw new Error(axiosError.response.data.message || "요청 실패");
       } else if (axiosError.request) {
         console.error("요청 에러:", axiosError.request);
