@@ -1,3 +1,4 @@
+import { DEV_DEPENDENCIES_LIST } from "@/constants";
 type SearchFilterProps = {
   onSelectFilter: (filter: string) => void;
   onClearFilters: () => void;
@@ -9,8 +10,8 @@ export const SearchFilter = ({ onSelectFilter, onClearFilters }: SearchFilterPro
       <div className="absolute top-36 z-30 w-full bg-white-sub p-4 md:top-28">
         <div className="mx-auto max-w">
           <ul className="flex flex-wrap md:ml-8">
-            {["Javascript", "Typescript", "Vue"].map((item, index) => (
-              <li className="mb-2 mr-2" key={index}>
+            {DEV_DEPENDENCIES_LIST.map((item) => (
+              <li className="mb-2 mr-2" key={item}>
                 <button
                   className="lightgray-btn w-auto px-4 py-2 text-12 hover:opacity-80 md:text-14"
                   onClick={() => onSelectFilter(item)}
