@@ -6,7 +6,7 @@ import axios, { AxiosError } from "axios";
 
 type GetUserPostsRequestProps = Omit<CommonPostRequestProps, "postId">;
 
-type GetUserPostsResponseProps = Omit<CommonPostResponseProps, "scraps">;
+type GetUserPostsResponseProps = CommonPostResponseProps;
 
 export async function getUserPosts({ page, limit }: GetUserPostsRequestProps): Promise<GetUserPostsResponseProps> {
   try {

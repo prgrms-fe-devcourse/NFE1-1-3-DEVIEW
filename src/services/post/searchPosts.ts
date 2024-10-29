@@ -1,24 +1,23 @@
 import { ErrorResponse } from "@customTypes/errorResponse";
-import { CommonPostResponseProps } from "@customTypes/post";
+import { CommonPostRequestProps, CommonPostResponseProps } from "@customTypes/post";
 import axiosInstance from "@services/axiosInstance";
-import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
-type GetScrapedPostResponseProps = CommonPostResponseProps;
+type SearchPostsRequestProps = Pick<CommonPostRequestProps, "devDependencies"> & {
+  keyword: string;
+};
 
-export async function getScrapedPost(): Promise<GetScrapedPostResponseProps> {
+type SearchPostsResponseProps = CommonPostResponseProps;
+
+export async function searchPosts(req: SearchPostsRequestProps): Promise<SearchPostsResponseProps> {
   try {
-    const response = await axiosInstance.get<GetScrapedPostResponseProps>(`/post/scraps`, {
-      headers: {
-        Authorization: AccessTokenStorage.getAuthorizationHeader()
-      }
-    });
+    const response = await axiosInstance.post<SearchPostsResponseProps>(`/search`, req);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError<ErrorResponse>;
       if (axiosError.response) {
-        console.error("스크랩한 게시물 조회 실패", axiosError.response.data);
+        console.error("게시물 검색 실패", axiosError.response.data);
         throw new Error(axiosError.response.data.message || "요청 실패");
       } else if (axiosError.request) {
         console.error("요청 에러:", axiosError.request);

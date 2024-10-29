@@ -33,7 +33,6 @@ export type CommonPostRequestProps = Pick<TPost, "title" | "content" | "devDepen
 
 export type CommonPostResponseProps = {
   posts: TPost[];
-  scraps: TPost[];
   currentPage: number;
   totalPages: number;
   totalPosts: number;
