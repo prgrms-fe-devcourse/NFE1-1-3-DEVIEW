@@ -1,14 +1,14 @@
-import { CommentInfo } from "@customTypes/commentInfo";
+import { TComment } from "@customTypes/comment";
 import { useNavigate } from "react-router-dom";
 
 type MyCommentProps = {
-  comment: CommentInfo;
+  comment: TComment;
 };
 
 export const MyComment = ({ comment }: MyCommentProps) => {
   const navigate = useNavigate();
   const onClick = () => {
-    navigate(`/post/${comment.post_id}`);
+    navigate(`/post/${comment.postId}`);
   };
   return (
     <div
@@ -17,10 +17,10 @@ export const MyComment = ({ comment }: MyCommentProps) => {
     >
       <p className="truncate text-justify text-14 text-black md:text-20">{comment.content}</p>
       <p>
-        <span className="text-16 text-secondary group-hover:underline md:text-24">{comment.post_title}</span>
+        <span className="text-16 text-secondary group-hover:underline md:text-24">{comment.postTitle}</span>
         <span className="text-14 text-black md:text-20"> 에 남긴 댓글</span>
       </p>
-      <p className="text-12 text-gray md:text-16">{comment.created_at}</p>
+      <p className="text-12 text-gray md:text-16">{comment.createdAt}</p>
     </div>
   );
 };
