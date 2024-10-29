@@ -33,14 +33,19 @@ export default function Header() {
 
   const onFocus = () => {
     setIsFilterVisible(true);
+    document.body.classList.add("overflow-hidden");
   };
   const onCloseFilter = () => {
     setIsFilterVisible(false);
+    document.body.classList.remove("overflow-hidden");
   };
 
   return (
     <div className="shadow">
-      <header className="relative mx-auto flex h-36 max-w flex-col items-center justify-between p-4 md:h-28 md:flex-row">
+      <header
+        className="relative mx-auto flex h-36 max-w flex-col items-center justify-between p-4 md:h-28 md:flex-row"
+        onClick={onCloseFilter}
+      >
         <div className="flex w-full items-center md:w-auto">
           <button className="mr-4 md:hidden" onClick={onClick}>
             <GiHamburgerMenu className="h- w-8" />
@@ -68,7 +73,14 @@ export default function Header() {
           </nav>
         </div>
         <div className="w-full md:mx-16 md:w-auto md:flex-grow">
-          <SearchBar selectedFilters={selectedFilters} onDeleteFilter={onDeleteFilter} onFocus={onFocus} />
+          <SearchBar
+            onCloseFilter={() => {
+              onCloseFilter();
+            }}
+            selectedFilters={selectedFilters}
+            onDeleteFilter={onDeleteFilter}
+            onFocus={onFocus}
+          />
         </div>
         <HeaderLoginMenu />
       </header>
