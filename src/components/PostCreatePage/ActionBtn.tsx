@@ -1,16 +1,19 @@
 type ActionBtnProps = {
   content: string;
   type: "submit" | "reset";
-  color?: string;
+  color?: "primary" | "gray"; // color 타입을 명확히 지정
   onClick?: () => void;
 };
 
-export const ActionBtn = ({ content, type, onClick, color }: ActionBtnProps) => {
+export const ActionBtn = ({ content, type, onClick, color = "gray" }: ActionBtnProps) => {
+  // 방법 1: 조건부 클래스명
   return (
     <button
       type={type}
       onClick={onClick}
-      className={`min-ww-[13vw] h-[3.125rem] max-w-[12.5rem] rounded-lg bg-${color || "gray"} px-3 py-4 text-20 font-medium text-white-pure hover:opacity-80`}
+      className={`h-[3.125rem] w-40 md:w-[12.5rem] rounded-lg px-3 py-4 text-20 font-medium text-white-pure hover:opacity-80 ${
+        color === "primary" ? "bg-primary" : "bg-gray"
+      }`}
     >
       {content}
     </button>
