@@ -1,30 +1,36 @@
 import { PasswordInput } from "@components/Common/PasswordInput";
+import { checkPassword } from "@services/auth/checkPassword";
+import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
 
 type CheckPasswordProps = {
   onSuccess: () => void;
-  correctPassword: string;
 };
 
-export const CheckPassword = ({ onSuccess, correctPassword }: CheckPasswordProps) => {
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+export const CheckPassword = ({ onSuccess }: CheckPasswordProps) => {
+  const mutation = useMutation({
+    mutationFn: checkPassword,
+    onSuccess: () => {
+      onSuccess();
+    },
+    onError: (error: Error) => {
+      alert(error.message);
+    }
+  });
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const inputPassword = formData.get("password") as string;
+    const password = formData.get("password") as string;
 
-    if (inputPassword === correctPassword) {
-      onSuccess();
-      console.log(inputPassword);
-    } else {
-      console.log(inputPassword);
-      alert("비밀번호가 틀렸습니다.");
-    }
+    mutation.mutate({ password });
   };
 
   return (
     <form className="flex flex-col border-2" onSubmit={onSubmit}>
       <PasswordInput />
-      <button type="submit" className="primary-btn mt-4 p-6 text-14 md:p-7 md:text-20">
-        확인
+      <button type="submit" className="primary-btn mt-4 p-6 text-14 md:p-7 md:text-20" disabled={mutation.isPending}>
+        {mutation.isPending ? "확인 중..." : "확인"}
       </button>
     </form>
   );

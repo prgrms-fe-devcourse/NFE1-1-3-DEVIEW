@@ -1,32 +1,30 @@
+import { Loading } from "@components/Common/Loading";
 import { TabMenu } from "@components/MyPage/TabMenu";
 import { UserProfile } from "@components/MyPage/UserProfile";
 import { UserInfo } from "@customTypes/userInfo";
 import { getUserInfo } from "@services/auth/getUserInfo";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 export default function MyPage() {
-  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const {
+    data: userInfo,
+    isLoading,
+    error
+  } = useQuery<UserInfo, Error>({
+    queryKey: ["userInfo"],
+    queryFn: getUserInfo
+  });
 
-  useEffect(() => {
-    const fetchUserInfo = async () => {
-      try {
-        const data = await getUserInfo();
-        setUserInfo(data);
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError("유저 정보 가져오기 실패");
-        }
-      }
-    };
-
-    fetchUserInfo();
-  }, []);
+  if (isLoading) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <Loading />
+      </div>
+    );
+  }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div>Error: {error.message}</div>;
   }
 
   return (
