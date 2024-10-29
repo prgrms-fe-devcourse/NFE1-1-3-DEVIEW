@@ -13,7 +13,7 @@ export const CommentsContent = () => {
 
   if (isLoading)
     return (
-      <div className="flex h-screen items-center justify-center">
+      <div className="flex">
         <Loading />
       </div>
     );
