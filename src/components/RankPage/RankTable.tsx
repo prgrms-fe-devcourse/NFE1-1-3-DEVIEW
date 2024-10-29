@@ -1,16 +1,10 @@
 import { RankHeader } from "@components/RankPage/RankHeader";
 import { RankListItem } from "@components/RankPage/RankListItem";
+import { TRank } from "@customTypes/rank";
 
-interface RankData {
-  rank: number;
-  name: string;
-  team: string;
-  recommend: number;
-}
-
-interface RankTableProps {
-  data: RankData[];
-}
+type RankTableProps = {
+  data: TRank[];
+};
 
 export const RankTable = ({ data }: RankTableProps) => {
   return (
