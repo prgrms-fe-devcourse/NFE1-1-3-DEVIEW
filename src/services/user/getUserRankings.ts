@@ -1,22 +1,25 @@
-import { CommonCommentResponseProps } from "@customTypes/comment";
 import { ErrorResponse } from "@customTypes/errorResponse";
 import { PaginationRequestProps } from "@customTypes/pagination";
+import { UserInfo } from "@customTypes/userInfo";
 import axiosInstance from "@services/axiosInstance";
-import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
-type GetUserCommentsRequestProps = PaginationRequestProps;
-type GetUserCommentsResponseProps = CommonCommentResponseProps;
+type GetUserRankingsRequestProps = PaginationRequestProps;
 
-export async function getUserComments({
+type GetUserRankingsResponseProps = {
+  currentPage: number;
+  totalPages: number;
+  userRanking: (UserInfo & {
+    totalThumbsCount: number;
+  })[];
+};
+
+export async function getUserRankings({
   page,
   limit
-}: GetUserCommentsRequestProps): Promise<GetUserCommentsResponseProps> {
+}: GetUserRankingsRequestProps): Promise<GetUserRankingsResponseProps> {
   try {
-    const response = await axiosInstance.get<GetUserCommentsResponseProps>(`/comment/user`, {
-      headers: {
-        Authorization: AccessTokenStorage.getAuthorizationHeader()
-      },
+    const response = await axiosInstance.get<GetUserRankingsResponseProps>(`/user/rankings`, {
       params: { page, limit }
     });
     return response.data;
@@ -24,7 +27,7 @@ export async function getUserComments({
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError<ErrorResponse>;
       if (axiosError.response) {
-        console.error("작성한 댓글 불러오기 실패", axiosError.response.data);
+        console.error("유저 랭킹 목록 조회 실패", axiosError.response.data);
         throw new Error(axiosError.response.data.message || "요청 실패");
       } else if (axiosError.request) {
         console.error("요청 에러:", axiosError.request);
