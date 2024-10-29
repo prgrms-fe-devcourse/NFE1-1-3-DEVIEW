@@ -3,15 +3,23 @@ import { CommonPostRequestProps, CommonPostResponseProps } from "@customTypes/po
 import axiosInstance from "@services/axiosInstance";
 import axios, { AxiosError } from "axios";
 
-type SearchPostsRequestProps = Pick<CommonPostRequestProps, "devDependencies"> & {
+type SearchPostsRequestProps = Partial<Pick<CommonPostRequestProps, "devDependencies">> & {
   keyword: string;
 };
 
 type SearchPostsResponseProps = CommonPostResponseProps;
 
-export async function searchPosts(req: SearchPostsRequestProps): Promise<SearchPostsResponseProps> {
+export async function searchPosts({
+  keyword,
+  devDependencies
+}: SearchPostsRequestProps): Promise<SearchPostsResponseProps> {
   try {
-    const response = await axiosInstance.post<SearchPostsResponseProps>(`/search`, req);
+    const response = await axiosInstance.get<SearchPostsResponseProps>(`/post/search`, {
+      headers: {
+        keyword,
+        devDependencies
+      }
+    });
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
