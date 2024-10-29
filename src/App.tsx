@@ -13,7 +13,6 @@ export const App = () => {
     if (AccessTokenStorage.hasToken()) {
       getUserInfo().then((data) => {
         setUserInfo(data);
-        console.log(data);
       });
     }
   }, []);
