@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Logo } from "@components/Common/Logo";
 import { SearchBar } from "@components/Common/SearchBar";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { HeaderMenu } from "@components/Common/HeaderMenu";
 import { SearchFilter } from "@components/Common/SearchFilter";
 import { HeaderLoginMenu } from "@components/Common/HeaderLoginMenu";
@@ -11,6 +11,8 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isFilterVisible, setIsFilterVisible] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+
+  const location = useLocation();
 
   const onClick = () => {
     setIsMenuOpen((prev) => !prev);
@@ -57,16 +59,22 @@ export default function Header() {
           </div>
           <nav className="hidden md:ml-8 md:flex md:space-x-8">
             <Link
-              className="text-lg text-gray hover:border-b hover:border-solid hover:border-primary hover:font-bold hover:text-primary"
-              type="button"
               to="/post"
+              className={`text-lg ${
+                location.pathname === "/post"
+                  ? "border-b border-solid border-primary font-bold text-primary"
+                  : "text-gray"
+              } hover:border-b hover:border-solid hover:border-primary hover:font-bold hover:text-primary`}
             >
               게시글
             </Link>
             <Link
-              className="text-lg text-gray hover:border-b hover:border-solid hover:border-primary hover:font-bold hover:text-primary"
-              type="button"
               to="/rank"
+              className={`text-lg ${
+                location.pathname === "/rank"
+                  ? "border-b border-solid border-primary font-bold text-primary"
+                  : "text-gray"
+              } hover:border-b hover:border-solid hover:border-primary hover:font-bold hover:text-primary`}
             >
               유저랭킹
             </Link>
