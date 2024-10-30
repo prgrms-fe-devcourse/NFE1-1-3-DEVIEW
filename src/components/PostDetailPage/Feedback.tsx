@@ -1,6 +1,7 @@
 import { AiOutlineLike } from "react-icons/ai";
 import { PiSiren } from "react-icons/pi";
 //!API 연동 필요
+
 export const Feedback = () => {
   return (
     <section className="w-full flex-center">

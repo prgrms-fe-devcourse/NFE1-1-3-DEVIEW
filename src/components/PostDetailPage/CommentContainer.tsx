@@ -5,6 +5,7 @@ export const CommentContainer = () => {
   return (
     <section className="flex flex-col gap-9 rounded-lg border border-solid border-gray px-3 py-4">
       <section className="flex justify-between">
+        {/* //! 댓글 작성자 정보 api연동하면서 컴포넌화 예정 */}
         <div className="flex gap-5">
           <figure className="h-12 w-12 overflow-hidden rounded-full md:h-16 md:w-16">
             <img

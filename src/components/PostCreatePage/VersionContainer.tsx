@@ -5,7 +5,7 @@ type VersionContainerProps = {
   state: PostFormState;
   onAddVersion: () => void;
   onRemove: (id: string) => void;
-  onChange: (id: string, field: "lan" | "version", value: string) => void;
+  onChange: (id: string, field: "dependency" | "version", value: string) => void;
 };
 
 export const VersionContainer = ({ state, onAddVersion, onRemove, onChange }: VersionContainerProps) => {
@@ -18,15 +18,21 @@ export const VersionContainer = ({ state, onAddVersion, onRemove, onChange }: Ve
 
         <div className="flex gap-3 sm:relative sm:right-0 sm:top-0 md:absolute md:right-5 md:top-3">
           <VersionCountBtn addOrMinus="+" onClick={onAddVersion} />
-          {state.versions.length > 1 && (
-            <VersionCountBtn addOrMinus="-" onClick={() => onRemove(state.versions[state.versions.length - 1].id)} />
+          {state.devDependencies.length > 1 && (
+            <VersionCountBtn
+              addOrMinus="-"
+              onClick={() => onRemove(state.devDependencies[state.devDependencies.length - 1].id)}
+            />
           )}
         </div>
 
         <div className="flex flex-col gap-4">
-          {state.versions.map((version) => (
+          {state.devDependencies.map((version) => (
             <div key={version.id} className="flex gap-[3%]">
-              <LanSelectBtn value={version.lan} onChange={(e) => onChange(version.id, "lan", e.target.value)} />
+              <LanSelectBtn
+                value={version.dependency}
+                onChange={(e) => onChange(version.id, "dependency", e.target.value)}
+              />
               <input
                 value={version.version}
                 onChange={(e) => onChange(version.id, "version", e.target.value)}
