@@ -1,22 +1,37 @@
 import { Loading } from "@components/Common/Loading";
 import { PostListItem } from "@components/Common/PostListItem";
 import { NoContent } from "@components/Common/NoContent";
-import { TPost } from "@customTypes/post";
+import { CommonPostResponseProps } from "@customTypes/post";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { getMyPosts } from "@services/post/getMyPosts";
-import { useQuery } from "@tanstack/react-query";
+import React, { useCallback, useRef } from "react";
 
 export const PostsContent = () => {
-  const { data, isLoading, error } = useQuery<{ posts: TPost[] }, Error>({
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, error } = useInfiniteQuery<
+    CommonPostResponseProps,
+    Error
+  >({
     queryKey: ["userPosts"],
-    queryFn: () =>
-      getMyPosts({
-        page: 1,
-        limit: 10,
-        title: "",
-        content: "",
-        devDependencies: []
-      })
+    queryFn: ({ pageParam = 1 }) => getMyPosts({ page: pageParam as number, limit: 10 }),
+    getNextPageParam: (lastPage) => (lastPage.currentPage < lastPage.totalPages ? lastPage.currentPage + 1 : undefined),
+    initialPageParam: 1
   });
+
+  const observer = useRef<IntersectionObserver | null>(null);
+  const lastPostElementRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (isFetchingNextPage) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasNextPage) {
+          fetchNextPage();
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [isFetchingNextPage, fetchNextPage, hasNextPage]
+  );
+
   if (isLoading)
     return (
       <div className="flex">
@@ -24,15 +39,31 @@ export const PostsContent = () => {
       </div>
     );
 
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <div>Error: {(error as Error).message}</div>;
 
-  if (!data || data.posts.length === 0) return <NoContent type="post" />;
+  if (!data || data.pages[0].posts.length === 0) return <NoContent type="post" />;
 
   return (
     <div className="">
-      {data.posts.map((post) => (
-        <PostListItem key={post._id} postItem={post} />
+      {data.pages.map((page, pageIndex) => (
+        <React.Fragment key={pageIndex}>
+          {page.posts.map((post, postIndex) => (
+            <div
+              key={post._id}
+              ref={
+                pageIndex === data.pages.length - 1 && postIndex === page.posts.length - 1 ? lastPostElementRef : null
+              }
+            >
+              <PostListItem postItem={post} />
+            </div>
+          ))}
+        </React.Fragment>
       ))}
+      {isFetchingNextPage && (
+        <div className="flex">
+          <Loading />
+        </div>
+      )}
     </div>
   );
 };
