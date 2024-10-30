@@ -19,13 +19,13 @@ export default function PostCreatePage() {
       alert("코드를 입력해주세요.");
       return false;
     }
-    const hasEmptyVersion = state.versions.some((v) => !v.lan || !v.version.trim());
+    const hasEmptyVersion = state.devDependencies.some((v) => !v.dependency || !v.version.trim());
     if (hasEmptyVersion) {
       alert("모든 버전 정보를 입력해주세요.");
       return false;
     }
     return true;
-  }, [state.title, state.content, state.code, state.versions]);
+  }, [state.title, state.content, state.code, state.devDependencies]);
 
   const onSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
@@ -50,7 +50,7 @@ export default function PostCreatePage() {
     }
   }, []);
 
-  const onVersionChange = useCallback((id: string, field: "lan" | "version", value: string) => {
+  const onVersionChange = useCallback((id: string, field: "dependency" | "version", value: string) => {
     dispatch({
       type: "UPDATE_VERSION",
       payload: { id, field, value }

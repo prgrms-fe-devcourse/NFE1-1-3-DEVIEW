@@ -1,17 +1,16 @@
 // 버전 데이터 인터페이스
 export type VersionData = {
   id: string;
-  lan: string;
+  dependency: string;
   version: string;
 };
-
 
 // 폼 상태 인터페이스
 export type PostFormState = {
   title: string;
   content: string;
   code: string; // 코드 에디터 내용
-  versions: VersionData[];
+  devDependencies: VersionData[];
 };
 
 // 각 액션별 페이로드 타입 정의
@@ -43,7 +42,7 @@ export type UpdateVersionAction = {
   type: "UPDATE_VERSION";
   payload: {
     id: string;
-    field: "lan" | "version";
+    field: "dependency" | "version";
     value: string;
   };
 };
@@ -67,7 +66,7 @@ export const initialState: PostFormState = {
   title: "",
   content: "",
   code: "",
-  versions: [{ id: "1", lan: "", version: "" }]
+  devDependencies: [{ id: "1", dependency: "", version: "" }]
 };
 
 // 타입 가드 함수들

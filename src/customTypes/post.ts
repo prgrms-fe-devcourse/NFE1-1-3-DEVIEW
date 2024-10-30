@@ -13,6 +13,7 @@ export type TPost = {
     _id: string;
     username: string;
   };
+  code: string;
   devDependencies: DevDependencies[];
   likesCount: number;
   viewsCount: number;
@@ -29,7 +30,7 @@ export type TPostDetail = TPost & {
   isAuthor: boolean;
 };
 
-export type CommonPostRequestProps = Pick<TPost, "title" | "content" | "devDependencies"> & {
+export type CommonPostRequestProps = Pick<TPost, "title" | "content" | "devDependencies" | "code"> & {
   postId: string;
 };
 

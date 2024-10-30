@@ -4,18 +4,22 @@ export const initialState: PostFormState = {
   title: "",
   content: "",
   code: "",
-  versions: [{ id: "1", lan: "", version: "" }]
+  devDependencies: [{ id: "1", dependency: "", version: "" }]
 };
 
 const versionUtils = {
-  createNewVersion: (currentVersions: PostFormState["versions"]) => ({
+  createNewVersion: (currentVersions: PostFormState["devDependencies"]) => ({
     id: String(currentVersions.length + 1),
-    lan: "",
+    dependency: "",
     version: ""
   }),
-  canRemoveVersion: (versions: PostFormState["versions"]) => versions.length > 1,
-  updateVersion: (versions: PostFormState["versions"], id: string, field: "lan" | "version", value: string) =>
-    versions.map((v) => (v.id === id ? { ...v, [field]: value } : v))
+  canRemoveVersion: (devDependencies: PostFormState["devDependencies"]) => devDependencies.length > 1,
+  updateVersion: (
+    versions: PostFormState["devDependencies"],
+    id: string,
+    field: "dependency" | "version",
+    value: string
+  ) => versions.map((v) => (v.id === id ? { ...v, [field]: value } : v))
 };
 
 const handlers = {
@@ -33,23 +37,23 @@ const handlers = {
   }),
   ADD_VERSION: (state: PostFormState): PostFormState => ({
     ...state,
-    versions: [...state.versions, versionUtils.createNewVersion(state.versions)]
+    devDependencies: [...state.devDependencies, versionUtils.createNewVersion(state.devDependencies)]
   }),
   REMOVE_VERSION: (state: PostFormState, payload: string): PostFormState => {
-    if (!versionUtils.canRemoveVersion(state.versions)) {
+    if (!versionUtils.canRemoveVersion(state.devDependencies)) {
       return state;
     }
     return {
       ...state,
-      versions: state.versions.filter((v) => v.id !== payload)
+      devDependencies: state.devDependencies.filter((v) => v.id !== payload)
     };
   },
   UPDATE_VERSION: (
     state: PostFormState,
-    payload: { id: string; field: "lan" | "version"; value: string }
+    payload: { id: string; field: "dependency" | "version"; value: string }
   ): PostFormState => ({
     ...state,
-    versions: versionUtils.updateVersion(state.versions, payload.id, payload.field, payload.value)
+    devDependencies: versionUtils.updateVersion(state.devDependencies, payload.id, payload.field, payload.value)
   }),
   RESET_FORM: (): PostFormState => initialState
 };
@@ -93,9 +97,9 @@ export const validateForm = (state: PostFormState) => {
   if (!state.code.trim()) {
     errors.code = "코드를 입력해주세요.";
   }
-  const hasEmptyVersion = state.versions.some((v) => !v.lan || !v.version.trim());
+  const hasEmptyVersion = state.devDependencies.some((v) => !v.dependency || !v.version.trim());
   if (hasEmptyVersion) {
-    errors.versions = "모든 버전 정보를 입력해주세요.";
+    errors.devDependencies = "모든 버전 정보를 입력해주세요.";
   }
 
   return {
