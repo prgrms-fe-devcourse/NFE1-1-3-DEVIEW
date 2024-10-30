@@ -4,8 +4,8 @@ import axiosInstance from "@services/axiosInstance";
 import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
-type UpdateUserRequestProps = Omit<UserInfo, "id"> & {
-  password: string;
+type UpdateUserRequestProps = Partial<Omit<UserInfo, "id">> & {
+  password?: string;
 };
 type UpdateUserResponseProps = {
   message: string;
