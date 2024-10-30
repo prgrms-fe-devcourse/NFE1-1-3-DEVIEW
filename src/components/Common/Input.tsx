@@ -54,7 +54,7 @@ export const Input = ({ name, text, errorMessage, pattern, togglePassword, ...re
           className="absolute right-3 top-1/2 translate-y-1/3 transform text-gray md:translate-y-1/2"
           onClick={() => setShowPassword(!showPassword)}
         >
-          {showPassword ? <FaEyeSlash /> : <FaEye />}
+          {showPassword ? <FaEye /> : <FaEyeSlash />}
         </button>
       )}
       {error && <p className="absolute mt-1 text-red">{error}</p>}
