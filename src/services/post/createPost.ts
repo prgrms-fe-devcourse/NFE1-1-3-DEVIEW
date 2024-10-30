@@ -4,7 +4,7 @@ import axiosInstance from "@services/axiosInstance";
 import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
-type CreatePostRequestProps = Pick<CommonPostRequestProps, "title" | "content" | "devDependencies" | "code">;
+type CreatePostRequestProps = Pick<CommonPostRequestProps, "title" | "detail" | "devDependencies" | "code">;
 
 type CreatePostResponseProps = Omit<TPost, "author"> & {
   author: string;

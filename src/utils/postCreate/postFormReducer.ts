@@ -2,7 +2,7 @@ import { PostFormState, PostFormAction } from "@/customTypes/postCreate";
 
 export const initialState: PostFormState = {
   title: "",
-  content: "",
+  detail: "",
   code: "",
   devDependencies: [{ id: "1", dependency: "", version: "" }]
 };
@@ -27,9 +27,9 @@ const handlers = {
     ...state,
     title: payload
   }),
-  SET_CONTENT: (state: PostFormState, payload: string): PostFormState => ({
+  SET_DETAIL: (state: PostFormState, payload: string): PostFormState => ({
     ...state,
-    content: payload
+    detail: payload
   }),
   SET_CODE: (state: PostFormState, payload: string): PostFormState => ({
     ...state,
@@ -62,8 +62,8 @@ export const postFormReducer = (state: PostFormState, action: PostFormAction): P
   switch (action.type) {
     case "SET_TITLE":
       return handlers.SET_TITLE(state, action.payload);
-    case "SET_CONTENT":
-      return handlers.SET_CONTENT(state, action.payload);
+    case "SET_DETAIL":
+      return handlers.SET_DETAIL(state, action.payload);
     case "SET_CODE":
       return handlers.SET_CODE(state, action.payload);
     case "ADD_VERSION":
@@ -91,8 +91,8 @@ export const validateForm = (state: PostFormState) => {
   if (!state.title.trim()) {
     errors.title = "제목을 입력해주세요.";
   }
-  if (!state.content.trim()) {
-    errors.content = "내용을 입력해주세요.";
+  if (!state.detail.trim()) {
+    errors.detail = "내용을 입력해주세요.";
   }
   if (!state.code.trim()) {
     errors.code = "코드를 입력해주세요.";

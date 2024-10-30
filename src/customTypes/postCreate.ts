@@ -1,16 +1,32 @@
-// 버전 데이터 인터페이스
-export type VersionData = {
+import { DEV_DEPENDENCIES_LIST } from "@constants/devDependenciesList";
+// types/post.ts
+// 폼에서 사용하는 버전 데이터 타입
+export type DevDependencies = {
   id: string;
   dependency: string;
   version: string;
 };
 
-// 폼 상태 인터페이스
+// API 요청 시 사용할 버전 데이터 타입
+export type DevDependencyRequest = {
+  dependency: (typeof DEV_DEPENDENCIES_LIST)[number];
+  version: string;
+};
+
+// 폼 상태 타입
 export type PostFormState = {
   title: string;
-  content: string;
-  code: string; // 코드 에디터 내용
-  devDependencies: VersionData[];
+  detail: string;
+  code: string;
+  devDependencies: DevDependencies[];
+};
+
+// API 요청 타입
+export type CreatePostRequestProps = {
+  title: string;
+  detail: string;
+  code: string;
+  devDependencies: DevDependencyRequest[];
 };
 
 // 각 액션별 페이로드 타입 정의
@@ -19,8 +35,8 @@ export type SetTitleAction = {
   payload: string;
 };
 
-export type SetContentAction = {
-  type: "SET_CONTENT";
+export type SetDetailAction = {
+  type: "SET_DETAIL";
   payload: string;
 };
 
@@ -54,7 +70,7 @@ export type ResetFormAction = {
 // 모든 가능한 액션 타입 통합
 export type PostFormAction =
   | SetTitleAction
-  | SetContentAction
+  | SetDetailAction
   | SetCodeAction
   | AddVersionAction
   | RemoveVersionAction
@@ -64,7 +80,7 @@ export type PostFormAction =
 // 초기 상태
 export const initialState: PostFormState = {
   title: "",
-  content: "",
+  detail: "",
   code: "",
   devDependencies: [{ id: "1", dependency: "", version: "" }]
 };

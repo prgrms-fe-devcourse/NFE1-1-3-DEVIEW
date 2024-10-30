@@ -1,47 +1,69 @@
-import { ActionBtn } from "@/components/Common";
+import { ActionBtn } from "@/components/Common/ActionBtn";
 import { DetailContainer, EditorContainer, TitleContainer, VersionContainer } from "@components/PostCreatePage";
-import { initialState, postFormReducer } from "@utils/postCreate";
+import { initialState, postFormReducer, validateForm } from "@utils/postCreate";
 import { FormEvent, useCallback, useReducer } from "react";
+import { useCreatePost } from "../hooks/useCreatePost";
+import { useNavigate } from "react-router-dom";
+import { DEV_DEPENDENCIES_LIST } from "@constants/devDependenciesList";
+import { DevDependency, DevDependencies } from "@customTypes/post";
+
+type CreatePostRequestProps = {
+  title: string;
+  detail: string;
+  code: string;
+  devDependencies: DevDependencies; // 이미 배열 타입임
+};
 
 export default function PostCreatePage() {
+  const navigate = useNavigate();
   const [state, dispatch] = useReducer(postFormReducer, initialState);
+  const createPostMutation = useCreatePost();
 
-  const validateForm = useCallback(() => {
-    if (!state.title.trim()) {
-      alert("제목을 입력해주세요.");
-      return false;
-    }
-    if (!state.content.trim()) {
-      alert("내용을 입력해주세요.");
-      return false;
-    }
-    if (!state.code.trim()) {
-      alert("코드를 입력해주세요.");
-      return false;
-    }
-    const hasEmptyVersion = state.devDependencies.some((v) => !v.dependency || !v.version.trim());
-    if (hasEmptyVersion) {
-      alert("모든 버전 정보를 입력해주세요.");
+  const onValidation = useCallback(() => {
+    const validation = validateForm(state);
+    if (!validation.isValid) {
+      const firstError = Object.values(validation.errors)[0];
+      alert(firstError);
       return false;
     }
     return true;
-  }, [state.title, state.content, state.code, state.devDependencies]);
+  }, [state]);
 
   const onSubmit = useCallback(
-    (e: FormEvent<HTMLFormElement>) => {
+    async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      if (!validateForm()) {
-        return;
-      }
+      if (!onValidation()) return;
+
       try {
-        // TODO: API 호출 로직 구현
-        console.log("Submit Data:", state);
+        // FormVersionData[] -> DevDependencies로 변환
+        const validDependencies: DevDependencies = state.devDependencies
+          .filter((item) => item.dependency && DEV_DEPENDENCIES_LIST.includes(item.dependency as DevDependency))
+          .map((item) => ({
+            dependency: item.dependency as DevDependency,
+            version: item.version
+          }));
+
+        const postData: CreatePostRequestProps = {
+          title: state.title,
+          detail: state.detail,
+          code: state.code,
+          devDependencies: validDependencies
+        };
+
+        console.log("Request Data:", postData);
+        await createPostMutation.mutateAsync(postData);
+        alert("질문이 성공적으로 등록되었습니다.");
+        navigate("/");
       } catch (error) {
         console.error("Submit Error:", error);
-        alert("질문 등록 중 오류가 발생했습니다. 다시 시도해주세요.");
+        if (error instanceof Error) {
+          alert(`질문 등록 실패: ${error.message}`);
+        } else {
+          alert("질문 등록 중 오류가 발생했습니다.");
+        }
       }
     },
-    [state, validateForm]
+    [state, onValidation, createPostMutation, navigate]
   );
 
   const onReset = useCallback(() => {
@@ -69,6 +91,12 @@ export default function PostCreatePage() {
     <form onSubmit={onSubmit} className="m-auto my-[5.313rem] flex max-w-[1240px] flex-col gap-12 px-5">
       <h1 className="text-24 font-semibold">공개 질문하기</h1>
 
+      {createPostMutation.isPending && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50">
+          <div className="bg-white rounded-lg p-4">질문을 등록하는 중...</div>
+        </div>
+      )}
+
       <TitleContainer
         category="제목"
         explain="질문하시고 싶은 내용을 잘 전달할 수 있는 제목을 선택해주세요."
@@ -82,9 +110,9 @@ export default function PostCreatePage() {
         category="내용"
         explain="질문하시고 싶은 내용을 자세하게 작성해주세요."
         placeholder="1000자 이내로 자유롭게 내용을 작성해주세요."
-        value={state.content}
+        value={state.detail}
         maxLength={1000}
-        onChange={(e) => dispatch({ type: "SET_CONTENT", payload: e.target.value })}
+        onChange={(e) => dispatch({ type: "SET_DETAIL", payload: e.target.value })}
       />
 
       <VersionContainer
@@ -97,8 +125,18 @@ export default function PostCreatePage() {
       <EditorContainer value={state.code} onChange={(newValue) => dispatch({ type: "SET_CODE", payload: newValue })} />
 
       <div className="flex w-full justify-end gap-6">
-        <ActionBtn content="내용 초기화하기" type="reset" onClick={onReset} />
-        <ActionBtn color="primary" content="질문하기" type="submit" />
+        <ActionBtn
+          content="내용 초기화하기"
+          type="reset"
+          onClick={onReset}
+          // disabled={createPostMutation.isPending}
+        />
+        <ActionBtn
+          color="primary"
+          content={createPostMutation.isPending ? "등록 중..." : "질문하기"}
+          type="submit"
+          // disabled={createPostMutation.isPending}
+        />
       </div>
     </form>
   );
