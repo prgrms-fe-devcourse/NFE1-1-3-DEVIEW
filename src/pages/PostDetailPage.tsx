@@ -29,7 +29,7 @@ export default function PostDetailPage() {
         <CodeViewer />
       </section>
       <Feedback />
-      <section>댓글 섹션</section>
+      <section>Answer</section>
       <CommentContainer />
     </section>
   );
