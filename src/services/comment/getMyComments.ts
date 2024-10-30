@@ -5,15 +5,12 @@ import axiosInstance from "@services/axiosInstance";
 import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
-type GetUserCommentsRequestProps = PaginationRequestProps;
-type GetUserCommentsResponseProps = CommonCommentResponseProps;
+type GetMyCommentsRequestProps = PaginationRequestProps;
+type GetMyCommentsResponseProps = CommonCommentResponseProps;
 
-export async function getUserComments({
-  page,
-  limit
-}: GetUserCommentsRequestProps): Promise<GetUserCommentsResponseProps> {
+export async function getMyComments({ page, limit }: GetMyCommentsRequestProps): Promise<GetMyCommentsResponseProps> {
   try {
-    const response = await axiosInstance.get<GetUserCommentsResponseProps>(`/comment/user`, {
+    const response = await axiosInstance.get<GetMyCommentsResponseProps>(`/comment/myself`, {
       headers: {
         Authorization: AccessTokenStorage.getAuthorizationHeader()
       },
