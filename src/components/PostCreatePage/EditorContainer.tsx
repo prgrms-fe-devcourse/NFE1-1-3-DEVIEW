@@ -55,7 +55,7 @@ export const EditorContainer = ({ value, onChange }: EditorContainerProps) => {
   ];
 
   return (
-    <div className="flex w-full flex-col gap-4 rounded-lg border border-solid border-gray py-7 pl-3 pr-6 shadow">
+    <section className="flex w-full flex-col gap-4 rounded-lg border border-solid border-gray py-7 pl-3 pr-6 shadow">
       <div className="flex flex-col gap-3">
         <h2 className="text-20 font-semibold">질문하고 싶은 코드를 작성해주세요</h2>
         <p className="text-16 font-medium text-primary">주석으로 설명을 추가해주세요.</p>
@@ -71,7 +71,7 @@ export const EditorContainer = ({ value, onChange }: EditorContainerProps) => {
           />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

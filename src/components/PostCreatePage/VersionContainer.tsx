@@ -10,7 +10,7 @@ type VersionContainerProps = {
 
 export const VersionContainer = ({ state, onAddVersion, onRemove, onChange }: VersionContainerProps) => {
   return (
-    <div className="relative flex w-full flex-col gap-4 rounded-lg border border-solid border-gray py-7 pl-3 pr-6 shadow">
+    <section className="relative flex w-full flex-col gap-4 rounded-lg border border-solid border-gray py-7 pl-3 pr-6 shadow">
       <div className="flex flex-col gap-3">
         <h2 className="text-20 font-semibold">언어와 버전을 입력해주세요</h2>
         <p className="text-16 font-medium text-primary">답변자가 더 좋은 답변을 할 수 있게 정확히 기입해주세요.</p>
@@ -38,7 +38,7 @@ export const VersionContainer = ({ state, onAddVersion, onRemove, onChange }: Ve
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

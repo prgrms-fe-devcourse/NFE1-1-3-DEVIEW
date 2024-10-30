@@ -4,4 +4,4 @@ export * from "@components/PostCreatePage/DetailContainer";
 export * from "@components/PostCreatePage/EditorContainer";
 export * from "@components/PostCreatePage/LanSelectBtn";
 export * from "@components/PostCreatePage/VersionCountBtn";
-export * from "@components/PostCreatePage/ActionBtn";
+export * from "@components/Common/ActionBtn";

@@ -9,7 +9,7 @@ type TitleContainerProps = {
 
 export const TitleContainer = ({ category, explain, placeholder, value, onChange, maxLength }: TitleContainerProps) => {
   return (
-    <div className="shadow w-full rounded-lg border border-solid border-gray py-7 pl-3 pr-6">
+    <section className="w-full rounded-lg border border-solid border-gray py-7 pl-3 pr-6 shadow">
       <div className="flex flex-col gap-3">
         <h2 className="text-20 font-semibold">{category}</h2>
         <p className="text-16 font-medium text-primary">{explain}</p>
@@ -28,7 +28,7 @@ export const TitleContainer = ({ category, explain, placeholder, value, onChange
           </span>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
