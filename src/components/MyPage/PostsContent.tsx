@@ -6,7 +6,6 @@ import { getUserPosts } from "@services/post/getUserPosts";
 import { useQuery } from "@tanstack/react-query";
 
 export const PostsContent = () => {
-  // TODO: 파라미터 수정? 필요
   const { data, isLoading, error } = useQuery<{ posts: TPost[] }, Error>({
     queryKey: ["userPosts"],
     queryFn: () =>
@@ -18,7 +17,6 @@ export const PostsContent = () => {
         devDependencies: []
       })
   });
-
   if (isLoading)
     return (
       <div className="flex">
