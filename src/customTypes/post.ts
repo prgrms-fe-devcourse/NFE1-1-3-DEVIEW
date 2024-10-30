@@ -1,20 +1,19 @@
 import { DEV_DEPENDENCIES_LIST } from "@constants/devDependenciesList";
 
-export type DevDependencies = {
-  dependency: (typeof DEV_DEPENDENCIES_LIST)[number];
-  version: string;
-}[];
+export type DevDependency = (typeof DEV_DEPENDENCIES_LIST)[number];
+
+export type DevDependencies = { dependency: DevDependency; version: string }[];
 
 export type TPost = {
   _id: string;
   title: string;
-  content: string;
+  detail: string;
   author: {
     _id: string;
     username: string;
   };
   code: string;
-  devDependencies: DevDependencies[];
+  devDependencies: DevDependencies;
   likesCount: number;
   viewsCount: number;
   scrapsCount: number;
@@ -30,7 +29,7 @@ export type TPostDetail = TPost & {
   isAuthor: boolean;
 };
 
-export type CommonPostRequestProps = Pick<TPost, "title" | "content" | "devDependencies" | "code"> & {
+export type CommonPostRequestProps = Pick<TPost, "title" | "detail" | "devDependencies" | "code"> & {
   postId: string;
 };
 
