@@ -2,7 +2,7 @@ import { Loading } from "@components/Common/Loading";
 import { PostListItem } from "@components/Common/PostListItem";
 import { NoContent } from "@components/Common/NoContent";
 import { TPost } from "@customTypes/post";
-import { getUserPosts } from "@services/post/getUserPosts";
+import { getMyPosts } from "@services/post/getMyPosts";
 import { useQuery } from "@tanstack/react-query";
 
 export const PostsContent = () => {
@@ -10,7 +10,7 @@ export const PostsContent = () => {
   const { data, isLoading, error } = useQuery<{ posts: TPost[] }, Error>({
     queryKey: ["userPosts"],
     queryFn: () =>
-      getUserPosts({
+      getMyPosts({
         page: 1,
         limit: 10,
         title: "",

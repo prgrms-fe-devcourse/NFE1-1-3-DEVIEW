@@ -2,13 +2,13 @@ import { Loading } from "@components/Common/Loading";
 import { NoContent } from "@components/Common/NoContent";
 import { MyComment } from "@components/MyPage/MyComment";
 import { CommonCommentResponseProps } from "@customTypes/comment";
-import { getUserComments } from "@services/comment/getUserComments";
+import { getMyComments } from "@services/comment/getMyComments";
 import { useQuery } from "@tanstack/react-query";
 
 export const CommentsContent = () => {
   const { data, isLoading, error } = useQuery<CommonCommentResponseProps, Error>({
     queryKey: ["userComments"],
-    queryFn: () => getUserComments({ page: 1, limit: 10 })
+    queryFn: () => getMyComments({ page: 1, limit: 10 })
   });
 
   if (isLoading)

@@ -1,17 +1,17 @@
 import { ErrorResponse } from "@customTypes/errorResponse";
 import { PaginationRequestProps } from "@customTypes/pagination";
-import { CommonPostRequestProps, CommonPostResponseProps } from "@customTypes/post";
+import { CommonPostResponseProps } from "@customTypes/post";
 import axiosInstance from "@services/axiosInstance";
 import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
-type GetUserPostsRequestProps = Omit<CommonPostRequestProps, "postId"> & PaginationRequestProps;
+type GetMyPostsRequestProps = PaginationRequestProps;
 
-type GetUserPostsResponseProps = CommonPostResponseProps;
+type GetMyPostsResponseProps = CommonPostResponseProps;
 
-export async function getUserPosts({ page, limit }: GetUserPostsRequestProps): Promise<GetUserPostsResponseProps> {
+export async function getMyPosts({ page, limit }: GetMyPostsRequestProps): Promise<GetMyPostsResponseProps> {
   try {
-    const response = await axiosInstance.get<GetUserPostsResponseProps>("/post/user", {
+    const response = await axiosInstance.get<GetMyPostsResponseProps>("/post/myself", {
       params: { page, limit },
       headers: {
         Authorization: AccessTokenStorage.getAuthorizationHeader()
