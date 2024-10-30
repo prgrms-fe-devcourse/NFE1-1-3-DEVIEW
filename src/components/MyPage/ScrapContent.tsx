@@ -1,7 +1,7 @@
 import { Loading } from "@components/Common/Loading";
 import { NoContent } from "@components/Common/NoContent";
 import { PostListItem } from "@components/Common/PostListItem";
-import { CommonPostResponseProps } from "@customTypes/post";
+import { CommonPostResponseProps, TPost } from "@customTypes/post";
 import { getScrapedPost } from "@services/post/getScrapedPost";
 import { useQuery } from "@tanstack/react-query";
 
@@ -17,14 +17,15 @@ export const ScrapContent = () => {
         <Loading />
       </div>
     );
-
   if (error) return <div>Error: {error.message}</div>;
 
-  if (!data || data.posts.length === 0) return <NoContent type="scrap" />;
+  if (!data || !data.posts) return <NoContent type="scrap" />;
+  const filteredPosts = data.posts.filter((post): post is TPost => post !== null);
+  if (filteredPosts.length === 0) return <NoContent type="scrap" />;
 
   return (
     <div className="">
-      {data.posts.map((post) => (
+      {filteredPosts.map((post) => (
         <PostListItem key={post._id} postItem={post} />
       ))}
     </div>
