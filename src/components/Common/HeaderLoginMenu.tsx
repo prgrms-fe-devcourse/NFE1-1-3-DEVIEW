@@ -4,11 +4,16 @@ import { Link } from "react-router-dom";
 import { GoBell } from "react-icons/go";
 import { CiUser } from "react-icons/ci";
 import { useUserStore } from "@stores/userStore";
+import { HeaderNotificationModal } from "@components/Common/HeaderNotificationModal";
 
 export const HeaderLoginMenu = () => {
   const [isUserIconOpen, setIsUserIconOpen] = useState(false);
+  const [isBellIconOpen, setIsBellIconOpen] = useState(false);
   const toggleUserIconModal = () => {
     setIsUserIconOpen(!isUserIconOpen);
+  };
+  const toggleBellIconModal = () => {
+    setIsBellIconOpen(!isBellIconOpen);
   };
   const isLoggedIn = useUserStore((state) => state.isLoggedIn);
 
@@ -23,8 +28,14 @@ export const HeaderLoginMenu = () => {
           >
             질문하기
           </Link>
-          <GoBell className="mr-4 h-10 w-6 md:h-10 md:w-10" />
-          <CiUser className="h-10 w-6 md:h-10 md:w-10" onClick={toggleUserIconModal} />
+          <GoBell className="mr-4 h-10 w-6 cursor-pointer md:h-10 md:w-10" onClick={toggleBellIconModal} />
+          {isBellIconOpen && (
+            <>
+              <div className="fixed inset-0 z-40" onClick={toggleBellIconModal} />
+              <HeaderNotificationModal toggleBellIconModal={toggleBellIconModal} />
+            </>
+          )}
+          <CiUser className="h-10 w-6 cursor-pointer md:h-10 md:w-10" onClick={toggleUserIconModal} />
           {isUserIconOpen && (
             <>
               <div className="fixed inset-0 z-40" onClick={toggleUserIconModal} />

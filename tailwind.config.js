@@ -64,6 +64,7 @@ export default {
         }
       });
     },
+    require("tailwind-scrollbar-hide"),
     ({ addComponents }) => {
       addComponents({
         ".primary-btn": {
