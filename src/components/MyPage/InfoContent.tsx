@@ -9,6 +9,7 @@ import { UserInfo } from "@customTypes/userInfo";
 import { getUserInfo } from "@services/auth/getUserInfo";
 import { Loading } from "@components/Common/Loading";
 import { updateUser } from "@services/auth/updateUser";
+import { AUTH_INPUT_VALIDATION } from "@constants/authInputValidation";
 
 export const InfoContent = () => {
   const [isVerified, setIsVerified] = useState(false);
@@ -34,6 +35,42 @@ export const InfoContent = () => {
     }
   });
 
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const [username, password, group] = [
+      formData.get("name") as UserInfo["username"],
+      formData.get("password") as string,
+      formData.get("group") as UserInfo["group"]
+    ];
+
+    const updatedData: Partial<UserInfo> & { password?: string } = { username, group };
+
+    let isValid = true;
+
+    if (username !== userInfo?.username) {
+      const isNameValid = AUTH_INPUT_VALIDATION.name.regexp.test(username);
+      if (!isNameValid) {
+        alert(AUTH_INPUT_VALIDATION.name.errorMessage);
+        isValid = false;
+      }
+    }
+
+    if (password.trim() !== "") {
+      const isPasswordValid = AUTH_INPUT_VALIDATION.password.regexp.test(password);
+      if (!isPasswordValid) {
+        alert(AUTH_INPUT_VALIDATION.password.errorMessage);
+        isValid = false;
+      } else {
+        updatedData.password = password;
+      }
+    }
+
+    if (isValid) {
+      mutation.mutate(updatedData);
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="flex">
@@ -50,19 +87,6 @@ export const InfoContent = () => {
     return <div>사용자 정보를 불러올 수 없습니다.</div>;
   }
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-
-    const updatedData = {
-      username: formData.get("name") as string,
-      password: formData.get("password") as string,
-      group: formData.get("group") as UserInfo["group"]
-    };
-
-    mutation.mutate(updatedData);
-  };
-
   return (
     <div className="mx-auto max-w-[768px] py-4">
       {!isVerified ? (
@@ -71,7 +95,7 @@ export const InfoContent = () => {
         <form className="" onSubmit={onSubmit}>
           <IdInput defaultValue={userInfo.id} disabled={true} />
           <NameInput defaultValue={userInfo.username} />
-          <PasswordInput />
+          <PasswordInput required={false} />
 
           <div className="mb-5 flex items-center justify-between gap-1 md:gap-10">
             <Radio id="student" name="group" text="학생" value="학생" defaultChecked={userInfo.group === "학생"} />

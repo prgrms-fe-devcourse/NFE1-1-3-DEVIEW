@@ -1,7 +1,11 @@
 import { Input } from "@components/Common/Input";
 import { AUTH_INPUT_VALIDATION } from "@constants/authInputValidation";
 
-export const PasswordInput = () => {
+type PasswordInputProps = {
+  required?: boolean;
+};
+
+export const PasswordInput = ({ required = true }: PasswordInputProps) => {
   return (
     <Input
       autoComplete="off"
@@ -10,7 +14,7 @@ export const PasswordInput = () => {
       type="password"
       errorMessage={AUTH_INPUT_VALIDATION.password.errorMessage}
       pattern={AUTH_INPUT_VALIDATION.password.regexp}
-      required
+      required={required}
       togglePassword={true}
     />
   );
