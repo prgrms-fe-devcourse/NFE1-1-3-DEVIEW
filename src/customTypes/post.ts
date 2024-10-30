@@ -1,6 +1,9 @@
 import { DEV_DEPENDENCIES_LIST } from "@constants/devDependenciesList";
 
-export type DevDependencies = (typeof DEV_DEPENDENCIES_LIST)[number];
+export type DevDependencies = {
+  dependency: (typeof DEV_DEPENDENCIES_LIST)[number];
+  version: string;
+}[];
 
 export type TPost = {
   _id: string;
@@ -23,6 +26,7 @@ export type TPost = {
 export type TPostDetail = TPost & {
   liked: boolean;
   scraped: boolean;
+  isAuthor: boolean;
 };
 
 export type CommonPostRequestProps = Pick<TPost, "title" | "content" | "devDependencies"> & {
