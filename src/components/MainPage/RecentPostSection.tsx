@@ -7,7 +7,10 @@ export const RecentPostSection = () => {
     {
       _id: "1",
       title: "React Router를 사용해 navigate하는 방법이 뭔가요?",
-      devDependencies: ["React", "JavaScript"],
+      devDependencies: [
+        { dependency: "React", version: "1.16.1" },
+        { dependency: "JavaScript", version: "1.16.1" }
+      ],
       content: "React Router를 사용해 navigate하는 방법이 뭔가요?",
       author: { _id: "2", username: "shlee9999" },
       likesCount: 2352,
@@ -21,7 +24,10 @@ export const RecentPostSection = () => {
     {
       _id: "1",
       title: "React Router를 사용해 navigate하는 방법이 뭔가요?",
-      devDependencies: ["React", "JavaScript"],
+      devDependencies: [
+        { dependency: "C#", version: "1.16.1" },
+        { dependency: "JavaScript", version: "1.16.1" }
+      ],
       content: "React Router를 사용해 navigate하는 방법이 뭔가요?",
       author: { _id: "2", username: "shlee9999" },
       likesCount: 2352,
@@ -35,7 +41,10 @@ export const RecentPostSection = () => {
     {
       _id: "1",
       title: "React Router를 사용해 navigate하는 방법이 뭔가요?",
-      devDependencies: ["React", "JavaScript"],
+      devDependencies: [
+        { dependency: "Sass", version: "1.16.1" },
+        { dependency: "JavaScript", version: "1.16.1" }
+      ],
       content: "React Router를 사용해 navigate하는 방법이 뭔가요?",
       author: { _id: "2", username: "shlee9999" },
       likesCount: 2352,
