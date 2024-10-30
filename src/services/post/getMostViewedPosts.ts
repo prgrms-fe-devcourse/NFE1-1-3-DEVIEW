@@ -8,7 +8,7 @@ import axios, { AxiosError } from "axios";
 // 기본 limit은 1로 한 개만 전송됩니다.
 type GetMostViewedPostsRequestProps = Partial<Pick<PaginationRequestProps, "limit">>;
 
-type GetMostViewedPostsResponseProps = TPost[];
+export type GetMostViewedPostsResponseProps = TPost[];
 
 export async function getMostViewedPosts({
   limit

@@ -1,16 +1,12 @@
-import MainBanner from "@components/MainPage/MainBanner";
+import { MainBannerWrap } from "@components/MainPage/MainBannerWrap";
 import { Suspense } from "react";
-
+import { MainBannerSkeleton } from "@components/MainPage/MainBannerSkeleton";
 export const MainSection = () => {
-  const bannerType = ["Question", "MostViewedPosts", "MostViewedTodayPosts", "BestReviewer"];
-
   return (
     <div className="bg-lightpurple flex-center">
       <div className="flex max-w gap-10 px-10 py-12">
-        <Suspense fallback={<div>Loading...</div>}>
-          {bannerType.map((type, i) => (
-            <MainBanner key={i} bannerType={type} />
-          ))}
+        <Suspense fallback={<MainBannerSkeleton />}>
+          <MainBannerWrap />
         </Suspense>
       </div>
     </div>

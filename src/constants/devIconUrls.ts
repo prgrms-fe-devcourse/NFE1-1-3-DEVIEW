@@ -1,7 +1,7 @@
-import { DevDependencies } from "@customTypes/post";
+import { DevDependency } from "@customTypes/post";
 
 type DevIconsDocs = {
-  [key in DevDependencies]: {
+  [key in DevDependency]: {
     bgUrl: string;
     iconUrl: string;
   };
