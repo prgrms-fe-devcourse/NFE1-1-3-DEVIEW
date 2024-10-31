@@ -19,7 +19,7 @@ export const CommentContainer = () => {
         <EditDelete />
       </section>
       <section className="px-1">
-        <CodeViewer />
+        {/* <CodeViewer /> */}
       </section>
       <Feedback />
     </section>

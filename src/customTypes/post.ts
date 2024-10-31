@@ -4,6 +4,12 @@ export type DevDependency = (typeof DEV_DEPENDENCIES_LIST)[number];
 
 export type DevDependencies = { dependency: DevDependency; version: string }[];
 
+export type DevDependenciesList = {
+  // id: number;
+  dependency: DevDependency;
+  version: string;
+}[];
+
 export type TPost = {
   _id: string;
   title: string;

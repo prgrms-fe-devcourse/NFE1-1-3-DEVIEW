@@ -15,8 +15,3 @@ export type PostMeta = {
   replies: number;
   id: string | number | undefined;
 };
-export type TechVersion = {
-  id: string;
-  lan: string;
-  version: string;
-};

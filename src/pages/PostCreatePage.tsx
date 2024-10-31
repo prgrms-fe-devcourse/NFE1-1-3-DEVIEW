@@ -11,7 +11,7 @@ type CreatePostRequestProps = {
   title: string;
   detail: string;
   code: string;
-  devDependencies: DevDependencies; // 이미 배열 타입임
+  devDependencies: DevDependencies;
 };
 
 export default function PostCreatePage() {
@@ -35,7 +35,6 @@ export default function PostCreatePage() {
       if (!onValidation()) return;
 
       try {
-        // FormVersionData[] -> DevDependencies로 변환
         const validDependencies: DevDependencies = state.devDependencies
           .filter((item) => item.dependency && DEV_DEPENDENCIES_LIST.includes(item.dependency as DevDependency))
           .map((item) => ({

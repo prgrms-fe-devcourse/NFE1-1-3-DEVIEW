@@ -36,7 +36,7 @@ export const VersionContainer = ({ state, onAddVersion, onRemove, onChange }: Ve
               <input
                 value={version.version}
                 onChange={(e) => onChange(version.id, "version", e.target.value)}
-                className="h-16 w-[77%] rounded-lg border border-solid border-gray px-4 text-14 text-gray"
+                className="h-16 w-[77%] rounded-lg  border-gray px-4 text-14 text-gray"
                 type="text"
                 placeholder="버전을 입력해주세요"
               />
