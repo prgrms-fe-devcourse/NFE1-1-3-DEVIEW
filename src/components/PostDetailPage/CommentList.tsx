@@ -1,26 +1,113 @@
-import { EditDelete, Feedback } from "@components/PostDetailPage";
-// import { CodeViewer } from "./CodeViewer";
+import { useParams } from "react-router-dom";
+import { EditDelete, Feedback, CodeViewer } from "@components/PostDetailPage";
+import { useInView } from "react-intersection-observer";
+import useInfiniteCommentsQuery from "@hooks/useInfiniteComment";
+import { useEffect } from "react";
 
 export const CommentList = () => {
+  const { id: postId } = useParams<{ id: string }>();
+  const { ref, inView } = useInView({
+    threshold: 0,
+    rootMargin: "50px" // 조금 더 일찍 감지하도록 설정
+  });
+
+  const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage, error } = useInfiniteCommentsQuery({
+    postId: postId ?? "",
+    limit: 10,
+    enabled: Boolean(postId)
+  });
+
+  useEffect(() => {
+    if (inView && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
+
+  // 로딩 상태
+  if (isLoading) {
+    return (
+      <div className="flex flex-col gap-4">
+        {[...Array(3)].map((_, index) => (
+          <div key={index} className="animate-pulse rounded-lg border border-solid border-gray px-3 py-4">
+            <div className="mb-4 flex gap-4">
+              <div className="bg-gray-200 h-12 w-12 rounded-full" />
+              <div className="bg-gray-200 h-4 w-24 rounded" />
+            </div>
+            <div className="bg-gray-200 h-20 w-full rounded" />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  // 에러 상태
+  if (error) {
+    return (
+      <div className="text-red-500 rounded-lg border border-solid border-gray px-3 py-4">
+        댓글을 불러오는 중 오류가 발생했습니다.
+      </div>
+    );
+  }
+
+  // 데이터가 없는 경우
+  if (!data?.pages[0]) {
+    return null;
+  }
+
+  // 모든 페이지의 댓글을 하나의 배열로 합치기
+  const allComments = data.pages.flatMap((page) => page.comments);
+  const totalComments = data.pages[0].totalComments;
+
   return (
-    <section className="flex flex-col gap-9 rounded-lg border border-solid border-gray px-3 py-4">
-      <section className="flex justify-between">
-        {/* //! 댓글 작성자 정보 api연동하면서 컴포넌화 예정 */}
-        <div className="flex gap-5">
-          <figure className="h-12 w-12 overflow-hidden rounded-full md:h-16 md:w-16">
-            <img
-              className="h-auto w-full"
-              src="https://media.istockphoto.com/id/1012645084/ko/%EB%B2%A1%ED%84%B0/%EC%99%84%EB%B2%BD-%ED%95%9C-%EB%9E%9C%EB%8D%A4-%ED%8C%A8%ED%84%B4-%EB%B2%A1%ED%84%B0.jpg?s=170667a&w=0&k=20&c=_fZKK0-ZyFFLungr9E06AOz8r_M4h8aHYLtU2cEJ-yA="
-              alt="프로필 이미지"
-            />
-          </figure>
-          <span className="flex text-12 font-medium flex-center md:text-16">작성자 이름</span>
+    <div className="flex flex-col gap-4">
+      {/* 전체 댓글 수 표시 */}
+      <div className="text-14 font-medium">전체 댓글 {totalComments}개</div>
+
+      {/* 댓글 목록 */}
+      <div className="flex flex-col gap-4">
+        {allComments.map((comment, index) => (
+          <section
+            key={comment._id}
+            className="flex flex-col gap-9 rounded-lg border border-solid border-gray px-3 py-4"
+          >
+            <section className="flex justify-between">
+              <div className="flex gap-5">
+                <figure className="h-12 w-12 overflow-hidden rounded-full md:h-16 md:w-16">
+                  <img
+                    className="h-auto w-full"
+                    src="https://media.istockphoto.com/id/1012645084/ko/%EB%B2%A1%ED%84%B0/%EC%99%84%EB%B2%BD-%ED%95%9C-%EB%9E%9C%EB%8D%A4-%ED%8C%A8%ED%84%B4-%EB%B2%A1%ED%84%B0.jpg?s=170667a&w=0&k=20&c=_fZKK0-ZyFFLungr9E06AOz8r_M4h8aHYLtU2cEJ-yA="
+                    alt="프로필 이미지"
+                  />
+                </figure>
+                <span className="flex text-12 font-medium flex-center md:text-16">{comment.author.userId}</span>
+              </div>
+              {comment.isMine && <EditDelete />}
+            </section>
+
+            <section className="px-1">
+              <CodeViewer content={comment.content} />
+            </section>
+
+            <Feedback commentId={comment._id} thumbsCount={comment.thumbsCount} thumbed={comment.thumbed} />
+          </section>
+        ))}
+
+        {/* 옵저버 요소를 댓글 목록 바깥에 배치 */}
+        <div ref={ref} className="h-4 w-full" />
+      </div>
+
+      {/* 추가 댓글 로딩 상태 */}
+      {isFetchingNextPage && (
+        <div className="flex justify-center p-4">
+          <div className="border-gray-900 h-6 w-6 animate-spin rounded-full border-b-2" />
         </div>
-        <EditDelete />
-      </section>
-      <section className="px-1">{/* <CodeViewer /> */}</section>
-      <Feedback />
-    </section>
+      )}
+
+      {/* 댓글이 없는 경우 */}
+      {!isLoading && allComments.length === 0 && (
+        <div className="text-gray-500 p-4 text-center">아직 작성된 댓글이 없습니다.</div>
+      )}
+    </div>
   );
 };
 

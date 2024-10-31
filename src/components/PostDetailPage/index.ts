@@ -8,4 +8,3 @@ export * from "@components/PostDetailPage/LanVersionTagList";
 export * from "@components/PostDetailPage/PostDetail";
 export * from "@components/PostDetailPage/PostDetailHeader";
 export * from "@components/PostDetailPage/PostMetaList";
-export * from "@components/PostDetailPage/ReplyEditor";

@@ -1,8 +1,12 @@
 export type TComment = {
-  _id: string;
+  id: string;
   postId: string;
   content: string;
-  author: string;
+  author: {
+    _id: string;
+    id: string;
+    userId: string; // userId 닉네임
+  };
   thumbsCount: number;
   createdAt: string;
   updatedAt: string;
@@ -10,6 +14,7 @@ export type TComment = {
   thumbed: boolean;
   isMine: boolean;
   postTitle?: string;
+  _id: string;
 };
 
 export type CommonCommentRequestProps = Pick<TComment, "postId" | "content"> & {
