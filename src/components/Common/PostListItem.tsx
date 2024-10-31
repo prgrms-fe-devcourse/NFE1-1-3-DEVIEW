@@ -22,7 +22,6 @@ export const PostListItem = ({ postItem, ranked }: { postItem: TPost; ranked?: n
     const date = new Date(dateString);
     return `${date.getFullYear()}년 ${date.getMonth()}월 ${date.getDate()}일`;
   };
-
   return (
     <div className="relative p-2.5">
       {ranked && (
@@ -31,7 +30,7 @@ export const PostListItem = ({ postItem, ranked }: { postItem: TPost; ranked?: n
         </div>
       )}
       <div className="flex w-full gap-3 border-b-2 border-solid border-primary border-opacity-40 px-1 py-2.5">
-        <PostListIcon devDependencies={postItem.devDependencies[0].dependency} />
+        <PostListIcon devDependencies={postItem.devDependencies[0]} />
         <div className="flex flex-col gap-2.5">
           <div className="flex gap-2">
             <div className="text-24">{postItem.title}</div>
@@ -41,7 +40,7 @@ export const PostListItem = ({ postItem, ranked }: { postItem: TPost; ranked?: n
             {postItem.devDependencies.map((v, i) => {
               return (
                 <div className="rounded bg-lightgray px-2 py-1 text-14 text-black" key={i}>
-                  {v.dependency}
+                  {v}
                 </div>
               );
             })}
