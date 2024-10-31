@@ -1,7 +1,6 @@
 import { CommentEditor } from "@/components/PostDetailPage";
-type CommentWriteProps = {};
 
-export const CommentWrite = ({}: CommentWriteProps) => {
+export const CommentWrite = () => {
   return (
     <form className="flex flex-col gap-12 border-t border-solid border-gray">
       <h2 className="mt-12 text-20 font-medium">Answer</h2>
