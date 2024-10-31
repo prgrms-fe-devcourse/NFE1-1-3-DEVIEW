@@ -42,7 +42,9 @@ export default function LoginPage() {
   return (
     <div className="mx-auto h-[100vh] max-w-sm">
       <form className="flex h-full flex-col justify-center" onSubmit={onSubmit}>
-        <Logo className="mb-5 self-center" />
+        <Link to="/" className="mb-5 self-center">
+          <Logo />
+        </Link>
         <IdInput />
         <PasswordInput />
         <button className="primary-btn mb-5">로그인</button>
