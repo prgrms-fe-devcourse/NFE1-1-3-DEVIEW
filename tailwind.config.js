@@ -10,7 +10,8 @@ export default {
         ranked: "url('/src/assets/Ranked.svg')"
       },
       screens: {
-        "2xl": "1440px"
+        "2xl": "1440px",
+        "2xs": "400px"
       }
     },
     colors: {
