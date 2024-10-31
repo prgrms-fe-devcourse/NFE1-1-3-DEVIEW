@@ -5,6 +5,7 @@ import { GoBell } from "react-icons/go";
 import { CiUser } from "react-icons/ci";
 import { useUserStore } from "@stores/userStore";
 import { HeaderNotificationModal } from "@components/Common/HeaderNotificationModal";
+import { NotificationCount } from "@components/Common/NotificationCount";
 
 export const HeaderLoginMenu = () => {
   const [isUserIconOpen, setIsUserIconOpen] = useState(false);
@@ -28,7 +29,10 @@ export const HeaderLoginMenu = () => {
           >
             질문하기
           </Link>
-          <GoBell className="mr-4 h-10 w-6 cursor-pointer md:h-10 md:w-10" onClick={toggleBellIconModal} />
+          <div className="relative inline-block">
+            <GoBell className="mr-2 h-10 w-6 cursor-pointer md:mr-0 md:h-10 md:w-10" onClick={toggleBellIconModal} />
+            <NotificationCount count={5} />
+          </div>
           {isBellIconOpen && (
             <>
               <div className="fixed inset-0 z-40" onClick={toggleBellIconModal} />
