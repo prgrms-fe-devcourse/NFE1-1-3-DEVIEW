@@ -43,7 +43,7 @@ export const SearchFilter = ({ onSelectFilter, onClearFilters }: SearchFilterPro
               className="gray-btn mr-4 flex w-auto items-center px-4 py-2 text-12 hover:opacity-90 md:text-14"
               onClick={onClearFilters}
             >
-              <GrPowerReset mr-2 />
+              <GrPowerReset className="mr-2" />
               초기화
             </button>
           </div>
