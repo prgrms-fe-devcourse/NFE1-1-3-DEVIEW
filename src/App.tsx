@@ -43,7 +43,6 @@ export const App = () => {
 
   return (
     <>
-      <button onClick={() => socket?.emit("message", "hello")}>hello</button>
       <RouterProvider router={router} />
     </>
   );
