@@ -276,7 +276,7 @@ export const CodeViewer = ({ content }: CodeViewerProps) => {
         if (domNode.type === "tag" && domNode.name === "p") {
           return (
             <p className="text-gray-700 my-2">
-              {domNode.children.map((child: any, index: number) => child.data || child.children?.[0]?.data || "")}
+              {domNode.children.map((child: any) => child.data || child.children?.[0]?.data || "")}
             </p>
           );
         }

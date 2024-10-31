@@ -17,6 +17,7 @@ export type TPost = {
   author: {
     _id: string;
     username: string;
+    userId: string;
   };
   code: string;
   devDependencies: DevDependency[];

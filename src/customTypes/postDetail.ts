@@ -8,10 +8,3 @@ export type postDetailInfo = {
     version: string;
   }[];
 };
-export type PostMeta = {
-  createdAt: string;
-  today: string;
-  views: number;
-  replies: number;
-  id: string | number | undefined;
-};

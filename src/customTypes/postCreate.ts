@@ -1,17 +1,18 @@
-// import { DEV_DEPENDENCIES_LIST } from "@constants/devDependenciesList";
+import { DEV_DEPENDENCIES_LIST } from "@constants/devDependenciesList";
+export type DevDependency = (typeof DEV_DEPENDENCIES_LIST)[number];
 // API 요청 시 사용할 타입 수정
 export type CreatePostRequestProps = {
   title: string;
   detail: string;
   code: string;
-  devDependencies: string[];  // 언어 배열
-  devVersions: string[];      // 버전 배열
+  devDependencies: DevDependency[]; // 언어 배열
+  devVersions: string[]; // 버전 배열
 };
 export type PostFormState = {
   title: string;
   detail: string;
   code: string;
-  devDependencies: string[];
+  devDependencies: DevDependency[];
   codeVersions: string[];
 };
 
@@ -76,8 +77,8 @@ export const initialState: PostFormState = {
   title: "",
   detail: "",
   code: "",
-  devDependencies: [""],
-  codeVersions: [""]
+  devDependencies: [],
+  codeVersions: []
 };
 
 // 타입 가드 함수들

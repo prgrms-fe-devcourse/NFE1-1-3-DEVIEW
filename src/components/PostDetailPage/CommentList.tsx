@@ -1,5 +1,5 @@
 import { EditDelete, Feedback } from "@components/PostDetailPage";
-import { CodeViewer } from "./CodeViewer";
+// import { CodeViewer } from "./CodeViewer";
 
 export const CommentList = () => {
   return (
