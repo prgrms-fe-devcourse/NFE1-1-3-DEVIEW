@@ -23,10 +23,12 @@ const MainBanner = ({ bannerPreset, bannerData }: MainBannerProps) => {
     >
       <div className="flex flex-col gap-7">
         <div className="text-16">{bannerPreset.bannerTitle}</div>
-        <div className="text-24">{inner}</div>
+        <div className="w-full whitespace-normal break-words break-all text-20">{inner}</div>
       </div>
-      {bannerPreset.type === "Question" && <div className="flex justify-end text-24">질문하기-&gt;</div>}
-      {bannerPreset.type === "BestReviewer" && <div className="flex justify-start text-24">작성글 확인하기</div>}
+      {bannerPreset.type === "Question" && <div className="flex justify-end text-20 font-bold">질문하기-&gt;</div>}
+      {bannerPreset.type === "BestReviewer" && (
+        <div className="flex justify-start text-20 font-bold">작성글 확인하기</div>
+      )}
     </Link>
   );
 };

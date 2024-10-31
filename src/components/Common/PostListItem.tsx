@@ -26,41 +26,52 @@ export const PostListItem = ({ postItem, ranked }: { postItem: TPost; ranked?: n
   return (
     <div className="relative p-2.5">
       {ranked && (
-        <div className={`absolute left-0 top-0 h-8 w-8 bg-ranked bg-contain bg-center bg-no-repeat flex-center`}>
+        <div
+          className={`absolute left-0 top-2 h-6 w-6 bg-ranked bg-contain bg-center bg-no-repeat text-12 flex-center md:top-0 md:h-8 md:w-8 md:text-14`}
+        >
           {ranked}
         </div>
       )}
       <div className="flex w-full gap-3 border-b-2 border-solid border-primary border-opacity-40 px-1 py-2.5">
         <PostListIcon devDependencies={postItem.devDependencies[0]} />
-        <div className="flex flex-col gap-2.5">
-          <Link to={`/post/${postItem._id}`} className="flex gap-2">
-            <div className="text-24 decoration-black hover:underline">{postItem.title}</div>
-            <div className="flex items-end text-14 text-gray">{formatDate(postItem.createdAt)}</div>
+        <div className="flex min-w-0 flex-grow flex-col gap-2.5">
+          <Link to={`/post/${postItem._id}`} className="flex w-full flex-col md:flex-row md:items-baseline md:gap-2">
+            <h3 className="w-full whitespace-normal break-words break-all text-14 decoration-black hover:underline md:text-20">
+              {postItem.title}
+            </h3>
+            <div className="mt-1 flex-shrink-0 whitespace-nowrap text-12 text-gray md:mt-0 md:text-14">
+              {formatDate(postItem.createdAt)}
+            </div>
           </Link>
           <div className="flex gap-2.5">
             {postItem.devDependencies.map((v, i) => {
               return (
-                <div className="rounded bg-lightgray px-2 py-1 text-14 text-black" key={i}>
+                <div className="rounded bg-lightgray px-2 py-1 text-12 text-black md:text-14" key={i}>
                   {v}
                 </div>
               );
             })}
           </div>
-          <div className="flex gap-2.5">
-            <div className="flex gap-1 font-bold">
-              <div className="text-pink">♥</div>
-              <div>{postItem.likesCount}</div>
+          <div className="flex flex-wrap gap-2.5">
+            <div className="2xs:flex-nowrap flex flex-wrap items-center gap-2.5">
+              <div className="flex gap-1 text-12 font-bold md:text-14">
+                <div className="text-pink">♥</div>
+                <div>{postItem.likesCount}</div>
+              </div>
+              <div className="flex gap-1 text-12 font-bold md:text-14">
+                <div>답변</div>
+                <div>{postItem.commentsCount}</div>
+              </div>
+              <div className="flex gap-1 text-12 text-gray md:text-14">
+                <div>조회수</div>
+                <div>{formatNumber(postItem.viewsCount)}</div>
+              </div>
             </div>
-            <div className="flex gap-1 font-bold">
-              <div>답변</div>
-              <div>{postItem.commentsCount}</div>
-            </div>
-            <div className="flex gap-1 text-gray">
-              <div>조회수</div>
-              <div>{formatNumber(postItem.viewsCount)}</div>
-            </div>
-            <Link to={`/post/user/${postItem.author._id}`} className="flex gap-1 text-primary">
-              <div className="underline">{postItem.author.username}</div>
+            <Link
+              to={`/post/user/${postItem.author.userId}`}
+              className="2xs:w-auto flex w-full gap-1 text-12 text-primary md:text-14"
+            >
+              <div className="underline">{postItem.author.userId}</div>
             </Link>
           </div>
         </div>
