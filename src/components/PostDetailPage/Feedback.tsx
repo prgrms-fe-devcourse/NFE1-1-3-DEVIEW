@@ -7,7 +7,7 @@ type FeedbackProps = {
   isClicked?: boolean;
   subject?: string;
 };
-export const Feedback = ({ total, isClicked, subject }: FeedbackProps) => {
+export const Feedback = ({ total }: FeedbackProps) => {
   // console.log(thumbsCount);
   // console.log(thumbed);
   // console.log(commentId);

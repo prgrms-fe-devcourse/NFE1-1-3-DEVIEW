@@ -4,6 +4,31 @@ import { createComment } from "@services/comment/createComment";
 import { COMMENTS_QUERY_KEY } from "@/hooks/useInfiniteComment";
 import { TComment } from "@customTypes/comment";
 
+// 페이지 데이터 타입
+// interface PageData {
+//   comments: TComment[];
+//   currentPage: number;
+//   totalComments: number;
+//   totalPages: number;
+// }
+
+// // 무한 스크롤 데이터 구조 타입
+// interface InfiniteQueryData {
+//   pages: PageData[];
+//   pageParams: number[]; // 각 페이지의 파라미터 값들
+// }
+
+// old 매개변수의 타입 (any 대신 사용)
+interface InfiniteCommentsData {
+  pages: {
+    comments: TComment[];
+    currentPage: number;
+    totalComments: number;
+    totalPages: number;
+  }[];
+  pageParams: number[];
+}
+
 interface UseCreateCommentProps {
   onSuccess?: (data: Omit<TComment, "thumbed">) => void;
   onError?: (error: Error) => void;
@@ -25,7 +50,8 @@ export function useCreateComment({ onSuccess, onError }: UseCreateCommentProps =
       const previousData = queryClient.getQueryData([COMMENTS_QUERY_KEY, newComment.postId]);
 
       // 낙관적 업데이트
-      queryClient.setQueryData([COMMENTS_QUERY_KEY, newComment.postId], (old: any) => {
+      queryClient.setQueryData([COMMENTS_QUERY_KEY, newComment.postId], (old: InfiniteCommentsData | undefined) => {
+        console.log("old", old);
         if (!old?.pages?.[0]) return old;
 
         const optimisticComment: TComment = {
@@ -71,11 +97,11 @@ export function useCreateComment({ onSuccess, onError }: UseCreateCommentProps =
       onError?.(error);
     },
 
-    onSuccess: (data, variables) => {
+    onSuccess: (data) => {
       onSuccess?.(data);
     },
 
-    onSettled: (data, error, variables) => {
+    onSettled: (_, __, variables) => {
       // 서버와 상태 동기화
       queryClient.invalidateQueries({
         queryKey: [COMMENTS_QUERY_KEY, variables.postId]

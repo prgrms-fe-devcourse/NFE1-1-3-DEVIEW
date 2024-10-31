@@ -14,7 +14,7 @@ export const CommentWrite = () => {
       setContent("");
       toast.success("댓글이 작성되었습니다.");
     },
-    onError: (error) => {
+    onError: () => {
       toast.error("댓글 작성에 실패했습니다. 다시 시도해 주세요.");
     }
   });
