@@ -6,13 +6,7 @@ export const MainSection = () => {
   return (
     <div className="bg-lightpurple flex-center">
       <div className="flex max-w gap-10 px-10 py-12">
-        <ErrorBoundary
-          fallbackRender={({ error }) => (
-            <div>
-              <MainBannerSkeleton type="error" error={error.message} />
-            </div>
-          )}
-        >
+        <ErrorBoundary fallbackRender={({ error }) => <MainBannerSkeleton type="error" error={error.message} />}>
           <Suspense fallback={<MainBannerSkeleton type="loading" />}>
             <MainBannerWrap />
           </Suspense>
