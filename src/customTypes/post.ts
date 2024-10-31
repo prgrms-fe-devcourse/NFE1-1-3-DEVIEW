@@ -19,7 +19,8 @@ export type TPost = {
     username: string;
   };
   code: string;
-  devDependencies: DevDependencies;
+  devDependencies: DevDependency[];
+  devVersions: string[];
   likesCount: number;
   viewsCount: number;
   scrapsCount: number;
