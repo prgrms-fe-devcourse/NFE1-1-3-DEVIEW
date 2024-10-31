@@ -25,14 +25,12 @@ export default function SearchPage() {
     }
     return (Math.floor(num / (digit / 10)) / 10).toFixed(1) + unit;
   };
-  const { query } = useParams<{ query: string }>();
-  const safeQuery = query || "";
-  const filteredQuery = safeQuery.split("&")[0];
-  const filtersFromUrl = safeQuery.includes("filters=")
-    ? decodeURIComponent(safeQuery.split("filters=")[1].split("&")[0])
-    : "";
+  const { query = "" } = useParams();
+  const [filteredQuery, filtersFromUrl] = query.split("&");
 
-  const filters: DevDependencies[] = filtersFromUrl ? filtersFromUrl.split(",").filter(isDevDependency) : [];
+  const filters: DevDependencies[] = filtersFromUrl?.includes("filters=")
+    ? decodeURIComponent(filtersFromUrl.split("filters=")[1].split("&")[0]).split(",").filter(isDevDependency)
+    : [];
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["searchPosts", filteredQuery, filters],
@@ -46,9 +44,6 @@ export default function SearchPage() {
       }),
     enabled: !!filteredQuery
   });
-  console.log("data", data);
-  console.log("keyword", filteredQuery);
-  console.log("filters", filters);
 
   if (isLoading)
     return (
