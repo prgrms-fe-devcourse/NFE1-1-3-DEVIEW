@@ -57,7 +57,7 @@ export const Input = ({ name, text, errorMessage, pattern, togglePassword, ...re
           {showPassword ? <FaEye /> : <FaEyeSlash />}
         </button>
       )}
-      {error && <p className="absolute mt-1 text-red">{error}</p>}
+      {error && <p className="absolute my-1 text-12 text-red md:text-16">{error}</p>}
     </div>
   );
 };
