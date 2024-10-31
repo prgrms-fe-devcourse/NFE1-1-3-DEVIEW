@@ -11,6 +11,7 @@ import PostPage from "@pages/PostPage";
 import RankPage from "@pages/RankPage";
 import SearchPage from "@pages/SearchPage";
 import { createBrowserRouter, Outlet } from "react-router-dom";
+import { ProtectedRoute } from "@components/Common/ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -48,11 +49,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/post/create",
-        element: <PostCreatePage />
+        element: (
+          <ProtectedRoute>
+            <PostCreatePage />
+          </ProtectedRoute>
+        )
       },
       {
         path: "/mypage",
-        element: <MyPage />
+        element: (
+          <ProtectedRoute>
+            <MyPage />
+          </ProtectedRoute>
+        )
       },
       {
         path: "/rank",
@@ -66,10 +75,18 @@ export const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <LoginPage />
+    element: (
+      <ProtectedRoute redirectUrl="/" requireLogin={false}>
+        <LoginPage />
+      </ProtectedRoute>
+    )
   },
   {
     path: "/register",
-    element: <RegisterPage />
+    element: (
+      <ProtectedRoute redirectUrl="/" requireLogin={false}>
+        <RegisterPage />
+      </ProtectedRoute>
+    )
   }
 ]);
