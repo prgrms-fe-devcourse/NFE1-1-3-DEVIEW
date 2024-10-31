@@ -1,5 +1,6 @@
 import { TPost } from "@customTypes/post";
 import { PostListIcon } from "@components/Common/PostListIcon";
+import { Link } from "react-router-dom";
 
 export const PostListItem = ({ postItem, ranked }: { postItem: TPost; ranked?: number }) => {
   // 숫자 포맷함수
@@ -32,10 +33,10 @@ export const PostListItem = ({ postItem, ranked }: { postItem: TPost; ranked?: n
       <div className="flex w-full gap-3 border-b-2 border-solid border-primary border-opacity-40 px-1 py-2.5">
         <PostListIcon devDependencies={postItem.devDependencies[0]} />
         <div className="flex flex-col gap-2.5">
-          <div className="flex gap-2">
-            <div className="text-24">{postItem.title}</div>
+          <Link to={`/post/${postItem._id}`} className="flex gap-2">
+            <div className="text-24 decoration-black hover:underline">{postItem.title}</div>
             <div className="flex items-end text-14 text-gray">{formatDate(postItem.createdAt)}</div>
-          </div>
+          </Link>
           <div className="flex gap-2.5">
             {postItem.devDependencies.map((v, i) => {
               return (
@@ -58,9 +59,9 @@ export const PostListItem = ({ postItem, ranked }: { postItem: TPost; ranked?: n
               <div>조회수</div>
               <div>{formatNumber(postItem.viewsCount)}</div>
             </div>
-            <div className="flex gap-1 text-primary">
+            <Link to={`/post/user/${postItem.author._id}`} className="flex gap-1 text-primary">
               <div className="underline">{postItem.author.username}</div>
-            </div>
+            </Link>
           </div>
         </div>
       </div>
