@@ -15,15 +15,15 @@ export default function RegisterPage() {
     e.preventDefault();
     const target = e.target as HTMLFormElement;
     const formData = new FormData(target);
-    const [id, password, confirmPassword, username, group] = [
-      formData.get("userId") as UserInfo["id"],
+    const [userId, password, confirmPassword, username, group] = [
+      formData.get("userId") as UserInfo["userId"],
       formData.get("password") as string,
       formData.get("confirm_password") as string,
       formData.get("name") as UserInfo["username"],
       formData.get("group") as UserInfo["group"]
     ];
 
-    const isIdValid = AUTH_INPUT_VALIDATION.id.regexp.test(id);
+    const isIdValid = AUTH_INPUT_VALIDATION.id.regexp.test(userId);
     const isPasswordValid = AUTH_INPUT_VALIDATION.password.regexp.test(password);
     const isConfirmPasswordValid = password === confirmPassword;
     const isNameValid = AUTH_INPUT_VALIDATION.name.regexp.test(username);
@@ -33,7 +33,7 @@ export default function RegisterPage() {
     if (isValid) {
       register({
         group,
-        id,
+        userId,
         password,
         username
       })
@@ -69,7 +69,7 @@ export default function RegisterPage() {
           <Radio id="etc" name="group" text="기타" value="기타" />
         </div>
 
-        <button className="primary-btn mb-5">로그인</button>
+        <button className="primary-btn mb-5">회원가입</button>
       </form>
     </div>
   );

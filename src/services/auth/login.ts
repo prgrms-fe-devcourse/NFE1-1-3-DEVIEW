@@ -4,7 +4,7 @@ import axiosInstance from "@services/axiosInstance";
 import axios, { AxiosError } from "axios";
 
 type LoginRequestProps = {
-  id: string;
+  userId: string;
   password: string;
   socketId: string;
 };
@@ -14,9 +14,9 @@ type LoginResponseProps = {
   userInfo: UserInfo;
 };
 
-export async function login({ id, password, socketId }: LoginRequestProps): Promise<LoginResponseProps> {
+export async function login({ userId, password, socketId }: LoginRequestProps): Promise<LoginResponseProps> {
   try {
-    const response = await axiosInstance.post("/auth/login", { id, password, socketId });
+    const response = await axiosInstance.post("/auth/login", { userId, password, socketId });
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
