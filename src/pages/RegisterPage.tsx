@@ -4,7 +4,7 @@ import { PasswordInput } from "@components/Common/PasswordInput";
 import { ConfirmPasswordInput } from "@components/RegisterPage/ConfirmPasswordInput";
 import { AUTH_INPUT_VALIDATION } from "@constants/authInputValidation";
 import { NameInput } from "@components/Common/NameInput";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { register } from "@services/auth/register";
 import { UserInfo } from "@customTypes/userInfo";
 import { Radio } from "@components/Common/Radio";
@@ -54,7 +54,9 @@ export default function RegisterPage() {
   return (
     <div className="mx-auto h-[100vh] max-w-sm">
       <form className="flex h-full flex-col justify-center" onSubmit={onSubmit}>
-        <Logo className="mb-5 self-center" />
+        <Link to="/" className="mb-5 self-center">
+          <Logo />
+        </Link>
         <IdInput />
         <PasswordInput />
         <ConfirmPasswordInput />
