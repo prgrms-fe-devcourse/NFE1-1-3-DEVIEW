@@ -4,11 +4,16 @@ import { PostFormState } from "@customTypes/postCreate";
 type VersionContainerProps = {
   state: PostFormState;
   onAddVersion: () => void;
-  onRemove: (id: string) => void;
-  onChange: (id: string, field: "dependency" | "version", value: string) => void;
+  onRemoveVersion: (index: number) => void;
+  onVersionChange: (index: number, field: "dependency" | "version", value: string) => void;
 };
 
-export const VersionContainer = ({ state, onAddVersion, onRemove, onChange }: VersionContainerProps) => {
+export const VersionContainer = ({ state, onAddVersion, onRemoveVersion, onVersionChange }: VersionContainerProps) => {
+  // 첫 렌더링 시 빈 dependency/version 쌍이 없으면 추가
+  if (state.devDependencies.length === 0) {
+    onAddVersion();
+  }
+
   return (
     <section className="relative flex w-full flex-col gap-4 rounded-lg border border-solid border-gray py-7 pl-3 pr-6 shadow">
       <div className="flex flex-col gap-3">
@@ -21,22 +26,20 @@ export const VersionContainer = ({ state, onAddVersion, onRemove, onChange }: Ve
           {state.devDependencies.length > 1 && (
             <VersionCountBtn
               addOrMinus="-"
-              onClick={() => onRemove(state.devDependencies[state.devDependencies.length - 1].id)}
+              onClick={() => onRemoveVersion(state.devDependencies.length - 1)}
+              disabled={state.devDependencies.length <= 1}
             />
           )}
         </div>
 
         <div className="flex flex-col gap-4">
-          {state.devDependencies.map((version) => (
-            <div key={version.id} className="flex gap-[3%]">
-              <LanSelectBtn
-                value={version.dependency}
-                onChange={(e) => onChange(version.id, "dependency", e.target.value)}
-              />
+          {state.devDependencies.map((dependency, index) => (
+            <div key={index} className="flex gap-[3%]">
+              <LanSelectBtn value={dependency} onChange={(e) => onVersionChange(index, "dependency", e.target.value)} />
               <input
-                value={version.version}
-                onChange={(e) => onChange(version.id, "version", e.target.value)}
-                className="h-16 w-[77%] rounded-lg border border-solid border-gray px-4 text-14 text-gray"
+                value={state.codeVersions[index]}
+                onChange={(e) => onVersionChange(index, "version", e.target.value)}
+                className="h-16 w-[77%] rounded-lg border-gray px-4 text-14 text-gray"
                 type="text"
                 placeholder="버전을 입력해주세요"
               />
