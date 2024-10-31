@@ -16,7 +16,6 @@ export type TPost = {
   detail: string;
   author: {
     _id: string;
-    username: string;
     userId: string;
   };
   code: string;

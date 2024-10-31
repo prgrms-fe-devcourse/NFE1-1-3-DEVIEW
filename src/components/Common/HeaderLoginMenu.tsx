@@ -6,47 +6,54 @@ import { useUserStore } from "@stores/userStore";
 import { HeaderNotificationModal } from "@components/Common/HeaderNotificationModal";
 import { NotificationCount } from "@components/Common/NotificationCount";
 import useSocketStore from "@stores/socketStore";
-import { getMyNotifications, GetMyNotificationsResponseProps } from "@services/notification/getMyNotifications";
+import { getMyNotifications } from "@services/notification/getMyNotifications";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const HeaderLoginMenu = () => {
-  const [data, setData] = useState<GetMyNotificationsResponseProps>();
   const [isUserIconOpen, setIsUserIconOpen] = useState(false);
   const [isBellIconOpen, setIsBellIconOpen] = useState(false);
+  const { isLoggedIn } = useUserStore();
   const { socket } = useSocketStore();
+  const queryClient = useQueryClient();
+
   const toggleUserIconModal = () => {
     setIsUserIconOpen(!isUserIconOpen);
   };
   const toggleBellIconModal = () => {
     setIsBellIconOpen(!isBellIconOpen);
   };
-  const { isLoggedIn } = useUserStore();
 
-  useEffect(function fetchNotifications() {
-    getMyNotifications({ page: 1, limit: 10 }).then((data) => {
-      setData(data);
-    });
-  }, []);
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["getMyNotifications"],
+    queryFn: () =>
+      getMyNotifications({
+        page: 1,
+        limit: 10
+      })
+  });
 
-  useEffect(
-    function useSocketNotificationListener() {
+  useEffect(() => {
+    if (socket) {
+      socket.on("newNotification", () => {
+        queryClient.invalidateQueries({ queryKey: ["getMyNotifications"] });
+      });
+    }
+
+    return () => {
       if (socket) {
-        socket.on("newNotification", (message: string) => {
-          console.log(message);
-          getMyNotifications({ page: 1, limit: 10 }).then((data) => {
-            setData(data);
-          });
-        });
+        socket.off("newNotification");
       }
+    };
+  }, [socket, queryClient]);
 
-      return () => {
-        if (socket) {
-          socket.off("newNotification");
-        }
-      };
-    },
-    [socket]
-  );
+  if (isLoading)
+    return (
+      <div className="flex">
+        <span>Loading...</span>
+      </div>
+    );
 
+  if (error) return <div>Error: {(error as Error).message}</div>;
   return (
     <div>
       {isLoggedIn ? (

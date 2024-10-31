@@ -9,7 +9,7 @@ type RadioProps = {
 export const Radio = ({ text, name, id, value, defaultChecked = false }: RadioProps) => {
   return (
     <label
-      className="mb-5 inline-block w-fit flex-1 cursor-pointer rounded-lg p-5 text-center text-12 ring-1 ring-lightgray transition-shadow checked:bg-primary hover:ring-primary has-[:checked]:ring-secondary md:p-6 md:text-16"
+      className="mb-5 mt-2 inline-block w-fit flex-1 cursor-pointer rounded-lg px-3 py-5 text-center text-12 ring-1 ring-lightgray transition-shadow checked:bg-primary hover:ring-primary has-[:checked]:ring-secondary md:p-6 md:text-16"
       htmlFor={id}
     >
       {text}

@@ -19,7 +19,7 @@ export const HeaderUserModal = ({ toggleUserIconModal }: HeaderUserModalProps) =
     navigate("/");
   };
   return (
-    <div className="absolute top-8 z-50 mt-2 w-20 max-w whitespace-pre rounded border border-solid border-lightgray bg-white-pure shadow md:top-16 md:w-36 md:translate-x-28 md:whitespace-nowrap">
+    <div className="absolute top-8 z-50 mt-2 w-20 max-w whitespace-pre rounded border border-solid border-lightgray bg-white-pure shadow md:top-16 md:w-36 md:translate-x-16 md:whitespace-nowrap">
       <div className="py-2 text-gray">
         <Link
           className="text-10 block w-full border-b border-solid border-lightgray px-4 py-2 flex-center hover:opacity-50 md:text-20"
