@@ -1,21 +1,57 @@
 import { HeaderUserModal } from "@components/Common/HeaderUserModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GoBell } from "react-icons/go";
 import { useUserStore } from "@stores/userStore";
 import { HeaderNotificationModal } from "@components/Common/HeaderNotificationModal";
 import { NotificationCount } from "@components/Common/NotificationCount";
+import useSocketStore from "@stores/socketStore";
+import { TNotification } from "@customTypes/notification";
+import { getMyNotifications } from "@services/notification/getMyNotifications";
 
 export const HeaderLoginMenu = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalNotifications, setTotalNotifications] = useState(0);
   const [isUserIconOpen, setIsUserIconOpen] = useState(false);
   const [isBellIconOpen, setIsBellIconOpen] = useState(false);
+  const [notifications, setNotifications] = useState<TNotification[]>([]);
+  const { socket } = useSocketStore();
   const toggleUserIconModal = () => {
     setIsUserIconOpen(!isUserIconOpen);
   };
   const toggleBellIconModal = () => {
     setIsBellIconOpen(!isBellIconOpen);
   };
-  const isLoggedIn = useUserStore((state) => state.isLoggedIn);
+  const { isLoggedIn } = useUserStore();
+
+  useEffect(() => {
+    if (socket) {
+      socket.on("newComment", (message: string) => {
+        console.log(message);
+        getMyNotifications({ page: 1, limit: 10 }).then((data) => {
+          setNotifications(data.notifications);
+          setTotalPages(data.totalPages);
+          setTotalNotifications(data.totalNotifications);
+        });
+      });
+    }
+
+    return () => {
+      if (socket) {
+        socket.off("notification");
+      }
+    };
+  }, [socket]);
+
+  useEffect(() => {
+    getMyNotifications({ page: 1, limit: 10 }).then((data) => {
+      console.log(data);
+      setNotifications(data.notifications);
+      setTotalPages(data.totalPages);
+      setTotalNotifications(data.totalNotifications);
+    });
+  }, []);
 
   return (
     <div>
@@ -30,12 +66,12 @@ export const HeaderLoginMenu = () => {
           </Link>
           <div className="relative inline-block">
             <GoBell className="mr-2 h-10 w-6 cursor-pointer md:mr-0 md:h-10 md:w-10" onClick={toggleBellIconModal} />
-            <NotificationCount count={5} />
+            <NotificationCount count={totalNotifications} />
           </div>
           {isBellIconOpen && (
             <>
               <div className="fixed inset-0 z-40" onClick={toggleBellIconModal} />
-              <HeaderNotificationModal toggleBellIconModal={toggleBellIconModal} />
+              <HeaderNotificationModal toggleBellIconModal={toggleBellIconModal} notifications={notifications} />
             </>
           )}
           <div

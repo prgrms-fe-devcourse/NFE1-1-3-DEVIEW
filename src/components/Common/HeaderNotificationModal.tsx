@@ -1,85 +1,14 @@
+import { TNotification } from "@customTypes/notification";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
-
-const notifications = [
-  {
-    id: 1,
-    message: "홍길동님이 댓글을 달았습니다.",
-    userImage:
-      "https://media.istockphoto.com/id/1012645084/ko/%EB%B2%A1%ED%84%B0/%EC%99%84%EB%B2%BD-%ED%95%9C-%EB%9E%9C%EB%8D%A4-%ED%8C%A8%ED%84%B4-%EB%B2%A1%ED%84%B0.jpg?s=170667a&w=0&k=20&c=_fZKK0-ZyFFLungr9E06AOz8r_M4h8aHYLtU2cEJ-yA=",
-    time: "3시간 전"
-  },
-  {
-    id: 2,
-    message: "민정아님이 댓글을 달았습니다.",
-    userImage:
-      "https://media.istockphoto.com/id/1012645084/ko/%EB%B2%A1%ED%84%B0/%EC%99%84%EB%B2%BD-%ED%95%9C-%EB%9E%9C%EB%8D%A4-%ED%8C%A8%ED%84%B4-%EB%B2%A1%ED%84%B0.jpg?s=170667a&w=0&k=20&c=_fZKK0-ZyFFLungr9E06AOz8r_M4h8aHYLtU2cEJ-yA=",
-    time: "5시간 전"
-  },
-  {
-    id: 3,
-    message: "홍길동님이 댓글을 달았습니다.",
-    userImage:
-      "https://media.istockphoto.com/id/1012645084/ko/%EB%B2%A1%ED%84%B0/%EC%99%84%EB%B2%BD-%ED%95%9C-%EB%9E%9C%EB%8D%A4-%ED%8C%A8%ED%84%B4-%EB%B2%A1%ED%84%B0.jpg?s=170667a&w=0&k=20&c=_fZKK0-ZyFFLungr9E06AOz8r_M4h8aHYLtU2cEJ-yA=",
-    time: "1일 전"
-  },
-  {
-    id: 4,
-    message: "민정아님이 댓글을 달았습니다.",
-    userImage:
-      "https://media.istockphoto.com/id/1012645084/ko/%EB%B2%A1%ED%84%B0/%EC%99%84%EB%B2%BD-%ED%95%9C-%EB%9E%9C%EB%8D%A4-%ED%8C%A8%ED%84%B4-%EB%B2%A1%ED%84%B0.jpg?s=170667a&w=0&k=20&c=_fZKK0-ZyFFLungr9E06AOz8r_M4h8aHYLtU2cEJ-yA=",
-    time: "2일 전"
-  },
-  {
-    id: 5,
-    message: "홍길동님이 댓글을 달았습니다.",
-    userImage:
-      "https://media.istockphoto.com/id/1012645084/ko/%EB%B2%A1%ED%84%B0/%EC%99%84%EB%B2%BD-%ED%95%9C-%EB%9E%9C%EB%8D%A4-%ED%8C%A8%ED%84%B4-%EB%B2%A1%ED%84%B0.jpg?s=170667a&w=0&k=20&c=_fZKK0-ZyFFLungr9E06AOz8r_M4h8aHYLtU2cEJ-yA=",
-    time: "10분 전"
-  },
-  {
-    id: 1,
-    message: "홍길동님이 댓글을 달았습니다.",
-    userImage:
-      "https://media.istockphoto.com/id/1012645084/ko/%EB%B2%A1%ED%84%B0/%EC%99%84%EB%B2%BD-%ED%95%9C-%EB%9E%9C%EB%8D%A4-%ED%8C%A8%ED%84%B4-%EB%B2%A1%ED%84%B0.jpg?s=170667a&w=0&k=20&c=_fZKK0-ZyFFLungr9E06AOz8r_M4h8aHYLtU2cEJ-yA=",
-    time: "3시간 전"
-  },
-  {
-    id: 2,
-    message: "민정아님이 댓글을 달았습니다.",
-    userImage:
-      "https://media.istockphoto.com/id/1012645084/ko/%EB%B2%A1%ED%84%B0/%EC%99%84%EB%B2%BD-%ED%95%9C-%EB%9E%9C%EB%8D%A4-%ED%8C%A8%ED%84%B4-%EB%B2%A1%ED%84%B0.jpg?s=170667a&w=0&k=20&c=_fZKK0-ZyFFLungr9E06AOz8r_M4h8aHYLtU2cEJ-yA=",
-    time: "5시간 전"
-  },
-  {
-    id: 3,
-    message: "홍길동님이 댓글을 달았습니다.",
-    userImage:
-      "https://media.istockphoto.com/id/1012645084/ko/%EB%B2%A1%ED%84%B0/%EC%99%84%EB%B2%BD-%ED%95%9C-%EB%9E%9C%EB%8D%A4-%ED%8C%A8%ED%84%B4-%EB%B2%A1%ED%84%B0.jpg?s=170667a&w=0&k=20&c=_fZKK0-ZyFFLungr9E06AOz8r_M4h8aHYLtU2cEJ-yA=",
-    time: "1일 전"
-  },
-  {
-    id: 4,
-    message: "민정아님이 댓글을 달았습니다.",
-    userImage:
-      "https://media.istockphoto.com/id/1012645084/ko/%EB%B2%A1%ED%84%B0/%EC%99%84%EB%B2%BD-%ED%95%9C-%EB%9E%9C%EB%8D%A4-%ED%8C%A8%ED%84%B4-%EB%B2%A1%ED%84%B0.jpg?s=170667a&w=0&k=20&c=_fZKK0-ZyFFLungr9E06AOz8r_M4h8aHYLtU2cEJ-yA=",
-    time: "2일 전"
-  },
-  {
-    id: 5,
-    message: "홍길동님이 댓글을 달았습니다.",
-    userImage:
-      "https://media.istockphoto.com/id/1012645084/ko/%EB%B2%A1%ED%84%B0/%EC%99%84%EB%B2%BD-%ED%95%9C-%EB%9E%9C%EB%8D%A4-%ED%8C%A8%ED%84%B4-%EB%B2%A1%ED%84%B0.jpg?s=170667a&w=0&k=20&c=_fZKK0-ZyFFLungr9E06AOz8r_M4h8aHYLtU2cEJ-yA=",
-    time: "10분 전"
-  }
-];
 
 type HeaderNotificationModalProps = {
   toggleBellIconModal: () => void;
+  notifications: TNotification[];
 };
 
-export const HeaderNotificationModal = ({ toggleBellIconModal }: HeaderNotificationModalProps) => {
+export const HeaderNotificationModal = ({ toggleBellIconModal, notifications }: HeaderNotificationModalProps) => {
   return (
-    <div className="scrollbar-hide fixed left-0 top-0 z-50 h-full w-full overflow-y-auto whitespace-pre border border-solid border-lightgray bg-white-pure md:absolute md:left-auto md:top-16 md:mt-2 md:h-80 md:w-72 md:max-w md:translate-x-0 md:whitespace-nowrap md:rounded md:shadow">
+    <div className="fixed left-0 top-0 z-50 h-full w-full overflow-y-auto whitespace-pre border border-solid border-lightgray bg-white-pure scrollbar-hide md:absolute md:left-auto md:top-16 md:mt-2 md:h-80 md:w-72 md:max-w md:translate-x-0 md:whitespace-nowrap md:rounded md:shadow">
       <div className="block border-b border-solid border-lightgray">
         <MdKeyboardDoubleArrowRight className="mb-2 h-16 w-6 cursor-pointer md:hidden" onClick={toggleBellIconModal} />
       </div>
