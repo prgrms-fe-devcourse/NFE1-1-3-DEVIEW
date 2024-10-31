@@ -4,5 +4,10 @@ type PostListIconProps = {
   devDependencies: DevDependency;
 };
 export const PostListIcon = ({ devDependencies }: PostListIconProps) => {
-  return <div className={`h-14 w-14 bg-contain ${devIconsDocs[devDependencies].iconUrl}`}></div>;
+  const iconUrl = devIconsDocs[devDependencies]?.iconUrl || "bg-[url(/assets/dev_icons/Default.svg)]";
+  return (
+    <>
+      <div className={`h-14 w-14 bg-contain ${iconUrl}`}></div>
+    </>
+  );
 };
