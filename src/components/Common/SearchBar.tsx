@@ -40,11 +40,11 @@ export const SearchBar = ({ selectedFilters, onDeleteFilter, onFocus, onCloseFil
 
   return (
     <div className="w-full">
-      <div className="relative mb-2 flex w-full items-center">
+      <div className="relative flex w-full items-center">
         <input
           type="text"
           placeholder="검색어를 입력해주세요"
-          className="h-11 flex-1 rounded border pr-10 text-12 md:text-16"
+          className="h-11 flex-1 rounded-[50px] border border-lightgray pr-10 text-12 md:text-16"
           onFocus={handleFocus}
           onChange={onChange}
           onKeyDown={onKeyDown}
@@ -63,7 +63,7 @@ export const SearchBar = ({ selectedFilters, onDeleteFilter, onFocus, onCloseFil
 
       <div className="flex flex-wrap">
         {selectedFilters.map((filter) => (
-          <div key={filter} className="mr-2 flex items-center rounded bg-lightgray px-2 py-1 text-12">
+          <div key={filter} className="mr-2 mt-2 flex items-center rounded bg-lightgray px-2 py-1 text-12">
             <span>{filter}</span>
             <button onClick={() => onDeleteFilter(filter)} className="ml-2">
               x
