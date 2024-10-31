@@ -5,12 +5,13 @@ import axiosInstance from "@services/axiosInstance";
 import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
-type GetMyNotificationsRequestProps = PaginationRequestProps;
-type GetMyNotificationsResponseProps = {
+export type GetMyNotificationsRequestProps = PaginationRequestProps;
+export type GetMyNotificationsResponseProps = {
   notifications: TNotification[];
   currentPage: string;
   totalPages: number;
   totalNotifications: number;
+  unreadNotificationsCount: number;
 };
 
 export async function getMyNotifications({
