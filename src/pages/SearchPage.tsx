@@ -1,32 +1,63 @@
-import { PostListItem } from "@components/Common/PostListItem";
 import { Link, useParams } from "react-router-dom";
 import { DEV_DEPENDENCIES_LIST } from "@constants/devDependenciesList";
-export type DevDependencies = (typeof DEV_DEPENDENCIES_LIST)[number];
+import { useQuery } from "@tanstack/react-query";
+import { searchPosts } from "@services/post/searchPosts";
+import { Loading } from "@components/Common/Loading";
+import { PostListItem } from "@components/Common/PostListItem";
+import { NoContent } from "@components/Common/NoContent";
+
+type DevDependencies = (typeof DEV_DEPENDENCIES_LIST)[number];
+
+function isDevDependency(filter: string): filter is DevDependencies {
+  return DEV_DEPENDENCIES_LIST.includes(filter as DevDependencies);
+}
 
 export default function SearchPage() {
-  const postData = {
-    _id: "1",
-    title: "제목",
-    content: "댓글",
-    author: {
-      _id: "1",
-      username: "mmjjaa"
-    },
-    devDependencies: ["C++", "Css"] as DevDependencies[],
-    likesCount: 23,
-    viewsCount: 34,
-    scrapsCount: 4,
-    commentsCount: 3,
-    createdAt: "2024-10-28T02:13:20.475+00:00",
-    updatedAt: "2024-10-28T02:13:20.475+00:00",
-    __v: 500
+  const formatNumber = (num: number) => {
+    const digit = 10 ** (`${num}`.length - 1);
+    let unit = "";
+    if (digit >= 10000) {
+      unit = "만";
+    } else if (digit === 1000) {
+      unit = "천";
+    } else {
+      return num;
+    }
+    return (Math.floor(num / (digit / 10)) / 10).toFixed(1) + unit;
   };
-
   const { query } = useParams<{ query: string }>();
   const safeQuery = query || "";
   const filteredQuery = safeQuery.split("&")[0];
-  const filtersFromUrl = query ? query.split("&")[1] : "";
-  const filters = filtersFromUrl ? filtersFromUrl.split(",") : [];
+  const filtersFromUrl = safeQuery.includes("filters=")
+    ? decodeURIComponent(safeQuery.split("filters=")[1].split("&")[0])
+    : "";
+
+  const filters: DevDependencies[] = filtersFromUrl ? filtersFromUrl.split(",").filter(isDevDependency) : [];
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["searchPosts", filteredQuery, filters],
+
+    queryFn: () =>
+      searchPosts({
+        keyword: filteredQuery,
+        devDependencies: filters.length > 0 ? filters : [],
+        page: 1,
+        limit: 10
+      }),
+    enabled: !!filteredQuery
+  });
+  console.log("data", data);
+  console.log("keyword", filteredQuery);
+  console.log("filters", filters);
+
+  if (isLoading)
+    return (
+      <div className="flex">
+        <Loading />
+      </div>
+    );
+  if (error) return <div>Error: {(error as Error).message}</div>;
+  if (!data || data.posts.length === 0) return <NoContent type="search" />;
   return (
     <>
       <div className="mx-auto max-w p-8">
@@ -51,13 +82,12 @@ export default function SearchPage() {
           <span className="font-bold">{filteredQuery}</span>
           <span>’에 대한 검색 결과입니다.</span>
         </p>
-        <p className="text-14 md:text-16">123,456개의 질문</p>
+        <p className="text-14 md:text-16"> {formatNumber(data.totalPosts)}개의 질문</p>
       </div>
       <div className="mx-auto max-w p-8">
-        <PostListItem postItem={postData} />
-        <PostListItem postItem={postData} />
-        <PostListItem postItem={postData} />
-        <PostListItem postItem={postData} />
+        {data.posts.map((postItem) => (
+          <PostListItem key={postItem._id} postItem={postItem} />
+        ))}
       </div>
     </>
   );

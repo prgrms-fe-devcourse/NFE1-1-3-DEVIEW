@@ -28,7 +28,7 @@ export const CheckPassword = ({ onSuccess }: CheckPasswordProps) => {
   return (
     <form className="flex flex-col border-2" onSubmit={onSubmit}>
       <PasswordInput />
-      <button type="submit" className="primary-btn mt-4 p-6 text-14 md:p-7 md:text-20" disabled={mutation.isPending}>
+      <button type="submit" className="primary-btn mt-4 p-6 text-14 md:p-7 md:text-16" disabled={mutation.isPending}>
         {mutation.isPending ? "확인 중..." : "확인"}
       </button>
     </form>

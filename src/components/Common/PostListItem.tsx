@@ -22,7 +22,6 @@ export const PostListItem = ({ postItem, ranked }: { postItem: TPost; ranked?: n
     const date = new Date(dateString);
     return `${date.getFullYear()}년 ${date.getMonth()}월 ${date.getDate()}일`;
   };
-
   return (
     <div className="relative p-2.5">
       {ranked && (

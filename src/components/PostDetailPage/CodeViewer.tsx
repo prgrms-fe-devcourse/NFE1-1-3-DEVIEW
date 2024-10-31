@@ -1,5 +1,6 @@
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.bubble.css";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const dummyCommentContent = `
  <p>이 문제는 다음과 같이 해결할 수 있습니다:</p>
@@ -29,56 +30,45 @@ const dummyCommentContent = `
  </ul>
 `;
 
-export const CodeViewer = () => {
-  const modules = {
-    toolbar: false
-  };
+const dummyPython = `
+class Smartphone:
+	"""
+	Smartphone class
+	"""
+    def __init__(self, brand, informations):
+        self._brand = brand
+        self._informations = informations
 
+    def __str__(self):
+        return f'str : {self._brand} - {self._informations}'
+
+    def __repr__(self):
+        return f'repr : {self._brand} - {self._informations}'
+    
+
+Smartphone1 = Smartphone('Iphone', {'color' : 'White', 'price': 10000})
+Smartphone2 = Smartphone('Galaxy', {'color' : 'Black', 'price': 8000})
+
+print(Smartphone1)
+print(Smartphone1.__dict__)
+
+print(Smartphone1._brand == Smartphone2._brand)
+print(Smartphone1 is Smartphone2)
+
+print(Smartphone.__doc__) 
+`;
+
+export const CodeViewer = () => {
   return (
-    <section className="code-viewer">
-      <ReactQuill
-        value={dummyCommentContent}
-        readOnly={true}
-        modules={modules}
-        theme="bubble"
-        className="prose max-w-none"
-      />
-      <style>{`
-        .code-viewer .ql-container {
-          border: none;
-        }
-        
-        .code-viewer .ql-editor {
-          padding: 0;
-          font-size: 14px;
-          line-height: 1.6;
-        }
-        
-        .code-viewer .ql-editor p {
-          margin: 0.5em 0;
-        }
-        
-        .code-viewer .ql-editor pre {
-          background: #f6f8fa;
-          border-radius: 6px;
-          padding: 16px;
-          margin: 0.5em 0;
-          overflow-x: auto;
-        }
-        
-        .code-viewer .ql-editor pre code {
-          font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
-          font-size: 13px;
-          line-height: 1.5;
-          color: #24292f;
-        }
-        
-        .code-viewer .ql-editor ul {
-          padding-left: 1.5em;
-          margin: 0.5em 0;
-        }
-      `}</style>
-    </section>
+    <SyntaxHighlighter
+      language="javascript"
+      style={oneDark}
+      className="text-sm leading-relaxed"
+      showLineNumbers
+      wrapLines
+    >
+      {dummyCommentContent}
+    </SyntaxHighlighter>
   );
 };
 export default CodeViewer;

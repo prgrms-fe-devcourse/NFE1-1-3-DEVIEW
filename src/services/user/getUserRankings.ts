@@ -6,7 +6,7 @@ import axios, { AxiosError } from "axios";
 
 type GetUserRankingsRequestProps = PaginationRequestProps;
 
-type GetUserRankingsResponseProps = {
+export type GetUserRankingsResponseProps = {
   currentPage: number;
   totalPages: number;
   userRanking: (UserInfo & {

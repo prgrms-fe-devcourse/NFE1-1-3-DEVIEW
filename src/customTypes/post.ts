@@ -2,8 +2,6 @@ import { DEV_DEPENDENCIES_LIST } from "@constants/devDependenciesList";
 
 export type DevDependency = (typeof DEV_DEPENDENCIES_LIST)[number];
 
-export type DevDependencies = { dependency: DevDependency; version: string }[];
-
 export type TPost = {
   _id: string;
   title: string;
@@ -13,7 +11,8 @@ export type TPost = {
     username: string;
   };
   code: string;
-  devDependencies: DevDependencies;
+  devDependencies: DevDependency[];
+  devVersions: string[];
   likesCount: number;
   viewsCount: number;
   scrapsCount: number;
