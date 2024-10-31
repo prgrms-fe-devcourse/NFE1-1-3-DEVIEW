@@ -1,7 +1,7 @@
 import { EditDelete, Feedback } from "@components/PostDetailPage";
 import { CodeViewer } from "./CodeViewer";
 
-export const CommentContainer = () => {
+export const CommentList = () => {
   return (
     <section className="flex flex-col gap-9 rounded-lg border border-solid border-gray px-3 py-4">
       <section className="flex justify-between">
@@ -18,12 +18,10 @@ export const CommentContainer = () => {
         </div>
         <EditDelete />
       </section>
-      <section className="px-1">
-        {/* <CodeViewer /> */}
-      </section>
+      <section className="px-1">{/* <CodeViewer /> */}</section>
       <Feedback />
     </section>
   );
 };
 
-export default CommentContainer;
+export default CommentList;

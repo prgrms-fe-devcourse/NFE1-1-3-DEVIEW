@@ -1,4 +1,11 @@
-import { EditDelete, PostDetailHeader, Feedback, CommentContainer, CodeViewer } from "@components/PostDetailPage";
+import {
+  EditDelete,
+  PostDetailHeader,
+  Feedback,
+  CommentList,
+  CodeViewer,
+  CommentWrite
+} from "@components/PostDetailPage";
 import { PostMeta } from "@customTypes/postDetail";
 import { useParams } from "react-router-dom";
 //!코드에디터 컴폰넌트 추가 필요
@@ -40,8 +47,8 @@ export default function PostDetailPage() {
         <CodeViewer content={quillContent} />
       </section>
       <Feedback />
-      <section>Answer</section>
-      <CommentContainer />
+      <CommentWrite />
+      <CommentList />
     </section>
   );
 }
