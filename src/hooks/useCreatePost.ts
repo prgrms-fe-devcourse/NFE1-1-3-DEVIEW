@@ -2,7 +2,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createPost } from "@services/post/createPost";
 import { CommonPostRequestProps } from "@customTypes/post";
 
-type CreatePostRequestProps = Pick<CommonPostRequestProps, "title" | "detail" | "devDependencies" | "code">;
+type CreatePostRequestProps = Pick<
+  CommonPostRequestProps,
+  "title" | "detail" | "devDependencies" | "code" | "devVersions"
+>;
 
 export const useCreatePost = () => {
   const queryClient = useQueryClient();
@@ -15,7 +18,8 @@ export const useCreatePost = () => {
         title: data.title,
         detail: data.detail,
         code: data.code,
-        devDependencies: data.devDependencies
+        devDependencies: data.devDependencies,
+        deVersions: data.devVersions
       });
       return createPost(data);
     },

@@ -36,7 +36,7 @@ export type TPostDetail = TPost & {
   isAuthor: boolean;
 };
 
-export type CommonPostRequestProps = Pick<TPost, "title" | "detail" | "devDependencies" | "code"> & {
+export type CommonPostRequestProps = Pick<TPost, "title" | "detail" | "devDependencies" | "code" | "devVersions"> & {
   postId: string;
 };
 

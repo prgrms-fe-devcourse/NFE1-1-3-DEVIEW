@@ -1,18 +1,11 @@
 import { ActionBtn } from "@/components/Common/ActionBtn";
+import { useCreatePost } from "@/hooks/useCreatePost";
 import { DetailContainer, EditorContainer, TitleContainer, VersionContainer } from "@components/PostCreatePage";
-import { initialState, postFormReducer, validateForm } from "@utils/postCreate";
-import { FormEvent, useCallback, useReducer } from "react";
-import { useCreatePost } from "../hooks/useCreatePost";
-import { useNavigate } from "react-router-dom";
 import { DEV_DEPENDENCIES_LIST } from "@constants/devDependenciesList";
-import { DevDependency, DevDependencies } from "@customTypes/post";
-
-type CreatePostRequestProps = {
-  title: string;
-  detail: string;
-  code: string;
-  devDependencies: DevDependencies;
-};
+import { CreatePostRequestProps, initialState } from "@customTypes/postCreate";
+import { postFormReducer, validateForm } from "@utils/postCreate";
+import { FormEvent, useCallback, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function PostCreatePage() {
   const navigate = useNavigate();
@@ -35,18 +28,24 @@ export default function PostCreatePage() {
       if (!onValidation()) return;
 
       try {
-        const validDependencies: DevDependencies = state.devDependencies
-          .filter((item) => item.dependency && DEV_DEPENDENCIES_LIST.includes(item.dependency as DevDependency))
-          .map((item) => ({
-            dependency: item.dependency as DevDependency,
-            version: item.version
-          }));
+        // 유효한 디펜던시와 버전만 필터링
+        const validIndices = state.devDependencies
+          .map((dep, index) => ({
+            dependency: dep,
+            version: state.codeVersions[index],
+            index
+          }))
+          .filter(
+            (item) => item.dependency && DEV_DEPENDENCIES_LIST.includes(item.dependency) && item.version.trim() !== ""
+          )
+          .map((item) => item.index);
 
         const postData: CreatePostRequestProps = {
           title: state.title,
           detail: state.detail,
           code: state.code,
-          devDependencies: validDependencies
+          devDependencies: validIndices.map((index) => state.devDependencies[index]),
+          devVersions: validIndices.map((index) => state.codeVersions[index])
         };
 
         console.log("Request Data:", postData);
@@ -71,19 +70,19 @@ export default function PostCreatePage() {
     }
   }, []);
 
-  const onVersionChange = useCallback((id: string, field: "dependency" | "version", value: string) => {
+  const onVersionChange = useCallback((index: number, field: "dependency" | "version", value: string) => {
     dispatch({
-      type: "UPDATE_VERSION",
-      payload: { id, field, value }
+      type: field === "dependency" ? "UPDATE_DEPENDENCY" : "UPDATE_VERSION",
+      payload: { index, value }
     });
   }, []);
 
-  const onRemoveVersion = useCallback((id: string) => {
-    dispatch({ type: "REMOVE_VERSION", payload: id });
+  const onRemoveVersion = useCallback((index: number) => {
+    dispatch({ type: "REMOVE_DEPENDENCY", payload: index });
   }, []);
 
   const onAddVersion = useCallback(() => {
-    dispatch({ type: "ADD_VERSION" });
+    dispatch({ type: "ADD_DEPENDENCY" });
   }, []);
 
   return (
@@ -117,8 +116,8 @@ export default function PostCreatePage() {
       <VersionContainer
         state={state}
         onAddVersion={onAddVersion}
-        onRemove={onRemoveVersion}
-        onChange={onVersionChange}
+        onRemoveVersion={onRemoveVersion}
+        onVersionChange={onVersionChange}
       />
 
       <EditorContainer value={state.code} onChange={(newValue) => dispatch({ type: "SET_CODE", payload: newValue })} />
