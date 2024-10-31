@@ -1,14 +1,12 @@
 import { ErrorResponse } from "@customTypes/errorResponse";
 import { PaginationRequestProps } from "@customTypes/pagination";
-import { CommonPostRequestProps, CommonPostResponseProps } from "@customTypes/post";
+import { CommonPostResponseProps, DevDependency } from "@customTypes/post";
 import axiosInstance from "@services/axiosInstance";
 import axios, { AxiosError } from "axios";
 
-type SearchPostsRequestProps = Partial<Pick<CommonPostRequestProps, "devDependencies">> &
-  PaginationRequestProps & {
+type SearchPostsRequestProps = { devDependencies: DevDependency[] } & PaginationRequestProps & {
     keyword: string;
   };
-
 type SearchPostsResponseProps = CommonPostResponseProps;
 
 export async function searchPosts({
@@ -19,13 +17,11 @@ export async function searchPosts({
 }: SearchPostsRequestProps): Promise<SearchPostsResponseProps> {
   try {
     const response = await axiosInstance.get<SearchPostsResponseProps>(`/post/search`, {
-      headers: {
-        keyword,
-        devDependencies
-      },
       params: {
         page,
-        limit
+        limit,
+        keyword,
+        devDependencies
       }
     });
     return response.data;

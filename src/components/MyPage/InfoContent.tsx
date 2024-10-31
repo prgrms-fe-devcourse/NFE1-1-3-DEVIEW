@@ -93,7 +93,7 @@ export const InfoContent = () => {
         <CheckPassword onSuccess={() => setIsVerified(true)} />
       ) : (
         <form className="" onSubmit={onSubmit}>
-          <IdInput defaultValue={userInfo.id} disabled={true} />
+          <IdInput defaultValue={userInfo.userId} disabled={true} />
           <NameInput defaultValue={userInfo.username} />
           <PasswordInput required={false} />
 
@@ -109,7 +109,7 @@ export const InfoContent = () => {
             />
             <Radio id="etc" name="group" text="기타" value="기타" defaultChecked={userInfo.group === "기타"} />
           </div>
-          <button type="submit" className="primary-btn p-6 text-14 md:p-7 md:text-20" disabled={mutation.isPending}>
+          <button type="submit" className="primary-btn p-6 text-14 md:p-7 md:text-16" disabled={mutation.isPending}>
             {mutation.isPending ? "저장 중..." : "저장"}
           </button>
         </form>

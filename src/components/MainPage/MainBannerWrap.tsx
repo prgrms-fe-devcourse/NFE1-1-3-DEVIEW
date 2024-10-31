@@ -59,10 +59,6 @@ export const MainBannerWrap = () => {
     ]
   });
 
-  if (mostViewedPosts.isError || mostViewedTodayPosts.isError || bestReviewer.isError) {
-    return <div>에러발생</div>;
-  }
-
   type BannerData = {
     content: React.ReactNode;
     link: string;
