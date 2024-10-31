@@ -3,11 +3,11 @@ import { PiSiren } from "react-icons/pi";
 //!API 연동 필요
 
 type FeedbackProps = {
-  thumbsCount: number;
-  thumbed: boolean;
-  commentId?: string;
+  total: number;
+  isClicked?: boolean;
+  subject?: string;
 };
-export const Feedback = ({ thumbsCount, thumbed, commentId }: FeedbackProps) => {
+export const Feedback = ({ total, isClicked, subject }: FeedbackProps) => {
   // console.log(thumbsCount);
   // console.log(thumbed);
   // console.log(commentId);
@@ -16,7 +16,7 @@ export const Feedback = ({ thumbsCount, thumbed, commentId }: FeedbackProps) => 
       <div className="m-auto flex w-36 gap-2 rounded-[30px] px-7 py-4 shadow">
         <button className="flex items-center gap-[0.03rem] hover:opacity-70">
           <AiOutlineLike className="h-[17px] w-[22px] flex-shrink-0" />
-          <span>{thumbsCount}</span>
+          <span>{total}</span>
         </button>
         <button className="hover:opacity-70">
           <PiSiren className="h-[17px] w-[22px] flex-shrink-0" />

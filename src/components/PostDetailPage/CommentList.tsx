@@ -65,7 +65,7 @@ export const CommentList = () => {
 
       {/* 댓글 목록 */}
       <div className="flex flex-col gap-4">
-        {allComments.map((comment, index) => (
+        {allComments.map((comment) => (
           <section
             key={comment._id}
             className="flex flex-col gap-9 rounded-lg border border-solid border-gray px-3 py-4"
@@ -88,7 +88,7 @@ export const CommentList = () => {
               <CodeViewer content={comment.content} />
             </section>
 
-            <Feedback commentId={comment._id} thumbsCount={comment.thumbsCount} thumbed={comment.thumbed} />
+            <Feedback subject={comment._id} total={comment.thumbsCount} isClicked={comment.thumbed} />
           </section>
         ))}
 

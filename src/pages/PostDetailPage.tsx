@@ -4,7 +4,6 @@ import usePostDetail from "@hooks/usePostDetail";
 import { Navigate } from "react-router-dom";
 
 export default function PostDetailPage() {
-
   const { id } = useParams<{ id: string }>();
   const { post, isLoading, isError, error } = usePostDetail({
     postId: id ?? undefined,
@@ -15,7 +14,7 @@ export default function PostDetailPage() {
   if (!id) {
     return <Navigate to="/" replace />;
   }
-
+  console.log("PostDetailPage: ", post);
   // 로딩 중일 때 스켈레톤 UI 표시
   if (isLoading) {
     return (
@@ -50,7 +49,7 @@ export default function PostDetailPage() {
   return (
     <div className="m-auto my-[1.625rem] flex max-w-[1240px] flex-col gap-12 px-5">
       <PostDetail post={post} />
-      {/* <Feedback /> */}
+      <Feedback isClicked={post.liked} total={post.likesCount} subject={post._id} />
       <CommentWrite />
       <CommentList />
     </div>
