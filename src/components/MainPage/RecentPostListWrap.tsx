@@ -6,5 +6,5 @@ export const RecentPostListwrap = () => {
     queryKey: ["posts"],
     queryFn: () => getPosts({ page: 1, limit: 3 })
   });
-  return <PostList posts={data.posts} isRankedList={true} />;
+  return <PostList posts={data.posts} />;
 };
