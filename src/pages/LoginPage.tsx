@@ -6,10 +6,12 @@ import { AUTH_INPUT_VALIDATION } from "@constants/authInputValidation";
 import { login } from "@services/auth/login";
 import { AccessTokenStorage } from "@utils/localStorage";
 import { useUserStore } from "@stores/userStore";
+import useSocketStore from "@stores/socketStore";
 
 export default function LoginPage() {
   const { setUserInfo } = useUserStore();
   const navigate = useNavigate();
+  const { socket } = useSocketStore();
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const $form = e.target as HTMLFormElement;
@@ -18,9 +20,10 @@ export default function LoginPage() {
     const isIdValid = AUTH_INPUT_VALIDATION.id.regexp.test(id);
     const isPasswordValid = AUTH_INPUT_VALIDATION.password.regexp.test(password);
     const isValid = isIdValid && isPasswordValid;
+    const socketId = socket!.id as string;
 
     if (isValid) {
-      login({ id, password })
+      login({ id, password, socketId })
         .then((data) => {
           AccessTokenStorage.setToken(data.accessToken);
           setUserInfo(data.userInfo);
@@ -35,6 +38,7 @@ export default function LoginPage() {
       ($form["password"] as HTMLInputElement).focus();
     }
   };
+
   return (
     <div className="mx-auto h-[100vh] max-w-sm">
       <form className="flex h-full flex-col justify-center" onSubmit={onSubmit}>
