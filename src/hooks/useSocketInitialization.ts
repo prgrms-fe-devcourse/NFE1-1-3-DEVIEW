@@ -14,7 +14,6 @@ export const useSocketInitialization = () => {
       console.log("Socket connected");
       const intervalId = setInterval(() => {
         newSocket.emit("message", "클라이언트 -> 서버");
-        console.log("emit 실행");
       }, interval);
 
       return () => {

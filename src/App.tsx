@@ -4,9 +4,11 @@ import { getUserInfo } from "@services/auth/getUserInfo";
 import { useUserStore } from "@stores/userStore";
 import { AccessTokenStorage } from "@utils/localStorage";
 import { RouterProvider } from "react-router-dom";
+import { useSocketInitialization } from "@hooks/useSocketInitialization";
 
 export const App = () => {
   const { setUserInfo } = useUserStore();
+  const { initializeSocket } = useSocketInitialization();
   useEffect(() => {
     if (AccessTokenStorage.hasToken()) {
       getUserInfo().then((data) => {
@@ -14,6 +16,10 @@ export const App = () => {
       });
     }
   }, [setUserInfo]);
+
+  useEffect(() => {
+    initializeSocket();
+  }, []);
 
   return (
     <>
