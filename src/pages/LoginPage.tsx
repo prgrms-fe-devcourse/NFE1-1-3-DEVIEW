@@ -16,14 +16,14 @@ export default function LoginPage() {
     e.preventDefault();
     const $form = e.target as HTMLFormElement;
     const formData = new FormData($form);
-    const [id, password] = [formData.get("userId") as string, formData.get("password") as string];
-    const isIdValid = AUTH_INPUT_VALIDATION.id.regexp.test(id);
+    const [userId, password] = [formData.get("userId") as string, formData.get("password") as string];
+    const isIdValid = AUTH_INPUT_VALIDATION.id.regexp.test(userId);
     const isPasswordValid = AUTH_INPUT_VALIDATION.password.regexp.test(password);
     const isValid = isIdValid && isPasswordValid;
     const socketId = socket!.id as string;
 
     if (isValid) {
-      login({ id, password, socketId })
+      login({ userId, password, socketId })
         .then((data) => {
           AccessTokenStorage.setToken(data.accessToken);
           setUserInfo(data.userInfo);
