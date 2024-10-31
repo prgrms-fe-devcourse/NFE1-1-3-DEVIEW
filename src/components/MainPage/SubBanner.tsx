@@ -36,7 +36,8 @@ export const SubBanner = ({ color }: { color: "secondary" | "lightgreen" }) => {
       __v: 1
     }
   ];
-  const bgUrl = devIconsDocs[data[0].devDependencies[0]].bgUrl || "bg-[url(/assets/dev_bgIcons/Default.svg)]";
+
+  const bgUrl = devIconsDocs[data[0]?.devDependencies[0]]?.bgUrl || "bg-[url(/assets/dev_bgIcons/Default.svg)]";
   const bgColors = {
     secondary: "bg-secondary",
     lightgreen: "bg-lightgreen"
