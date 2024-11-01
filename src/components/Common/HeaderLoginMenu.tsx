@@ -20,6 +20,7 @@ export const HeaderLoginMenu = () => {
   const toggleUserIconModal = () => {
     setIsUserIconOpen(!isUserIconOpen);
   };
+
   const toggleBellIconModal = () => {
     setIsBellIconOpen(!isBellIconOpen);
   };
@@ -33,13 +34,13 @@ export const HeaderLoginMenu = () => {
       }),
     enabled: isLoggedIn
   });
+
   useEffect(() => {
     if (socket) {
       socket.on("newNotification", () => {
         queryClient.invalidateQueries({ queryKey: ["getMyNotifications"] });
       });
     }
-
     return () => {
       if (socket) {
         socket.off("newNotification");
@@ -53,13 +54,12 @@ export const HeaderLoginMenu = () => {
         <span>Loading...</span>
       </div>
     );
-
   if (error) return <div>Error: {(error as Error).message}</div>;
 
   return (
     <div>
       {isLoggedIn ? (
-        <div className="absolute right-4 top-5 flex md:static md:flex md:space-x-8">
+        <div className="absolute right-4 top-2 flex md:static md:flex md:space-x-8">
           <Link
             className="primary-btn hidden hover:opacity-80 md:h-10 md:w-24 md:p-1 md:flex-center"
             type="button"
@@ -77,6 +77,9 @@ export const HeaderLoginMenu = () => {
               <HeaderNotificationModal
                 toggleBellIconModal={toggleBellIconModal}
                 notifications={data?.notifications ?? []}
+                onReadAll={() => {
+                  queryClient.invalidateQueries({ queryKey: ["getMyNotifications"] });
+                }}
               />
             </>
           )}
