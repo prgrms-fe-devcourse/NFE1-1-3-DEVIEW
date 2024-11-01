@@ -3,8 +3,8 @@ declare module "boring-avatars" {
 
   interface AvatarProps {
     size?: number | string;
-    name?: string;
-    variant?: "marble" | "beam" | "pixel" | "sunset" | "ring" | "bauhaus";
+    name: string;
+    variant: "marble" | "beam" | "pixel" | "sunset" | "ring" | "bauhaus";
     colors?: string[];
     square?: boolean;
     title?: boolean;
