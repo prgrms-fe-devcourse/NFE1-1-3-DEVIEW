@@ -21,7 +21,7 @@ export const PostListItem = ({ postItem, ranked }: { postItem: TPost; ranked?: n
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return `${date.getFullYear()}년 ${date.getMonth()}월 ${date.getDate()}일`;
+    return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
   };
   return (
     <div className="relative p-2.5">
@@ -53,7 +53,7 @@ export const PostListItem = ({ postItem, ranked }: { postItem: TPost; ranked?: n
             })}
           </div>
           <div className="flex flex-wrap gap-2.5">
-            <div className="2xs:flex-nowrap flex flex-wrap items-center gap-2.5">
+            <div className="flex flex-wrap items-center gap-2.5 2xs:flex-nowrap">
               <div className="flex gap-1 text-12 font-bold md:text-14">
                 <div className="text-pink">♥</div>
                 <div>{postItem.likesCount}</div>
@@ -69,7 +69,7 @@ export const PostListItem = ({ postItem, ranked }: { postItem: TPost; ranked?: n
             </div>
             <Link
               to={`/post/user/${postItem.author.userId}`}
-              className="2xs:w-auto flex w-full gap-1 text-12 text-primary md:text-14"
+              className="flex w-full gap-1 text-12 text-primary 2xs:w-auto md:text-14"
             >
               <div className="underline">{postItem.author.userId}</div>
             </Link>

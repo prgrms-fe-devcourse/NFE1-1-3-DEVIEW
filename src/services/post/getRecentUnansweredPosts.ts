@@ -1,9 +1,8 @@
 import { ErrorResponse } from "@customTypes/errorResponse";
-import { CommonPostResponseProps } from "@customTypes/post";
 import axiosInstance from "@services/axiosInstance";
 import axios, { AxiosError } from "axios";
-
-type GetRecentUnansweredPostsResponseProps = CommonPostResponseProps;
+import { TPost } from "@customTypes/post";
+type GetRecentUnansweredPostsResponseProps = TPost[];
 
 export async function getRecentUnansweredPosts(): Promise<GetRecentUnansweredPostsResponseProps> {
   try {
