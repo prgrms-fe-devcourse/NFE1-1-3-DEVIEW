@@ -39,10 +39,11 @@
   }
 
   #wrapper {
-    @apply min-h-full pb-40;
+    @apply pt-36 md:pt-28;
+    min-height: calc(100vh - 10rem);
   }
 
   footer {
-    @apply relative h-40 -translate-y-full transform;
+    @apply relative mt-auto h-40;
   }
 }
