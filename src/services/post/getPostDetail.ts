@@ -1,6 +1,7 @@
 import { ErrorResponse } from "@customTypes/errorResponse";
 import { CommonPostRequestProps, TPostDetail } from "@customTypes/post";
 import axiosInstance from "@services/axiosInstance";
+import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
 type GetPostDetailRequestProps = Pick<CommonPostRequestProps, "postId">;
@@ -9,7 +10,12 @@ type GetPostDetailResponseProps = TPostDetail;
 
 export async function getPostDetail({ postId }: GetPostDetailRequestProps): Promise<GetPostDetailResponseProps> {
   try {
-    const response = await axiosInstance.get<GetPostDetailResponseProps>(`/post/${postId}`);
+    const response = await axiosInstance.get<GetPostDetailResponseProps>(`/post/${postId}`, {
+      headers: {
+        Authorization: AccessTokenStorage.getAuthorizationHeader()
+      }
+    });
+    console.log(response.data);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {

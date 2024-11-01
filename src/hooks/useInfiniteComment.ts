@@ -25,7 +25,7 @@ export default function useInfiniteCommentsQuery({
       // console.log("Total Pages:", lastPage.totalPages);
       // console.log("Total Comments:", lastPage.totalComments);
       // console.log("Loaded Pages:", allPages.length);
-
+      // console.log(lastPage);
       // 현재 페이지가 전체 페이지 수보다 작으면 다음 페이지 호출
       const nextPage = allPages.length + 1;
       return nextPage <= lastPage.totalPages ? nextPage : undefined;

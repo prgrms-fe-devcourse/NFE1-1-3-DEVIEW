@@ -49,7 +49,7 @@ export default function PostDetailPage() {
   return (
     <div className="m-auto my-[1.625rem] flex max-w-[1240px] flex-col gap-12 px-5">
       <PostDetail post={post} />
-      <Feedback isClicked={post.liked} total={post.likesCount} subject={post._id} />
+      <Feedback isClicked={post.liked} total={post.likesCount} subject={post._id}/>
       <CommentWrite />
       <CommentList />
     </div>

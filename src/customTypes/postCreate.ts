@@ -45,7 +45,7 @@ export type UpdateDependencyAction = {
   type: "UPDATE_DEPENDENCY";
   payload: {
     index: number;
-    value: string;
+    value: DevDependency;
   };
 };
 

@@ -1,5 +1,5 @@
 import { PostFormState, PostFormAction, initialState } from "@customTypes/postCreate";
-
+import { DevDependency } from "@customTypes/postCreate";
 
 const versionUtils = {
   canRemoveVersion: (versions: string[]) => versions.length > 1,
@@ -11,23 +11,23 @@ const handlers = {
     ...state,
     title: payload
   }),
-  
+
   SET_DETAIL: (state: PostFormState, payload: string): PostFormState => ({
     ...state,
     detail: payload
   }),
-  
+
   SET_CODE: (state: PostFormState, payload: string): PostFormState => ({
     ...state,
     code: payload
   }),
-  
+
   ADD_DEPENDENCY: (state: PostFormState): PostFormState => ({
     ...state,
-    devDependencies: [...state.devDependencies, ""],
+    devDependencies: [...state.devDependencies],
     codeVersions: [...state.codeVersions, ""]
   }),
-  
+
   REMOVE_DEPENDENCY: (state: PostFormState, payload: number): PostFormState => {
     if (!versionUtils.canRemoveDependency(state.devDependencies)) {
       return state;
@@ -38,27 +38,17 @@ const handlers = {
       codeVersions: state.codeVersions.filter((_, index) => index !== payload)
     };
   },
-  
-  UPDATE_DEPENDENCY: (
-    state: PostFormState,
-    payload: { index: number; value: string }
-  ): PostFormState => ({
+
+  UPDATE_DEPENDENCY: (state: PostFormState, payload: { index: number; value: DevDependency }): PostFormState => ({
     ...state,
-    devDependencies: state.devDependencies.map((dep, index) =>
-      index === payload.index ? payload.value : dep
-    )
+    devDependencies: state.devDependencies.map((dep, index) => (index === payload.index ? payload.value : dep))
   }),
-  
-  UPDATE_VERSION: (
-    state: PostFormState,
-    payload: { index: number; value: string }
-  ): PostFormState => ({
+
+  UPDATE_VERSION: (state: PostFormState, payload: { index: number; value: string }): PostFormState => ({
     ...state,
-    codeVersions: state.codeVersions.map((version, index) =>
-      index === payload.index ? payload.value : version
-    )
+    codeVersions: state.codeVersions.map((version, index) => (index === payload.index ? payload.value : version))
   }),
-  
+
   RESET_FORM: (): PostFormState => initialState
 };
 
@@ -91,17 +81,12 @@ export const isDependencyAction = (
   PostFormAction,
   { type: "ADD_DEPENDENCY" | "REMOVE_DEPENDENCY" | "UPDATE_DEPENDENCY" | "UPDATE_VERSION" }
 > => {
-  return [
-    "ADD_DEPENDENCY",
-    "REMOVE_DEPENDENCY",
-    "UPDATE_DEPENDENCY",
-    "UPDATE_VERSION"
-  ].includes(action.type);
+  return ["ADD_DEPENDENCY", "REMOVE_DEPENDENCY", "UPDATE_DEPENDENCY", "UPDATE_VERSION"].includes(action.type);
 };
 
 export const validateForm = (state: PostFormState) => {
   const errors: Partial<Record<keyof PostFormState, string>> = {};
-  
+
   if (!state.title.trim()) {
     errors.title = "제목을 입력해주세요.";
   }
@@ -111,17 +96,16 @@ export const validateForm = (state: PostFormState) => {
   if (!state.code.trim()) {
     errors.code = "코드를 입력해주세요.";
   }
-  
-  const hasEmptyDependency = state.devDependencies.some(dep => !dep.trim());
-  const hasEmptyVersion = state.codeVersions.some(version => !version.trim());
-  
+
+  const hasEmptyDependency = state.devDependencies.some((dep) => !dep.trim());
+  const hasEmptyVersion = state.codeVersions.some((version) => !version.trim());
+
   if (hasEmptyDependency || hasEmptyVersion) {
     errors.devDependencies = "모든 의존성과 버전 정보를 입력해주세요.";
   }
-  
+
   return {
     isValid: Object.keys(errors).length === 0,
     errors
   };
 };
-
