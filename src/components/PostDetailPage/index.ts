@@ -1,4 +1,4 @@
-export * from "@components/PostDetailPage/CodeViewer";
+export * from "@components/Common/CodeViewer";
 export * from "@components/PostDetailPage/CommentEditor";
 export * from "@components/PostDetailPage/CommentList";
 export * from "@components/PostDetailPage/CommentWrite";
