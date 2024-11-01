@@ -2,21 +2,13 @@ import { Loading } from "@components/Common/Loading";
 import { NoContent } from "@components/Common/NoContent";
 import { PostListItem } from "@components/Common/PostListItem";
 import { CommonPostResponseProps, TPost } from "@customTypes/post";
+import useInfinite from "@hooks/useInfinite";
 import { getScrapedPost } from "@services/post/getScrapedPost";
-import { useInfiniteQuery } from "@tanstack/react-query";
 import React, { useCallback, useRef } from "react";
 
 export const ScrapContent = () => {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, error } = useInfiniteQuery<
-    CommonPostResponseProps,
-    Error
-  >({
-    queryKey: ["userScraps"],
-    queryFn: ({ pageParam = 1 }) => getScrapedPost({ page: pageParam as number, limit: 10 }),
-    getNextPageParam: (lastPage) => (lastPage.currentPage < lastPage.totalPages ? lastPage.currentPage + 1 : undefined),
-    initialPageParam: 1
-  });
-
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, error } =
+    useInfinite<CommonPostResponseProps>({ key: "userScraps", fetchFunc: getScrapedPost, limit: 10 });
   const observer = useRef<IntersectionObserver | null>(null);
   const lastPostElementRef = useCallback(
     (node: HTMLDivElement | null) => {
