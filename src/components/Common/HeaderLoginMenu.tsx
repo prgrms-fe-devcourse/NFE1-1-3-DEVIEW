@@ -29,7 +29,8 @@ export const HeaderLoginMenu = () => {
       getMyNotifications({
         page: 1,
         limit: 10
-      })
+      }),
+    enabled: isLoggedIn
   });
 
   useEffect(() => {
