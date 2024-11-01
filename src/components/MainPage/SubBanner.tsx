@@ -19,8 +19,8 @@ export const SubBanner = ({ color, data }: SubBannerProps) => {
     >
       <div className={`${bgUrl} absolute bottom-0 left-0 h-32 w-32 bg-contain bg-center bg-no-repeat`}></div>
 
-      <div className="h-14 truncate text-28">{data.title}</div>
-      <div className="flex w-full justify-end text-28">답변하기-&gt;</div>
+      <div className="h-14 truncate text-24">{data.title}</div>
+      <div className="flex w-full justify-end text-24">답변하기-&gt;</div>
     </Link>
   );
 };
