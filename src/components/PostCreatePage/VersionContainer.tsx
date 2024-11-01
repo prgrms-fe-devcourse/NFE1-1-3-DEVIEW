@@ -1,6 +1,6 @@
 import { LanSelectBtn, VersionCountBtn } from "@components/PostCreatePage";
 import { PostFormState } from "@customTypes/postCreate";
-
+// import { DevDependency } from "@customTypes/post";
 type VersionContainerProps = {
   state: PostFormState;
   onAddVersion: () => void;
@@ -9,6 +9,7 @@ type VersionContainerProps = {
 };
 
 export const VersionContainer = ({ state, onAddVersion, onRemoveVersion, onVersionChange }: VersionContainerProps) => {
+  // 나머지 코드는 동일VersionContainerProps) => {
   // 첫 렌더링 시 빈 dependency/version 쌍이 없으면 추가
   if (state.devDependencies.length === 0) {
     onAddVersion();
@@ -37,7 +38,7 @@ export const VersionContainer = ({ state, onAddVersion, onRemoveVersion, onVersi
             <div key={index} className="flex gap-[3%]">
               <LanSelectBtn value={dependency} onChange={(e) => onVersionChange(index, "dependency", e.target.value)} />
               <input
-                value={state.codeVersions[index]}
+                value={state.devVersions[index]}
                 onChange={(e) => onVersionChange(index, "version", e.target.value)}
                 className="h-16 w-[77%] rounded-lg border-gray px-4 text-14 text-gray"
                 type="text"
