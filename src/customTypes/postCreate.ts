@@ -13,7 +13,7 @@ export type PostFormState = {
   detail: string;
   code: string;
   devDependencies: DevDependency[];
-  codeVersions: string[];
+  devVersions: string[];
 };
 
 // 각 액션별 페이로드 타입 정의
@@ -45,7 +45,7 @@ export type UpdateDependencyAction = {
   type: "UPDATE_DEPENDENCY";
   payload: {
     index: number;
-    value: DevDependency;
+    value: DevDependency; 
   };
 };
 
@@ -78,7 +78,7 @@ export const initialState: PostFormState = {
   detail: "",
   code: "",
   devDependencies: [],
-  codeVersions: []
+  devVersions: []
 };
 
 // 타입 가드 함수들

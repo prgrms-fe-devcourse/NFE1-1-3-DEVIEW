@@ -2,6 +2,7 @@ import { ActionBtn } from "@/components/Common/ActionBtn";
 import { useCreatePost } from "@/hooks/useCreatePost";
 import { DetailContainer, EditorContainer, TitleContainer, VersionContainer } from "@components/PostCreatePage";
 import { DEV_DEPENDENCIES_LIST } from "@constants/devDependenciesList";
+import { DevDependency } from "@customTypes/post";
 import { CreatePostRequestProps, initialState } from "@customTypes/postCreate";
 import { postFormReducer, validateForm } from "@utils/postCreate";
 import { FormEvent, useCallback, useReducer } from "react";
@@ -32,7 +33,7 @@ export default function PostCreatePage() {
         const validIndices = state.devDependencies
           .map((dep, index) => ({
             dependency: dep,
-            version: state.codeVersions[index],
+            version: state.devVersions[index],
             index
           }))
           .filter(
@@ -45,7 +46,7 @@ export default function PostCreatePage() {
           detail: state.detail,
           code: state.code,
           devDependencies: validIndices.map((index) => state.devDependencies[index]),
-          devVersions: validIndices.map((index) => state.codeVersions[index])
+          devVersions: validIndices.map((index) => state.devVersions[index])
         };
 
         console.log("Request Data:", postData);
@@ -71,10 +72,21 @@ export default function PostCreatePage() {
   }, []);
 
   const onVersionChange = useCallback((index: number, field: "dependency" | "version", value: string) => {
-    dispatch({
-      type: field === "dependency" ? "UPDATE_DEPENDENCY" : "UPDATE_VERSION",
-      payload: { index, value }
-    });
+    if (field === "dependency") {
+      // dependency 필드일 때는 타입 검증 후 dispatch
+      if (DEV_DEPENDENCIES_LIST.includes(value as DevDependency)) {
+        dispatch({
+          type: "UPDATE_DEPENDENCY",
+          payload: { index, value: value as DevDependency }
+        });
+      }
+    } else {
+      // version 필드일 때는 문자열 그대로 dispatch
+      dispatch({
+        type: "UPDATE_VERSION",
+        payload: { index, value }
+      });
+    }
   }, []);
 
   const onRemoveVersion = useCallback((index: number) => {
@@ -123,18 +135,8 @@ export default function PostCreatePage() {
       <EditorContainer value={state.code} onChange={(newValue) => dispatch({ type: "SET_CODE", payload: newValue })} />
 
       <div className="flex w-full justify-end gap-6">
-        <ActionBtn
-          content="내용 초기화하기"
-          type="reset"
-          onClick={onReset}
-          // disabled={createPostMutation.isPending}
-        />
-        <ActionBtn
-          color="primary"
-          content={createPostMutation.isPending ? "등록 중..." : "질문하기"}
-          type="submit"
-          // disabled={createPostMutation.isPending}
-        />
+        <ActionBtn content="내용 초기화하기" type="reset" onClick={onReset} />
+        <ActionBtn color="primary" content={createPostMutation.isPending ? "등록 중..." : "질문하기"} type="submit" />
       </div>
     </form>
   );
