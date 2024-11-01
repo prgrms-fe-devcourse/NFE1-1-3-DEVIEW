@@ -2,21 +2,13 @@ import { Loading } from "@components/Common/Loading";
 import { PostListItem } from "@components/Common/PostListItem";
 import { NoContent } from "@components/Common/NoContent";
 import { CommonPostResponseProps } from "@customTypes/post";
-import { useInfiniteQuery } from "@tanstack/react-query";
 import { getMyPosts } from "@services/post/getMyPosts";
 import React, { useCallback, useRef } from "react";
+import useInfinite from "@hooks/useInfinite";
 
 export const PostsContent = () => {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, error } = useInfiniteQuery<
-    CommonPostResponseProps,
-    Error
-  >({
-    queryKey: ["userPosts"],
-    queryFn: ({ pageParam = 1 }) => getMyPosts({ page: pageParam as number, limit: 10 }),
-    getNextPageParam: (lastPage) => (lastPage.currentPage < lastPage.totalPages ? lastPage.currentPage + 1 : undefined),
-    initialPageParam: 1
-  });
-
+  const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
+    useInfinite<CommonPostResponseProps>({ key: "userPosts", fetchFunc: getMyPosts, limit: 10 });
   const observer = useRef<IntersectionObserver | null>(null);
   const lastPostElementRef = useCallback(
     (node: HTMLDivElement | null) => {
