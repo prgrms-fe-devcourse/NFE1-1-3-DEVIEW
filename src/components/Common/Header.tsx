@@ -46,7 +46,7 @@ export default function Header() {
             <Link to="/" className="flex justify-center">
               <Logo />
             </Link>
-            <nav className="ml-8 flex space-x-8">
+            <nav className="ml-8 flex h-5 space-x-8">
               <Link
                 to="/post"
                 className={`text-16 ${
