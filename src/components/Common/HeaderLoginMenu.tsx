@@ -33,7 +33,6 @@ export const HeaderLoginMenu = () => {
       }),
     enabled: isLoggedIn
   });
-
   useEffect(() => {
     if (socket) {
       socket.on("newNotification", () => {
