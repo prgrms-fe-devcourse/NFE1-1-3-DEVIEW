@@ -4,7 +4,10 @@ import axiosInstance from "@services/axiosInstance";
 import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
-type UpdatePostRequestProps = Pick<CommonPostRequestProps, "postId" | "title" | "content" | "devDependencies" | "code"| "deVersions">;
+type UpdatePostRequestProps = Pick<
+  CommonPostRequestProps,
+  "postId" | "title" | "detail" | "devDependencies" | "devVersions"
+>;
 
 type UpdatePostResponseProps = Omit<TPost, "author"> & {
   author: string;
