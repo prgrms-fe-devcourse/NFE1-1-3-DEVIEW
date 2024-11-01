@@ -10,27 +10,11 @@ import { GiHamburgerMenu } from "react-icons/gi";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isFilterVisible, setIsFilterVisible] = useState(false);
-  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 
   const location = useLocation();
 
   const onClick = () => {
     setIsMenuOpen((prev) => !prev);
-  };
-
-  const onSelectFilter = (filter: string) => {
-    if (!selectedFilters.includes(filter)) {
-      setSelectedFilters((prev) => [...prev, filter]);
-    }
-    setIsFilterVisible(true);
-  };
-
-  const onDeleteFilter = (filter: string) => {
-    setSelectedFilters((prev) => prev.filter((f) => f !== filter));
-  };
-
-  const onClearFilters = () => {
-    setSelectedFilters([]);
   };
 
   const onFocus = () => {
@@ -88,12 +72,7 @@ export default function Header() {
         </div>
 
         <div className="w-full flex-grow md:mx-8 md:w-auto">
-          <SearchBar
-            onCloseFilter={onCloseFilter}
-            selectedFilters={selectedFilters}
-            onDeleteFilter={onDeleteFilter}
-            onFocus={onFocus}
-          />
+          <SearchBar onCloseFilter={onCloseFilter} onFocus={onFocus} />
         </div>
 
         <HeaderLoginMenu />
@@ -101,7 +80,7 @@ export default function Header() {
 
       {isFilterVisible && (
         <>
-          <SearchFilter onSelectFilter={onSelectFilter} onClearFilters={onClearFilters} />
+          <SearchFilter />
           <div
             className="fixed inset-x-0 top-36 z-10 h-[calc(100vh-9rem)] bg-black bg-opacity-10 backdrop-blur-sm md:top-36"
             onClick={onCloseFilter}
