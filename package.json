@@ -16,6 +16,7 @@
     "@types/node": "^22.7.9",
     "axios": "^1.7.7",
     "dompurify": "^3.1.7",
+    "boring-avatars": "^1.11.2",
     "highlight.js": "^11.10.0",
     "html-react-parser": "^5.1.18",
     "quill": "^2.0.2",
