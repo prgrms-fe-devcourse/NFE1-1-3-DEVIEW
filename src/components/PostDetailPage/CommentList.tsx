@@ -4,10 +4,8 @@ import { useInView } from "react-intersection-observer";
 import useInfiniteCommentsQuery from "@hooks/useInfiniteComment";
 import { useEffect } from "react";
 import Avatar from "boring-avatars";
-import { useUserStore } from "@stores/userStore";
 
 export const CommentList = () => {
-  const { userInfo } = useUserStore();
   const { id: postId } = useParams<{ id: string }>();
   const { ref, inView } = useInView({
     threshold: 0,
@@ -75,7 +73,7 @@ export const CommentList = () => {
             <section className="flex justify-between">
               <div className="flex gap-5">
                 <figure className="h-12 w-12 overflow-hidden rounded-full md:h-16 md:w-16">
-                  <Avatar name={userInfo?.userId ?? ""} variant="beam" />
+                  <Avatar name={comment.author.userId} variant="beam" />
                 </figure>
                 <span className="flex text-12 font-medium flex-center md:text-16">{comment.author.userId}</span>
               </div>
