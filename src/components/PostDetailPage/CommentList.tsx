@@ -3,8 +3,11 @@ import { EditDelete, Feedback, CodeViewer } from "@components/PostDetailPage";
 import { useInView } from "react-intersection-observer";
 import useInfiniteCommentsQuery from "@hooks/useInfiniteComment";
 import { useEffect } from "react";
+import Avatar from "boring-avatars";
+import { useUserStore } from "@stores/userStore";
 
 export const CommentList = () => {
+  const { userInfo } = useUserStore();
   const { id: postId } = useParams<{ id: string }>();
   const { ref, inView } = useInView({
     threshold: 0,
@@ -73,11 +76,7 @@ export const CommentList = () => {
             <section className="flex justify-between">
               <div className="flex gap-5">
                 <figure className="h-12 w-12 overflow-hidden rounded-full md:h-16 md:w-16">
-                  <img
-                    className="h-auto w-full"
-                    src="https://media.istockphoto.com/id/1012645084/ko/%EB%B2%A1%ED%84%B0/%EC%99%84%EB%B2%BD-%ED%95%9C-%EB%9E%9C%EB%8D%A4-%ED%8C%A8%ED%84%B4-%EB%B2%A1%ED%84%B0.jpg?s=170667a&w=0&k=20&c=_fZKK0-ZyFFLungr9E06AOz8r_M4h8aHYLtU2cEJ-yA="
-                    alt="프로필 이미지"
-                  />
+                  <Avatar name={userInfo?.userId ?? ""} variant="beam" />
                 </figure>
                 <span className="flex text-12 font-medium flex-center md:text-16">{comment.author.userId}</span>
               </div>
