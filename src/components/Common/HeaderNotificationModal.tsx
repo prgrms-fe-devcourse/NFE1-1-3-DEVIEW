@@ -9,6 +9,7 @@ type HeaderNotificationModalProps = {
 };
 
 export const HeaderNotificationModal = ({ toggleBellIconModal, notifications }: HeaderNotificationModalProps) => {
+  console.log(notifications);
   return (
     <div className="fixed left-0 top-0 z-50 h-full w-full overflow-y-auto whitespace-pre border border-solid border-lightgray bg-white-pure scrollbar-hide md:absolute md:left-auto md:top-16 md:mt-2 md:h-80 md:w-96 md:max-w md:-translate-x-64 md:whitespace-nowrap md:rounded md:shadow">
       <div className="block border-b border-solid border-lightgray">
@@ -18,7 +19,7 @@ export const HeaderNotificationModal = ({ toggleBellIconModal, notifications }: 
       {notifications.length > 0 ? (
         <>
           {notifications.map((notification) => (
-            <Link to={`/post/${notification.postId}`} onClick={toggleBellIconModal}>
+            <Link to={`/post/${notification.post._id}`} onClick={toggleBellIconModal}>
               <div
                 key={notification.id}
                 className="text-bold flex cursor-pointer items-center border-b border-solid border-lightgray px-4 py-4 last:border-none hover:opacity-70"

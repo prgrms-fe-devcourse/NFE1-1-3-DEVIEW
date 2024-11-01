@@ -1,6 +1,8 @@
+import { TPost } from "@customTypes/post";
+
 export type TNotification = {
   id: string;
-  postId: string;
+  post: Pick<TPost, "_id">;
   title: string;
   content: string;
   isRead: boolean;
