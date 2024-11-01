@@ -68,7 +68,7 @@ export const SearchBar = ({ selectedFilters, onDeleteFilter, onFocus, onCloseFil
 
       <div className="flex flex-wrap">
         {displayedFilters.map((filter) => (
-          <div key={filter} className="mr-2 mt-2  flex items-center rounded bg-lightgray px-2 py-1 text-12">
+          <div key={filter} className="mr-2 mt-2 flex items-center rounded bg-lightgray px-2 py-1 text-12">
             <span>{filter}</span>
             <button
               onClick={(event) => {
