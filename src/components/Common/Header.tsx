@@ -43,53 +43,59 @@ export default function Header() {
   };
 
   return (
-    <div className="shadow">
+    <div className="fixed top-0 z-50 w-full bg-white-pure shadow">
       <header
         className="relative mx-auto flex h-36 max-w flex-col items-center justify-between p-4 md:h-28 md:flex-row"
         onClick={onCloseFilter}
       >
-        <div className="flex w-full items-center md:w-auto">
-          <button className="mr-4 md:hidden" onClick={onClick}>
-            <GiHamburgerMenu className="h- w-8" />
-          </button>
-          <div className="flex-grow text-center">
-            <Link to="/" className="flex justify-center">
-              <Logo className="h-10 w-44 md:h-auto md:w-auto" />
+        <div className="relative flex h-14 w-full items-center md:w-auto">
+          <div className="w-full md:hidden">
+            <button className="absolute left-0 top-1/2 -translate-y-1/2 transform" onClick={onClick}>
+              <GiHamburgerMenu className="w-8" />
+            </button>
+            <Link to="/" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
+              <Logo className="h-10 w-44" />
             </Link>
           </div>
-          <nav className="hidden md:ml-8 md:flex md:space-x-8">
-            <Link
-              to="/post"
-              className={`text-lg ${
-                location.pathname === "/post"
-                  ? "border-b border-solid border-primary font-bold text-primary"
-                  : "text-gray"
-              } hover:border-b hover:border-solid hover:border-primary hover:font-bold hover:text-primary`}
-            >
-              게시글
+
+          <div className="hidden w-full items-center md:flex md:w-auto">
+            <Link to="/" className="flex justify-center">
+              <Logo />
             </Link>
-            <Link
-              to="/rank"
-              className={`text-lg ${
-                location.pathname === "/rank"
-                  ? "border-b border-solid border-primary font-bold text-primary"
-                  : "text-gray"
-              } hover:border-b hover:border-solid hover:border-primary hover:font-bold hover:text-primary`}
-            >
-              유저랭킹
-            </Link>
-          </nav>
+            <nav className="ml-8 flex space-x-8">
+              <Link
+                to="/post"
+                className={`text-16 ${
+                  location.pathname === "/post"
+                    ? "border-b border-solid border-primary font-bold text-primary"
+                    : "text-gray"
+                } hover:border-b hover:border-solid hover:border-primary hover:font-bold hover:text-primary`}
+              >
+                게시글
+              </Link>
+              <Link
+                to="/rank"
+                className={`text-16 ${
+                  location.pathname === "/rank"
+                    ? "border-b border-solid border-primary font-bold text-primary"
+                    : "text-gray"
+                } hover:border-b hover:border-solid hover:border-primary hover:font-bold hover:text-primary`}
+              >
+                유저랭킹
+              </Link>
+            </nav>
+          </div>
         </div>
-        <div className="w-full md:mx-16 md:w-auto md:flex-grow">
+
+        <div className="w-full flex-grow md:mx-8 md:w-auto">
           <SearchBar
-            onCloseFilter={() => {
-              onCloseFilter();
-            }}
+            onCloseFilter={onCloseFilter}
             selectedFilters={selectedFilters}
             onDeleteFilter={onDeleteFilter}
             onFocus={onFocus}
           />
         </div>
+
         <HeaderLoginMenu />
       </header>
 
