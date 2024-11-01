@@ -57,7 +57,6 @@ export const CommentList = () => {
   // 모든 페이지의 댓글을 하나의 배열로 합치기
   const allComments = data.pages.flatMap((page) => page.comments);
   const totalComments = data.pages[0].totalComments;
-
   return (
     <div className="flex flex-col gap-4">
       {/* 전체 댓글 수 표시 */}
@@ -81,7 +80,7 @@ export const CommentList = () => {
                 </figure>
                 <span className="flex text-12 font-medium flex-center md:text-16">{comment.author.userId}</span>
               </div>
-              {comment.isMine && <EditDelete />}
+              {comment.isMine && <EditDelete isAuthor={comment.isMine} />}
             </section>
 
             <section className="px-1">

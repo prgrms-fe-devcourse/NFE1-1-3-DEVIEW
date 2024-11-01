@@ -16,7 +16,7 @@ export async function getComments({ postId, page, limit }: GetCommentsRequestPro
         Authorization: AccessTokenStorage.getAuthorizationHeader()
       }
     });
-    // console.log(response.data);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
