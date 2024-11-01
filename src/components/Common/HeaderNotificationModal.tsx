@@ -27,8 +27,8 @@ export const HeaderNotificationModal = ({ toggleBellIconModal, notifications }: 
                   alt="User profile"
                   className="mr-3 h-8 w-8 rounded-full"
                 />
-                <div className="flex flex-col text-16 text-black">
-                  <p className="mb-1">{notification.title}</p>
+                <div className="flex min-w-0 flex-1 flex-col text-16 text-black">
+                  <p className="mb-1 truncate">{notification.title}</p>
                   <span className="text-16 text-gray">{notification.createdAt}</span>
                 </div>
               </div>
