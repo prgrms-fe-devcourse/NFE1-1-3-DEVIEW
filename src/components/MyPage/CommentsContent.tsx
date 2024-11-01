@@ -2,21 +2,13 @@ import { Loading } from "@components/Common/Loading";
 import { NoContent } from "@components/Common/NoContent";
 import { MyComment } from "@components/MyPage/MyComment";
 import { CommonCommentResponseProps } from "@customTypes/comment";
+import useInfinite from "@hooks/useInfinite";
 import { getMyComments } from "@services/comment/getMyComments";
-import { useInfiniteQuery } from "@tanstack/react-query";
 import React, { useCallback, useRef } from "react";
 
 export const CommentsContent = () => {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, error } = useInfiniteQuery<
-    CommonCommentResponseProps,
-    Error
-  >({
-    queryKey: ["userComments"],
-    queryFn: ({ pageParam = 1 }) => getMyComments({ page: pageParam as number, limit: 10 }),
-    getNextPageParam: (lastPage) => (lastPage.currentPage < lastPage.totalPages ? lastPage.currentPage + 1 : undefined),
-    initialPageParam: 1
-  });
-
+  const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
+    useInfinite<CommonCommentResponseProps>({ key: "userComments", fetchFunc: getMyComments, limit: 10 });
   const observer = useRef<IntersectionObserver | null>(null);
   const lastCommentElementRef = useCallback(
     (node: HTMLDivElement | null) => {

@@ -11,6 +11,12 @@ const StyledQuillEditor = styled(ReactQuill)`
     background-color: #f6f6f6;
     color: #000000;
   }
+  .ql-container.ql-snow {
+    border: none !important;
+  }
+  .ql-editor {
+    padding: 0;
+  }
 `;
 
 export const CodeViewer = ({ content }: CodeViewerProps) => {
