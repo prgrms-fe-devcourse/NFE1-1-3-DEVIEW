@@ -1,4 +1,5 @@
 import { UserInfo } from "@customTypes/userInfo";
+import { AccessTokenStorage } from "@utils/localStorage";
 import { create } from "zustand";
 
 type UserStore = {
@@ -10,7 +11,7 @@ type UserStore = {
 
 export const useUserStore = create<UserStore>((set) => ({
   userInfo: null,
-  isLoggedIn: false,
+  isLoggedIn: AccessTokenStorage.hasToken(),
   setUserInfo: (userInfo: UserInfo) => set({ userInfo, isLoggedIn: true }),
   clearUserInfo: () => set({ userInfo: null, isLoggedIn: false })
 }));
