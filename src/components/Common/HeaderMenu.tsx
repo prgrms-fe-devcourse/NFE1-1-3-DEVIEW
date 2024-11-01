@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useUserStore } from "@stores/userStore";
 
 type HeaderMenuProps = {
@@ -7,11 +7,14 @@ type HeaderMenuProps = {
 
 export const HeaderMenu = ({ onClick }: HeaderMenuProps) => {
   const isLoggedIn = useUserStore((state) => state.isLoggedIn);
+  const location = useLocation();
   return (
     <div className="fixed left-0 top-0 z-50 h-full w-64 bg-white-pure p-4">
       <nav className="fixed left-0 top-0 z-50 flex h-full w-64 flex-col items-center justify-center">
         <Link
-          className="text-lg m-4 text-black"
+          className={`m-4 text-16 text-black ${
+            location.pathname === "/post" ? "border-b border-solid border-primary font-bold text-primary" : ""
+          } hover:border-b hover:border-solid hover:border-primary hover:font-bold hover:text-primary`}
           to="/post"
           onClick={() => {
             onClick();
@@ -20,7 +23,9 @@ export const HeaderMenu = ({ onClick }: HeaderMenuProps) => {
           게시글
         </Link>
         <Link
-          className="text-lg m-4 text-black"
+          className={`m-4 text-16 text-black ${
+            location.pathname === "/rank" ? "border-b border-solid border-primary font-bold text-primary" : ""
+          } hover:border-b hover:border-solid hover:border-primary hover:font-bold hover:text-primary`}
           to="/rank"
           onClick={() => {
             onClick();
