@@ -5,11 +5,10 @@ import MainBanner from "@components/MainPage/MainBanner";
 import { BestReviewerBanner } from "@components/MainPage/BestReviewerBanner";
 import { MostViewedPostBanner } from "@components/MainPage/MostViewedPostBanner";
 import { QuestionBanner } from "@components/MainPage/QuestionBanner";
-import { MostViewedTodayPostsBanner } from "@components/MainPage/mostViewedTodayPostsBanner";
+import { MostViewedTodayPostsBanner } from "@components/MainPage/MostViewedTodayPostsBanner";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { Pagination } from "swiper/modules";
 
 type bannersType = {
   banner: React.ComponentType;
@@ -23,10 +22,9 @@ export const MainSection = () => {
     { banner: BestReviewerBanner, color: "bg-lightgreen" }
   ];
   return (
-    <div className="bg-lightpurple flex-center">
+    <div className="bg-lightpurple">
       <Swiper
-        modules={[Pagination]}
-        className="max-w px-10 py-12"
+        className="w-full max-w px-10 py-12"
         spaceBetween={40}
         slidesPerView={1}
         breakpoints={{
