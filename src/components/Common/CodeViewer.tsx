@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DOMPurify from "dompurify";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -7,7 +7,7 @@ type CodeViewerProps = {
   content: string;
 };
 
-export const CodeViewer: React.FC<CodeViewerProps> = ({ content }) => {
+export const CodeViewer = ({ content }: CodeViewerProps) => {
   const [highlighter, setHighlighter] = useState(true);
   const [processedContent, setProcessedContent] = useState("");
 
