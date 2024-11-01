@@ -5,5 +5,9 @@ export type TNotification = {
   content: string;
   isRead: boolean;
   createdAt: string;
+  sender: {
+    id: string;
+    userId: string;
+  };
   // image:string
 };

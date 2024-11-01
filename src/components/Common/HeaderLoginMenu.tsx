@@ -8,11 +8,12 @@ import { NotificationCount } from "@components/Common/NotificationCount";
 import useSocketStore from "@stores/socketStore";
 import { getMyNotifications } from "@services/notification/getMyNotifications";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import Avatar from "boring-avatars";
 
 export const HeaderLoginMenu = () => {
   const [isUserIconOpen, setIsUserIconOpen] = useState(false);
   const [isBellIconOpen, setIsBellIconOpen] = useState(false);
-  const { isLoggedIn } = useUserStore();
+  const { isLoggedIn, userInfo } = useUserStore();
   const { socket } = useSocketStore();
   const queryClient = useQueryClient();
 
@@ -32,7 +33,6 @@ export const HeaderLoginMenu = () => {
       }),
     enabled: isLoggedIn
   });
-
   useEffect(() => {
     if (socket) {
       socket.on("newNotification", () => {
@@ -84,11 +84,7 @@ export const HeaderLoginMenu = () => {
             className="mt-2 h-6 w-6 cursor-pointer overflow-hidden rounded-full md:mt-0 md:h-10 md:w-10"
             onClick={toggleUserIconModal}
           >
-            <img
-              className="h-auto w-full"
-              src="https://media.istockphoto.com/id/1012645084/ko/%EB%B2%A1%ED%84%B0/%EC%99%84%EB%B2%BD-%ED%95%9C-%EB%9E%9C%EB%8D%A4-%ED%8C%A8%ED%84%B4-%EB%B2%A1%ED%84%B0.jpg?s=170667a&w=0&k=20&c=_fZKK0-ZyFFLungr9E06AOz8r_M4h8aHYLtU2cEJ-yA="
-              alt="프로필 이미지"
-            />
+            <Avatar name={userInfo?.userId ?? ""} variant="beam" />
           </div>
           {isUserIconOpen && (
             <>
