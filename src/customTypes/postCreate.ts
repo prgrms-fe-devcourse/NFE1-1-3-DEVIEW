@@ -45,7 +45,7 @@ export type UpdateDependencyAction = {
   type: "UPDATE_DEPENDENCY";
   payload: {
     index: number;
-    value: DevDependency; 
+    value: DevDependency;
   };
 };
 
@@ -77,8 +77,8 @@ export const initialState: PostFormState = {
   title: "",
   detail: "",
   code: "",
-  devDependencies: [],
-  devVersions: []
+  devDependencies: [DEV_DEPENDENCIES_LIST[0]], // 기본값으로 시작
+  devVersions: [""]
 };
 
 // 타입 가드 함수들

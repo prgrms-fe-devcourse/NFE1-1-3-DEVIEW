@@ -1,6 +1,7 @@
 import { LanSelectBtn, VersionCountBtn } from "@components/PostCreatePage";
 import { PostFormState } from "@customTypes/postCreate";
-// import { DevDependency } from "@customTypes/post";
+// import { useEffect } from "react";
+
 type VersionContainerProps = {
   state: PostFormState;
   onAddVersion: () => void;
@@ -9,11 +10,12 @@ type VersionContainerProps = {
 };
 
 export const VersionContainer = ({ state, onAddVersion, onRemoveVersion, onVersionChange }: VersionContainerProps) => {
-  // 나머지 코드는 동일VersionContainerProps) => {
-  // 첫 렌더링 시 빈 dependency/version 쌍이 없으면 추가
-  if (state.devDependencies.length === 0) {
-    onAddVersion();
-  }
+  // // 컴포넌트 마운트 시에만 초기화 실행
+  // useEffect(() => {
+  //   if (state.devDependencies.length === 0) {
+  //     onAddVersion();
+  //   }
+  // }, []); // 마운트 시에만 실행
 
   return (
     <section className="relative flex w-full flex-col gap-4 rounded-lg border border-solid border-gray py-7 pl-3 pr-6 shadow">
