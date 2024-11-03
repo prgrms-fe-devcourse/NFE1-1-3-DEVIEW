@@ -1,16 +1,16 @@
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { IoBookmarkOutline, IoBookmark } from "react-icons/io5";
 import { TPostDetail } from "@customTypes/post";
 import { usePostLikeScrap } from "@hooks/usePostLikeScrap";
 import { likePost } from "@services/post/likePost";
 import { scrapPost } from "@services/post/scrapPost";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { IoBookmark, IoBookmarkOutline } from "react-icons/io5";
 
 type PostLikeScrapProps = {
   postId: string;
   post: TPostDetail;
 };
 
-export const PostLikeScrap = ({ postId, post }: PostLikeScrapProps) => {
+export const PostDetailInteraction = ({ postId, post }: PostLikeScrapProps) => {
   const { mutate: likeMutate } = usePostLikeScrap({
     actionKey: "liked",
     countKey: "likesCount",

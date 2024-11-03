@@ -1,9 +1,9 @@
-import { useParams } from "react-router-dom";
-import { EditDelete, CodeViewer } from "@components/PostDetailPage";
-import { useInView } from "react-intersection-observer";
+import { CodeViewer, CommentEditDelete, CommentInteraction } from "@components/PostDetailPage";
 import useInfiniteCommentsQuery from "@hooks/useInfiniteComment";
-import { useEffect } from "react";
 import Avatar from "boring-avatars";
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import { useParams } from "react-router-dom";
 
 export const CommentList = () => {
   const { id: postId } = useParams<{ id: string }>();
@@ -60,7 +60,6 @@ export const CommentList = () => {
   const totalComments = data.pages[0].totalComments;
   return (
     <div className="flex flex-col gap-4">
-      
       <div className="text-14 font-medium">전체 댓글 {totalComments}개</div>
 
       {/* 댓글 목록 */}
@@ -77,14 +76,14 @@ export const CommentList = () => {
                 </figure>
                 <span className="flex text-12 font-medium flex-center md:text-16">{comment.author.userId}</span>
               </div>
-              {comment.isMine && <EditDelete />}
+              {comment.isMine && <CommentEditDelete commentId = {comment._id}/>}
             </section>
 
             <section className="px-1">
               <CodeViewer content={comment.content} />
             </section>
 
-            {/* 댓글 피드백 컴포넌트 들어갈 자리*/}
+            <CommentInteraction commentId={comment._id} />
           </section>
         ))}
 
