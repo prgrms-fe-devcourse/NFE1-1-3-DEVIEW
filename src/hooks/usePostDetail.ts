@@ -3,8 +3,7 @@ import { getPostDetail } from "@services/post/getPostDetail";
 import { TPostDetail } from "@customTypes/post";
 import { AxiosError } from "axios";
 import { ErrorResponse } from "@customTypes/errorResponse";
-
-export const POST_DETAIL_QUERY_KEY = "postDetail";
+import { POST_DETAIL_QUERY_KEY } from '@constants/queryKey';
 
 interface UsePostDetailProps {
   postId: string | undefined;

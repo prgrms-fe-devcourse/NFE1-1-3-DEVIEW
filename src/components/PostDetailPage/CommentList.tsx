@@ -84,7 +84,7 @@ export const CommentList = () => {
               <CodeViewer content={comment.content} />
             </section>
 
-            <Feedback subject={comment._id} total={comment.thumbsCount} isClicked={comment.thumbed} />
+            {/* <Feedback total={comment.thumbsCount} isClicked={comment.thumbed} /> */}
           </section>
         ))}
 

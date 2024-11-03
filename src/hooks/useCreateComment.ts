@@ -1,24 +1,9 @@
 // useCreateComment.ts
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createComment } from "@services/comment/createComment";
-import { COMMENTS_QUERY_KEY } from "@/hooks/useInfiniteComment";
+import { COMMENTS_QUERY_KEY } from "@/constants/queryKey";
 import { TComment } from "@customTypes/comment";
 
-// 페이지 데이터 타입
-// interface PageData {
-//   comments: TComment[];
-//   currentPage: number;
-//   totalComments: number;
-//   totalPages: number;
-// }
-
-// // 무한 스크롤 데이터 구조 타입
-// interface InfiniteQueryData {
-//   pages: PageData[];
-//   pageParams: number[]; // 각 페이지의 파라미터 값들
-// }
-
-// old 매개변수의 타입 (any 대신 사용)
 interface InfiniteCommentsData {
   pages: {
     comments: TComment[];

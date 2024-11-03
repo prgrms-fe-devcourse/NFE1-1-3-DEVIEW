@@ -9,7 +9,8 @@ export default function PostDetailPage() {
     postId: id ?? undefined,
     enabled: Boolean(id)
   });
-
+  console.log("PostDetailPage: ", post);
+  console.log(post?._id);
   // ID가 없는 경우 메인 페이지로 리다이렉트
   if (!id) {
     return <Navigate to="/" replace />;
@@ -49,7 +50,7 @@ export default function PostDetailPage() {
   return (
     <div className="m-auto my-[1.625rem] flex max-w-[1240px] flex-col gap-12 px-5">
       <PostDetail post={post} />
-      <Feedback isClicked={post.liked} total={post.likesCount} subject={post._id}/>
+      <Feedback postId={post._id} post={post} />
       <CommentWrite />
       <CommentList />
     </div>

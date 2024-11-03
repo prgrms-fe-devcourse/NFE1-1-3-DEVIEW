@@ -1,8 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-// import { GetCommentsRequestProps, GetCommentsResponseProps } from "@customTypes";
 import { getComments } from "@services/comment/getComments";
-
-export const COMMENTS_QUERY_KEY = "commentList";
+import { COMMENTS_QUERY_KEY } from "@constants/queryKey";
 
 type UseInfiniteCommentsQueryProps = {
   postId: string;
