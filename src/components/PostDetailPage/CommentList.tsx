@@ -8,7 +8,7 @@ import Avatar from "boring-avatars";
 export const CommentList = () => {
   const { id: postId } = useParams<{ id: string }>();
   const { ref, inView } = useInView({
-    threshold: 0,
+    threshold: 0.8,
     rootMargin: "10px"
   });
 
@@ -60,7 +60,7 @@ export const CommentList = () => {
   const totalComments = data.pages[0].totalComments;
   return (
     <div className="flex flex-col gap-4">
-      {/* 전체 댓글 수 표시 */}
+      
       <div className="text-14 font-medium">전체 댓글 {totalComments}개</div>
 
       {/* 댓글 목록 */}

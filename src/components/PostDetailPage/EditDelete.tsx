@@ -3,7 +3,7 @@ import { MdOutlineModeEdit } from "react-icons/md";
 import { usePostDelete } from "@hooks/usePostDelete";
 import { usePostDetailStore } from "@stores/postDetailStore";
 import { toast } from "react-hot-toast";
-
+//! 수정 기능 추가 예정
 export const EditDelete = () => {
   const postId = usePostDetailStore((state) => state.post?._id);
 
