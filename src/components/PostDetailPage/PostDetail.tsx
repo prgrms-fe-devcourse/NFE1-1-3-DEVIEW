@@ -1,11 +1,7 @@
-import { EditDelete, PostDetailHeader, CodeViewer } from "@components/PostDetailPage";
-import { TPostDetail } from "@customTypes/post";
+import { CodeViewer, EditDelete, PostDetailHeader } from "@components/PostDetailPage";
 import { usePostDetailStore } from "@stores/postDetailStore";
-type PostDetailProps = {
-  post: TPostDetail;
-};
 
-export const PostDetail = ({ post }: PostDetailProps) => {
+export const PostDetail = () => {
   const postDetail = usePostDetailStore((state) => state.post);
 
   // early return으로 안전하게 처리
@@ -17,10 +13,10 @@ export const PostDetail = ({ post }: PostDetailProps) => {
   return (
     <>
       <section className="flex justify-between border-b border-solid border-gray pb-3 pr-3">
-        <PostDetailHeader title={post.title} post={post} />
+        <PostDetailHeader />
         {postDetail.isAuthor && <EditDelete />}
       </section>
-      <article className="text-16 font-medium">{post.detail}</article>
+      <article className="text-16 font-medium">{postDetail.detail}</article>
       <section>
         <CodeViewer content={postDetail.code} />
       </section>

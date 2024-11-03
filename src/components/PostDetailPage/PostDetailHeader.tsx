@@ -1,25 +1,22 @@
 import { LanVersionTagList, PostMetaList } from "@components/PostDetailPage";
-import { TPostDetail } from "@customTypes/post";
+import { usePostDetailStore } from "@stores/postDetailStore";
 
-type PostDetailHeaderProps = {
-  title: string;
-  post: TPostDetail;
-};
-//updateAt -> createdAt
-//조회수 -> viewsCount
-//답변수 -> commentCount
-//id -> userId
-export const PostDetailHeader = ({ title, post }: PostDetailHeaderProps) => {
+export const PostDetailHeader = () => {
+  const postDetail = usePostDetailStore((state) => state.post);
+
+  // early return으로 null/undefined 처리
+  if (!postDetail) return null;
+
   return (
     <div className="flex flex-col gap-[0.625rem]">
-      <h1 className="text-20 font-medium">{title}</h1>
+      <h1 className="text-20 font-medium">{postDetail.title}</h1>
       <PostMetaList
-        createdAt={post.createdAt}
-        viewsCount={post.viewsCount}
-        commentCount={post.commentsCount}
-        userId={post.author.userId}
+        createdAt={postDetail.createdAt}
+        viewsCount={postDetail.viewsCount}
+        commentCount={postDetail.commentsCount}
+        userId={postDetail.author.userId}
       />
-      <LanVersionTagList devDependencies={post.devDependencies} devVersions={post.devVersions} />
+      <LanVersionTagList devDependencies={postDetail.devDependencies} devVersions={postDetail.devVersions} />
     </div>
   );
 };

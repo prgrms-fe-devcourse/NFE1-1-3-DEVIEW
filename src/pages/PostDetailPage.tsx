@@ -46,7 +46,7 @@ export default function PostDetailPage() {
 
   return (
     <div className="m-auto my-[1.625rem] flex max-w-[1240px] flex-col gap-12 px-5">
-      <PostDetail post={post} />
+      <PostDetail />
       <Feedback postId={post._id} post={post} />
       <CommentWrite />
       <CommentList />
