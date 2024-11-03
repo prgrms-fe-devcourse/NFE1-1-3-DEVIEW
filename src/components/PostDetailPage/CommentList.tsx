@@ -77,7 +77,7 @@ export const CommentList = () => {
                 </figure>
                 <span className="flex text-12 font-medium flex-center md:text-16">{comment.author.userId}</span>
               </div>
-              {comment.isMine && <EditDelete isAuthor={comment.isMine} />}
+              {comment.isMine && <EditDelete />}
             </section>
 
             <section className="px-1">

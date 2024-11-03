@@ -9,7 +9,6 @@ export const PostDetail = () => {
     return null; // 빈 화면으로 처리
   }
 
-  console.log("PostDetailstore: ", postDetail);
   return (
     <>
       <section className="flex justify-between border-b border-solid border-gray pb-3 pr-3">
