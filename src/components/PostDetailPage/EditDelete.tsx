@@ -1,11 +1,11 @@
 import { RiDeleteBinLine } from "react-icons/ri";
 import { MdOutlineModeEdit } from "react-icons/md";
-type EditDeleteProps = {
-  isAuthor?: boolean;
-};
+// import { usePostDetailStore } from "@stores/postDetailStore";
+
 //!수정 삭제 기능 구현 필요
-export const EditDelete = ({ isAuthor }: EditDeleteProps) => {
-  if (!isAuthor) return null;
+export const EditDelete = () => {
+  
+  
   return (
     <div className="flex gap-8">
       <button type="button">

@@ -1,7 +1,6 @@
-import { Feedback, CommentList, CommentWrite, PostDetail } from "@components/PostDetailPage";
-import { useParams } from "react-router-dom";
+import { CommentList, CommentWrite, Feedback, PostDetail } from "@components/PostDetailPage";
 import usePostDetail from "@hooks/usePostDetail";
-import { Navigate } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 
 export default function PostDetailPage() {
   const { id } = useParams<{ id: string }>();

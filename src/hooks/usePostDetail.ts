@@ -23,7 +23,6 @@ interface UsePostDetailReturn {
 }
 
 export default function usePostDetail({ postId, enabled = true }: UsePostDetailProps): UsePostDetailReturn {
-  // Zustand store에서 액션들을 가져옴
   const { setPost, setLoading, setError } = usePostDetailStore();
 
   const isInvalidId = !postId;
