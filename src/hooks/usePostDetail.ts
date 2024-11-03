@@ -3,7 +3,9 @@ import { getPostDetail } from "@services/post/getPostDetail";
 import { TPostDetail } from "@customTypes/post";
 import { AxiosError } from "axios";
 import { ErrorResponse } from "@customTypes/errorResponse";
-import { POST_DETAIL_QUERY_KEY } from '@constants/queryKey';
+import { POST_DETAIL_QUERY_KEY } from "@constants/queryKey";
+import { usePostDetailStore } from "@stores/postDetailStore";
+import { useEffect } from "react";
 
 interface UsePostDetailProps {
   postId: string | undefined;
@@ -20,13 +22,10 @@ interface UsePostDetailReturn {
   isFetching: boolean;
 }
 
-/**
- * 게시글 상세 정보를 조회하는 훅
- * @param postId - 게시글 ID (undefined 가능)
- * @param enabled - 쿼리 활성화 여부
- */
 export default function usePostDetail({ postId, enabled = true }: UsePostDetailProps): UsePostDetailReturn {
-  // ID 유효성 체크
+  // Zustand store에서 액션들을 가져옴
+  const { setPost, setLoading, setError } = usePostDetailStore();
+
   const isInvalidId = !postId;
 
   const {
@@ -41,12 +40,22 @@ export default function usePostDetail({ postId, enabled = true }: UsePostDetailP
     queryFn: () => getPostDetail({ postId: postId! }),
     enabled: enabled && Boolean(postId),
     retry: 1,
-    staleTime: 1000 * 60 * 5, // 5분
-    gcTime: 1000 * 60 * 10, // 10분
-    refetchOnWindowFocus: false // 창 포커스 시 자동 재조회 비활성화
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 10,
+    refetchOnWindowFocus: false
   });
 
-  // refetch 함수 타입 안전하게 래핑
+  // React Query의 상태를 Zustand store에 동기화
+  useEffect(() => {
+    setLoading(isLoading);
+    if (post) {
+      setPost(post);
+    }
+    if (error) {
+      setError(error as Error);
+    }
+  }, [post, isLoading, error, setPost, setLoading, setError]);
+
   const refetch = async () => {
     try {
       await originalRefetch();

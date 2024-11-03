@@ -9,14 +9,12 @@ export default function PostDetailPage() {
     postId: id ?? undefined,
     enabled: Boolean(id)
   });
-  console.log("PostDetailPage: ", post);
-  console.log(post?._id);
   // ID가 없는 경우 메인 페이지로 리다이렉트
   if (!id) {
     return <Navigate to="/" replace />;
   }
   console.log("PostDetailPage: ", post);
-  // 로딩 중일 때 스켈레톤 UI 표시
+
   if (isLoading) {
     return (
       <div className="m-auto my-[1.625rem] flex max-w-[1240px] flex-col gap-12 px-5">
