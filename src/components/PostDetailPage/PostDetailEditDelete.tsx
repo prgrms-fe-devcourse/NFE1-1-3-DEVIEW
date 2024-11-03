@@ -1,10 +1,11 @@
-import { RiDeleteBinLine } from "react-icons/ri";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { usePostDelete } from "@hooks/usePostDelete";
 import { usePostDetailStore } from "@stores/postDetailStore";
+import DeleteBtn from "@components/Common/DeleteBtn";
+import EditBtn from "@components/Common/EditBtn";
 import { toast } from "react-hot-toast";
 //! 수정 기능 추가 예정
-export const EditDelete = () => {
+export const PostDetailEditDelete = () => {
   const postId = usePostDetailStore((state) => state.post?._id);
 
   const { mutate: deletePostMutate, isPending } = usePostDelete({
@@ -27,17 +28,10 @@ export const EditDelete = () => {
 
   return (
     <div className="flex gap-8">
-      <button type="button">
-        <MdOutlineModeEdit className="h-5 w-5" />
-      </button>
-      <button
-        type="button"
-        onClick={onClickDelete}
-        disabled={isPending}
-        className="text-red-500 hover:text-red-600 disabled:opacity-50"
-      >
-        <RiDeleteBinLine className="h-5 w-5" />
-      </button>
+      <EditBtn />
+      <DeleteBtn onClick={onClickDelete} disabled={isPending} />
     </div>
   );
 };
+
+export default PostDetailEditDelete;

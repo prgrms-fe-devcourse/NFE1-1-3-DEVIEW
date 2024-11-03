@@ -1,4 +1,4 @@
-import { CodeViewer, EditDelete, PostDetailHeader } from "@components/PostDetailPage";
+import { CodeViewer, PostDetailEditDelete, PostDetailHeader } from "@components/PostDetailPage";
 import { usePostDetailStore } from "@stores/postDetailStore";
 
 export const PostDetail = () => {
@@ -13,7 +13,7 @@ export const PostDetail = () => {
     <>
       <section className="flex justify-between border-b border-solid border-gray pb-3 pr-3">
         <PostDetailHeader />
-        {postDetail.isAuthor && <EditDelete />}
+        {postDetail.isAuthor && <PostDetailEditDelete />}
       </section>
       <article className="text-16 font-medium">{postDetail.detail}</article>
       <section>
@@ -22,3 +22,5 @@ export const PostDetail = () => {
     </>
   );
 };
+
+export default PostDetail;
