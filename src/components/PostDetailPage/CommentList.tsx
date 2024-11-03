@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { EditDelete, Feedback, CodeViewer } from "@components/PostDetailPage";
+import { EditDelete, CodeViewer } from "@components/PostDetailPage";
 import { useInView } from "react-intersection-observer";
 import useInfiniteCommentsQuery from "@hooks/useInfiniteComment";
 import { useEffect } from "react";
@@ -8,8 +8,8 @@ import Avatar from "boring-avatars";
 export const CommentList = () => {
   const { id: postId } = useParams<{ id: string }>();
   const { ref, inView } = useInView({
-    threshold: 0,
-    rootMargin: "50px" // 조금 더 일찍 감지하도록 설정
+    threshold: 0.8,
+    rootMargin: "10px"
   });
 
   const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage, error } = useInfiniteCommentsQuery({
@@ -60,7 +60,7 @@ export const CommentList = () => {
   const totalComments = data.pages[0].totalComments;
   return (
     <div className="flex flex-col gap-4">
-      {/* 전체 댓글 수 표시 */}
+      
       <div className="text-14 font-medium">전체 댓글 {totalComments}개</div>
 
       {/* 댓글 목록 */}
@@ -77,14 +77,14 @@ export const CommentList = () => {
                 </figure>
                 <span className="flex text-12 font-medium flex-center md:text-16">{comment.author.userId}</span>
               </div>
-              {comment.isMine && <EditDelete isAuthor={comment.isMine} />}
+              {comment.isMine && <EditDelete />}
             </section>
 
             <section className="px-1">
               <CodeViewer content={comment.content} />
             </section>
 
-            {/* <Feedback total={comment.thumbsCount} isClicked={comment.thumbed} /> */}
+            {/* 댓글 피드백 컴포넌트 들어갈 자리*/}
           </section>
         ))}
 

@@ -1,23 +1,23 @@
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { IoBookmarkOutline, IoBookmark } from "react-icons/io5";
 import { TPostDetail } from "@customTypes/post";
-import { useToggleAction } from "@hooks/useToggleAction";
+import { usePostLikeScrap } from "@hooks/usePostLikeScrap";
 import { likePost } from "@services/post/likePost";
 import { scrapPost } from "@services/post/scrapPost";
 
-type FeedbackProps = {
+type PostLikeScrapProps = {
   postId: string;
   post: TPostDetail;
 };
 
-export const Feedback = ({ postId, post }: FeedbackProps) => {
-  const { mutate: likeMutate } = useToggleAction({
+export const PostLikeScrap = ({ postId, post }: PostLikeScrapProps) => {
+  const { mutate: likeMutate } = usePostLikeScrap({
     actionKey: "liked",
     countKey: "likesCount",
     mutationFn: likePost
   });
 
-  const { mutate: scrapMutate } = useToggleAction({
+  const { mutate: scrapMutate } = usePostLikeScrap({
     actionKey: "scraped",
     countKey: "scrapsCount",
     mutationFn: scrapPost

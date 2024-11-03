@@ -4,7 +4,7 @@ import { createComment } from "@services/comment/createComment";
 import { COMMENTS_QUERY_KEY } from "@/constants/queryKey";
 import { TComment } from "@customTypes/comment";
 
-interface InfiniteCommentsData {
+type InfiniteCommentsData = {
   pages: {
     comments: TComment[];
     currentPage: number;
@@ -12,12 +12,12 @@ interface InfiniteCommentsData {
     totalPages: number;
   }[];
   pageParams: number[];
-}
+};
 
-interface UseCreateCommentProps {
+type UseCreateCommentProps = {
   onSuccess?: (data: Omit<TComment, "thumbed">) => void;
   onError?: (error: Error) => void;
-}
+};
 
 export function useCreateComment({ onSuccess, onError }: UseCreateCommentProps = {}) {
   const queryClient = useQueryClient();

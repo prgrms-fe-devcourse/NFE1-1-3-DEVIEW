@@ -1,7 +1,6 @@
-import { Feedback, CommentList, CommentWrite, PostDetail } from "@components/PostDetailPage";
-import { useParams } from "react-router-dom";
+import { CommentList, CommentWrite, PostDetail, PostLikeScrap } from "@components/PostDetailPage";
 import usePostDetail from "@hooks/usePostDetail";
-import { Navigate } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 
 export default function PostDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -9,14 +8,12 @@ export default function PostDetailPage() {
     postId: id ?? undefined,
     enabled: Boolean(id)
   });
-  console.log("PostDetailPage: ", post);
-  console.log(post?._id);
   // ID가 없는 경우 메인 페이지로 리다이렉트
   if (!id) {
     return <Navigate to="/" replace />;
   }
   console.log("PostDetailPage: ", post);
-  // 로딩 중일 때 스켈레톤 UI 표시
+
   if (isLoading) {
     return (
       <div className="m-auto my-[1.625rem] flex max-w-[1240px] flex-col gap-12 px-5">
@@ -49,8 +46,8 @@ export default function PostDetailPage() {
 
   return (
     <div className="m-auto my-[1.625rem] flex max-w-[1240px] flex-col gap-12 px-5">
-      <PostDetail post={post} />
-      <Feedback postId={post._id} post={post} />
+      <PostDetail />
+      <PostLikeScrap postId={post._id} post={post} />
       <CommentWrite />
       <CommentList />
     </div>
