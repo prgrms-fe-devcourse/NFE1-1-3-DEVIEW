@@ -1,4 +1,4 @@
-import { CommentList, CommentWrite, Feedback, PostDetail } from "@components/PostDetailPage";
+import { CommentList, CommentWrite, PostDetail, PostLikeScrap } from "@components/PostDetailPage";
 import usePostDetail from "@hooks/usePostDetail";
 import { Navigate, useParams } from "react-router-dom";
 
@@ -47,7 +47,7 @@ export default function PostDetailPage() {
   return (
     <div className="m-auto my-[1.625rem] flex max-w-[1240px] flex-col gap-12 px-5">
       <PostDetail />
-      <Feedback postId={post._id} post={post} />
+      <PostLikeScrap postId={post._id} post={post} />
       <CommentWrite />
       <CommentList />
     </div>

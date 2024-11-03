@@ -20,7 +20,7 @@ type ToggleConfig<T extends "liked" | "scraped"> = {
   mutationFn: (params: ToggleActionParams) => Promise<ToggleActionResponse<T>>;
 };
 
-export function useToggleAction<T extends "liked" | "scraped">({ actionKey, countKey, mutationFn }: ToggleConfig<T>) {
+export function usePostLikeScrap<T extends "liked" | "scraped">({ actionKey, countKey, mutationFn }: ToggleConfig<T>) {
   const queryClient = useQueryClient();
 
   return useMutation({

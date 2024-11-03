@@ -7,12 +7,12 @@ import { POST_DETAIL_QUERY_KEY } from "@constants/queryKey";
 import { usePostDetailStore } from "@stores/postDetailStore";
 import { useEffect } from "react";
 
-interface UsePostDetailProps {
+type UsePostDetailProps = {
   postId: string | undefined;
   enabled?: boolean;
-}
+};
 
-interface UsePostDetailReturn {
+type UsePostDetailReturn = {
   post: TPostDetail | undefined;
   isLoading: boolean;
   isError: boolean;
@@ -20,7 +20,7 @@ interface UsePostDetailReturn {
   refetch: () => Promise<void>;
   isInvalidId: boolean;
   isFetching: boolean;
-}
+};
 
 export default function usePostDetail({ postId, enabled = true }: UsePostDetailProps): UsePostDetailReturn {
   const { setPost, setLoading, setError } = usePostDetailStore();

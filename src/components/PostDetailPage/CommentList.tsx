@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { EditDelete, Feedback, CodeViewer } from "@components/PostDetailPage";
+import { EditDelete, CodeViewer } from "@components/PostDetailPage";
 import { useInView } from "react-intersection-observer";
 import useInfiniteCommentsQuery from "@hooks/useInfiniteComment";
 import { useEffect } from "react";
@@ -9,7 +9,7 @@ export const CommentList = () => {
   const { id: postId } = useParams<{ id: string }>();
   const { ref, inView } = useInView({
     threshold: 0,
-    rootMargin: "50px" // 조금 더 일찍 감지하도록 설정
+    rootMargin: "10px"
   });
 
   const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage, error } = useInfiniteCommentsQuery({
@@ -84,7 +84,7 @@ export const CommentList = () => {
               <CodeViewer content={comment.content} />
             </section>
 
-            {/* <Feedback total={comment.thumbsCount} isClicked={comment.thumbed} /> */}
+            {/* 댓글 피드백 컴포넌트 들어갈 자리*/}
           </section>
         ))}
 
