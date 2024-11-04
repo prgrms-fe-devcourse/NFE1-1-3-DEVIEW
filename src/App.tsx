@@ -7,9 +7,8 @@ import { autoLogin } from "@services/auth/autoLogin";
 import useSocketStore from "@stores/socketStore";
 
 export const App = () => {
-  const { setUserInfo, userInfo } = useUserStore();
+  const { setUserInfo } = useUserStore();
   const { socket, initializeSocket, disconnectSocket } = useSocketStore();
-  console.log(userInfo?.role);
 
   useEffect(() => {
     initializeSocket();

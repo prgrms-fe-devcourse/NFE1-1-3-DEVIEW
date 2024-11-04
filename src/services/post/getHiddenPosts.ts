@@ -5,8 +5,8 @@ import axiosInstance from "@services/axiosInstance";
 import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 
-type GetHiddenPostsRequestProps = PaginationRequestProps;
-type GetHiddenPostsResponseProps = CommonPostResponseProps;
+export type GetHiddenPostsRequestProps = PaginationRequestProps;
+export type GetHiddenPostsResponseProps = CommonPostResponseProps;
 export async function getHiddenPosts({
   limit,
   page

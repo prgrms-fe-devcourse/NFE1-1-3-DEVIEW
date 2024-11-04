@@ -1,4 +1,4 @@
-import { PostListItem } from "@components/Common/PostListItem";
+import PostListItem from "@components/Common/PostListItem";
 import { TPost } from "@customTypes/post";
 
 type PostListProps = {
