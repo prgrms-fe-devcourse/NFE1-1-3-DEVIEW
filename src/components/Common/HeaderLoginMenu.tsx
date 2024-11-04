@@ -59,16 +59,19 @@ export const HeaderLoginMenu = () => {
   return (
     <div>
       {isLoggedIn ? (
-        <div className="absolute right-4 top-2 flex md:static md:flex md:space-x-8">
+        <div className="2md:space-x-8 md: absolute right-4 top-2 flex md:static md:flex md:gap-4">
           <Link
-            className="primary-btn hidden hover:opacity-80 md:h-10 md:w-24 md:p-1 md:flex-center"
+            className="2md:flex-center primary-btn hidden hover:opacity-80 md:h-10 md:w-24 md:p-1"
             type="button"
             to="/post/create"
           >
             질문하기
           </Link>
           <div className="relative inline-block">
-            <GoBell className="mr-2 h-10 w-6 cursor-pointer md:mr-0 md:h-10 md:w-10" onClick={toggleBellIconModal} />
+            <GoBell
+              className="2md:h-10 2md:w-10 mr-2 h-10 w-6 cursor-pointer md:mr-0 md:h-8 md:w-8"
+              onClick={toggleBellIconModal}
+            />
             <NotificationCount count={data?.unreadNotificationsCount ?? 0} />
           </div>
           {isBellIconOpen && (
@@ -84,7 +87,7 @@ export const HeaderLoginMenu = () => {
             </>
           )}
           <div
-            className="mt-2 h-6 w-6 cursor-pointer overflow-hidden rounded-full md:mt-0 md:h-10 md:w-10"
+            className="2md:h-10 2md:w-10 mt-2 h-6 w-6 cursor-pointer overflow-hidden rounded-full md:mt-0 md:h-8 md:w-8"
             onClick={toggleUserIconModal}
           >
             <Avatar name={userInfo?.userId ?? ""} variant="beam" />

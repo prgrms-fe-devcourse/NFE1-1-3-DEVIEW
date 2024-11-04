@@ -71,7 +71,7 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="w-full flex-grow md:mx-8 md:w-auto">
+        <div className="2md:mx-8 w-full flex-grow md:mx-4 md:w-auto">
           <SearchBar onCloseFilter={onCloseFilter} onFocus={onFocus} />
         </div>
 
