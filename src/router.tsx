@@ -12,17 +12,21 @@ import RankPage from "@pages/RankPage";
 import SearchPage from "@pages/SearchPage";
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import { ProtectedRoute } from "@components/Common/ProtectedRoute";
+import { ScrollToTop } from "@components/Common/ScrollToTop";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <>
-        <Header />
-        <main id="wrapper">
-          <Outlet />
-        </main>
-        <Footer />
+        <ScrollToTop />
+        <div>
+          <Header />
+          <main id="wrapper">
+            <Outlet />
+          </main>
+          <Footer />
+        </div>
       </>
     ),
     errorElement: <ErrorPage />,
