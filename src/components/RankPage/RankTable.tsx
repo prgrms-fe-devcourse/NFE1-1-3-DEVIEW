@@ -12,7 +12,14 @@ export const RankTable = ({ data }: RankTableProps) => {
       <RankHeader />
       <tbody>
         {data.map((item, index) => (
-          <RankListItem key={index} rank={item.rank} userId={item.userId} team={item.team} recommend={item.recommend} />
+          <RankListItem
+            key={index}
+            _id={item._id}
+            rank={item.rank}
+            userId={item.userId}
+            team={item.team}
+            recommend={item.recommend}
+          />
         ))}
       </tbody>
     </table>

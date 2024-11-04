@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 type RankListItemProps = TRank;
 
-export const RankListItem = ({ rank, userId, team, recommend }: RankListItemProps) => {
+export const RankListItem = ({ rank, userId, _id, team, recommend }: RankListItemProps) => {
   const navigate = useNavigate();
   return (
     <tr className="text-12 leading-10 md:text-16">
@@ -12,7 +12,7 @@ export const RankListItem = ({ rank, userId, team, recommend }: RankListItemProp
       </td>
       <td
         className="cursor-pointer items-center justify-center border-b border-solid border-lightgray px-4 py-7 text-center leading-4 hover:text-secondary hover:underline"
-        onClick={() => navigate(`/post/user/${userId}`)}
+        onClick={() => navigate(`/post/user/${_id}`)}
       >
         {userId}
       </td>
