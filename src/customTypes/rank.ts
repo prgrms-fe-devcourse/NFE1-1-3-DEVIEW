@@ -1,6 +1,6 @@
 export type TRank = {
   rank: number;
-  name: string;
+  userId: string;
   team: string;
   recommend: number;
 };
