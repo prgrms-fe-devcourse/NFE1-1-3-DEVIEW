@@ -9,8 +9,8 @@ export const PostSectionSkeleton = ({ isError }: PostSectionSkeletonProps) => {
   return (
     <div className={`px-3 py-5 ${isError ? "" : "animate-pulse"}`}>
       {[1, 2, 3].map((v) => (
-        <div className="p-2.5">
-          <PostItemSkeleton bgColor={bgColor} key={v} />
+        <div key={v} className="p-2.5">
+          <PostItemSkeleton bgColor={bgColor} />
         </div>
       ))}
     </div>

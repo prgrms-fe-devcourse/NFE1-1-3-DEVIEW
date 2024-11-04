@@ -68,10 +68,10 @@ export const PostListItem = ({ postItem, ranked }: { postItem: TPost; ranked?: n
               </div>
             </div>
             <Link
-              to={`/post/user/${postItem.author.userId}`}
+              to={`/post/user/${postItem.author?._id}`}
               className="flex w-full gap-1 text-12 text-primary 2xs:w-auto md:text-14"
             >
-              <div className="underline">{postItem.author.userId}</div>
+              <div className="underline">{postItem.author?.userId}</div>
             </Link>
           </div>
         </div>
