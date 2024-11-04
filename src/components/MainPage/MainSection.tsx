@@ -39,8 +39,8 @@ export const MainSection = () => {
           }
         }}
       >
-        {banners.map(({ banner, color }) => (
-          <SwiperSlide className="transition-transform hover:scale-105">
+        {banners.map(({ banner, color }, i) => (
+          <SwiperSlide key={i} className="transition-transform hover:scale-105">
             <ErrorBoundary fallback={<MainBannerSkeleton isError={true} />}>
               <Suspense fallback={<MainBannerSkeleton />}>
                 <MainBanner color={color}>{React.createElement(banner)}</MainBanner>
