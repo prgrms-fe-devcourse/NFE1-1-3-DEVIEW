@@ -25,16 +25,16 @@ export const SearchBar = ({ onFocus, onCloseFilter }: SearchBarProps) => {
     };
 
     const onSearch = () => {
-      if (query.trim()) {
-        const filters =
-          selectedFilters.length > 0
-            ? `&filters=${selectedFilters.map((filter) => (filter === "C#" ? encodeURIComponent(filter) : filter)).join(",")}`
-            : "";
+      const filters =
+        selectedFilters.length > 0
+          ? `&filters=${selectedFilters.map((filter) => (filter === "C#" ? encodeURIComponent(filter) : filter)).join(",")}`
+          : "";
 
+      if (query.trim() || selectedFilters.length > 0) {
         navigate(`/search/${encodeURIComponent(query)}${filters}`);
         onCloseFilter();
       } else {
-        alert("검색어를 입력해주세요.");
+        alert("검색어 입력 또는 필터를 선택해주세요.");
       }
     };
 

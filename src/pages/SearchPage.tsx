@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { DEV_DEPENDENCIES_LIST } from "@constants/devDependenciesList";
 import { useQuery } from "@tanstack/react-query";
 import { searchPosts } from "@services/post/searchPosts";
@@ -42,7 +42,7 @@ export default function SearchPage() {
         page: 1,
         limit: 10
       }),
-    enabled: !!filteredQuery
+    enabled: true
   });
 
   if (isLoading)
@@ -56,21 +56,15 @@ export default function SearchPage() {
   return (
     <>
       <div className="mx-auto max-w p-8">
-        <div className="flex items-center justify-between">
-          <p className="mb-6 flex text-20 md:mb-0 md:text-20">
-            <span className="mr-4">검색 조건</span>
-
-            {filters.length > 0 &&
-              filters.map((filter) => (
-                <div key={filter} className="mr-2 items-center rounded bg-lightgray px-2 py-1 text-12">
-                  <span>{filter}</span>
-                </div>
-              ))}
-          </p>
-          <Link className="primary-btn hidden p-1 md:m-4 md:h-10 md:w-44 md:flex-center" to="/post/create">
-            코드 질문하기
-          </Link>
-        </div>
+        <p className="mb-6 flex text-16 md:text-20">
+          <span className="mr-4">검색 조건</span>
+          {filters.length > 0 &&
+            filters.map((filter) => (
+              <div key={filter} className="mr-2 items-center rounded bg-lightgray px-2 py-1 text-12">
+                <span>{filter}</span>
+              </div>
+            ))}
+        </p>
 
         <p className="mb-6 text-16 md:text-20">
           <span>‘</span>
