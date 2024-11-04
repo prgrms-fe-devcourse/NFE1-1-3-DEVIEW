@@ -25,7 +25,7 @@ export default function RankPage() {
   const rankData: TRank[] =
     data?.userRanking.map((user, index) => ({
       rank: index + 1,
-      name: user.username,
+      userId: user.userId,
       team: user.group as (typeof GROUP_LIST)[number],
       recommend: user.totalThumbsCount
     })) || [];
