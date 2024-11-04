@@ -27,6 +27,11 @@ export const App = () => {
           AccessTokenStorage.setToken(data.accessToken);
           setUserInfo(data.userInfo);
           console.log("자동 로그인 성공");
+          // 로그인한 사용자가 admin인 경우 adminConnected 이벤트 보내기
+          if (data.userInfo.role === "admin") {
+            console.log("관리자 로그인 메시지 보내기");
+            socket?.emit("adminConnect", { message: "Admin user connected successfully" });
+          }
         } catch (error) {
           console.error("자동 로그인 실패:", error);
         }

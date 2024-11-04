@@ -1,8 +1,14 @@
 import { TPost } from "@customTypes/post";
 import { PostListIcon } from "@components/Common/PostListIcon";
 import { Link } from "react-router-dom";
+import { forwardRef } from "react";
 
-export const PostListItem = ({ postItem, ranked }: { postItem: TPost; ranked?: number }) => {
+type PostListItemProps = {
+  postItem: TPost;
+  ranked?: number;
+};
+
+const PostListItem = forwardRef<HTMLDivElement, PostListItemProps>(({ postItem, ranked }, ref) => {
   // 숫자 포맷함수
   // 1000이상일 경우 '만','천' 단위로 표시
   // 소수점 한자리 이후로 내림처리
@@ -24,7 +30,7 @@ export const PostListItem = ({ postItem, ranked }: { postItem: TPost; ranked?: n
     return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
   };
   return (
-    <div className="relative p-2.5">
+    <div className="relative p-2.5" ref={ref}>
       {ranked && (
         <div
           className={`absolute left-0 top-2 h-6 w-6 bg-ranked bg-contain bg-center bg-no-repeat text-12 flex-center md:top-0 md:h-8 md:w-8 md:text-14`}
@@ -78,4 +84,6 @@ export const PostListItem = ({ postItem, ranked }: { postItem: TPost; ranked?: n
       </div>
     </div>
   );
-};
+});
+
+export default PostListItem;

@@ -3,7 +3,7 @@ import { DEV_DEPENDENCIES_LIST } from "@constants/devDependenciesList";
 import { useQuery } from "@tanstack/react-query";
 import { searchPosts } from "@services/post/searchPosts";
 import { Loading } from "@components/Common/Loading";
-import { PostListItem } from "@components/Common/PostListItem";
+import PostListItem from "@components/Common/PostListItem";
 import { NoContent } from "@components/Common/NoContent";
 
 type DevDependencies = (typeof DEV_DEPENDENCIES_LIST)[number];

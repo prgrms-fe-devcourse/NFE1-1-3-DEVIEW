@@ -12,6 +12,7 @@ import RankPage from "@pages/RankPage";
 import SearchPage from "@pages/SearchPage";
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import { ProtectedRoute } from "@components/Common/ProtectedRoute";
+import { AdminPage } from "@pages/AdminPage";
 import { ScrollToTop } from "@components/Common/ScrollToTop";
 
 export const router = createBrowserRouter([
@@ -74,6 +75,14 @@ export const router = createBrowserRouter([
       {
         path: "/search/:query",
         element: <SearchPage />
+      },
+      {
+        path: "/admin",
+        element: (
+          <ProtectedRoute forAdmin>
+            <AdminPage />
+          </ProtectedRoute>
+        )
       }
     ]
   },
