@@ -1,15 +1,20 @@
 import { TRank } from "@customTypes/rank";
+import { useNavigate } from "react-router-dom";
 
 type RankListItemProps = TRank;
 
-export const RankListItem = ({ rank, name, team, recommend }: RankListItemProps) => {
+export const RankListItem = ({ rank, userId, team, recommend }: RankListItemProps) => {
+  const navigate = useNavigate();
   return (
     <tr className="text-12 leading-10 md:text-16">
       <td className="items-center justify-center border-b border-solid border-lightgray px-10 py-7 text-left font-bold leading-4 text-primary">
         {rank}
       </td>
-      <td className="items-center justify-center border-b border-solid border-lightgray px-4 py-7 text-center leading-4">
-        {name}
+      <td
+        className="cursor-pointer items-center justify-center border-b border-solid border-lightgray px-4 py-7 text-center leading-4 hover:text-secondary hover:underline"
+        onClick={() => navigate(`/post/user/${userId}`)}
+      >
+        {userId}
       </td>
       <td className="items-center justify-center border-b border-solid border-lightgray px-4 py-7 text-center font-bold leading-4 text-gray">
         {team}

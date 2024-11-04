@@ -29,8 +29,6 @@ export const CodeViewer = ({ content }: CodeViewerProps) => {
         .ql-editor {
           padding: 0;
         }
-        .Pre .ql-syntax {
-        }
       `;
       quillRef.current.appendChild(style);
     }

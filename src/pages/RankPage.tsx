@@ -25,13 +25,13 @@ export default function RankPage() {
   const rankData: TRank[] =
     data?.userRanking.map((user, index) => ({
       rank: index + 1,
-      name: user.username,
+      userId: user.userId,
       team: user.group as (typeof GROUP_LIST)[number],
       recommend: user.totalThumbsCount
     })) || [];
 
   return (
-    <div className="mx-auto max-w p-16">
+    <div className="mx-auto max-w p-4 md:p-16">
       {rankData.length > 0 ? (
         <RankTable data={rankData} />
       ) : (

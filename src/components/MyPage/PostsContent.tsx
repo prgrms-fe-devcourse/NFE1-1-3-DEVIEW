@@ -9,6 +9,7 @@ import useInfinite from "@hooks/useInfinite";
 export const PostsContent = () => {
   const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     useInfinite<CommonPostResponseProps>({ key: "userPosts", fetchFunc: getMyPosts, limit: 10 });
+
   const observer = useRef<IntersectionObserver | null>(null);
   const lastPostElementRef = useCallback(
     (node: HTMLDivElement | null) => {
@@ -39,6 +40,7 @@ export const PostsContent = () => {
     <div className="">
       {data.pages.map((page, pageIndex) => (
         <React.Fragment key={pageIndex}>
+          <p className="p-2 py-8 text-16 md:text-20">{page.totalPosts}개의 게시글</p>
           {page.posts.map((post, postIndex) => (
             <div
               key={post._id}

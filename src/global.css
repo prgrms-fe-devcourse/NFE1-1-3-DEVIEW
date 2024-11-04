@@ -46,4 +46,12 @@
   footer {
     @apply relative mt-auto h-40;
   }
+
+  .ql-snow .ql-editor pre.ql-syntax {
+    @apply text-14 leading-5 md:text-16 md:leading-6;
+  }
+
+  .ql-editor {
+    @apply text-14 leading-5 md:text-16 md:leading-6;
+  }
 }

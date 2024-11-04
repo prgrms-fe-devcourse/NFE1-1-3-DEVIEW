@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, KeyboardEvent, useRef, MouseEvent } from "react";
+import { useState, ChangeEvent, KeyboardEvent, MouseEvent } from "react";
 import { IoMdSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { useFilterStore } from "@stores/searchFiltersStore";
@@ -10,10 +10,9 @@ type SearchBarProps = {
 
 export const SearchBar = ({ onFocus, onCloseFilter }: SearchBarProps) => {
   {
-    const { selectedFilters, deleteFilter } = useFilterStore();
+    const { selectedFilters, deleteFilter, clearFilters } = useFilterStore();
     const [query, setQuery] = useState("");
     const navigate = useNavigate();
-    const inputRef = useRef<HTMLInputElement>(null);
     const displayedFilters = selectedFilters.slice(0, 3);
     const onChange = (e: ChangeEvent<HTMLInputElement>) => setQuery(e.target.value);
     const onClick = (event: MouseEvent<HTMLDivElement>) => {
@@ -25,16 +24,18 @@ export const SearchBar = ({ onFocus, onCloseFilter }: SearchBarProps) => {
     };
 
     const onSearch = () => {
-      if (query.trim()) {
-        const filters =
-          selectedFilters.length > 0
-            ? `&filters=${selectedFilters.map((filter) => (filter === "C#" ? encodeURIComponent(filter) : filter)).join(",")}`
-            : "";
+      const filters =
+        selectedFilters.length > 0
+          ? `&filters=${selectedFilters.map((filter) => (filter === "C#" ? encodeURIComponent(filter) : filter)).join(",")}`
+          : "";
 
+      if (query.trim() || selectedFilters.length > 0) {
         navigate(`/search/${encodeURIComponent(query)}${filters}`);
         onCloseFilter();
+        setQuery("");
+        clearFilters();
       } else {
-        alert("검색어를 입력해주세요.");
+        alert("검색어 입력 또는 필터를 선택해주세요.");
       }
     };
 
@@ -54,8 +55,8 @@ export const SearchBar = ({ onFocus, onCloseFilter }: SearchBarProps) => {
             onFocus={handleFocus}
             onChange={onChange}
             onKeyDown={onKeyDown}
-            ref={inputRef}
             onClick={onClick}
+            value={query}
           />
           <button
             onClick={() => {

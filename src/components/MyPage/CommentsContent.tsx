@@ -39,6 +39,7 @@ export const CommentsContent = () => {
     <div className="">
       {data.pages.map((page, pageIndex) => (
         <React.Fragment key={pageIndex}>
+          <p className="p-2 py-8 text-16 md:text-20">{page.totalComments}개의 댓글</p>
           {page.comments.map((comment, commentIndex) => (
             <div
               key={comment._id}

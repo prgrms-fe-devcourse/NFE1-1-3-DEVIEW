@@ -39,6 +39,7 @@ export const ScrapContent = () => {
     <div className="">
       {data.pages.map((page, pageIndex) => (
         <React.Fragment key={pageIndex}>
+          <p className="p-2 py-8 text-16 md:text-20">{page.totalScraps}개의 스크랩</p>
           {page.posts
             .filter((post): post is TPost => post !== null)
             .map((post, postIndex) => (
