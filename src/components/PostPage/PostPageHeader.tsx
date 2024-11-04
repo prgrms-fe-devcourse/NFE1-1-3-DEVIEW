@@ -1,23 +1,31 @@
 import Select from "react-select";
 
 type PostPageHeaderProps = {
-  order: "recent" | "popular";
-  setOrder: React.Dispatch<React.SetStateAction<"recent" | "popular">>;
+  sort: "latest" | "views";
+  setSort: React.Dispatch<React.SetStateAction<"latest" | "views">>;
   id?: string;
 };
-export const PostPageHeader = ({ order, setOrder, id }: PostPageHeaderProps) => {
+export const PostPageHeader = ({ sort, setSort, id }: PostPageHeaderProps) => {
   const options = [
-    { value: "recent", label: "최신순" },
-    { value: "popular", label: "인기순" }
+    { value: "latest", label: "최신순" },
+    { value: "views", label: "인기순" }
   ];
-  const headerText = { recent: "최신", popular: "인기" };
-
+  const headerText = { latest: "최신", views: "인기" };
+  console.log(id);
   return (
     <div className="flex w-full flex-col p-8 pb-0">
       <div className="flex w-full items-center justify-between">
-        <div className="text-24">
-          {id && `${id}님의 `}
-          {headerText[order]} 게시글
+        <div className="flex flex-col gap-4 text-24">
+          {id === undefined ? (
+            ""
+          ) : id === "" ? (
+            <div className="h-6 w-20"> </div>
+          ) : (
+            <div className="flex">
+              <div className="font-bold text-secondary">{id}</div>님의
+            </div>
+          )}
+          {headerText[sort]} 게시글
         </div>
         <Select
           options={options}
@@ -25,7 +33,7 @@ export const PostPageHeader = ({ order, setOrder, id }: PostPageHeaderProps) => 
           defaultValue={options[0]}
           unstyled
           onChange={(selectedOption) =>
-            setOrder(selectedOption ? (selectedOption.value as "recent" | "popular") : "recent")
+            setSort(selectedOption ? (selectedOption.value as "latest" | "views") : "latest")
           }
           classNames={{
             container: ({ isFocused }) =>

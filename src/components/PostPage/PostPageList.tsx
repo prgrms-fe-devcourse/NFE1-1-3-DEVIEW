@@ -7,20 +7,25 @@ import { getPosts } from "@services/post/getPosts";
 import { getUserPosts } from "@services/user/getUserPosts";
 import { useCallback, useRef } from "react";
 type PostPageUserPostListProps = {
-  order: "recent" | "popular";
-  userId?: string;
+  sort: "latest" | "views";
+  id?: string;
+  setUserId?: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const PostPageList = ({ order, userId }: PostPageUserPostListProps) => {
-  const fc = order === "popular" ? getPopularPosts : getPosts;
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useSuspenseInfinite<CommonPostResponseProps>({
-    key: ["PostPage", order, userId],
-    fetchFunc: userId
-      ? ({ page, limit }) => getUserPosts({ page, limit, order: order, userId: userId })
+export const PostPageList = ({ sort, id, setUserId }: PostPageUserPostListProps) => {
+  const fc = sort === "views" ? getPopularPosts : getPosts;
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useSuspenseInfinite<
+    CommonPostResponseProps & { userId?: string }
+  >({
+    key: ["PostPage", sort, id],
+    fetchFunc: id
+      ? ({ page, limit }) => getUserPosts({ page, limit, sort: sort, userId: id })
       : ({ page, limit }) => fc({ page, limit }),
     limit: 10
   });
-
+  if (data.pages[0]?.userId && setUserId) {
+    setUserId(data.pages[0].userId);
+  }
   const posts = data.pages.flatMap((page) => page.posts);
 
   const observer = useRef<IntersectionObserver | null>(null);
@@ -41,7 +46,9 @@ export const PostPageList = ({ order, userId }: PostPageUserPostListProps) => {
   return (
     <div>
       <div className="flex w-full items-center justify-between p-8">
-        <div className="text-20">{data?.pages[0].totalPosts}개의 질문</div>
+        <div className="flex text-20">
+          <div className="font-bold text-secondary">{data?.pages[0].totalPosts}</div>개의 질문
+        </div>
       </div>
       {posts && (
         <>

@@ -6,20 +6,20 @@ import axios, { AxiosError } from "axios";
 
 type GetUserPostsRequestProps = {
   userId: string;
-  order: "recent" | "popular";
+  sort: "latest" | "views";
 } & PaginationRequestProps;
 
-type GetUserPostsResponseProps = CommonPostResponseProps;
+type GetUserPostsResponseProps = CommonPostResponseProps & { userId: string };
 
 export async function getUserPosts({
   page,
   limit,
-  order,
+  sort,
   userId
 }: GetUserPostsRequestProps): Promise<GetUserPostsResponseProps> {
   try {
     const response = await axiosInstance.get<GetUserPostsResponseProps>(`/user/${userId}/post`, {
-      params: { page, limit, order }
+      params: { page, limit, sort }
     });
     return response.data;
   } catch (error) {

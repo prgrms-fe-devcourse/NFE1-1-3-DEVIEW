@@ -7,21 +7,20 @@ import { useParams } from "react-router-dom";
 
 export default function PostPage() {
   const { id } = useParams<{ id: string }>();
-  const [order, setOrder] = useState<"recent" | "popular">("recent");
+  const [sort, setSort] = useState<"latest" | "views">("latest");
+  const [userId, setUserId] = useState<string>("");
   return (
-    <>
-      <div className="m-auto max-w p-20">
-        {id ? (
-          <PostPageHeader id={id} order={order} setOrder={setOrder} />
-        ) : (
-          <PostPageHeader order={order} setOrder={setOrder} />
-        )}
-        <ErrorBoundary fallback={<PostPageSkeleton isError={true} />}>
-          <Suspense fallback={<PostPageSkeleton />}>
-            {id ? <PostPageList order={order} userId={id} /> : <PostPageList order={order} />}
-          </Suspense>
-        </ErrorBoundary>
-      </div>
-    </>
+    <div className="m-auto max-w p-20">
+      {id ? (
+        <PostPageHeader id={userId} sort={sort} setSort={setSort} />
+      ) : (
+        <PostPageHeader sort={sort} setSort={setSort} />
+      )}
+      <ErrorBoundary fallback={<PostPageSkeleton isError={true} />}>
+        <Suspense fallback={<PostPageSkeleton />}>
+          {id ? <PostPageList sort={sort} id={id} setUserId={setUserId} /> : <PostPageList sort={sort} />}
+        </Suspense>
+      </ErrorBoundary>
+    </div>
   );
 }
