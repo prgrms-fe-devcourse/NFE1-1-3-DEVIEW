@@ -26,6 +26,7 @@ export default function RankPage() {
     data?.userRanking.map((user, index) => ({
       rank: index + 1,
       userId: user.userId,
+      _id: user._id,
       team: user.group as (typeof GROUP_LIST)[number],
       recommend: user.totalThumbsCount
     })) || [];
