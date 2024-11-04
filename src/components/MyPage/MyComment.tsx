@@ -13,7 +13,7 @@ export const MyComment = ({ comment }: MyCommentProps) => {
   };
   return (
     <div
-      className="group flex cursor-pointer flex-col gap-2 border-b-2 border-solid border-primary border-opacity-40 py-2 md:gap-4 md:py-4"
+      className="group flex cursor-pointer flex-col gap-2 border-b-2 border-solid border-primary border-opacity-40 px-2 py-2 md:gap-4 md:py-4"
       onClick={onClick}
     >
       {/* <p className="truncate text-justify text-14 text-black md:text-16">{comment.content}</p> */}
