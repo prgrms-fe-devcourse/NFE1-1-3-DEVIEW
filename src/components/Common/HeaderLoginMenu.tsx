@@ -40,6 +40,13 @@ export const HeaderLoginMenu = () => {
       socket.on("newNotification", () => {
         queryClient.invalidateQueries({ queryKey: ["getMyNotifications"] });
       });
+      socket.on("adminNotification", (data) => {
+        if (userInfo?.role === "admin") {
+          console.log("서버서벗버서버");
+          queryClient.invalidateQueries({ queryKey: ["getMyNotifications"] });
+          console.log(data);
+        }
+      });
     }
     return () => {
       if (socket) {
