@@ -1,9 +1,10 @@
-import { CodeViewer, CommentEditDelete, CommentInteraction } from "@components/PostDetailPage";
+import { CommentEditDelete } from "@components/PostDetailPage";
 import useInfiniteCommentsQuery from "@hooks/useInfiniteComment";
 import Avatar from "boring-avatars";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { useParams } from "react-router-dom";
+import { EditableCodeViewer } from "./EditableCodeViewer";
 
 export const CommentList = () => {
   const { id: postId } = useParams<{ id: string }>();
@@ -11,6 +12,9 @@ export const CommentList = () => {
     threshold: 0.8,
     rootMargin: "10px"
   });
+
+  // 수정 중인 댓글의 ID를 관리하는 state
+  const [editingCommentId, setEditingCommentId] = useState<string | null>(null);
 
   const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage, error } = useInfiniteCommentsQuery({
     postId: postId ?? "",
@@ -58,6 +62,7 @@ export const CommentList = () => {
   // 모든 페이지의 댓글을 하나의 배열로 합치기
   const allComments = data.pages.flatMap((page) => page.comments);
   const totalComments = data.pages[0].totalComments;
+
   return (
     <div className="flex flex-col gap-4">
       <div className="text-14 font-medium">전체 댓글 {totalComments}개</div>
@@ -76,14 +81,26 @@ export const CommentList = () => {
                 </figure>
                 <span className="flex text-12 font-medium flex-center md:text-16">{comment.author.userId}</span>
               </div>
-              {comment.isMine && <CommentEditDelete commentId = {comment._id}/>}
+              {comment.isMine && (
+                <CommentEditDelete
+                  commentId={comment._id}
+                  isEditing={editingCommentId === comment._id} // isEditing prop 추가
+                  onEditStateChange={(isEditing) => {
+                    setEditingCommentId(isEditing ? comment._id : null);
+                  }}
+                />
+              )}
             </section>
 
             <section className="px-1">
-              <CodeViewer content={comment.content} />
+              <EditableCodeViewer
+                content={comment.content}
+                commentId={comment._id}
+                postId={postId ?? ""}
+                isEditing={editingCommentId === comment._id}
+                onEditComplete={() => setEditingCommentId(null)}
+              />
             </section>
-
-            <CommentInteraction commentId={comment._id} />
           </section>
         ))}
 

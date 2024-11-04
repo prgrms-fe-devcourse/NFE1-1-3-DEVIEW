@@ -3,11 +3,14 @@ import EditBtn from "@components/Common/EditBtn";
 import { useCommentDelete } from "@hooks/useCommentDelete";
 import { usePostDetailStore } from "@stores/postDetailStore";
 import { toast } from "react-hot-toast";
+
 type CommentEditDeleteProps = {
   commentId: string;
+  isEditing: boolean; // isEditing을 props로 받도록 수정
+  onEditStateChange: (isEditing: boolean) => void;
 };
 
-export const CommentEditDelete = ({ commentId }: CommentEditDeleteProps) => {
+export const CommentEditDelete = ({ commentId, isEditing, onEditStateChange }: CommentEditDeleteProps) => {
   const postId = usePostDetailStore((state) => state.post?._id);
 
   const { mutate: deleteCommentMutate, isPending } = useCommentDelete({
@@ -27,10 +30,15 @@ export const CommentEditDelete = ({ commentId }: CommentEditDeleteProps) => {
       deleteCommentMutate({ commentId });
     }
   };
+
+  const handleEditClick = () => {
+    onEditStateChange(true);
+  };
+
   return (
     <div className="flex gap-8">
-      <EditBtn />
-      <DeleteBtn onClick={onDelete} disabled={isPending} />
+      <EditBtn onClick={handleEditClick} disabled={isEditing} />
+      <DeleteBtn onClick={onDelete} disabled={isPending || isEditing} />
     </div>
   );
 };

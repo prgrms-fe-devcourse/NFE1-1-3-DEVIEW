@@ -38,7 +38,7 @@ export default function PostDetailPage() {
   // 데이터가 없는 경우 메시지 표시
   if (!post) {
     return (
-      <div className="m-auto my-[1.625rem] flex max-w-[1240px] flex-col gap-12 px-5">
+      <div className="m-auto my-[1.625222rem] flex max-w-[1240px] flex-col gap-12 px-5">
         <div>게시글을 찾을 수 없습니다.</div>
       </div>
     );
