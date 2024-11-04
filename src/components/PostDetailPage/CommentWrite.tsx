@@ -38,7 +38,7 @@ export const CommentWrite = () => {
   return (
     <form className="flex flex-col gap-12 border-t border-solid border-gray" onSubmit={handleSubmit}>
       <h2 className="mt-12 text-20 font-medium">Answer</h2>
-      <div className="flex flex-col gap-7">
+      <div className="flex flex-col gap-12">
         <div className="flex gap-7">
           <figure className="hidden h-12 w-12 overflow-hidden rounded-full md:block md:h-16 md:w-16">
             <Avatar name={userInfo?.userId ?? ""} variant="beam" />

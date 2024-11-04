@@ -1,8 +1,7 @@
 import { formats } from "@components/Common/quillConfig";
 import hljs from "highlight.js";
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import ReactQuill from "react-quill";
-import styled from "styled-components";
 
 type ToolbarOptions =
   | string
@@ -43,26 +42,40 @@ export const EditorContainer = ({ value, onChange }: EditorContainerProps) => {
     []
   );
 
-  const StyledQuillEditor = styled(ReactQuill)`
-    .ql-snow .ql-editor pre.ql-syntax {
-      background-color: #f6f6f6;
-      color: #000000;
+  const quillRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (quillRef.current) {
+      const style = document.createElement("style");
+      style.textContent = `
+        .ql-snow .ql-editor pre {
+          margin-top: 0px;
+          margin-bottom: 0px;
+        }
+        .ql-snow .ql-editor pre.ql-syntax {
+          background-color: #f6f6f6;
+          color: black;
+          border-radius: 8px; 
+          padding: 16px;
+        }
+        .ql-container.ql-snow {
+          padding: 16px;
+        }
+        .ql-editor {
+          padding: 0;
+        }
+      `;
+      quillRef.current.appendChild(style);
     }
-    .ql-container.ql-snow {
-      border: none !important;
-    }
-    .ql-editor {
-      padding: 0;
-    }
-  `;
+  }, []);
 
   return (
     <section className="flex w-full flex-col gap-4 rounded-lg border border-solid border-gray py-7 pl-3 pr-6 shadow">
       <div className="flex flex-col gap-3">
         <h2 className="text-20 font-semibold">질문하고 싶은 코드를 작성해주세요</h2>
         <p className="text-16 font-medium text-primary">주석으로 설명을 추가해주세요.</p>
-        <div className="relative h-[60vh]">
-          <StyledQuillEditor
+        <div ref={quillRef} className="relative h-[60vh]">
+          <ReactQuill
             value={value}
             onChange={onChange}
             modules={modules}
