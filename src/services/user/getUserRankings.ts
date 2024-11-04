@@ -11,6 +11,7 @@ export type GetUserRankingsResponseProps = {
   totalPages: number;
   userRanking: (UserInfo & {
     totalThumbsCount: number;
+    _id: string;
   })[];
 };
 

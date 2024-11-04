@@ -10,7 +10,7 @@ export const BestReviewerBanner = () => {
   });
   return (
     <>
-      <Link to={`/post/user/${data.userId}`} className="flex h-full w-full flex-col justify-between gap-7 p-5 pb-10">
+      <Link to={`/post/user/${data._id}`} className="flex h-full w-full flex-col justify-between gap-7 p-5 pb-10">
         <div className="flex flex-col gap-7">
           <div className="text-16">베스트 리뷰어!</div>
           <div className="w-full whitespace-normal break-words break-all text-20">
