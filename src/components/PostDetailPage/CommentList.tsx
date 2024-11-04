@@ -1,4 +1,4 @@
-import { CommentEditDelete } from "@components/PostDetailPage";
+import { CommentEditDelete, CommentInteraction } from "@components/PostDetailPage";
 import useInfiniteCommentsQuery from "@hooks/useInfiniteComment";
 import Avatar from "boring-avatars";
 import { useEffect, useState } from "react";
@@ -101,6 +101,7 @@ export const CommentList = () => {
                 onEditComplete={() => setEditingCommentId(null)}
               />
             </section>
+            <CommentInteraction commentId={comment._id} />
           </section>
         ))}
 
