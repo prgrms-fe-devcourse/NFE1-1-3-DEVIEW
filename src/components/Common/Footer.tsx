@@ -4,7 +4,7 @@ import { Logo } from "@components/Common/Logo";
 export default function Footer() {
   return (
     <footer className="h-40 bg-black py-7">
-      <div className="m-4 max-w 2xl:m-auto">
+      <div className="m-4 my-auto max-w 2xl:m-auto">
         <Link to="/">
           <Logo />
         </Link>
