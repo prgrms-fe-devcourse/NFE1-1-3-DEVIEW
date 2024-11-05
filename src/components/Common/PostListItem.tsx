@@ -49,7 +49,7 @@ const PostListItem = forwardRef<HTMLDivElement, PostListItemProps>(({ postItem, 
               {formatDate(postItem.createdAt)}
             </div>
           </Link>
-          <div className="flex gap-2.5">
+          <div className="flex flex-wrap gap-2.5">
             {postItem.devDependencies.map((v, i) => {
               return (
                 <div className="rounded bg-lightgray px-2 py-1 text-12 text-black md:text-14" key={i}>
