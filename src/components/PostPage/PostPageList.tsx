@@ -45,7 +45,7 @@ export const PostPageList = ({ sort, id, setUserId }: PostPageUserPostListProps)
 
   return (
     <div>
-      <div className="flex w-full items-center justify-between p-8">
+      <div className="flex w-full items-center justify-between pt-8 md:p-8">
         <div className="flex text-20">
           <div className="font-bold text-secondary">{data?.pages[0].totalPosts}</div>개의 질문
         </div>

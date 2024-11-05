@@ -10,7 +10,7 @@ export default function PostPage() {
   const [sort, setSort] = useState<"latest" | "views">("latest");
   const [userId, setUserId] = useState<string>("");
   return (
-    <div className="m-auto max-w p-20">
+    <div className="m-auto max-w p-8 md:p-20">
       {id ? (
         <PostPageHeader id={userId} sort={sort} setSort={setSort} />
       ) : (
