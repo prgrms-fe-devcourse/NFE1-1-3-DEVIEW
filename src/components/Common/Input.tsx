@@ -9,16 +9,16 @@ type InputProps = {
   togglePassword?: boolean;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "pattern">;
 
-export const Input = ({ name, text, errorMessage, pattern, togglePassword, ...rest }: InputProps) => {
+export const Input = ({ name, text, errorMessage, pattern, togglePassword, defaultValue, ...rest }: InputProps) => {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
-    if (rest.defaultValue !== undefined) {
-      setValue(rest.defaultValue as string);
+    if (defaultValue !== undefined) {
+      setValue(defaultValue as string);
     }
-  }, [rest.defaultValue]);
+  }, [defaultValue]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
