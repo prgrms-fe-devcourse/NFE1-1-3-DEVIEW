@@ -39,12 +39,16 @@
   }
 
   #wrapper {
-    @apply pt-36 md:pt-28;
-    min-height: calc(100vh - 10rem);
+    @apply flex flex-col;
+    min-height: 100vh;
+  }
+
+  main {
+    @apply grow pt-28;
   }
 
   footer {
-    @apply relative mt-auto h-40;
+    @apply h-24;
   }
 
   .ql-snow .ql-editor pre.ql-syntax {
