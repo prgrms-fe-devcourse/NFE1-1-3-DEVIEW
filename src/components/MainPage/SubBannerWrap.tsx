@@ -16,7 +16,7 @@ export const SubBannerWrap = () => {
       <Swiper
         pagination={true}
         modules={[Pagination, Autoplay]}
-        className="w-full px-10 py-10"
+        className="w-full px-4 py-10 md:px-10"
         spaceBetween={48}
         slidesPerView={1}
         autoplay={{
@@ -29,11 +29,11 @@ export const SubBannerWrap = () => {
           }
         }}
       >
-        <SwiperSlide className="transition-transform hover:scale-105">
+        <SwiperSlide className="transition-transform md:hover:scale-105">
           {data[0] ? <SubBanner color="secondary" data={data[0]} /> : <SubBannerDefault color="secondary" />}
         </SwiperSlide>
 
-        <SwiperSlide className="transition-transform hover:scale-105">
+        <SwiperSlide className="transition-transform md:hover:scale-105">
           {data[1] ? <SubBanner color="lightgreen" data={data[1]} /> : <SubBannerDefault color="lightgreen" />}
         </SwiperSlide>
       </Swiper>
