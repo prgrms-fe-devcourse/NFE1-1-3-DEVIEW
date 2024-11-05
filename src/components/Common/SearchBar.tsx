@@ -2,6 +2,7 @@ import { useState, ChangeEvent, KeyboardEvent, MouseEvent } from "react";
 import { IoMdSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { useFilterStore } from "@stores/searchFiltersStore";
+import { IoCloseSharp } from "react-icons/io5";
 
 type SearchBarProps = {
   onFocus: () => void;
@@ -68,20 +69,19 @@ export const SearchBar = ({ onFocus, onCloseFilter }: SearchBarProps) => {
           </button>
         </div>
 
-        <div className="flex flex-wrap">
+        <div className="absolute mb-2 flex flex-wrap">
           {displayedFilters.map((filter) => (
-            <div key={filter} className="mr-2 mt-2 flex items-center rounded bg-lightgray px-2 py-1 text-12">
+            <button
+              key={filter}
+              onClick={(event) => {
+                event.stopPropagation();
+                deleteFilter(filter);
+              }}
+              className="mr-2 mt-1 cursor-pointer rounded bg-lightgray py-1 pl-2 pr-1 text-12 flex-center md:mt-1 md:mt-[6px]"
+            >
               <span>{filter}</span>
-              <button
-                onClick={(event) => {
-                  event.stopPropagation();
-                  deleteFilter(filter);
-                }}
-                className="ml-2"
-              >
-                x
-              </button>
-            </div>
+              <IoCloseSharp className="ml-3" />
+            </button>
           ))}
         </div>
       </div>
