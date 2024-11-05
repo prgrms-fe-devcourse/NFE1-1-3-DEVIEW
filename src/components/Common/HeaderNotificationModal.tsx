@@ -8,6 +8,7 @@ import { readNotification } from "@services/notification/readNotification";
 import { readAllNotifications } from "@services/notification/readAllNotifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import { GoBell } from "react-icons/go";
 
 type HeaderNotificationModalProps = {
   toggleBellIconModal: () => void;
@@ -71,7 +72,7 @@ export const HeaderNotificationModal = ({
   };
 
   return (
-    <div className="2md:-translate-x-64 fixed left-0 top-0 z-50 h-full w-full overflow-y-auto whitespace-pre border border-solid border-lightgray bg-white-pure scrollbar-hide md:absolute md:left-auto md:top-16 md:mt-2 md:h-80 md:w-96 md:max-w md:-translate-x-80 md:whitespace-nowrap md:rounded md:shadow">
+    <div className="fixed left-0 top-0 z-50 h-full w-full overflow-y-auto whitespace-pre border border-solid border-lightgray bg-white-pure scrollbar-hide md:absolute md:left-auto md:top-16 md:mt-2 md:h-80 md:w-96 md:max-w md:-translate-x-80 md:whitespace-nowrap md:rounded md:shadow 2md:-translate-x-64">
       <div className="block border-b border-solid border-lightgray">
         <MdKeyboardDoubleArrowRight className="mb-2 h-16 w-6 cursor-pointer md:hidden" onClick={toggleBellIconModal} />
       </div>
@@ -107,7 +108,8 @@ export const HeaderNotificationModal = ({
           </div>
         </>
       ) : (
-        <div className="px-4 py-2 text-center text-gray">
+        <div className="h-full flex-col text-center text-gray flex-center">
+          <GoBell className="mb-4 h-10 w-10" />
           <p>새로운 알림이 없습니다.</p>
         </div>
       )}
