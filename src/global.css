@@ -44,7 +44,7 @@
   }
 
   main {
-    @apply grow pt-28;
+    @apply grow pt-36 md:pt-28;
   }
 
   footer {
