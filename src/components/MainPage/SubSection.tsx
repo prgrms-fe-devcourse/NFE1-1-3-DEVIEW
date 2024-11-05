@@ -6,8 +6,8 @@ import { ErrorBoundary } from "react-error-boundary";
 export const SubSection = () => {
   return (
     <div className="bg-lightyellow flex-center">
-      <div className="flex w-full max-w flex-col gap-10 px-10 py-10">
-        <div className="text-24 font-semibold">답변을 기다리는 질문</div>
+      <div className="flex w-full max-w flex-col">
+        <div className="px-10 pt-10 text-24 font-semibold">답변을 기다리는 질문</div>
         <ErrorBoundary fallback={<SubBannerSkeleton isError={true} />}>
           <Suspense fallback={<SubBannerSkeleton />}>
             <SubBannerWrap />
