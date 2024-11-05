@@ -1,15 +1,20 @@
+import { useNavigate } from "react-router-dom";
+
 type PostMetaProps = {
   userId: string;
   viewsCount: number;
   commentCount: number;
   createdAt: string;
+  _id: string;
 };
 
-export const PostMetaList = ({ userId, viewsCount, commentCount, createdAt }: PostMetaProps) => {
+export const PostMetaList = ({ userId, viewsCount, commentCount, createdAt, _id }: PostMetaProps) => {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")}`;
   };
+
+  const navigate = useNavigate();
 
   const metaItems = [
     {
@@ -35,7 +40,16 @@ export const PostMetaList = ({ userId, viewsCount, commentCount, createdAt }: Po
       {metaItems.map(({ label, value }) => (
         <span key={label} className="font-light text-gray">
           {label !== "작성자" && `${label} `}
-          <span className={label === "작성자" ? "text-secondary" : "text-black"}>{value}</span>
+          {label === "작성자" ? (
+            <span
+              className="cursor-pointer text-secondary hover:underline"
+              onClick={() => navigate(`/post/user/${_id}`)}
+            >
+              {value}
+            </span>
+          ) : (
+            <span className="text-black">{value}</span>
+          )}
         </span>
       ))}
     </div>
