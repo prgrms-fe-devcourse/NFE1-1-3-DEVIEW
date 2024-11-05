@@ -79,7 +79,10 @@ export const CommentList = () => {
                 <figure className="h-12 w-12 overflow-hidden rounded-full md:h-16 md:w-16">
                   <Avatar name={comment.author.userId} variant="beam" />
                 </figure>
-                <span className="flex text-12 font-medium flex-center md:text-16">{comment.author.userId}</span>
+                <p className="flex flex-col justify-center gap-2 md:flex-row md:flex-center">
+                  <span className="flex text-12 font-medium md:text-16">{comment.author.userId}</span>
+                  <span className="flex text-12 text-gray md:text-16">{comment.createdAt}</span>
+                </p>
               </div>
               {comment.isMine && (
                 <CommentEditDelete
