@@ -78,7 +78,7 @@ export default {
     ({ addComponents }) => {
       addComponents({
         ".primary-btn": {
-          "@apply bg-primary w-full rounded p-6 text-white-pure": ""
+          "@apply bg-primary w-full rounded p-6 text-white-pure hover:opacity-80": ""
         },
         ".lightgray-btn": {
           "@apply bg-lightgray w-full rounded p-6 text-black": ""
