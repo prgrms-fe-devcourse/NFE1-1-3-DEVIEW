@@ -38,10 +38,16 @@ export const HeaderMenu = ({ onClick }: HeaderMenuProps) => {
           ""
         ) : (
           <>
-            <Link className="lightgray-btn m-4 h-10 w-24 p-1 flex-center" to="/login">
+            <Link
+              className="lightgray-btn m-4 h-8 w-16 p-1 text-14 flex-center 2md:h-10 2md:w-24 2md:text-16"
+              to="/login"
+            >
               로그인
             </Link>
-            <Link className="primary-btn m-4 h-10 w-24 p-1 flex-center" to="/register">
+            <Link
+              className="primary-btn m-4 h-8 w-16 p-1 text-14 flex-center 2md:h-10 2md:w-24 2md:text-16"
+              to="/register"
+            >
               회원가입
             </Link>
           </>
