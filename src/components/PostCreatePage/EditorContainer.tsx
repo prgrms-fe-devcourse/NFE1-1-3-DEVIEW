@@ -70,10 +70,10 @@ export const EditorContainer = ({ value, onChange }: EditorContainerProps) => {
   }, []);
 
   return (
-    <section className="flex w-full flex-col gap-4 rounded-lg border border-solid border-gray py-7 pl-3 pr-6 shadow">
+    <section className="flex w-full flex-col gap-4 rounded-lg border border-solid border-gray px-4 py-6 shadow">
       <div className="flex flex-col gap-3">
-        <h2 className="text-20 font-semibold">질문하고 싶은 코드를 작성해주세요</h2>
-        <p className="text-16 font-medium text-primary">주석으로 설명을 추가해주세요.</p>
+        <h2 className="text-16 font-semibold md:text-20">질문하고 싶은 코드를 작성해주세요</h2>
+        <p className="text-14 text-primary md:text-16">주석으로 설명을 추가해주세요.</p>
         <div ref={quillRef} className="relative h-[60vh]">
           <ReactQuill
             value={value}
@@ -81,7 +81,7 @@ export const EditorContainer = ({ value, onChange }: EditorContainerProps) => {
             modules={modules}
             formats={formats}
             placeholder="코드를 입력해주세요"
-            className="absolute h-[92%] w-full"
+            className="2sm:h-[90%] absolute h-[84%] w-full sm:h-[90%] md:h-[92%]"
           />
         </div>
       </div>
