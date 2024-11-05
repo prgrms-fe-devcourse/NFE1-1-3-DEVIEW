@@ -9,6 +9,9 @@ import { MostViewedTodayPostsBanner } from "@components/MainPage/MostViewedToday
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import "swiper/css/pagination";
+
+import { Autoplay, Pagination } from "swiper/modules";
 
 type bannersType = {
   banner: React.ComponentType;
@@ -24,9 +27,15 @@ export const MainSection = () => {
   return (
     <div className="bg-lightpurple">
       <Swiper
+        pagination={true}
+        modules={[Pagination, Autoplay]}
         className="w-full max-w px-10 py-12"
         spaceBetween={40}
         slidesPerView={1}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false
+        }}
         breakpoints={{
           768: {
             slidesPerView: 2

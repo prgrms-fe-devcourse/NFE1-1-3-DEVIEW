@@ -55,3 +55,6 @@
     @apply text-14 leading-5 md:text-16 md:leading-6;
   }
 }
+.swiper-pagination-bullet-active {
+  @apply bg-secondary;
+}
