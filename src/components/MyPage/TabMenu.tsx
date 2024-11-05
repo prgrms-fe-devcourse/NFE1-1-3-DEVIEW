@@ -23,7 +23,7 @@ export const TabMenu = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-1 flex-col">
       <ul className="text-sm text-gray-500 flex border-b text-center font-medium">
         <li className="mr-4 md:mr-24">
           <button
@@ -58,7 +58,7 @@ export const TabMenu = () => {
           </button>
         </li>
       </ul>
-      <div className="py-4 md:py-8">{renderContent()}</div>
+      <div className="flex-1 py-4 flex-center md:py-8">{renderContent()}</div>
     </div>
   );
 };
