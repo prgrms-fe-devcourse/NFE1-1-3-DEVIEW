@@ -58,7 +58,7 @@ export const TabMenu = () => {
           </button>
         </li>
       </ul>
-      <div className="flex-1 py-4 flex-center md:py-8">{renderContent()}</div>
+      <div className={`relative flex-1 py-4 md:py-8`}>{renderContent()}</div>
     </div>
   );
 };

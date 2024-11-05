@@ -88,7 +88,7 @@ export const InfoContent = () => {
   }
 
   return (
-    <div className="mx-auto max-w-[768px] py-4">
+    <div className="absolute left-1/2 top-1/2 w-full max-w-[768px] -translate-x-1/2 -translate-y-1/2 px-4 py-4">
       {!isVerified ? (
         <CheckPassword onSuccess={() => setIsVerified(true)} />
       ) : (

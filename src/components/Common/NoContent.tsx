@@ -31,7 +31,7 @@ export const NoContent = ({ type }: NoContentProps) => {
     }
   };
   return (
-    <div className="m-auto flex flex-col items-center gap-4 py-5">
+    <div className="absolute left-1/2 top-1/2 m-auto flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-4 py-5">
       {getIcon()}
       <p className="text-14 text-secondary md:text-16">{getMessage()}</p>
     </div>
