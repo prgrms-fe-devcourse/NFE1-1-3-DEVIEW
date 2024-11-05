@@ -9,10 +9,10 @@ export const PostPageSkeleton = ({ isError = false }: PostPageSkeletonProps) => 
   return (
     <div>
       <div className="flex w-full items-center justify-between p-8">
-        <div className={`h-5 w-80 rounded ${bgColor} `}></div>
+        <div className={`h-5 w-24 rounded ${bgColor} `}></div>
       </div>
 
-      <div className="px-3 py-5">
+      <div className="min-h-screen px-3 py-5">
         <div className="p-2.5">
           <PostItemSkeleton bgColor={bgColor} />
         </div>
