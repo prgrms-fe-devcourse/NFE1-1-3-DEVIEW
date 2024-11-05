@@ -15,7 +15,7 @@ export const VersionCountBtn = ({ addOrMinus, onClick, disabled = false }: Versi
       type="button"
       onClick={onBtnClick}
       disabled={disabled}
-      className={`size-[3.125rem] rounded-full p-[0.60rem] text-28 text-white-sub transition-all ${
+      className={`flex size-4 items-center justify-center rounded-full p-4 text-16 text-white-sub transition-all md:size-5 md:p-5 md:text-24 ${
         disabled ? "cursor-not-allowed bg-gray opacity-50" : "cursor-pointer bg-primary hover:opacity-80"
       }`}
     >

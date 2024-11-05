@@ -11,7 +11,7 @@ export const LanSelectBtn = ({ value, onChange }: LanSelectBtnProps) => {
   return (
     <select
       value={value || "default"}
-      className="w-[20%] min-w-24 rounded-lg border border-secondary text-center text-14 font-medium leading-none text-secondary"
+      className="h-12 w-[20%] min-w-24 rounded-lg border border-secondary text-center text-14 font-medium leading-none text-secondary md:h-auto"
       onChange={onChange}
     >
       <option value="default" disabled>

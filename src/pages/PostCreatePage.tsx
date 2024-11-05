@@ -99,7 +99,7 @@ export default function PostCreatePage() {
 
   return (
     <form onSubmit={onSubmit} className="m-auto my-[5.313rem] flex max-w-[1240px] flex-col gap-12 px-5">
-      <h1 className="text-24 font-semibold">공개 질문하기</h1>
+      <h1 className="text-20 font-semibold md:text-24">공개 질문하기</h1>
 
       {createPostMutation.isPending && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50">
