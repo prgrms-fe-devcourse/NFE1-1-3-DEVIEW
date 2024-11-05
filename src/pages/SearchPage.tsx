@@ -55,12 +55,12 @@ export default function SearchPage() {
   if (!data || data.posts.length === 0) return <NoContent type="search" />;
   return (
     <>
-      <div className="mx-auto max-w p-8">
+      <div className="mx-auto mt-2 max-w p-4 md:mt-12">
         <p className="mb-6 flex text-16 md:text-20">
           <span className="mr-4">검색 조건</span>
           {filters.length > 0 &&
             filters.map((filter) => (
-              <div key={filter} className="mr-2 items-center rounded bg-lightgray px-2 py-1 text-12">
+              <div key={filter} className="mr-2 items-center rounded bg-lightgray px-2 py-1 text-10 md:text-12">
                 <span>{filter}</span>
               </div>
             ))}
@@ -71,9 +71,11 @@ export default function SearchPage() {
           <span className="font-bold">{filteredQuery}</span>
           <span>’에 대한 검색 결과입니다.</span>
         </p>
-        <p className="text-14 md:text-16"> {formatNumber(data.totalPosts)}개의 질문</p>
+        <p className="text-14 md:text-16">
+          <span className="font-bold text-secondary">{formatNumber(data.totalPosts)}</span>개의 질문
+        </p>
       </div>
-      <div className="mx-auto max-w p-8">
+      <div className="mx-auto max-w p-4">
         {data.posts.map((postItem) => (
           <PostListItem key={postItem._id} postItem={postItem} />
         ))}
