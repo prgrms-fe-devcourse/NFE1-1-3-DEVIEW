@@ -33,7 +33,7 @@ export default function RankPage() {
     })) || [];
 
   return (
-    <div className="mx-auto max-w p-4 md:p-16">
+    <div className="mx-auto max-w p-4 py-12">
       {rankData.length > 0 ? (
         <RankTable data={rankData} />
       ) : (

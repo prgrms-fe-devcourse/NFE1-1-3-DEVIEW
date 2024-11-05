@@ -8,7 +8,7 @@ type RankTableProps = {
 
 export const RankTable = ({ data }: RankTableProps) => {
   return (
-    <div className="mx-auto w-full md:w-3/4">
+    <div className="mx-auto w-full rounded border border-solid border-lightgray px-4 pb-0 pt-4 md:px-8 md:pb-2 md:pt-8">
       <RankHeader />
 
       <div>
