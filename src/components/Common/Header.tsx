@@ -46,7 +46,7 @@ export default function Header() {
             <Link to="/" className="flex justify-center">
               <Logo />
             </Link>
-            <nav className="ml-8 flex h-5 space-x-8">
+            <nav className="ml-4 flex h-5 space-x-4 2md:ml-8 2md:space-x-8">
               <Link
                 to="/post"
                 className={`text-16 ${
@@ -71,7 +71,7 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="2md:mx-8 w-full flex-grow md:mx-4 md:w-auto">
+        <div className="w-full flex-grow md:mx-4 md:w-auto 2md:mx-8">
           <SearchBar onCloseFilter={onCloseFilter} onFocus={onFocus} />
         </div>
 
