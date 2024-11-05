@@ -37,8 +37,8 @@ export const CommentWrite = () => {
 
   return (
     <form className="flex flex-col gap-12 border-t border-solid border-gray" onSubmit={handleSubmit}>
-      <h2 className="mt-12 text-20 font-medium">Answer</h2>
-      <div className="flex flex-col gap-12">
+      <h2 className="mt-12 text-16 font-medium md:text-20">Answer</h2>
+      <div className="flex flex-col gap-4">
         <div className="flex gap-7">
           <figure className="hidden h-12 w-12 overflow-hidden rounded-full md:block md:h-16 md:w-16">
             <Avatar name={userInfo?.userId ?? ""} variant="beam" />
@@ -50,7 +50,7 @@ export const CommentWrite = () => {
         <div className="flex justify-end">
           <button
             type="submit"
-            className="bg-blue-500 text-white hover:bg-blue-600 rounded px-4 py-2 disabled:opacity-50"
+            className="primary-btn w-24 rounded-[8px] px-4 py-3 text-14 hover:bg-primary md:text-16"
             disabled={!content.trim() || isPending}
           >
             {isPending ? "작성 중..." : "댓글 작성"}

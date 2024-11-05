@@ -12,7 +12,7 @@ export const EditBtn = ({ onClick, disabled }: DeleteButtonProps) => (
     disabled={disabled}
     className="text-red-500 hover:text-red-600 disabled:opacity-50"
   >
-    <MdOutlineModeEdit className="h-5 w-5" />
+    <MdOutlineModeEdit className="h-4 w-4 md:h-5 md:w-5" />
   </button>
 );
 

@@ -9,12 +9,13 @@ export const PostDetailHeader = () => {
 
   return (
     <div className="flex flex-col gap-[0.625rem]">
-      <h1 className="text-20 font-medium">{postDetail.title}</h1>
+      <h1 className="text-16 font-medium md:text-20">{postDetail.title}</h1>
       <PostMetaList
         createdAt={postDetail.createdAt}
         viewsCount={postDetail.viewsCount}
         commentCount={postDetail.commentsCount}
         userId={postDetail.author.userId}
+        _id={postDetail.author._id}
       />
       <LanVersionTagList devDependencies={postDetail.devDependencies} devVersions={postDetail.devVersions} />
     </div>

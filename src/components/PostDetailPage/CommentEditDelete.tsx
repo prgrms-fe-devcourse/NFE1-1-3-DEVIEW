@@ -36,7 +36,7 @@ export const CommentEditDelete = ({ commentId, isEditing, onEditStateChange }: C
   };
 
   return (
-    <div className="flex gap-8">
+    <div className="flex gap-2 text-gray md:gap-4">
       <EditBtn onClick={handleEditClick} disabled={isEditing} />
       <DeleteBtn onClick={onDelete} disabled={isPending || isEditing} />
     </div>

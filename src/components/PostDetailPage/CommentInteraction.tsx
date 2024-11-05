@@ -31,18 +31,18 @@ export const CommentInteraction = ({ commentId }: CommentInteractionProps) => {
 
   return (
     <section className="w-full flex-center">
-      <div className="m-auto flex w-36 gap-2 rounded-[30px] px-7 py-4 shadow">
+      <div className="m-auto flex rounded-[30px] px-6 py-4 shadow">
         <button
           className={`flex items-center gap-[0.03rem] ${isThumbed && "fill-pink"} ${isPending ? "opacity-50" : ""}`}
           onClick={handleThumbClick}
           disabled={isPending}
         >
           <LuThumbsUp
-            className={`h-[17px] w-[22px] flex-shrink-0 transition-transform duration-200 ease-in-out ${
+            className={`flex-shrink-0 transition-transform duration-200 ease-in-out ${
               !isPending && "hover:scale-110"
             } ${isThumbed && "fill-pink"} `}
           />
-          <span className="min-w-[20px] text-center">{thumbsCount}</span>
+          <span className="min-w-[20px] text-center text-14 md:text-16">{thumbsCount}</span>
         </button>
       </div>
     </section>

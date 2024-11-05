@@ -19,12 +19,9 @@ export const LanVersionTagList = ({ devDependencies, devVersions }: LanVersionTa
   }));
 
   return (
-    <div className="flex gap-2">
+    <div className="flex flex-wrap gap-2">
       {dependencyTags.map((tag) => (
-        <span
-          key={tag.id}
-          className="rounded-[0.25rem] border border-solid border-gray px-2 py-[0.125rem] text-12 text-gray"
-        >
+        <span key={tag.id} className="rounded-lg border border-solid border-gray px-2 py-1 text-12 text-gray">
           {tag.dependency}@{tag.version}
         </span>
       ))}
