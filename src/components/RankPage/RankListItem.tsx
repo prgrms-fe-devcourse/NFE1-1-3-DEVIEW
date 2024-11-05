@@ -16,12 +16,14 @@ export const RankListItem = ({ rank, userId, _id, team, recommend }: RankListIte
       </div>
       <span className="flex-shrink-0 flex-grow-0 basis-2/12 text-center font-bold text-gray">{team}</span>
       <span className="flex-shrink-0 flex-grow-0 basis-2/12 text-right font-bold text-gray">추천수 {recommend}</span>
-      <button
-        className="flex-shrink-0 flex-grow-0 basis-3/12 text-right font-bold text-primary hover:text-secondary hover:underline"
-        onClick={() => navigate(`/post/user/${_id}`)}
-      >
-        게시글 보기
-      </button>
+      <div className="flex-shrink-0 flex-grow-0 basis-3/12 text-right">
+        <button
+          className="font-bold text-primary hover:text-secondary hover:underline focus:outline-none"
+          onClick={() => navigate(`/post/user/${_id}`)}
+        >
+          게시글 보기
+        </button>
+      </div>
     </div>
   );
 };
