@@ -5,12 +5,6 @@ type MainBannerProps = {
   children: ReactNode;
 };
 
-const MainBanner = ({ color, children }: MainBannerProps) => {
-  return (
-    <div className={`flex h-52 rounded-lg text-white-pure shadow transition-all hover:scale-105 ${color}`}>
-      {children}
-    </div>
-  );
+export const MainBanner = ({ color, children }: MainBannerProps) => {
+  return <div className={`flex h-52 rounded-lg text-white-pure shadow transition-all ${color}`}>{children}</div>;
 };
-
-export default MainBanner;
