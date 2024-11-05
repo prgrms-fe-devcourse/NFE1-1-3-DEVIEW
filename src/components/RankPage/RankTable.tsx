@@ -8,9 +8,10 @@ type RankTableProps = {
 
 export const RankTable = ({ data }: RankTableProps) => {
   return (
-    <table className="mx-auto w-full table-fixed border-separate rounded-lg border border-solid border-lightgray shadow md:w-3/4">
+    <div className="mx-auto w-full md:w-3/4">
       <RankHeader />
-      <tbody>
+
+      <div>
         {data.map((item, index) => (
           <RankListItem
             key={index}
@@ -21,7 +22,7 @@ export const RankTable = ({ data }: RankTableProps) => {
             recommend={item.recommend}
           />
         ))}
-      </tbody>
-    </table>
+      </div>
+    </div>
   );
 };
