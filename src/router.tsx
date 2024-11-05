@@ -21,9 +21,9 @@ export const router = createBrowserRouter([
     element: (
       <>
         <ScrollToTop />
-        <div>
+        <div id="wrapper">
           <Header />
-          <main id="wrapper">
+          <main>
             <Outlet />
           </main>
           <Footer />
