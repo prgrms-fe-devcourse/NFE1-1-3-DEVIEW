@@ -6,14 +6,17 @@ import { getPopularPosts } from "@services/post/getPopularPosts";
 import { getPosts } from "@services/post/getPosts";
 import { getUserPosts } from "@services/user/getUserPosts";
 import { useCallback, useRef } from "react";
+import { CgArrowsExchangeAltV } from "react-icons/cg";
 type PostPageUserPostListProps = {
   sort: "latest" | "views";
   id?: string;
+  setSort: React.Dispatch<React.SetStateAction<"latest" | "views">>;
   setUserId?: React.Dispatch<React.SetStateAction<string>>;
 };
-
-export const PostPageList = ({ sort, id, setUserId }: PostPageUserPostListProps) => {
+export const PostPageList = ({ sort, id, setUserId, setSort }: PostPageUserPostListProps) => {
   const fc = sort === "views" ? getPopularPosts : getPosts;
+
+  const headerText = { latest: "최신", views: "인기" };
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useSuspenseInfinite<
     CommonPostResponseProps & { userId?: string }
   >({
@@ -42,13 +45,23 @@ export const PostPageList = ({ sort, id, setUserId }: PostPageUserPostListProps)
     },
     [isFetchingNextPage, fetchNextPage, hasNextPage]
   );
-
+  const handleClick = () => {
+    const value = sort === "latest" ? "views" : "latest";
+    setSort(value);
+  };
   return (
     <div>
-      <div className="flex w-full items-center justify-between pt-8 md:p-8">
-        <div className="flex text-20">
+      <div className="flex w-full items-center justify-between pt-10">
+        <div className="flex text-16 md:text-20">
           <div className="font-bold text-secondary">{data?.pages[0].totalPosts}</div>개의 질문
         </div>
+        <button
+          onClick={handleClick}
+          className="rounded p-1 pr-2 text-secondary ring-2 ring-primary transition-all flex-center hover:ring-secondary"
+        >
+          <CgArrowsExchangeAltV size={24} className="right-1" />
+          {`${headerText[sort]}순`}
+        </button>
       </div>
       {posts && (
         <>
