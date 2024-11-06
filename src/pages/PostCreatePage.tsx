@@ -7,6 +7,7 @@ import { CreatePostRequestProps, initialState } from "@customTypes/postCreate";
 import { postFormReducer, validateForm } from "@utils/postCreate";
 import { FormEvent, useCallback, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function PostCreatePage() {
   const navigate = useNavigate();
@@ -65,8 +66,17 @@ export default function PostCreatePage() {
     [state, onValidation, createPostMutation, navigate]
   );
 
-  const onReset = useCallback(() => {
-    if (window.confirm("작성 중인 내용이 모두 초기화됩니다. 계속하시겠습니까?")) {
+  const onReset = useCallback(async () => {
+    const result = await Swal.fire({
+      title: "초기화 하시겠습니까?",
+      text: "작성 중인 내용이 모두 초기화됩니다.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "초기화",
+      cancelButtonText: "취소"
+    });
+
+    if (result.isConfirmed) {
       dispatch({ type: "RESET_FORM" });
     }
   }, []);
