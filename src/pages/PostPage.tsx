@@ -10,7 +10,7 @@ export default function PostPage() {
   const [sort, setSort] = useState<"latest" | "views">("latest");
   const [userId, setUserId] = useState<string>("");
   return (
-    <div className="m-auto max-w p-4 pt-10">
+    <div className="m-auto max-w p-4 pt-12">
       {id ? <PostPageHeader sort={sort} id={userId} /> : <PostPageHeader sort={sort} />}
       <ErrorBoundary fallback={<PostPageSkeleton isError={true} />}>
         <Suspense fallback={<PostPageSkeleton />}>
