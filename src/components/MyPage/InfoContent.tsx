@@ -88,32 +88,40 @@ export const InfoContent = () => {
   }
 
   return (
-    <div className="absolute left-1/2 top-1/2 w-full max-w-[768px] -translate-x-1/2 -translate-y-1/2 px-4 py-4">
-      {!isVerified ? (
-        <CheckPassword onSuccess={() => setIsVerified(true)} />
-      ) : (
-        <form className="" onSubmit={onSubmit}>
-          <IdInput defaultValue={userInfo.userId} disabled={true} />
-          <NameInput defaultValue={userInfo.username} />
-          <PasswordInput required={false} />
+    <div className="flex min-h-[calc(100vh-20rem)] w-full items-center justify-center">
+      <div className="w-full max-w-[768px] p-4 md:m-auto">
+        {!isVerified ? (
+          <CheckPassword onSuccess={() => setIsVerified(true)} />
+        ) : (
+          <form className="" onSubmit={onSubmit}>
+            <IdInput defaultValue={userInfo.userId} disabled={true} />
+            <NameInput defaultValue={userInfo.username} />
+            <PasswordInput required={false} />
 
-          <div className="mb-5 flex items-center justify-between gap-1 md:gap-10">
-            <Radio id="student" name="group" text="학생" value="학생" defaultChecked={userInfo.group === "학생"} />
-            <Radio id="seeker" name="group" text="취준생" value="취준생" defaultChecked={userInfo.group === "취준생"} />
-            <Radio
-              id="developer"
-              name="group"
-              text="개발자"
-              value="개발자"
-              defaultChecked={userInfo.group === "개발자"}
-            />
-            <Radio id="etc" name="group" text="기타" value="기타" defaultChecked={userInfo.group === "기타"} />
-          </div>
-          <button type="submit" className="primary-btn p-6 text-14 md:p-7 md:text-16" disabled={mutation.isPending}>
-            {mutation.isPending ? "저장 중..." : "저장"}
-          </button>
-        </form>
-      )}
+            <div className="mb-5 flex items-center justify-between gap-1 md:gap-10">
+              <Radio id="student" name="group" text="학생" value="학생" defaultChecked={userInfo.group === "학생"} />
+              <Radio
+                id="seeker"
+                name="group"
+                text="취준생"
+                value="취준생"
+                defaultChecked={userInfo.group === "취준생"}
+              />
+              <Radio
+                id="developer"
+                name="group"
+                text="개발자"
+                value="개발자"
+                defaultChecked={userInfo.group === "개발자"}
+              />
+              <Radio id="etc" name="group" text="기타" value="기타" defaultChecked={userInfo.group === "기타"} />
+            </div>
+            <button type="submit" className="primary-btn p-6 text-14 md:p-7 md:text-16" disabled={mutation.isPending}>
+              {mutation.isPending ? "저장 중..." : "저장"}
+            </button>
+          </form>
+        )}
+      </div>
     </div>
   );
 };

@@ -37,7 +37,7 @@ export const ScrapContent = () => {
   console.log(data.pages);
   return (
     <div className="">
-      <p className="p-2 py-8 text-16 md:text-20">{data.pages[0].totalPosts}개의 스크랩</p>
+      <p className="p-2 py-4 text-16 md:text-20">{data.pages[0].totalPosts}개의 스크랩</p>
       {data.pages.map((page, pageIndex) => (
         <React.Fragment key={pageIndex}>
           {page.posts
