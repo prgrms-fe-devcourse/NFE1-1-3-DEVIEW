@@ -9,16 +9,22 @@ type UseInfiniteCommentsQueryProps = {
 };
 
 export function useInfiniteCommentsQuery({ postId, limit = 10, enabled = true }: UseInfiniteCommentsQueryProps) {
+  const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
   return useInfiniteQuery({
     queryKey: [COMMENTS_QUERY_KEY, postId],
-    queryFn: ({ pageParam = 1 }) => getComments({ postId, page: pageParam, limit }),
+    queryFn: async ({ pageParam = 1 }) => {
+      // 500ms 딜레이 추가
+      if (pageParam !== 1) await delay(500);
+      return getComments({ postId, page: pageParam, limit });
+    },
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
       const nextPage = allPages.length + 1;
       return nextPage <= lastPage.totalPages ? nextPage : undefined;
     },
     enabled,
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5, // 5분
     retry: 1,
     select: (data) => ({
       pages: data.pages,
