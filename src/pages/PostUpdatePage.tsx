@@ -70,7 +70,7 @@ export default function PostUpdatePage() {
     }
   }, [navigate, postId]);
 
-  const handleVersionChange = useCallback((index: number, field: "dependency" | "version", value: string) => {
+  const onVersionChange = useCallback((index: number, field: "dependency" | "version", value: string) => {
     if (field === "dependency") {
       if (DEV_DEPENDENCIES_LIST.includes(value as DevDependency)) {
         dispatch({
@@ -86,11 +86,11 @@ export default function PostUpdatePage() {
     }
   }, []);
 
-  const handleRemoveVersion = useCallback((index: number) => {
+  const onRemoveVersion = useCallback((index: number) => {
     dispatch({ type: "REMOVE_DEPENDENCY", payload: index });
   }, []);
 
-  const handleAddVersion = useCallback(() => {
+  const onAddVersion = useCallback(() => {
     dispatch({ type: "ADD_DEPENDENCY" });
   }, []);
 
@@ -160,9 +160,9 @@ export default function PostUpdatePage() {
 
       <VersionContainer
         state={state}
-        onAddVersion={handleAddVersion}
-        onRemoveVersion={handleRemoveVersion}
-        onVersionChange={handleVersionChange}
+        onAddVersion={onAddVersion}
+        onRemoveVersion={onRemoveVersion}
+        onVersionChange={onVersionChange}
       />
 
       <EditorContainer value={state.code} onChange={(newValue) => dispatch({ type: "SET_CODE", payload: newValue })} />
