@@ -98,7 +98,7 @@ export default function PostCreatePage() {
   }, []);
 
   return (
-    <form onSubmit={onSubmit} className="m-auto my-[5.313rem] flex max-w-[1240px] flex-col gap-12 px-5">
+    <form onSubmit={onSubmit} className="m-auto flex max-w flex-col gap-12 p-4 py-12">
       <h1 className="text-20 font-semibold md:text-24">공개 질문하기</h1>
 
       {createPostMutation.isPending && (
