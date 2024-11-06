@@ -51,7 +51,7 @@ export const PostPageList = ({ sort, id, setUserId, setSort }: PostPageUserPostL
   };
   return (
     <div>
-      <div className="flex w-full items-center justify-between pt-10">
+      <div className="flex w-full items-center justify-between pt-12">
         <div className="flex text-16 md:text-20">
           <div className="font-bold text-secondary">{data?.pages[0].totalPosts}</div>개의 질문
         </div>
