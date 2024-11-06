@@ -57,9 +57,9 @@ export const PostPageList = ({ sort, id, setUserId, setSort }: PostPageUserPostL
         </div>
         <button
           onClick={handleClick}
-          className="rounded p-1 pr-2 text-secondary ring-2 ring-primary transition-all flex-center hover:ring-secondary"
+          className="rounded p-1 pr-2 text-14 text-secondary ring-2 ring-primary transition-all flex-center hover:ring-secondary md:text-16"
         >
-          <CgArrowsExchangeAltV size={24} className="right-1" />
+          <CgArrowsExchangeAltV className="right-1 text-20 md:text-24" />
           {`${headerText[sort]}순`}
         </button>
       </div>
