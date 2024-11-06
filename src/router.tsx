@@ -1,6 +1,8 @@
 import Footer from "@components/Common/Footer";
 import Header from "@components/Common/Header";
-import RegisterPage from "@pages/RegisterPage";
+import { ProtectedRoute } from "@components/Common/ProtectedRoute";
+import { ScrollToTop } from "@components/Common/ScrollToTop";
+import { AdminPage } from "@pages/AdminPage";
 import ErrorPage from "@pages/ErrorPage";
 import LoginPage from "@pages/LoginPage";
 import MainPage from "@pages/MainPage";
@@ -8,12 +10,11 @@ import MyPage from "@pages/MyPage";
 import PostCreatePage from "@pages/PostCreatePage";
 import PostDetailPage from "@pages/PostDetailPage";
 import PostPage from "@pages/PostPage";
+import PostUpdatePage from "@pages/PostUpdatePage";
 import RankPage from "@pages/RankPage";
+import RegisterPage from "@pages/RegisterPage";
 import SearchPage from "@pages/SearchPage";
 import { createBrowserRouter, Outlet } from "react-router-dom";
-import { ProtectedRoute } from "@components/Common/ProtectedRoute";
-import { AdminPage } from "@pages/AdminPage";
-import { ScrollToTop } from "@components/Common/ScrollToTop";
 
 export const router = createBrowserRouter([
   {
@@ -57,6 +58,14 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <PostCreatePage />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: "/post/update/:postId",
+        element: (
+          <ProtectedRoute>
+            <PostUpdatePage />
           </ProtectedRoute>
         )
       },
