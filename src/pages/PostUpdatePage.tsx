@@ -11,7 +11,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 export default function PostUpdatePage() {
   const { postId } = useParams<{ postId: string }>();
-  
+
   console.log("PostUpdatePage: ", postId);
   const navigate = useNavigate();
   const [state, dispatch] = useReducer(postFormReducer, initialState);
@@ -131,7 +131,7 @@ export default function PostUpdatePage() {
   if (!post.isAuthor) return <div>수정 권한이 없습니다.</div>;
 
   return (
-    <form onSubmit={onSubmit} className="m-auto my-[5.313rem] flex max-w-[1240px] flex-col gap-12 px-5">
+    <form onSubmit={onSubmit} className="m-auto my-12 flex max-w-[1440px] flex-col gap-12 px-4">
       <h1 className="text-20 font-semibold md:text-24">게시글 수정하기</h1>
 
       {isPending && (
