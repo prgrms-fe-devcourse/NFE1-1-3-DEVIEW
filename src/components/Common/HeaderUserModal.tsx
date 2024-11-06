@@ -3,8 +3,6 @@ import { CiUser } from "react-icons/ci";
 import { IoIosLogOut } from "react-icons/io";
 import { useUserStore } from "@stores/userStore";
 import { logout } from "@services/auth/logout";
-import { FaTooth } from "react-icons/fa";
-import { PiWaveSawtooth } from "react-icons/pi";
 import { HiMiniCog6Tooth } from "react-icons/hi2";
 type HeaderUserModalProps = {
   toggleUserIconModal: () => void;
@@ -21,7 +19,7 @@ export const HeaderUserModal = ({ toggleUserIconModal }: HeaderUserModalProps) =
     navigate("/");
   };
   return (
-    <div className="absolute top-6 z-50 mt-2 w-20 max-w -translate-x-5 whitespace-pre rounded border border-solid border-lightgray bg-white-pure shadow md:top-16 md:w-36 md:-translate-x-16 md:whitespace-nowrap 2md:translate-x-16">
+    <div className="absolute top-6 z-50 mt-2 w-20 max-w -translate-x-5 whitespace-pre rounded border border-solid border-lightgray bg-white-pure shadow md:top-16 md:w-36 md:-translate-x-16 md:whitespace-nowrap 2md:translate-x-24">
       <div className="py-2 text-gray">
         <Link
           className="block w-full border-b border-solid border-lightgray px-4 py-2 text-10 flex-center hover:opacity-50 md:text-20"
