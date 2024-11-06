@@ -131,7 +131,7 @@ export default function PostUpdatePage() {
   if (!post.isAuthor) return <div>수정 권한이 없습니다.</div>;
 
   return (
-    <form onSubmit={onSubmit} className="m-auto my-12 flex max-w-[1440px] flex-col gap-12 px-4">
+    <form onSubmit={onSubmit} className="m-auto flex max-w-[1440px] flex-col gap-12 px-4 py-12">
       <h1 className="text-20 font-semibold md:text-24">게시글 수정하기</h1>
 
       {isPending && (
