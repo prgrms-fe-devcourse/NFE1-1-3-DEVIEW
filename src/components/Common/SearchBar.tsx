@@ -20,7 +20,7 @@ export const SearchBar = ({ onFocus, onCloseFilter }: SearchBarProps) => {
       event.stopPropagation();
     };
 
-    const handleFocus = () => {
+    const onInputFocus = () => {
       onFocus();
     };
 
@@ -53,7 +53,7 @@ export const SearchBar = ({ onFocus, onCloseFilter }: SearchBarProps) => {
             type="text"
             placeholder="검색어를 입력해주세요"
             className="h-11 flex-1 rounded-[50px] border border-lightgray pr-10 text-12 md:text-16"
-            onFocus={handleFocus}
+            onFocus={onInputFocus}
             onChange={onChange}
             onKeyDown={onKeyDown}
             onClick={onClick}
