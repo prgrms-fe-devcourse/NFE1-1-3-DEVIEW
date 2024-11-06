@@ -34,12 +34,13 @@ export const CommentsContent = () => {
   if (error) return <div>Error: {(error as Error).message}</div>;
 
   if (!data || data.pages[0].comments.length === 0) return <NoContent type="comment" />;
+  console.log(data);
 
   return (
     <div className="">
+      <p className="p-2 py-8 text-16 md:text-20">{data.pages[0].totalComments}개의 댓글</p>
       {data.pages.map((page, pageIndex) => (
         <React.Fragment key={pageIndex}>
-          <p className="p-2 py-8 text-16 md:text-20">{page.totalComments}개의 댓글</p>
           {page.comments.map((comment, commentIndex) => (
             <div
               key={comment._id}
