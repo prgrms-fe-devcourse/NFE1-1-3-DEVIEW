@@ -3,7 +3,9 @@ import { NoContent } from "@components/Common/NoContent";
 import { PostListItem } from "@components/Common/PostListItem";
 import { CommonPostResponseProps, TPost } from "@customTypes/post";
 import { useInfinite } from "@hooks/useInfinite";
+import ErrorPage from "@pages/ErrorPage";
 import { getScrapedPost } from "@services/post/getScrapedPost";
+import { errorAlert } from "@utils/sweetAlert/alerts";
 import React, { useCallback, useRef } from "react";
 
 export const ScrapContent = () => {
@@ -31,10 +33,13 @@ export const ScrapContent = () => {
       </div>
     );
 
-  if (error) return <div>Error: {(error as Error).message}</div>;
+  if (error) {
+    errorAlert({ title: "스크랩한 글을 불러오는 중 오류가 발생했습니다.", text: error.message });
+    return <ErrorPage />;
+  }
 
   if (!data || data.pages[0].posts.length === 0) return <NoContent type="scrap" />;
-  console.log(data.pages);
+  
   return (
     <div className="">
       <p className="p-2 py-4 text-16 md:text-20">{data.pages[0].totalPosts}개의 스크랩</p>
