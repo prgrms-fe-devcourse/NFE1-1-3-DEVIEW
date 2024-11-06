@@ -8,7 +8,7 @@ type PostListProps = {
 
 export const PostList = ({ posts, isRankedList = false }: PostListProps) => {
   return (
-    <div className="py-2">
+    <div className="py-5 md:px-3">
       {posts.map((post, i) => {
         return isRankedList ? (
           <PostListItem key={i} postItem={post} ranked={i + 1} />

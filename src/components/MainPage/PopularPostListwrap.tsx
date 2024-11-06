@@ -7,9 +7,5 @@ export const PopularPostListwrap = () => {
     queryFn: () => getPopularPosts({ page: 1, limit: 3 })
   });
 
-  return (
-    <div className="py-2 md:px-4">
-      <PostList posts={data.posts} isRankedList={true} />
-    </div>
-  );
+  return <PostList posts={data.posts} isRankedList={true} />;
 };
