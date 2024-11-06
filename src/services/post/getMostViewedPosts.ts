@@ -1,7 +1,7 @@
 import { ErrorResponse } from "@customTypes/errorResponse";
 import { PaginationRequestProps } from "@customTypes/pagination";
 import { TPost } from "@customTypes/post";
-import axiosInstance from "@services/axiosInstance";
+import { axiosInstance } from "@services/axiosInstance";
 import axios, { AxiosError } from "axios";
 
 // 페이지네이션 처리는 되어있지 않습니다.

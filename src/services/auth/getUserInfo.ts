@@ -1,6 +1,6 @@
 import { ErrorResponse } from "@customTypes/errorResponse";
 import { UserInfo } from "@customTypes/userInfo";
-import axiosInstance from "@services/axiosInstance";
+import { axiosInstance } from "@services/axiosInstance";
 import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 

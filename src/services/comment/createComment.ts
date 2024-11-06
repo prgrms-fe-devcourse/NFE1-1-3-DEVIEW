@@ -1,6 +1,6 @@
 import { TComment, CommonCommentRequestProps } from "@customTypes/comment";
 import { ErrorResponse } from "@customTypes/errorResponse";
-import axiosInstance from "@services/axiosInstance";
+import { axiosInstance } from "@services/axiosInstance";
 import { AccessTokenStorage } from "@utils/localStorage";
 import axios, { AxiosError } from "axios";
 

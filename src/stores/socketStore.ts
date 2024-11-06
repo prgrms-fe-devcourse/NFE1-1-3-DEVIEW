@@ -8,7 +8,7 @@ interface SocketState {
   disconnectSocket: () => void;
 }
 
-const useSocketStore = create<SocketState>((set) => ({
+export const useSocketStore = create<SocketState>((set) => ({
   socket: null,
   initializeSocket: () => {
     const newSocket = io(import.meta.env.VITE_SERVER_URL, { withCredentials: true });
@@ -22,5 +22,3 @@ const useSocketStore = create<SocketState>((set) => ({
       return { socket: null };
     })
 }));
-
-export default useSocketStore;

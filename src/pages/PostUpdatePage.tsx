@@ -1,5 +1,5 @@
 import { ActionBtn } from "@/components/Common/ActionBtn";
-import usePostDetail from "@hooks/usePostDetail";
+import { usePostDetail } from "@hooks/usePostDetail";
 import { usePostUpdate } from "@hooks/usePostUpdate";
 import { DetailContainer, EditorContainer, TitleContainer, VersionContainer } from "@components/PostCreatePage";
 import { DEV_DEPENDENCIES_LIST } from "@constants/devDependenciesList";
