@@ -38,9 +38,9 @@ export const PostsContent = () => {
 
   return (
     <div className="">
+      <p className="p-2 py-8 text-16 md:text-20">{data.pages[0].totalPosts}개의 게시글</p>
       {data.pages.map((page, pageIndex) => (
         <React.Fragment key={pageIndex}>
-          <p className="p-2 py-8 text-16 md:text-20">{page.totalPosts}개의 게시글</p>
           {page.posts.map((post, postIndex) => (
             <div
               key={post._id}
