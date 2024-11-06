@@ -3,7 +3,7 @@ import { useFilterStore } from "@stores/searchFiltersStore";
 export const SearchFilter = () => {
   const { selectedFilters, addFilter, deleteFilter } = useFilterStore();
 
-  const handleFilterSelect = (item: string) => {
+  const onFilterSelect = (item: string) => {
     if (selectedFilters.includes(item)) {
       deleteFilter(item);
     } else if (selectedFilters.length < 3) {
@@ -26,7 +26,7 @@ export const SearchFilter = () => {
                       ? "cursor-not-allowed opacity-50"
                       : "hover:opacity-80"
                   }`}
-                  onClick={() => handleFilterSelect(item)}
+                  onClick={() => onFilterSelect(item)}
                   disabled={selectedFilters.length >= 3 && !selectedFilters.includes(item)}
                 >
                   {item}
