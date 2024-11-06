@@ -9,7 +9,7 @@ type UseInfiniteProps<T> = {
   limit?: number; // 기본 limit 값을 설정할 수 있도록 추가
 };
 
-export default function useSuspenseInfinite<
+export function useSuspenseInfinite<
   T extends {
     currentPage: number;
     totalPages: number;

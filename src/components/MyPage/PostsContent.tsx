@@ -4,7 +4,7 @@ import { NoContent } from "@components/Common/NoContent";
 import { CommonPostResponseProps } from "@customTypes/post";
 import { getMyPosts } from "@services/post/getMyPosts";
 import React, { useCallback, useRef } from "react";
-import useInfinite from "@hooks/useInfinite";
+import { useInfinite } from "@hooks/useInfinite";
 
 export const PostsContent = () => {
   const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =

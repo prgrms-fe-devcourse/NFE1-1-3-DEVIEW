@@ -2,7 +2,7 @@ import { Loading } from "@components/Common/Loading";
 import { NoContent } from "@components/Common/NoContent";
 import { PostListItem } from "@components/Common/PostListItem";
 import { CommonPostResponseProps, TPost } from "@customTypes/post";
-import useInfinite from "@hooks/useInfinite";
+import { useInfinite } from "@hooks/useInfinite";
 import { getScrapedPost } from "@services/post/getScrapedPost";
 import React, { useCallback, useRef } from "react";
 

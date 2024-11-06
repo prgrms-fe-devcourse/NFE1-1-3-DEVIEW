@@ -8,11 +8,7 @@ type UseInfiniteCommentsQueryProps = {
   enabled?: boolean;
 };
 
-export default function useInfiniteCommentsQuery({
-  postId,
-  limit = 10,
-  enabled = true
-}: UseInfiniteCommentsQueryProps) {
+export function useInfiniteCommentsQuery({ postId, limit = 10, enabled = true }: UseInfiniteCommentsQueryProps) {
   return useInfiniteQuery({
     queryKey: [COMMENTS_QUERY_KEY, postId],
     queryFn: ({ pageParam = 1 }) => getComments({ postId, page: pageParam, limit }),

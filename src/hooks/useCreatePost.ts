@@ -7,7 +7,7 @@ type CreatePostRequestProps = Pick<
   "title" | "detail" | "devDependencies" | "code" | "devVersions"
 >;
 
-export const useCreatePost = () => {
+export function useCreatePost() {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -37,4 +37,4 @@ export const useCreatePost = () => {
       });
     }
   });
-};
+}
