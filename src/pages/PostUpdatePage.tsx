@@ -1,18 +1,19 @@
 import { ActionBtn } from "@/components/Common/ActionBtn";
-import { usePostDetail } from "@hooks/usePostDetail";
-import { usePostUpdate } from "@hooks/usePostUpdate";
+import { Loading } from "@components/Common/Loading";
 import { DetailContainer, EditorContainer, TitleContainer, VersionContainer } from "@components/PostCreatePage";
 import { DEV_DEPENDENCIES_LIST } from "@constants/devDependenciesList";
-import { DevDependency, CommonPostRequestProps } from "@customTypes/post";
-import { initialState } from "@customTypes/postCreate"; // PostFormState import 수정
+import { CommonPostRequestProps, DevDependency } from "@customTypes/post";
+import { initialState } from "@customTypes/postCreate";
+import { usePostDetail } from "@hooks/usePostDetail";
+import { usePostUpdate } from "@hooks/usePostUpdate";
 import { postFormReducer, validateForm } from "@utils/postCreate";
+import { customConfirm, errorAlert } from "@utils/sweetAlert/alerts";
 import { FormEvent, useCallback, useEffect, useReducer } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function PostUpdatePage() {
   const { postId } = useParams<{ postId: string }>();
 
-  console.log("PostUpdatePage: ", postId);
   const navigate = useNavigate();
   const [state, dispatch] = useReducer(postFormReducer, initialState);
 
@@ -58,14 +59,18 @@ export default function PostUpdatePage() {
     const validation = validateForm(state);
     if (!validation.isValid) {
       const firstError = Object.values(validation.errors)[0];
-      alert(firstError);
+      errorAlert({ title: "입력 오류", text: firstError });
       return false;
     }
     return true;
   }, [state]);
 
-  const handleCancel = useCallback(() => {
-    if (window.confirm("수정을 취소하시겠습니까?")) {
+  const handleCancel = useCallback(async () => {
+    const confirmResult = await customConfirm({
+      title: "수정을 취소하시겠습니까?",
+      text: "작성 중인 내용은 저장되지 않습니다."
+    });
+    if (confirmResult.isConfirmed) {
       navigate(`/post/${postId}`);
     }
   }, [navigate, postId]);
@@ -119,16 +124,19 @@ export default function PostUpdatePage() {
         devDependencies: validIndices.map((index) => state.devDependencies[index]),
         devVersions: validIndices.map((index) => state.devVersions[index])
       };
-
-      updatePost(postData);
+      const confirmResult = await customConfirm({
+        title: "게시글을 수정하시겠습니까?",
+        text: "수정된 내용은 저장됩니다."
+      });
+      if (confirmResult.isConfirmed) updatePost(postData);
     },
     [state, postId, onValidation, updatePost]
   );
 
-  if (isLoading) return <div>로딩 중...</div>;
-  if (error) return <div>에러가 발생했습니다: {error.message}</div>;
-  if (!post) return <div>게시글을 찾을 수 없습니다.</div>;
-  if (!post.isAuthor) return <div>수정 권한이 없습니다.</div>;
+  if (isLoading) return <Loading />;
+  if (error) return errorAlert({ title: "오류 발생", text: error.message });
+  if (!post) return errorAlert({ title: "오류 발생", text: "게시글을 찾을 수 없습니다." });
+  if (!post.isAuthor) return errorAlert({ title: "오류 발생", text: "게시글 작성자만 수정할 수 있습니다." });
 
   return (
     <form onSubmit={onSubmit} className="m-auto flex max-w-[1440px] flex-col gap-12 px-4 py-12">

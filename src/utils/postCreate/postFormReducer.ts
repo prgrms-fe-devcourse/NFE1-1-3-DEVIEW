@@ -1,7 +1,5 @@
-import { DevDependency } from "@customTypes/postCreate";
 import { DEV_DEPENDENCIES_LIST } from "@constants/devDependenciesList";
-import { PostFormState, PostFormAction, initialState } from "@customTypes/postCreate";
-
+import { DevDependency, PostFormAction, PostFormState, initialState } from "@customTypes/postCreate";
 // 유틸리티 함수들
 const versionUtils = {
   canRemoveVersion: (versions: string[]) => versions.length > 1,
@@ -86,25 +84,24 @@ export const postFormReducer = (state: PostFormState, action: PostFormAction): P
 export const validateForm = (state: PostFormState) => {
   const errors: Partial<Record<keyof PostFormState, string>> = {};
 
-  if (!state.title.trim()) {
+  if (!state.title.trim() || state.title.length < 0) {
     errors.title = "제목을 입력해주세요.";
   }
 
-  if (!state.detail.trim()) {
+  if (!state.detail.trim() || state.detail.length < 0) {
     errors.detail = "내용을 입력해주세요.";
   }
 
-  if (!state.code.trim()) {
+  if (!state.code.replace(/<[^>]*>/g, "").trim()) {
     errors.code = "코드를 입력해주세요.";
   }
 
   const hasEmptyDependency = state.devDependencies.some((dep) => !dep);
-  const hasEmptyVersion = state.devVersions.some((version) => !version.trim());
+  const hasEmptyVersion = state.devVersions.some((version) => !version.trim() || version.length < 0);
 
   if (hasEmptyDependency || hasEmptyVersion) {
-    errors.devDependencies = "모든 의존성과 버전 정보를 입력해주세요.";
+    errors.devDependencies = "버전 정보 반드시 입력해주세요.";
   }
-
   return {
     isValid: Object.keys(errors).length === 0,
     errors
