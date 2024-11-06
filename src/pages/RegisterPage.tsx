@@ -53,7 +53,7 @@ export default function RegisterPage() {
     }
   };
   return (
-    <div className="mx-auto h-[100vh] max-w-sm">
+    <div className="mx-auto h-[100vh] max-w-sm p-4">
       <form className="flex h-full flex-col justify-center" onSubmit={onSubmit}>
         <Link to="/" className="mb-5 self-center">
           <Logo />
@@ -63,7 +63,7 @@ export default function RegisterPage() {
         <ConfirmPasswordInput />
         <NameInput />
 
-        <div className="mb-5 flex items-center justify-between gap-10">
+        <div className="mb-5 flex items-center justify-between gap-5 md:gap-10">
           <Radio id="student" name="group" text="학생" value="학생" defaultChecked />
           <Radio id="seeker" name="group" text="취준생" value="취준생" />
           <Radio id="developer" name="group" text="개발자" value="개발자" />
