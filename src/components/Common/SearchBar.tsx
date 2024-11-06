@@ -77,7 +77,7 @@ export const SearchBar = ({ onFocus, onCloseFilter }: SearchBarProps) => {
                 event.stopPropagation();
                 deleteFilter(filter);
               }}
-              className="mr-2 mt-1 cursor-pointer rounded bg-lightgray py-1 pl-2 pr-1 text-12 flex-center md:mt-1 md:mt-[6px]"
+              className="mr-2 mt-1 cursor-pointer rounded bg-lightgray py-1 pl-2 pr-1 text-12 flex-center md:mt-[6px]"
             >
               <span>{filter}</span>
               <IoCloseSharp className="ml-3" />
