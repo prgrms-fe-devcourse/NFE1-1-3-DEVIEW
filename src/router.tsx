@@ -88,7 +88,7 @@ export const router = createBrowserRouter([
       {
         path: "/admin",
         element: (
-          <ProtectedRoute forAdmin>
+          <ProtectedRoute forAdmin requireLogin redirectUrl="/">
             <AdminPage />
           </ProtectedRoute>
         )

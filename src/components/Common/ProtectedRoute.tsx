@@ -28,9 +28,11 @@ export const ProtectedRoute = ({
   // 사용자의 로그인 상태를 가져옴
   const { isLoggedIn, userInfo } = useUserStore();
 
-  if (isLoggedIn && forAdmin && userInfo?.role === "admin") {
-    return <>{children}</>;
+  if (forAdmin) {
+    if (userInfo?.role === "admin") return <>{children}</>;
+    else return <Navigate to={redirectUrl} replace />;
   }
+
   // 로그인 상태와 요구사항이 일치하지 않으면 리다이렉트
   if (isLoggedIn !== requireLogin) {
     return <Navigate to={redirectUrl} replace />;
