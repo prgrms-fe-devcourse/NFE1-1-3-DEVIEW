@@ -65,7 +65,7 @@ export const SearchBar = ({ onFocus, onCloseFilter }: SearchBarProps) => {
             }}
             className="absolute right-3 top-1/2 -translate-y-1/2 transform"
           >
-            <IoMdSearch className="h-6 w-6" />
+            <IoMdSearch className="h-6 w-6 text-gray hover:text-primary" />
           </button>
         </div>
 
