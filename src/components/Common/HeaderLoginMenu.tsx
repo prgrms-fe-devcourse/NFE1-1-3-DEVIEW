@@ -74,11 +74,8 @@ export const HeaderLoginMenu = () => {
           >
             질문하기
           </Link>
-          <div className="relative inline-block">
-            <GoBell
-              className="mr-2 h-10 w-6 cursor-pointer md:mr-0 md:h-8 md:w-8 2md:h-10 2md:w-10"
-              onClick={toggleBellIconModal}
-            />
+          <div onClick={toggleBellIconModal} className="relative inline-block">
+            <GoBell className="mr-2 h-10 w-6 cursor-pointer md:mr-0 md:h-8 md:w-8 2md:h-10 2md:w-10" />
             <NotificationCount count={data?.unreadNotificationsCount ?? 0} />
           </div>
           {isBellIconOpen && (
