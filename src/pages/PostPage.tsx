@@ -10,15 +10,15 @@ export default function PostPage() {
   const [sort, setSort] = useState<"latest" | "views">("latest");
   const [userId, setUserId] = useState<string>("");
   return (
-    <div className="m-auto max-w p-8 md:p-20">
-      {id ? (
-        <PostPageHeader id={userId} sort={sort} setSort={setSort} />
-      ) : (
-        <PostPageHeader sort={sort} setSort={setSort} />
-      )}
+    <div className="m-auto max-w p-4 pt-10">
+      {id ? <PostPageHeader sort={sort} id={userId} /> : <PostPageHeader sort={sort} />}
       <ErrorBoundary fallback={<PostPageSkeleton isError={true} />}>
         <Suspense fallback={<PostPageSkeleton />}>
-          {id ? <PostPageList sort={sort} id={id} setUserId={setUserId} /> : <PostPageList sort={sort} />}
+          {id ? (
+            <PostPageList setSort={setSort} sort={sort} id={id} setUserId={setUserId} />
+          ) : (
+            <PostPageList sort={sort} setSort={setSort} />
+          )}
         </Suspense>
       </ErrorBoundary>
     </div>
