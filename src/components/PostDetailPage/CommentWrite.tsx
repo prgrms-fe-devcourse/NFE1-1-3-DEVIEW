@@ -1,7 +1,7 @@
 import { CommentEditor } from "@/components/PostDetailPage";
 import { useCreateComment } from "@/hooks/useCreateComment";
 import { useUserStore } from "@stores/userStore";
-import { errorAlert, customToast } from "@utils/sweetAlert/alerts";
+import { customToast, errorAlert } from "@utils/sweetAlert/alerts";
 import Avatar from "boring-avatars";
 import { useCallback, useState } from "react";
 import { useParams } from "react-router-dom";

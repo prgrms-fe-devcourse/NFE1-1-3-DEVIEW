@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { useParams } from "react-router-dom";
 import { EditableCodeViewer } from "./EditableCodeViewer";
-
+import { Loading } from "@components/Common/Loading";
+import { errorAlert } from "@/utils/sweetAlert/alerts";
 export const CommentList = () => {
   const { id: postId } = useParams<{ id: string }>();
   const { ref, inView } = useInView({
@@ -30,32 +31,15 @@ export const CommentList = () => {
 
   // 로딩 상태
   if (isLoading) {
-    return (
-      <div className="flex flex-col gap-4">
-        {[...Array(3)].map((_, index) => (
-          <div key={index} className="animate-pulse rounded-lg border border-solid border-gray px-3 py-4">
-            <div className="mb-4 flex gap-4">
-              <div className="bg-gray-200 h-12 w-12 rounded-full" />
-              <div className="bg-gray-200 h-4 w-24 rounded" />
-            </div>
-            <div className="bg-gray-200 h-20 w-full rounded" />
-          </div>
-        ))}
-      </div>
-    );
+    return <Loading />;
   }
 
-  // 에러 상태
   if (error) {
-    return (
-      <div className="text-red-500 rounded-lg border border-solid border-gray px-3 py-4">
-        댓글을 불러오는 중 오류가 발생했습니다.
-      </div>
-    );
+    errorAlert({ title: "댓글 목록을 불러오는 중 오류가 발생했습니다.", text: error.message });
   }
 
-  // 데이터가 없는 경우
   if (!data?.pages[0]) {
+    errorAlert({ title: "댓글 목록을 불러오는 중 오류가 발생했습니다.", text: "데이터를 찾을 수 없습니다." });
     return null;
   }
 
@@ -114,14 +98,14 @@ export const CommentList = () => {
 
       {/* 추가 댓글 로딩 상태 */}
       {isFetchingNextPage && (
-        <div className="flex justify-center p-4">
-          <div className="border-gray-900 h-6 w-6 animate-spin rounded-full border-b-2" />
+        <div className="flex h-20 w-full flex-center">
+          <Loading />
         </div>
       )}
 
       {/* 댓글이 없는 경우 */}
       {!isLoading && allComments.length === 0 && (
-        <div className="text-gray-500 p-4 text-center">아직 작성된 댓글이 없습니다.</div>
+        <div className="p-4 text-gray flex-center">아직 작성된 댓글이 없습니다.</div>
       )}
     </div>
   );

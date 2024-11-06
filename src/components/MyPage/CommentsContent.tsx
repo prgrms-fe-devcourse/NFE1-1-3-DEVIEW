@@ -5,6 +5,8 @@ import { CommonCommentResponseProps } from "@customTypes/comment";
 import { useInfinite } from "@hooks/useInfinite";
 import { getMyComments } from "@services/comment/getMyComments";
 import React, { useCallback, useRef } from "react";
+import { errorAlert } from "@utils/sweetAlert/alerts";
+import ErrorPage from "@pages/ErrorPage";
 
 export const CommentsContent = () => {
   const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
@@ -31,7 +33,10 @@ export const CommentsContent = () => {
       </div>
     );
 
-  if (error) return <div>Error: {(error as Error).message}</div>;
+  if (error) {
+    errorAlert({ title: "댓글을 불러오는 중 오류가 발생했습니다.", text: error.message });
+    return <ErrorPage />;
+  }
 
   if (!data || data.pages[0].comments.length === 0) return <NoContent type="comment" />;
   console.log(data);

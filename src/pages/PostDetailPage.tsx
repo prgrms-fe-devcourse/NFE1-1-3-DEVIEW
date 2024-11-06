@@ -1,47 +1,32 @@
+import { errorAlert } from "@/utils/sweetAlert/alerts";
+import { Loading } from "@components/Common/Loading";
 import { CommentList, CommentWrite, PostDetail, PostDetailInteraction } from "@components/PostDetailPage";
 import { usePostDetail } from "@hooks/usePostDetail";
-import { Navigate, useParams } from "react-router-dom";
-
+import ErrorPage from "@pages/ErrorPage";
+import { useParams } from "react-router-dom";
 export default function PostDetailPage() {
   const { id } = useParams<{ id: string }>();
   const { post, isLoading, isError, error } = usePostDetail({
     postId: id ?? undefined,
     enabled: Boolean(id)
   });
-  // ID가 없는 경우 메인 페이지로 리다이렉트
   if (!id) {
-    return <Navigate to="/" replace />;
+    errorAlert({ title: "게시글을 찾을 수 없습니다.", text: "올바르지 않은 POSTID입니다." });
+    return <ErrorPage />;
   }
-  console.log("PostDetailPage: ", post);
 
   if (isLoading) {
-    return (
-      <div className="m-auto my-[1.625rem] flex max-w-[1240px] flex-col gap-12 px-5">
-        <div className="animate-pulse">
-          <div className="bg-gray-200 mb-4 h-8 w-3/4 rounded"></div>
-          <div className="bg-gray-200 mb-2 h-4 w-1/2 rounded"></div>
-          <div className="bg-gray-200 h-64 w-full rounded"></div>
-        </div>
-      </div>
-    );
+    return <Loading />;
   }
 
-  // 에러 발생 시 에러 메시지 표시
   if (isError) {
-    return (
-      <div className="m-auto my-[1.625rem] flex max-w-[1240px] flex-col gap-12 px-5">
-        <div className="text-red-500">에러가 발생했습니다: {error?.message ?? "알 수 없는 오류가 발생했습니다."}</div>
-      </div>
-    );
+    errorAlert({ title: "게시글을 불러오는 중 오류가 발생했습니다.", text: error?.message });
+    return <ErrorPage />;
   }
 
-  // 데이터가 없는 경우 메시지 표시
   if (!post) {
-    return (
-      <div className="m-auto my-[1.625222rem] flex max-w-[1240px] flex-col gap-12 px-5">
-        <div>게시글을 찾을 수 없습니다.</div>
-      </div>
-    );
+    errorAlert({ title: "게시글을 찾을 수 없습니다.", text: "게시글을 찾을 수 없습니다." });
+    return <ErrorPage />;
   }
 
   return (
