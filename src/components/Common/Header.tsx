@@ -7,7 +7,7 @@ import { SearchFilter } from "@components/Common/SearchFilter";
 import { HeaderLoginMenu } from "@components/Common/HeaderLoginMenu";
 import { GiHamburgerMenu } from "react-icons/gi";
 
-export default function Header() {
+export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isFilterVisible, setIsFilterVisible] = useState(false);
 
@@ -96,4 +96,4 @@ export default function Header() {
       )}
     </div>
   );
-}
+};

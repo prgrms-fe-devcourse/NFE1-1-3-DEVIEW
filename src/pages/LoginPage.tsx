@@ -6,7 +6,7 @@ import { AUTH_INPUT_VALIDATION } from "@constants/authInputValidation";
 import { login } from "@services/auth/login";
 import { AccessTokenStorage } from "@utils/localStorage";
 import { useUserStore } from "@stores/userStore";
-import useSocketStore from "@stores/socketStore";
+import { useSocketStore } from "@stores/socketStore";
 
 export default function LoginPage() {
   const { setUserInfo } = useUserStore();

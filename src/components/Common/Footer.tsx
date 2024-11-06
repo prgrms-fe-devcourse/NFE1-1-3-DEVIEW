@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Logo } from "@components/Common/Logo";
 
-export default function Footer() {
+export const Footer = () => {
   return (
     <footer className="h-auto bg-black py-7">
       <div className="my-auto max-w p-4 2xl:m-auto">
@@ -12,4 +12,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+};

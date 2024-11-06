@@ -81,12 +81,10 @@ export const EditorContainer = ({ value, onChange }: EditorContainerProps) => {
             modules={modules}
             formats={formats}
             placeholder="코드를 입력해주세요"
-            className="2sm:h-[90%] absolute h-[84%] w-full sm:h-[90%] md:h-[92%]"
+            className="absolute h-[84%] w-full 2sm:h-[90%] sm:h-[90%] md:h-[92%]"
           />
         </div>
       </div>
     </section>
   );
 };
-
-export default EditorContainer;

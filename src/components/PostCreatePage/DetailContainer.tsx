@@ -58,5 +58,3 @@ export const DetailContainer = ({
     </section>
   );
 };
-
-export default DetailContainer;

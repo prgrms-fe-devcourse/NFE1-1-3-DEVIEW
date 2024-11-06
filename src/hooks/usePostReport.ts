@@ -17,7 +17,7 @@ type usePostReportProps = {
   onError?: (error: Error) => void;
 };
 
-export const usePostReport = ({ onSuccess, onError }: usePostReportProps) => {
+export function usePostReport({ onSuccess, onError }: usePostReportProps) {
   const queryClient = useQueryClient();
 
   return useMutation<ReportPostResponse, Error, ReportPostRequest>({
@@ -42,6 +42,4 @@ export const usePostReport = ({ onSuccess, onError }: usePostReportProps) => {
       onError?.(error);
     }
   });
-};
-
-export default usePostReport;
+}

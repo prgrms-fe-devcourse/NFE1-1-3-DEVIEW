@@ -1,7 +1,7 @@
 import { Loading } from "@components/Common/Loading";
 import { PostList } from "@components/Common/PostList";
 import { CommonPostResponseProps } from "@customTypes/post";
-import useSuspenseInfinite from "@hooks/useSuspenseInfinite";
+import { useSuspenseInfinite } from "@hooks/useSuspenseInfinite";
 import { getPopularPosts } from "@services/post/getPopularPosts";
 import { getPosts } from "@services/post/getPosts";
 import { getUserPosts } from "@services/user/getUserPosts";

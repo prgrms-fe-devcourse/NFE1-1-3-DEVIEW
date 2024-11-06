@@ -5,7 +5,7 @@ import { GoBell } from "react-icons/go";
 import { useUserStore } from "@stores/userStore";
 import { HeaderNotificationModal } from "@components/Common/HeaderNotificationModal";
 import { NotificationCount } from "@components/Common/NotificationCount";
-import useSocketStore from "@stores/socketStore";
+import { useSocketStore } from "@stores/socketStore";
 import { getMyNotifications } from "@services/notification/getMyNotifications";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Avatar from "boring-avatars";

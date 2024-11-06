@@ -8,7 +8,7 @@ type PostListItemProps = {
   ranked?: number;
 };
 
-const PostListItem = forwardRef<HTMLDivElement, PostListItemProps>(({ postItem, ranked }, ref) => {
+export const PostListItem = forwardRef<HTMLDivElement, PostListItemProps>(({ postItem, ranked }, ref) => {
   // 숫자 포맷함수
   // 1000이상일 경우 '만','천' 단위로 표시
   // 소수점 한자리 이후로 내림처리
@@ -85,5 +85,3 @@ const PostListItem = forwardRef<HTMLDivElement, PostListItemProps>(({ postItem, 
     </div>
   );
 });
-
-export default PostListItem;

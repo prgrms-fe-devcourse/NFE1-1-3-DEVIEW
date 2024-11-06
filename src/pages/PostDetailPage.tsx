@@ -1,5 +1,5 @@
 import { CommentList, CommentWrite, PostDetail, PostDetailInteraction } from "@components/PostDetailPage";
-import usePostDetail from "@hooks/usePostDetail";
+import { usePostDetail } from "@hooks/usePostDetail";
 import { Navigate, useParams } from "react-router-dom";
 
 export default function PostDetailPage() {
@@ -45,7 +45,7 @@ export default function PostDetailPage() {
   }
 
   return (
-    <div className="m-auto py-12 flex max-w-[1440px] flex-col gap-12 px-4">
+    <div className="m-auto flex max-w-[1440px] flex-col gap-12 px-4 py-12">
       <PostDetail />
       <PostDetailInteraction postId={post._id} post={post} />
       <CommentWrite />

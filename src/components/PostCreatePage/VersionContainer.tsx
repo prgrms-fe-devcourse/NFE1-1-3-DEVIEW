@@ -53,5 +53,3 @@ export const VersionContainer = ({ state, onAddVersion, onRemoveVersion, onVersi
     </section>
   );
 };
-
-export default VersionContainer;

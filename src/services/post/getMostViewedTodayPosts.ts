@@ -1,6 +1,6 @@
 import { ErrorResponse } from "@customTypes/errorResponse";
 import { TPost } from "@customTypes/post";
-import axiosInstance from "@services/axiosInstance";
+import { axiosInstance } from "@services/axiosInstance";
 import axios, { AxiosError } from "axios";
 
 type GetMostViewedTodayPostsResponseProps = TPost;

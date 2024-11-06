@@ -55,5 +55,3 @@ export const PostMetaList = ({ userId, viewsCount, commentCount, createdAt, _id 
     </div>
   );
 };
-
-export default PostMetaList;

@@ -150,5 +150,3 @@ export const CommentEditor = ({ value, onChange, placeholder = "댓글을 입력
     </div>
   );
 };
-
-export default CommentEditor;

@@ -2,7 +2,7 @@ import { Loading } from "@components/Common/Loading";
 import { NoContent } from "@components/Common/NoContent";
 import { MyComment } from "@components/MyPage/MyComment";
 import { CommonCommentResponseProps } from "@customTypes/comment";
-import useInfinite from "@hooks/useInfinite";
+import { useInfinite } from "@hooks/useInfinite";
 import { getMyComments } from "@services/comment/getMyComments";
 import React, { useCallback, useRef } from "react";
 

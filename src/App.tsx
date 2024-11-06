@@ -4,7 +4,7 @@ import { useUserStore } from "@stores/userStore";
 import { AccessTokenStorage } from "@utils/localStorage";
 import { RouterProvider } from "react-router-dom";
 import { autoLogin } from "@services/auth/autoLogin";
-import useSocketStore from "@stores/socketStore";
+import { useSocketStore } from "@stores/socketStore";
 
 export const App = () => {
   const { setUserInfo } = useUserStore();

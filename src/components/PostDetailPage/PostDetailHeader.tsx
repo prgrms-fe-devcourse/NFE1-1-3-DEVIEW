@@ -21,5 +21,3 @@ export const PostDetailHeader = () => {
     </div>
   );
 };
-
-export default PostDetailHeader;

@@ -1,7 +1,7 @@
 import { ErrorResponse } from "@customTypes/errorResponse";
 import { PaginationRequestProps } from "@customTypes/pagination";
 import { UserInfo } from "@customTypes/userInfo";
-import axiosInstance from "@services/axiosInstance";
+import { axiosInstance } from "@services/axiosInstance";
 import axios, { AxiosError } from "axios";
 
 type GetUserRankingsRequestProps = PaginationRequestProps;

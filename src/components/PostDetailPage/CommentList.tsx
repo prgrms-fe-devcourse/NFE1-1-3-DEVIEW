@@ -1,5 +1,5 @@
 import { CommentEditDelete, CommentInteraction } from "@components/PostDetailPage";
-import useInfiniteCommentsQuery from "@hooks/useInfiniteComment";
+import { useInfiniteCommentsQuery } from "@hooks/useInfiniteComment";
 import Avatar from "boring-avatars";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
@@ -126,5 +126,3 @@ export const CommentList = () => {
     </div>
   );
 };
-
-export default CommentList;

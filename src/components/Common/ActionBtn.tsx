@@ -18,5 +18,3 @@ export const ActionBtn = ({ content, type, onClick, color = "gray" }: ActionBtnP
     </button>
   );
 };
-
-export default ActionBtn;

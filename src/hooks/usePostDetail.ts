@@ -22,7 +22,7 @@ type UsePostDetailReturn = {
   isFetching: boolean;
 };
 
-export default function usePostDetail({ postId, enabled = true }: UsePostDetailProps): UsePostDetailReturn {
+export function usePostDetail({ postId, enabled = true }: UsePostDetailProps): UsePostDetailReturn {
   const { setPost, setLoading, setError } = usePostDetailStore();
 
   const isInvalidId = !postId;

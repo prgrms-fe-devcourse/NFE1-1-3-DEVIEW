@@ -1,6 +1,6 @@
 import { ErrorResponse } from "@customTypes/errorResponse";
 import { UserInfo } from "@customTypes/userInfo";
-import axiosInstance from "@services/axiosInstance";
+import { axiosInstance } from "@services/axiosInstance";
 import axios, { AxiosError } from "axios";
 
 type RegisterRequestProps = UserInfo & {
