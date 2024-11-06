@@ -6,5 +6,9 @@ export const RecentPostListwrap = () => {
     queryKey: ["posts"],
     queryFn: () => getPosts({ page: 1, limit: 3 })
   });
-  return <PostList posts={data.posts} />;
+  return (
+    <div className="py-2 md:px-4">
+      <PostList posts={data.posts} />
+    </div>
+  );
 };
