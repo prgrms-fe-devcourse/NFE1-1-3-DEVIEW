@@ -40,7 +40,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="mx-auto h-[100vh] max-w-sm">
+    <div className="mx-auto h-[100vh] max-w-sm p-4 md:p-0">
       <form className="flex h-full flex-col justify-center" onSubmit={onSubmit}>
         <Link to="/" className="mb-5 self-center">
           <Logo />
