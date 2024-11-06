@@ -1,6 +1,6 @@
 import { Loading } from "@components/Common/Loading";
 import { NoContent } from "@components/Common/NoContent";
-import PostListItem from "@components/Common/PostListItem";
+import { PostListItem } from "@components/Common/PostListItem";
 import useInfinite from "@hooks/useInfinite";
 import { getHiddenPosts, GetHiddenPostsResponseProps } from "@services/post/getHiddenPosts";
 import React from "react";

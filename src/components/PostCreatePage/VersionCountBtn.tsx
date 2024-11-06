@@ -23,5 +23,3 @@ export const VersionCountBtn = ({ addOrMinus, onClick, disabled = false }: Versi
     </button>
   );
 };
-
-export default VersionCountBtn;

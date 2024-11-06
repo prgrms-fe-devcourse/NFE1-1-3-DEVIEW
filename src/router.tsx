@@ -1,5 +1,5 @@
-import Footer from "@components/Common/Footer";
-import Header from "@components/Common/Header";
+import { Footer } from "@components/Common/Footer";
+import { Header } from "@components/Common/Header";
 import { ProtectedRoute } from "@components/Common/ProtectedRoute";
 import { ScrollToTop } from "@components/Common/ScrollToTop";
 import { AdminPage } from "@pages/AdminPage";

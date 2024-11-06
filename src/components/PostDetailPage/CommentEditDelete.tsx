@@ -1,5 +1,5 @@
-import DeleteBtn from "@components/Common/DeleteBtn";
-import EditBtn from "@components/Common/EditBtn";
+import { DeleteBtn } from "@components/Common/DeleteBtn";
+import { EditBtn } from "@components/Common/EditBtn";
 import { useCommentDelete } from "@hooks/useCommentDelete";
 import { usePostDetailStore } from "@stores/postDetailStore";
 import { toast } from "react-hot-toast";
@@ -42,5 +42,3 @@ export const CommentEditDelete = ({ commentId, isEditing, onEditStateChange }: C
     </div>
   );
 };
-
-export default CommentEditDelete;

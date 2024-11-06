@@ -31,5 +31,3 @@ export const TitleContainer = ({ category, explain, placeholder, value, onChange
     </section>
   );
 };
-
-export default TitleContainer;

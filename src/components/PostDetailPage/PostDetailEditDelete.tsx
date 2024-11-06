@@ -1,5 +1,5 @@
-import DeleteBtn from "@components/Common/DeleteBtn";
-import EditBtn from "@components/Common/EditBtn";
+import { DeleteBtn } from "@components/Common/DeleteBtn";
+import { EditBtn } from "@components/Common/EditBtn";
 import { usePostDelete } from "@hooks/usePostDelete";
 import { usePostDetailStore } from "@stores/postDetailStore";
 import { toast } from "react-hot-toast";
@@ -37,5 +37,3 @@ export const PostDetailEditDelete = () => {
     </div>
   );
 };
-
-export default PostDetailEditDelete;

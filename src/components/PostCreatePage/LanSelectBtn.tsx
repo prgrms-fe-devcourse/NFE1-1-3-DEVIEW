@@ -25,5 +25,3 @@ export const LanSelectBtn = ({ value, onChange }: LanSelectBtnProps) => {
     </select>
   );
 };
-
-export default LanSelectBtn;
