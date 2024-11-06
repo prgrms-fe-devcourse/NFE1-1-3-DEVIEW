@@ -72,7 +72,7 @@ export const HeaderNotificationModal = ({
   };
 
   return (
-    <div className="fixed left-0 top-0 z-50 h-full w-full overflow-y-auto whitespace-pre border border-solid border-lightgray bg-white-pure scrollbar-hide md:absolute md:left-auto md:top-16 md:mt-2 md:h-80 md:w-96 md:max-w md:-translate-x-80 md:whitespace-nowrap md:rounded md:shadow 2md:-translate-x-64">
+    <div className="fixed left-0 top-0 z-50 h-full w-full overflow-y-auto whitespace-pre border border-solid border-lightgray bg-white-pure scrollbar-hide md:absolute md:left-auto md:top-16 md:mt-2 md:h-80 md:w-96 md:max-w md:-translate-x-80 md:whitespace-nowrap md:rounded md:shadow 2md:-translate-x-36">
       <div className="block border-b border-solid border-lightgray">
         <MdKeyboardDoubleArrowRight className="mb-2 h-16 w-6 cursor-pointer md:hidden" onClick={toggleBellIconModal} />
       </div>
@@ -82,7 +82,10 @@ export const HeaderNotificationModal = ({
             <Link
               key={notification.id}
               to={`/post/${notification.post._id}`}
-              onClick={() => onClickRead(notification.id)}
+              onClick={() => {
+                onClickRead(notification.id);
+                toggleBellIconModal();
+              }}
             >
               <div
                 className={`text-bold flex cursor-pointer items-center border-b border-solid border-lightgray px-4 py-4 hover:opacity-80 ${
