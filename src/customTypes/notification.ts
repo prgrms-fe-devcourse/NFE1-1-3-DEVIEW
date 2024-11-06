@@ -2,7 +2,7 @@ import { TPost } from "@customTypes/post";
 
 export type TNotification = {
   id: string;
-  post: Pick<TPost, "_id">;
+  post?: Pick<TPost, "_id">;
   title: string;
   content: string;
   isRead: boolean;

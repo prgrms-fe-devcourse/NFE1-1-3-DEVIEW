@@ -81,7 +81,7 @@ export const HeaderNotificationModal = ({
           {notifications.map((notification) => (
             <Link
               key={notification.id}
-              to={`/post/${notification.post._id}`}
+              to={notification.post?._id ? `/post/${notification.post._id}` : "404"}
               onClick={() => {
                 onClickRead(notification.id);
                 toggleBellIconModal();
