@@ -55,7 +55,7 @@ export const SearchBar = ({ onFocus, onCloseFilter }: SearchBarProps) => {
             className="h-11 flex-1 rounded-[50px] border border-lightgray pr-10 text-12 md:text-16"
             onFocus={onInputFocus}
             onChange={onChange}
-            onKeyDown={onKeyDown}
+            onKeyPress={onKeyDown}
             onClick={onClick}
             value={query}
           />
