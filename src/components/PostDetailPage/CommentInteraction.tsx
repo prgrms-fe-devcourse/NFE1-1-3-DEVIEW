@@ -1,11 +1,9 @@
-import { LuThumbsUp } from "react-icons/lu";
-import { useThumbComment } from "@hooks/useThumbComment";
-import { useQueryClient } from "@tanstack/react-query";
 import { COMMENTS_QUERY_KEY } from "@constants/queryKey";
 import { CommonCommentResponseProps } from "@customTypes/comment";
-import { InfiniteData } from "@tanstack/react-query";
+import { useThumbComment } from "@hooks/useThumbComment";
+import { InfiniteData, useQueryClient } from "@tanstack/react-query";
+import { FaRegThumbsUp } from "react-icons/fa6";
 import { useParams } from "react-router-dom";
-
 type CommentInteractionProps = {
   commentId: string;
 };
@@ -33,11 +31,11 @@ export const CommentInteraction = ({ commentId }: CommentInteractionProps) => {
     <section className="w-full flex-center">
       <div className="m-auto flex rounded-[30px] px-6 py-4 shadow">
         <button
-          className={`flex items-center gap-[0.03rem] ${isThumbed && "fill-pink"} ${isPending ? "opacity-50" : ""}`}
+          className={`flex items-center gap-[0.03rem] ${isThumbed && "fill-pink"} ${isPending && "opacity-50"}`}
           onClick={handleThumbClick}
           disabled={isPending}
         >
-          <LuThumbsUp
+          <FaRegThumbsUp
             className={`flex-shrink-0 transition-transform duration-200 ease-in-out ${
               !isPending && "hover:scale-110"
             } ${isThumbed && "fill-pink"} `}
