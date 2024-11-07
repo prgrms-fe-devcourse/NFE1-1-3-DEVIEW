@@ -82,7 +82,7 @@ export default {
           "@apply bg-primary w-full rounded p-6 text-white-pure hover:opacity-80": ""
         },
         ".lightgray-btn": {
-          "@apply bg-lightgray w-full rounded p-6 text-black": ""
+          "@apply bg-lightgray w-full rounded p-6 text-black hover:opacity-80": ""
         },
         ".gray-btn": {
           "@apply bg-gray w-full rounded p-6 text-black": ""
