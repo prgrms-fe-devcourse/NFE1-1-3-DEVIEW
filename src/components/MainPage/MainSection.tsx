@@ -50,7 +50,7 @@ export const MainSection = () => {
       >
         {banners.map(({ banner, color }, i) => (
           <SwiperSlide key={i} className="transition-transform md:hover:scale-105">
-            <ErrorBoundary fallback={<MainBannerSkeleton isError={true} />}>
+            <ErrorBoundary fallbackRender={({ error }) => <MainBannerSkeleton error={error.message} isError={true} />}>
               <Suspense fallback={<MainBannerSkeleton />}>
                 <MainBanner color={color}>{React.createElement(banner)}</MainBanner>
               </Suspense>

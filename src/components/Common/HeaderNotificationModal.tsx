@@ -72,50 +72,52 @@ export const HeaderNotificationModal = ({
   };
 
   return (
-    <div className="fixed left-0 top-0 z-50 h-full w-full overflow-y-auto whitespace-pre border border-solid border-lightgray bg-white-pure scrollbar-hide md:absolute md:left-auto md:top-16 md:mt-2 md:h-80 md:w-96 md:max-w md:-translate-x-80 md:whitespace-nowrap md:rounded md:shadow 2md:-translate-x-36">
-      <div className="block border-b border-solid border-lightgray">
+    <div className="fixed inset-0 z-50 flex flex-col bg-white-pure md:absolute md:inset-auto md:left-auto md:top-16 md:mt-2 md:h-80 md:w-96 md:max-w md:-translate-x-80 md:rounded md:border md:border-solid md:border-lightgray md:shadow 2md:-translate-x-36">
+      <div className="flex-none border-b border-solid border-lightgray">
         <MdKeyboardDoubleArrowRight className="mb-2 h-16 w-6 cursor-pointer md:hidden" onClick={toggleBellIconModal} />
       </div>
-      {notifications.length > 0 ? (
-        <>
-          {notifications.map((notification) => (
-            <Link
-              key={notification.id}
-              to={notification.post?._id ? `/post/${notification.post._id}` : "404"}
-              onClick={() => {
-                onClickRead(notification.id);
-                toggleBellIconModal();
-              }}
-            >
-              <div
-                className={`text-bold flex cursor-pointer items-center border-b border-solid border-lightgray px-4 py-4 hover:opacity-80 ${
-                  notification.isRead ? "opacity-50" : ""
-                }`}
+      <div className="flex-1 overflow-y-auto overscroll-contain md:scrollbar-hide">
+        {notifications.length > 0 ? (
+          <>
+            {notifications.map((notification) => (
+              <Link
+                key={notification.id}
+                to={notification.post?._id ? `/post/${notification.post._id}` : "404"}
+                onClick={() => {
+                  onClickRead(notification.id);
+                  toggleBellIconModal();
+                }}
               >
-                <Avatar size={32} variant="beam" name={notification.sender.userId} />
-                <div className="ml-3 flex min-w-0 flex-1 flex-col text-16 text-black">
-                  <p className="mb-1 truncate">{notification.title}</p>
-                  <span className="text-16 text-gray">{notification.createdAt}</span>
+                <div
+                  className={`text-bold flex cursor-pointer items-center border-b border-solid border-lightgray px-4 py-4 hover:opacity-80 ${
+                    notification.isRead ? "opacity-50" : ""
+                  }`}
+                >
+                  <Avatar size={32} variant="beam" name={notification.sender.userId} />
+                  <div className="ml-3 flex min-w-0 flex-1 flex-col text-16 text-black">
+                    <p className="mb-1 truncate">{notification.title}</p>
+                    <span className="text-16 text-gray">{notification.createdAt}</span>
+                  </div>
+                  <RiDeleteBinLine
+                    className="ml-4 text-gray hover:text-black"
+                    onClick={(e) => onClickDelete(e, { notificationId: notification.id })}
+                  />
                 </div>
-                <RiDeleteBinLine
-                  className="ml-4 text-gray hover:text-black"
-                  onClick={(e) => onClickDelete(e, { notificationId: notification.id })}
-                />
-              </div>
-            </Link>
-          ))}
-          <div className="px-4 py-4">
-            <p className="h-4 cursor-pointer text-primary flex-center hover:opacity-70" onClick={onClickReadAll}>
-              전체 확인
-            </p>
+              </Link>
+            ))}
+            <div className="flex-none px-4 py-4">
+              <p className="h-4 cursor-pointer text-primary flex-center hover:opacity-70" onClick={onClickReadAll}>
+                전체 확인
+              </p>
+            </div>
+          </>
+        ) : (
+          <div className="h-full flex-col text-center text-gray flex-center">
+            <GoBell className="mb-4 h-10 w-10" />
+            <p>새로운 알림이 없습니다.</p>
           </div>
-        </>
-      ) : (
-        <div className="h-full flex-col text-center text-gray flex-center">
-          <GoBell className="mb-4 h-10 w-10" />
-          <p>새로운 알림이 없습니다.</p>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

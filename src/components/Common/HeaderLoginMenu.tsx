@@ -1,5 +1,5 @@
 import { HeaderUserModal } from "@components/Common/HeaderUserModal";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { GoBell } from "react-icons/go";
 import { useUserStore } from "@stores/userStore";
@@ -9,28 +9,23 @@ import { useSocketStore } from "@stores/socketStore";
 import { getMyNotifications } from "@services/notification/getMyNotifications";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Avatar from "boring-avatars";
+import { useModal } from "@hooks/useModal";
+import { Loading } from "@components/Common/Loading";
 
 export const HeaderLoginMenu = () => {
-  const [isUserIconOpen, setIsUserIconOpen] = useState(false);
-  const [isBellIconOpen, setIsBellIconOpen] = useState(false);
+  const { isOpen: isUserIconOpen, toggleModal: toggleUserIconModal } = useModal();
+  const { isOpen: isBellIconOpen, toggleModal: toggleBellIconModal } = useModal();
+
   const { isLoggedIn, userInfo } = useUserStore();
   const { socket } = useSocketStore();
   const queryClient = useQueryClient();
-
-  const toggleUserIconModal = () => {
-    setIsUserIconOpen(!isUserIconOpen);
-  };
-
-  const toggleBellIconModal = () => {
-    setIsBellIconOpen(!isBellIconOpen);
-  };
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["getMyNotifications"],
     queryFn: () =>
       getMyNotifications({
         page: 1,
-        limit: 10
+        limit: 100
       }),
     enabled: isLoggedIn
   });
@@ -42,7 +37,6 @@ export const HeaderLoginMenu = () => {
       });
       socket.on("adminNotification", (data) => {
         if (userInfo?.role === "admin") {
-          console.log("서버서벗버서버");
           queryClient.invalidateQueries({ queryKey: ["getMyNotifications"] });
           console.log(data);
         }
@@ -53,12 +47,12 @@ export const HeaderLoginMenu = () => {
         socket.off("newNotification");
       }
     };
-  }, [socket, queryClient]);
+  }, [socket, queryClient, userInfo?.role]);
 
   if (isLoading)
     return (
       <div className="flex">
-        <span>Loading...</span>
+        <Loading />
       </div>
     );
   if (error) return <div>Error: {(error as Error).message}</div>;
