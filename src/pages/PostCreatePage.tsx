@@ -49,7 +49,6 @@ export default function PostCreatePage() {
           devVersions: validIndices.map((index) => state.devVersions[index])
         };
 
-        console.log("Request Data:", postData);
         await createPostMutation.mutateAsync(postData);
         alert("질문이 성공적으로 등록되었습니다.");
         navigate("/");

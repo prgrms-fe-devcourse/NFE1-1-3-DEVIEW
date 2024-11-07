@@ -1,6 +1,6 @@
-import ReactQuill from "react-quill";
-import { formats, modules } from "@components/Common/quillConfig";
 import { useEffect, useRef } from "react";
+import hljs from "highlight.js";
+import "highlight.js/styles/xcode.css";
 
 type CodeViewerProps = {
   content: string;
@@ -13,30 +13,30 @@ export const CodeViewer = ({ content }: CodeViewerProps) => {
     if (quillRef.current) {
       const style = document.createElement("style");
       style.textContent = `
-        .ql-snow .ql-editor pre {
+        pre {
           margin-top: 0px;
           margin-bottom: 0px;
         }
-        .ql-snow .ql-editor pre.ql-syntax {
+        pre.ql-syntax {
           color: black;
           border-radius: 8px; 
           padding: 16px;
           background-color: #f6f6f6;
+          white-space: pre-wrap;
+          line-height: 1.5;
         }
-        .ql-container.ql-snow {
-          border: none;
-        }
-        .ql-editor {
-          padding: 0;
+        p {
+          margin: 0;
         }
       `;
       quillRef.current.appendChild(style);
-    }
-  }, []);
 
-  return (
-    <div ref={quillRef} className="bg-white whitespace-pre-wrap break-words">
-      <ReactQuill modules={modules} formats={formats} value={content} readOnly={true} />
-    </div>
-  );
+      const codeBlocks = quillRef.current.getElementsByClassName("ql-syntax");
+      Array.from(codeBlocks).forEach((block) => {
+        hljs.highlightElement(block as HTMLElement);
+      });
+    }
+  }, [content]);
+
+  return <div ref={quillRef} className="bg-white break-words" dangerouslySetInnerHTML={{ __html: content }} />;
 };

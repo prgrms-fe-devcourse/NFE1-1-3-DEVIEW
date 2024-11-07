@@ -34,7 +34,6 @@ export const CommentsContent = () => {
   if (error) return <div>Error: {(error as Error).message}</div>;
 
   if (!data || data.pages[0].comments.length === 0) return <NoContent type="comment" />;
-  console.log(data);
 
   return (
     <div className="">

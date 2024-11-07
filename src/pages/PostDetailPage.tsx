@@ -12,7 +12,6 @@ export default function PostDetailPage() {
   if (!id) {
     return <Navigate to="/" replace />;
   }
-  console.log("PostDetailPage: ", post);
 
   if (isLoading) {
     return (

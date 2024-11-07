@@ -12,7 +12,6 @@ import { useNavigate, useParams } from "react-router-dom";
 export default function PostUpdatePage() {
   const { postId } = useParams<{ postId: string }>();
 
-  console.log("PostUpdatePage: ", postId);
   const navigate = useNavigate();
   const [state, dispatch] = useReducer(postFormReducer, initialState);
 
