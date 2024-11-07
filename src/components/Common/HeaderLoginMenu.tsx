@@ -85,7 +85,7 @@ export const HeaderLoginMenu = () => {
             </>
           )}
           <div
-            className="mt-2 h-6 w-6 cursor-pointer overflow-hidden rounded-full md:mt-0 md:h-8 md:w-8 2md:h-10 2md:w-10"
+            className="mt-2 hidden h-6 w-6 cursor-pointer overflow-hidden rounded-full md:mt-0 md:block md:h-8 md:w-8 2md:h-10 2md:w-10"
             onClick={toggleUserIconModal}
           >
             <Avatar name={userInfo?.userId ?? ""} variant="beam" />

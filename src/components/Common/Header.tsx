@@ -13,9 +13,8 @@ export const Header = () => {
 
   const location = useLocation();
 
-  const onClick = () => {
-    setIsMenuOpen((prev) => !prev);
-  };
+  const openModal = () => setIsMenuOpen(true);
+  const closeModal = () => setIsMenuOpen(false);
 
   const onFocus = () => {
     setIsFilterVisible(true);
@@ -34,7 +33,7 @@ export const Header = () => {
       >
         <div className="relative flex h-14 w-full items-center md:w-auto">
           <div className="w-full md:hidden">
-            <button className="absolute left-0 top-1/2 -translate-y-1/2 transform" onClick={onClick}>
+            <button className="absolute left-0 top-1/2 -translate-y-1/2 transform" onClick={openModal}>
               <GiHamburgerMenu className="w-8" />
             </button>
             <Link to="/" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
@@ -90,8 +89,8 @@ export const Header = () => {
 
       {isMenuOpen && (
         <>
-          <div className="fixed inset-0 z-40 bg-black bg-opacity-20 backdrop-blur-sm" onClick={onClick} />
-          <HeaderMenu onClick={onClick} />
+          <div className="fixed inset-0 z-40 bg-black bg-opacity-20 backdrop-blur-sm" onClick={closeModal} />
+          <HeaderMenu closeModal={closeModal} />
         </>
       )}
     </div>

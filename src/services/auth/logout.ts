@@ -7,7 +7,7 @@ export async function logout(): Promise<void> {
   try {
     await axiosInstance.post("/auth/logout");
     AccessTokenStorage.removeToken();
-    location.reload();
+    window.location.href = "/";
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError<ErrorResponse>;

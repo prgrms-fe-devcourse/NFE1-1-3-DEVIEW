@@ -51,6 +51,9 @@
     @apply h-24;
   }
 
+  hr {
+    @apply h-[1px] border-none bg-lightgray;
+  }
   .ql-snow .ql-editor pre.ql-syntax {
     @apply text-14 leading-5 md:text-16 md:leading-6;
   }
