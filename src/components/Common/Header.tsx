@@ -33,8 +33,8 @@ export const Header = () => {
       >
         <div className="relative flex h-14 w-full items-center md:w-auto">
           <div className="w-full md:hidden">
-            <button className="absolute left-0 top-1/2 -translate-y-1/2 transform" onClick={openModal}>
-              <GiHamburgerMenu className="w-8" />
+            <button className="absolute left-0 top-6 -translate-y-1/2 transform" onClick={openModal}>
+              <GiHamburgerMenu className="h-5 w-8" />
             </button>
             <Link to="/" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
               <Logo className="h-10 w-44" />
