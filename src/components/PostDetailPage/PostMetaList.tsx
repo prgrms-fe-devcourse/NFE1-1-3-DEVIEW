@@ -6,12 +6,13 @@ type PostMetaProps = {
   commentCount: number;
   createdAt: string;
   _id: string;
+  updatedAt: string;
 };
 
-export const PostMetaList = ({ userId, viewsCount, commentCount, createdAt, _id }: PostMetaProps) => {
+export const PostMetaList = ({ userId, viewsCount, commentCount, createdAt, _id, updatedAt }: PostMetaProps) => {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")}`;
+    return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")} ${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
   };
 
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ export const PostMetaList = ({ userId, viewsCount, commentCount, createdAt, _id 
       value: userId
     }
   ];
-
+  const updatedTime = formatDate(updatedAt);
   return (
     <div className="flex gap-4 text-12">
       {metaItems.map(({ label, value }) => (
@@ -50,6 +51,7 @@ export const PostMetaList = ({ userId, viewsCount, commentCount, createdAt, _id 
           ) : (
             <span className="text-black">{value}</span>
           )}
+          {label === "작성일" && value !== updatedTime && ` (수정됨: ${updatedTime})`}
         </span>
       ))}
     </div>
