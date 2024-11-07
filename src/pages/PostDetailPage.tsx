@@ -4,6 +4,7 @@ import { CommentList, CommentWrite, PostDetail, PostDetailInteraction } from "@c
 import { usePostDetail } from "@hooks/usePostDetail";
 import ErrorPage from "@pages/ErrorPage";
 import { useParams } from "react-router-dom";
+
 export default function PostDetailPage() {
   const { id } = useParams<{ id: string }>();
   const { post, isLoading, isError, error } = usePostDetail({
