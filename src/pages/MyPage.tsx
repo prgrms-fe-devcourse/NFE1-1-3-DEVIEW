@@ -2,8 +2,10 @@ import { Loading } from "@components/Common/Loading";
 import { TabMenu } from "@components/MyPage/TabMenu";
 import { UserProfile } from "@components/MyPage/UserProfile";
 import { UserInfo } from "@customTypes/userInfo";
+import ErrorPage from "@pages/ErrorPage";
 import { getUserInfo } from "@services/auth/getUserInfo";
 import { useQuery } from "@tanstack/react-query";
+import { errorAlert } from "@utils/sweetAlert/alerts";
 
 export default function MyPage() {
   const {
@@ -24,7 +26,8 @@ export default function MyPage() {
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    errorAlert({ title: "유저 정보를 불러오는 중 오류가 발생했습니다.", text: error.message });
+    return <ErrorPage />;
   }
 
   return (

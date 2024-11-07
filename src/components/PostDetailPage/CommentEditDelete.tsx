@@ -2,11 +2,11 @@ import { DeleteBtn } from "@components/Common/DeleteBtn";
 import { EditBtn } from "@components/Common/EditBtn";
 import { useCommentDelete } from "@hooks/useCommentDelete";
 import { usePostDetailStore } from "@stores/postDetailStore";
-import { toast } from "react-hot-toast";
+import { customConfirm, customToast, errorAlert, deleteConfirm } from "@utils/sweetAlert/alerts";
 
 type CommentEditDeleteProps = {
   commentId: string;
-  isEditing: boolean; // isEditing을 props로 받도록 수정
+  isEditing: boolean;
   onEditStateChange: (isEditing: boolean) => void;
 };
 
@@ -16,28 +16,31 @@ export const CommentEditDelete = ({ commentId, isEditing, onEditStateChange }: C
   const { mutate: deleteCommentMutate, isPending } = useCommentDelete({
     postId: postId!,
     onSuccess: () => {
-      toast.success("댓글이 삭제되었습니다.");
+      customToast({ title: "댓글이 삭제되었습니다." });
     },
     onError: (error) => {
-      toast.error(error.message || "삭제에 실패했습니다.");
+      errorAlert({ title: "댓글 삭제 중 오류가 발생했습니다.", text: error.message });
     }
   });
 
-  const onDelete = () => {
+  const onDelete = async () => {
     if (!postId) return;
-
-    if (window.confirm("정말 이 댓글을 삭제하시겠습니까?")) {
+    const result = await deleteConfirm();
+    if (result.isConfirmed) {
       deleteCommentMutate({ commentId });
     }
   };
 
-  const handleEditClick = () => {
-    onEditStateChange(true);
+  const onEditClick = async () => {
+    const result = await customConfirm({ title: "댓글 수정", text: "댓글을 수정하시겠습니까?" });
+    if (result.isConfirmed) {
+      onEditStateChange(true);
+    }
   };
 
   return (
     <div className="flex gap-2 text-gray md:gap-4">
-      <EditBtn onClick={handleEditClick} disabled={isEditing} />
+      <EditBtn onClick={onEditClick} disabled={isEditing} />
       <DeleteBtn onClick={onDelete} disabled={isPending || isEditing} />
     </div>
   );

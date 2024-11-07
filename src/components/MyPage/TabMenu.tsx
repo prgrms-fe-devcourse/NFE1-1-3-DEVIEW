@@ -1,7 +1,7 @@
 import { CommentsContent } from "@components/MyPage/CommentsContent";
 import { InfoContent } from "@components/MyPage/InfoContent";
-import { ScrapContent } from "@components/MyPage/ScrapContent";
 import { PostsContent } from "@components/MyPage/PostsContent";
+import { ScrapContent } from "@components/MyPage/ScrapContent";
 import { useState } from "react";
 
 export const TabMenu = () => {

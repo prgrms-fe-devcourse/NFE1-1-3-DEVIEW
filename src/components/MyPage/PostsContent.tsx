@@ -1,10 +1,12 @@
 import { Loading } from "@components/Common/Loading";
-import { PostListItem } from "@components/Common/PostListItem";
 import { NoContent } from "@components/Common/NoContent";
+import { PostListItem } from "@components/Common/PostListItem";
 import { CommonPostResponseProps } from "@customTypes/post";
-import { getMyPosts } from "@services/post/getMyPosts";
-import React, { useCallback, useRef } from "react";
 import { useInfinite } from "@hooks/useInfinite";
+import ErrorPage from "@pages/ErrorPage";
+import { getMyPosts } from "@services/post/getMyPosts";
+import { errorAlert } from "@utils/sweetAlert/alerts";
+import React, { useCallback, useRef } from "react";
 
 export const PostsContent = () => {
   const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
@@ -32,7 +34,10 @@ export const PostsContent = () => {
       </div>
     );
 
-  if (error) return <div>Error: {(error as Error).message}</div>;
+  if (error) {
+    errorAlert({ title: "게시글을 불러오는 중 오류가 발생했습니다.", text: error.message });
+    return <ErrorPage />;
+  }
 
   if (!data || data.pages[0].posts.length === 0) return <NoContent type="post" />;
 

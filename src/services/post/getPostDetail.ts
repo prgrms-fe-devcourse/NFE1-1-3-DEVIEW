@@ -15,7 +15,7 @@ export async function getPostDetail({ postId }: GetPostDetailRequestProps): Prom
         Authorization: AccessTokenStorage.getAuthorizationHeader()
       }
     });
-    console.log(response.data);
+    
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {

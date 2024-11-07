@@ -1,15 +1,17 @@
 import { IdInput } from "@components/Common/IdInput";
+import { Loading } from "@components/Common/Loading";
 import { NameInput } from "@components/Common/NameInput";
 import { PasswordInput } from "@components/Common/PasswordInput";
-import { CheckPassword } from "@components/MyPage/CheckPassword";
 import { Radio } from "@components/Common/Radio";
-import { useState } from "react";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { UserInfo } from "@customTypes/userInfo";
-import { getUserInfo } from "@services/auth/getUserInfo";
-import { Loading } from "@components/Common/Loading";
-import { updateUser } from "@services/auth/updateUser";
+import { CheckPassword } from "@components/MyPage/CheckPassword";
 import { AUTH_INPUT_VALIDATION } from "@constants/authInputValidation";
+import { UserInfo } from "@customTypes/userInfo";
+import ErrorPage from "@pages/ErrorPage";
+import { getUserInfo } from "@services/auth/getUserInfo";
+import { updateUser } from "@services/auth/updateUser";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { errorAlert, successAlert } from "@utils/sweetAlert/alerts";
+import { useState } from "react";
 
 export const InfoContent = () => {
   const [isVerified, setIsVerified] = useState(false);
@@ -28,10 +30,10 @@ export const InfoContent = () => {
     mutationFn: updateUser,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["userInfo"] });
-      alert("사용자 정보가 성공적으로 업데이트되었습니다.");
+      successAlert({ title: "업데이트 성공", text: "유저 정보가 업데이트 되었습니다." });
     },
     onError: (error: Error) => {
-      alert(`업데이트 실패: ${error.message}`);
+      errorAlert({ title: "업데이트 실패", text: error.message });
     }
   });
 
@@ -80,11 +82,13 @@ export const InfoContent = () => {
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    errorAlert({ title: "유저 정보를 불러오는 중 오류가 발생했습니다.", text: error.message });
+    return <ErrorPage />;
   }
 
   if (!userInfo) {
-    return <div>사용자 정보를 불러올 수 없습니다.</div>;
+    errorAlert({ title: "유저 정보를 불러오는 중 오류가 발생했습니다.", text: "유저 정보가 존재하지 않습니다." });
+    return <ErrorPage />;
   }
 
   return (

@@ -34,9 +34,7 @@ export function useCreateComment({ onSuccess, onError }: UseCreateCommentProps =
       // 이전 상태 저장
       const previousData = queryClient.getQueryData([COMMENTS_QUERY_KEY, newComment.postId]);
 
-      // 낙관적 업데이트
       queryClient.setQueryData([COMMENTS_QUERY_KEY, newComment.postId], (old: InfiniteCommentsData | undefined) => {
-        console.log("old", old);
         if (!old?.pages?.[0]) return old;
 
         const optimisticComment: TComment = {
@@ -47,7 +45,7 @@ export function useCreateComment({ onSuccess, onError }: UseCreateCommentProps =
           author: {
             _id: "current-user",
             id: "current-user",
-            userId: "현재 사용자" // 실제로는 현재 로그인한 사용자 정보를 사용
+            userId: "userId"
           },
           thumbsCount: 0,
           createdAt: new Date().toISOString(),
