@@ -37,7 +37,7 @@ export const PostMetaList = ({ userId, viewsCount, commentCount, createdAt, _id,
   ];
   const updatedTime = formatDate(updatedAt);
   return (
-    <div className="flex gap-4 text-12">
+    <div className="flex flex-col gap-4 text-12 sm:flex-row">
       {metaItems.map(({ label, value }) => (
         <span key={label} className="font-light text-gray">
           {label !== "작성자" && `${label} `}

@@ -5,7 +5,7 @@ import { likePost } from "@services/post/likePost";
 import { scrapPost } from "@services/post/scrapPost";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { IoBookmark, IoBookmarkOutline } from "react-icons/io5";
-import { PiSirenBold } from "react-icons/pi";
+import { PiSiren } from "react-icons/pi";
 import { customPrompt, successAlert } from "@utils/sweetAlert/alerts";
 type PostLikeScrapProps = {
   postId: string;
@@ -50,38 +50,33 @@ export const PostDetailInteraction = ({ postId, post }: PostLikeScrapProps) => {
   };
   return (
     <section className="w-full flex-center">
-      <div className="m-auto flex w-44 gap-2 rounded-[30px] px-7 py-4 shadow">
-        <button
-          onClick={onLikeClick}
-          className={`flex items-center gap-[0.03rem] transition-colors duration-200 ease-in-out hover:opacity-70 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 ${
-            post.liked ? "text-red-500 hover:text-red-600" : "text-gray-500 hover:text-gray-600"
-          }`}
-        >
+      <div className="m-auto flex justify-around gap-2 rounded-[30px] px-4 py-4 shadow">
+        <button onClick={onLikeClick} className={`flex items-center gap-[0.03rem] hover:opacity-70`}>
           {post.liked ? (
             <AiFillHeart className="h-[17px] w-[22px] flex-shrink-0 fill-pink transition-transform duration-200 ease-in-out hover:scale-110" />
           ) : (
             <AiOutlineHeart className="h-[17px] w-[22px] flex-shrink-0 transition-transform duration-200 ease-in-out hover:scale-110" />
           )}
-          <span className={`min-w-[20px] text-center ${post.liked && "text-red-500"}`}>{post.likesCount}</span>
+          <span
+            className={`${post.liked && "min-w-[11px] flex-shrink-0 text-center transition-transform duration-200 ease-in-out hover:scale-110"}`}
+          >
+            {post.likesCount}
+          </span>
         </button>
-        <button
-          onClick={onScrapClick}
-          className={`flex items-center gap-[0.03rem] hover:opacity-70 ${
-            post.scraped ? "text-blue-500 hover:text-blue-600" : "text-gray-500 hover:text-gray-600"
-          }`}
-        >
+        <button onClick={onScrapClick} className={`flex items-center gap-[0.03rem] hover:opacity-70`}>
           {post.scraped ? (
             <IoBookmark className="h-[17px] w-[22px] flex-shrink-0 fill-secondary transition-transform duration-200 ease-in-out hover:scale-110" />
           ) : (
             <IoBookmarkOutline className="h-[17px] w-[22px] flex-shrink-0 transition-transform duration-200 ease-in-out hover:scale-110" />
           )}
-          <span className={`min-w-[20px] text-center ${post.scraped && "text-blue-500"}`}>{post.scrapsCount}</span>
+          <span
+            className={`${post.scraped && "min-w-[11px] flex-shrink-0 text-center transition-transform duration-200 ease-in-out hover:scale-110"}`}
+          >
+            {post.scrapsCount}
+          </span>
         </button>
-        <button
-          onClick={onReportClick}
-          className="text-gray-500 hover:text-gray-600 flex items-center gap-[0.03rem] text-[#cd5c5c] hover:opacity-70"
-        >
-          <PiSirenBold className="h-[17px] w-[22px] flex-shrink-0 transition-transform duration-200 ease-in-out hover:scale-110" />
+        <button onClick={onReportClick} className="flex items-center gap-[0.03rem] hover:opacity-70">
+          <PiSiren className="h-[19px] w-[22px] flex-shrink-0 transition-transform duration-200 ease-in-out hover:scale-110 hover:fill-pink" />
         </button>
       </div>
     </section>
