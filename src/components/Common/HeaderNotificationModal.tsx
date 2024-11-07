@@ -7,7 +7,7 @@ import { deleteNotification } from "@services/notification/deleteNotification";
 import { readNotification } from "@services/notification/readNotification";
 import { readAllNotifications } from "@services/notification/readAllNotifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GoBell } from "react-icons/go";
 
 type HeaderNotificationModalProps = {
@@ -70,6 +70,20 @@ export const HeaderNotificationModal = ({
   const onClickReadAll = () => {
     readAllNotificationsMutate();
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerWidth <= 768) {
+        document.body.style.overflow = "hidden";
+      }
+    };
+    handleScroll();
+    window.addEventListener("resize", handleScroll);
+    return () => {
+      document.body.style.overflow = "unset";
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-white-pure md:absolute md:inset-auto md:left-auto md:top-16 md:mt-2 md:h-80 md:w-96 md:max-w md:-translate-x-80 md:rounded md:border md:border-solid md:border-lightgray md:shadow 2md:-translate-x-36">
