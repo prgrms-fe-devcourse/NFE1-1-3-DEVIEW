@@ -4,21 +4,27 @@ import { PostPageSkeleton } from "@components/PostPage/PostPageListSkeleton";
 import { Suspense, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useParams } from "react-router-dom";
+import { useSortStore } from "@stores/sortStore";
+import { useEffect } from "react";
 
-export default function PostPage() {
+type PostPageProps = {
+  defaultSort?: "latest" | "views";
+};
+export default function PostPage({ defaultSort }: PostPageProps) {
   const { id } = useParams<{ id: string }>();
-  const [sort, setSort] = useState<"latest" | "views">("latest");
   const [userId, setUserId] = useState<string>("");
+  const { setSort } = useSortStore();
+  useEffect(() => {
+    if (defaultSort) {
+      setSort(defaultSort);
+    }
+  }, [defaultSort, setSort]);
   return (
     <div className="m-auto max-w p-4 pt-12">
-      {id ? <PostPageHeader sort={sort} id={userId} /> : <PostPageHeader sort={sort} />}
+      {id ? <PostPageHeader id={userId} /> : <PostPageHeader />}
       <ErrorBoundary fallback={<PostPageSkeleton isError={true} />}>
         <Suspense fallback={<PostPageSkeleton />}>
-          {id ? (
-            <PostPageList setSort={setSort} sort={sort} id={id} setUserId={setUserId} />
-          ) : (
-            <PostPageList sort={sort} setSort={setSort} />
-          )}
+          {id ? <PostPageList id={id} setUserId={setUserId} /> : <PostPageList />}
         </Suspense>
       </ErrorBoundary>
     </div>
