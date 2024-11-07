@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
 import { useUpdateComment } from "@hooks/useCommentUpdate";
-import { toast } from "react-hot-toast";
-import { CodeViewer, CommentEditor } from "@/components/PostDetailPage";
+import { useEffect, useState } from "react";
+import { CodeViewer, CommentEditor, PostDetailActBtn } from "@/components/PostDetailPage";
+import { customToast, errorAlert } from "@utils/sweetAlert/alerts";
 
 type EditableCodeViewerProps = {
   content: string;
@@ -26,9 +26,9 @@ export const EditableCodeViewer = ({
     setEditedContent(content);
   }, [content, isEditing]);
 
-  const handleSave = async () => {
-    if (editedContent.trim() === "") {
-      toast.error("댓글 내용을 입력해주세요.");
+  const onSave = async () => {
+    if (!editedContent.replace(/<[^>]*>/g, "").trim()) {
+      errorAlert({ title: "댓글 내용을 입력해주세요.", text: "댓글 내용이 비어있습니다." });
       return;
     }
 
@@ -38,15 +38,14 @@ export const EditableCodeViewer = ({
         content: editedContent
       });
 
-      toast.success("댓글이 수정되었습니다.");
+      customToast({ title: "댓글 수정 완료", icon: "success" });
       onEditComplete();
-    } catch (e) {
-      toast.error("댓글 수정에 실패했습니다.");
-      alert(e);
+    } catch {
+      errorAlert({ title: "댓글 수정 중 오류가 발생했습니다.", text: "다시 시도해주세요." });
     }
   };
 
-  const handleCancel = () => {
+  const onCancel = () => {
     setEditedContent(content);
     onEditComplete();
   };
@@ -56,20 +55,21 @@ export const EditableCodeViewer = ({
       <div className="flex flex-col gap-4">
         <CommentEditor value={editedContent} onChange={setEditedContent} placeholder="댓글 수정할 수 있습니다" />
         <div className="flex justify-end gap-2">
-          <button
-            onClick={handleCancel}
-            className="text-sm text-gray-600 border-gray-300 rounded-md hover:bg-gray-50 border px-4 py-2 disabled:opacity-50"
-            disabled={updateCommentMutation.isPending}
-          >
-            취소
-          </button>
-          <button
-            onClick={handleSave}
-            className="text-sm text-white bg-blue-500 rounded-md hover:bg-blue-600 px-4 py-2 disabled:opacity-50"
-            disabled={updateCommentMutation.isPending}
-          >
-            저장
-          </button>
+          <PostDetailActBtn
+            onClick={onCancel}
+            color="gray"
+            isPending={updateCommentMutation.isPending}
+            type="button"
+            text="취소"
+          />
+          <PostDetailActBtn
+            onClick={onSave}
+            color="primary"
+            isPending={updateCommentMutation.isPending}
+            disabled={!editedContent.replace(/<[^>]*>/g, "").trim()}
+            type="button"
+            text="저장"
+          />
         </div>
       </div>
     );

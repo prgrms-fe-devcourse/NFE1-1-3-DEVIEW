@@ -10,3 +10,4 @@ export * from "@components/PostDetailPage/PostDetailEditDelete";
 export * from "@components/PostDetailPage/PostDetailHeader";
 export * from "@components/PostDetailPage/PostDetailInteraction";
 export * from "@components/PostDetailPage/PostMetaList";
+export * from "@components/PostDetailPage/PostDetailActBtn";

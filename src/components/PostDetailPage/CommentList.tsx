@@ -36,6 +36,7 @@ export const CommentList = () => {
 
   if (error) {
     errorAlert({ title: "댓글 목록을 불러오는 중 오류가 발생했습니다.", text: error.message });
+    return null;
   }
 
   if (!data?.pages[0]) {
