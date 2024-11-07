@@ -8,6 +8,7 @@ type EditableCodeViewerProps = {
   commentId: string;
   postId: string;
   isEditing: boolean;
+  userId: string;
   onEditComplete: () => void;
 };
 
@@ -16,9 +17,11 @@ export const EditableCodeViewer = ({
   commentId,
   postId,
   isEditing,
-  onEditComplete
+  onEditComplete,
+  userId
 }: EditableCodeViewerProps) => {
   const [editedContent, setEditedContent] = useState(content);
+
   const updateCommentMutation = useUpdateComment(postId);
 
   // content prop이나 isEditing이 변경될 때마다 editedContent를 초기화
@@ -35,7 +38,8 @@ export const EditableCodeViewer = ({
     try {
       await updateCommentMutation.mutateAsync({
         commentId,
-        content: editedContent
+        content: editedContent,
+        userId: userId
       });
 
       customToast({ title: "댓글 수정 완료", icon: "success" });

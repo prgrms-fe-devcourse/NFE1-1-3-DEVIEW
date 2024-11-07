@@ -18,6 +18,7 @@ export type TComment = {
 };
 
 export type CommonCommentRequestProps = Pick<TComment, "postId" | "content"> & {
+  userId: string;
   commentId: string;
 };
 

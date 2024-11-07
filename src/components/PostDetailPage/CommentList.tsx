@@ -66,7 +66,12 @@ export const CommentList = () => {
                 </figure>
                 <p className="flex flex-col justify-center gap-2 md:flex-row md:flex-center">
                   <span className="flex text-12 font-medium md:text-16">{comment.author.userId}</span>
-                  <span className="flex text-12 text-gray md:text-16">{comment.createdAt}</span>
+                  <span className="flex text-12 text-gray md:text-16">
+                    {comment.updatedAt.slice(0, 16).replace("T", " ")}
+                  </span>
+                  <span className="flex text-12 text-gray md:text-16">
+                    {comment.createdAt !== comment.updatedAt && "(수정됨)"}
+                  </span>
                 </p>
               </div>
               {comment.isMine && (
@@ -87,6 +92,7 @@ export const CommentList = () => {
                 postId={postId ?? ""}
                 isEditing={editingCommentId === comment._id}
                 onEditComplete={() => setEditingCommentId(null)}
+                userId={comment.author.userId}
               />
             </section>
             <CommentInteraction commentId={comment._id} />
