@@ -1,53 +1,20 @@
 import { HeaderUserModal } from "@components/Common/HeaderUserModal";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { GoBell } from "react-icons/go";
 import { useUserStore } from "@stores/userStore";
 import { HeaderNotificationModal } from "@components/Common/HeaderNotificationModal";
 import { NotificationCount } from "@components/Common/NotificationCount";
-import { useSocketStore } from "@stores/socketStore";
-import { getMyNotifications } from "@services/notification/getMyNotifications";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Avatar from "boring-avatars";
 import { useModal } from "@hooks/useModal";
 import { Loading } from "@components/Common/Loading";
+import { useNotifications } from "@hooks/useNotifications";
 
 export const HeaderLoginMenu = () => {
   const { isOpen: isUserIconOpen, toggleModal: toggleUserIconModal } = useModal();
   const { isOpen: isBellIconOpen, toggleModal: toggleBellIconModal } = useModal();
 
   const { isLoggedIn, userInfo } = useUserStore();
-  const { socket } = useSocketStore();
-  const queryClient = useQueryClient();
-
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["getMyNotifications"],
-    queryFn: () =>
-      getMyNotifications({
-        page: 1,
-        limit: 100
-      }),
-    enabled: isLoggedIn
-  });
-
-  useEffect(() => {
-    if (socket) {
-      socket.on("newNotification", () => {
-        queryClient.invalidateQueries({ queryKey: ["getMyNotifications"] });
-      });
-      socket.on("adminNotification", (data) => {
-        if (userInfo?.role === "admin") {
-          queryClient.invalidateQueries({ queryKey: ["getMyNotifications"] });
-          console.log(data);
-        }
-      });
-    }
-    return () => {
-      if (socket) {
-        socket.off("newNotification");
-      }
-    };
-  }, [socket, queryClient, userInfo?.role]);
+  const { data, isLoading, error, queryClient } = useNotifications();
 
   if (isLoading)
     return (

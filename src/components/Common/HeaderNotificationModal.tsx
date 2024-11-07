@@ -3,12 +3,9 @@ import Avatar from "boring-avatars";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { RiDeleteBinLine } from "react-icons/ri";
-import { deleteNotification } from "@services/notification/deleteNotification";
-import { readNotification } from "@services/notification/readNotification";
-import { readAllNotifications } from "@services/notification/readAllNotifications";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { GoBell } from "react-icons/go";
+import { useNotificationMutations } from "@hooks/useNotificationMutations";
 
 type HeaderNotificationModalProps = {
   toggleBellIconModal: () => void;
@@ -25,38 +22,12 @@ export const HeaderNotificationModal = ({
   notifications: initialNotifications,
   onReadAll
 }: HeaderNotificationModalProps) => {
-  const queryClient = useQueryClient();
   const [notifications, setNotifications] = useState<TNotification[]>(initialNotifications);
 
-  const { mutate: deleteNotificationMutate } = useMutation({
-    mutationFn: deleteNotification,
-    onSuccess: (_, deletedNotification) => {
-      setNotifications((prev) => prev.filter((notification) => notification.id !== deletedNotification.notificationId));
-      queryClient.invalidateQueries({ queryKey: ["getMyNotifications"] });
-    }
-  });
-
-  const { mutate: readNotificationMutate } = useMutation({
-    mutationFn: readNotification,
-    onSuccess: (_, readNotification) => {
-      setNotifications((prev) =>
-        prev.map((notification) =>
-          notification.id === readNotification.notificationId ? { ...notification, read: true } : notification
-        )
-      );
-      queryClient.invalidateQueries({ queryKey: ["getMyNotifications"] });
-    }
-  });
-
-  const { mutate: readAllNotificationsMutate } = useMutation({
-    mutationFn: readAllNotifications,
-    onSuccess: () => {
-      setNotifications((prev) => prev.map((notification) => ({ ...notification, read: true })));
-      queryClient.invalidateQueries({ queryKey: ["getMyNotifications"] });
-      onReadAll();
-    }
-  });
-
+  const { deleteNotificationMutate, readNotificationMutate, readAllNotificationsMutate } = useNotificationMutations(
+    setNotifications,
+    onReadAll
+  );
   const onClickDelete = (event: React.MouseEvent, { notificationId }: DeleteNotificationRequestProps) => {
     event.preventDefault();
     event.stopPropagation();
