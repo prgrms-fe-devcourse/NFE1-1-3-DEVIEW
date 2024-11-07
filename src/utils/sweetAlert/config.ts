@@ -40,8 +40,8 @@ export const SWAL_OPTIONS = {
   warning: {
     icon: "warning" as SwalIconType,
     showCancelButton: true,
-    confirmButtonColor: "#d33",
-    cancelButtonColor: "#3085d6",
+    confirmButtonColor: "#8889FF",
+    cancelButtonColor: "#8C8C8C",
     confirmButtonText: "확인",
     cancelButtonText: "취소"
   },

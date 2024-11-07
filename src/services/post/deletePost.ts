@@ -17,8 +17,6 @@ export async function deletePost({ postId }: DeletePostRequestProps): Promise<vo
     if (response.status !== 204) {
       throw new Error("게시물 삭제에 실패했습니다.");
     }
-
-    console.log("게시물 삭제 성공");
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError<ErrorResponse>;

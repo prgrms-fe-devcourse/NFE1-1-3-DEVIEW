@@ -2,7 +2,7 @@ import { DeleteBtn } from "@components/Common/DeleteBtn";
 import { EditBtn } from "@components/Common/EditBtn";
 import { useCommentDelete } from "@hooks/useCommentDelete";
 import { usePostDetailStore } from "@stores/postDetailStore";
-import { customConfirm, customToast, errorAlert } from "@utils/sweetAlert/alerts";
+import { customConfirm, customToast, errorAlert, deleteConfirm } from "@utils/sweetAlert/alerts";
 
 type CommentEditDeleteProps = {
   commentId: string;
@@ -25,7 +25,7 @@ export const CommentEditDelete = ({ commentId, isEditing, onEditStateChange }: C
 
   const onDelete = async () => {
     if (!postId) return;
-    const result = await customConfirm({ title: "댓글 삭제", text: "정말로 삭제하시겠습니까?" });
+    const result = await deleteConfirm();
     if (result.isConfirmed) {
       deleteCommentMutate({ commentId });
     }

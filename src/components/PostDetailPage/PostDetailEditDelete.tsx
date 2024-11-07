@@ -2,7 +2,7 @@ import { DeleteBtn } from "@components/Common/DeleteBtn";
 import { EditBtn } from "@components/Common/EditBtn";
 import { usePostDelete } from "@hooks/usePostDelete";
 import { usePostDetailStore } from "@stores/postDetailStore";
-import { customConfirm, errorAlert, successAlert } from "@utils/sweetAlert/alerts";
+import { deleteConfirm, errorAlert, successAlert } from "@utils/sweetAlert/alerts";
 import { useNavigate } from "react-router-dom";
 
 export const PostDetailEditDelete = () => {
@@ -20,8 +20,8 @@ export const PostDetailEditDelete = () => {
 
   const onClickDelete = async () => {
     if (!postId) return;
-    const deleteConfirm = await customConfirm({ title: "삭제 확인", text: "정말로 삭제하시겠습니까?" });
-    if (deleteConfirm.isConfirmed) {
+    const del = await deleteConfirm();
+    if (del.isConfirmed) {
       deletePostMutate({ postId });
     }
   };
