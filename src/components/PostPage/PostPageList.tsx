@@ -5,9 +5,10 @@ import { useSuspenseInfinite } from "@hooks/useSuspenseInfinite";
 import { getPopularPosts } from "@services/post/getPopularPosts";
 import { getPosts } from "@services/post/getPosts";
 import { getUserPosts } from "@services/user/getUserPosts";
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { CgArrowsExchangeAltV } from "react-icons/cg";
 import { useSortStore } from "@stores/sortStore";
+import { useLocation } from "react-router-dom";
 type PostPageUserPostListProps = {
   id?: string;
   setUserId?: React.Dispatch<React.SetStateAction<string>>;
@@ -15,6 +16,13 @@ type PostPageUserPostListProps = {
 export const PostPageList = ({ id, setUserId }: PostPageUserPostListProps) => {
   const { sort } = useSortStore();
   const { setSort } = useSortStore();
+  const linkData = useLocation();
+
+  useEffect(() => {
+    if (linkData?.state?.sort) {
+      setSort(linkData.state.sort);
+    }
+  }, [linkData, setSort]);
   const fc = sort === "views" ? getPopularPosts : getPosts;
   const headerText = { latest: "최신", views: "인기" };
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useSuspenseInfinite<
