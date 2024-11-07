@@ -2,14 +2,12 @@ import { CodeViewer, PostDetailEditDelete, PostDetailHeader } from "@components/
 import ErrorPage from "@pages/ErrorPage";
 import { usePostDetailStore } from "@stores/postDetailStore";
 import { useUserStore } from "@stores/userStore";
-import { errorAlert } from "@utils/sweetAlert/alerts";
 
 export const PostDetail = () => {
   const postDetail = usePostDetailStore((state) => state.post);
   const { userInfo } = useUserStore();
-  
-  if (!postDetail) {
-    errorAlert({ title: "게시글을 찾을 수 없습니다.", text: "게시글을 찾을 수 없습니다." });
+
+  if (!postDetail || !postDetail._id) {
     return <ErrorPage />;
   }
 
