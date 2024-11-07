@@ -6,7 +6,7 @@ import { scrapPost } from "@services/post/scrapPost";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { IoBookmark, IoBookmarkOutline } from "react-icons/io5";
 import { PiSirenBold } from "react-icons/pi";
-
+import { customPrompt, successAlert } from "@utils/sweetAlert/alerts";
 type PostLikeScrapProps = {
   postId: string;
   post: TPostDetail;
@@ -37,15 +37,17 @@ export const PostDetailInteraction = ({ postId, post }: PostLikeScrapProps) => {
     scrapMutate({ postId });
   };
 
-  const onReportClick = () => {
-    if (window.confirm("게시글을 신고하시겠습니까?")) {
-      const reason = window.prompt("신고 사유를 입력해주세요");
-      if (reason?.trim() && reason.length > 0) {
-        reportMutate({ postId, reason });
-      }
+  const onReportClick = async () => {
+    const { value: reason } = await customPrompt({
+      title: "신고 사유",
+
+      inputPlaceholder: "신고된 게시물은 관리자가 확인 후 조치를 취하게 됩니다."
+    });
+    if (reason?.trim() && reason.length > 0) {
+      reportMutate({ postId, reason });
+      successAlert({ title: "신고가 접수되었습니다." });
     }
   };
-
   return (
     <section className="w-full flex-center">
       <div className="m-auto flex w-44 gap-2 rounded-[30px] px-7 py-4 shadow">
