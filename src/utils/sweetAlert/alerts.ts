@@ -1,5 +1,4 @@
-// alert.ts
-import Swal from "sweetalert2";
+import Swal, { SweetAlertResult } from "sweetalert2";
 import { SWAL_OPTIONS, SwalAlertOptions } from "./config";
 
 // 기본 확인 다이얼로그
@@ -39,6 +38,16 @@ export const deleteConfirm = (message = "삭제하시겠습니까?") => {
 export const successAlert = (options: SwalAlertOptions = {}) => {
   return Swal.fire({
     ...SWAL_OPTIONS.success,
+    ...options
+  });
+};
+
+type PromptResult = SweetAlertResult<string>;
+
+// 프롬프트
+export const customPrompt = (options: SwalAlertOptions = {}): Promise<PromptResult> => {
+  return Swal.fire<string>({
+    ...SWAL_OPTIONS.prompt,
     ...options
   });
 };

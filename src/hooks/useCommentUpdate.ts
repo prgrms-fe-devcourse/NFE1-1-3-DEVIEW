@@ -9,7 +9,7 @@ export function useUpdateComment(postId: string) {
 
   return useMutation({
     mutationFn: updateComment,
-    onMutate: async ({ commentId, content }: { commentId: string; content: string }) => {
+    onMutate: async ({ commentId, content, userId }: { commentId: string; content: string; userId: string }) => {
       const queryKey = [COMMENTS_QUERY_KEY, postId];
 
       await queryClient.cancelQueries({ queryKey });
@@ -28,7 +28,11 @@ export function useUpdateComment(postId: string) {
                 return {
                   ...comment,
                   content,
-                  updatedAt: new Date().toISOString() // 수정 시각 업데이트
+                  updatedAt: new Date().toISOString(),
+                  author: {
+                    ...comment.author,
+                    userId: userId
+                  }
                 };
               }
               return comment;
@@ -39,15 +43,9 @@ export function useUpdateComment(postId: string) {
 
       return { previousComments };
     },
-    onError: (_, __, context) => {
-      if (context?.previousComments && postId) {
-        queryClient.setQueryData([COMMENTS_QUERY_KEY, postId], context.previousComments);
-      }
-    },
     onSuccess: (data, variables) => {
       const queryKey = [COMMENTS_QUERY_KEY, postId];
 
-      // 서버에서 받은 데이터로 해당 댓글만 업데이트
       queryClient.setQueryData<InfiniteData<CommonCommentResponseProps>>(queryKey, (old) => {
         if (!old) return old;
 
@@ -57,10 +55,14 @@ export function useUpdateComment(postId: string) {
             ...page,
             comments: page.comments.map((comment) => {
               if (comment._id === variables.commentId) {
-                // thumbed 값은 기존 값 유지, 나머지는 서버 응답으로 업데이트
                 return {
                   ...data,
-                  thumbed: comment.thumbed
+                  thumbed: comment.thumbed,
+                  // author 객체 구조 유지하면서 userId 업데이트
+                  author: {
+                    ...comment.author,
+                    userId: variables.userId
+                  }
                 };
               }
               return comment;

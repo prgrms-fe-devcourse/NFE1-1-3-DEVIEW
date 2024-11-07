@@ -1,8 +1,8 @@
-// useCreateComment.ts
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createComment } from "@services/comment/createComment";
 import { COMMENTS_QUERY_KEY } from "@/constants/queryKey";
 import { TComment } from "@customTypes/comment";
+import { createComment } from "@services/comment/createComment";
+import { useUserStore } from "@stores/userStore";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 type InfiniteCommentsData = {
   pages: {
@@ -21,7 +21,7 @@ type UseCreateCommentProps = {
 
 export function useCreateComment({ onSuccess, onError }: UseCreateCommentProps = {}) {
   const queryClient = useQueryClient();
-
+  const userInfo = useUserStore();
   return useMutation({
     mutationFn: createComment,
 
@@ -45,7 +45,7 @@ export function useCreateComment({ onSuccess, onError }: UseCreateCommentProps =
           author: {
             _id: "current-user",
             id: "current-user",
-            userId: "userId"
+            userId: userInfo.userInfo?.userId as string
           },
           thumbsCount: 0,
           createdAt: new Date().toISOString(),

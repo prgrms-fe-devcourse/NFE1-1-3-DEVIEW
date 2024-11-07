@@ -1,4 +1,4 @@
-import { CommentEditor } from "@/components/PostDetailPage";
+import { CommentEditor, PostDetailActBtn } from "@/components/PostDetailPage";
 import { useCreateComment } from "@/hooks/useCreateComment";
 import { useUserStore } from "@stores/userStore";
 import { customToast, errorAlert } from "@utils/sweetAlert/alerts";
@@ -54,13 +54,13 @@ export const CommentWrite = () => {
           </div>
         </div>
         <div className="flex justify-end">
-          <button
+          <PostDetailActBtn
+            color="primary"
+            text="댓글 작성"
             type="submit"
-            className="primary-btn w-24 rounded-[8px] px-4 py-3 text-14 hover:bg-primary md:text-16"
+            isPending={isPending}
             disabled={!content.replace(/<[^>]*>/g, "").trim() || isPending}
-          >
-            {isPending ? "작성 중..." : "댓글 작성"}
-          </button>
+          />
         </div>
       </div>
     </form>
