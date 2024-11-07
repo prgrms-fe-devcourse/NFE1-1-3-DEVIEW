@@ -44,14 +44,6 @@ export const router = createBrowserRouter([
         element: <PostPage />
       },
       {
-        path: "/post/recent",
-        element: <PostPage defaultSort="latest" />
-      },
-      {
-        path: "/post/popular",
-        element: <PostPage defaultSort="views" />
-      },
-      {
         path: "/post/user/:id",
         element: <PostPage />
       },
