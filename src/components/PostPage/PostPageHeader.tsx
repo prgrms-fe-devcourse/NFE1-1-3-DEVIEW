@@ -1,8 +1,10 @@
+import { useSortStore } from "@stores/sortStore";
+
 type PostPageHeaderProps = {
-  sort: "latest" | "views";
   id?: string;
 };
-export const PostPageHeader = ({ sort, id }: PostPageHeaderProps) => {
+export const PostPageHeader = ({ id }: PostPageHeaderProps) => {
+  const { sort } = useSortStore();
   const headerText = { latest: "최신", views: "인기" };
   return (
     <div className="flex w-full flex-col">

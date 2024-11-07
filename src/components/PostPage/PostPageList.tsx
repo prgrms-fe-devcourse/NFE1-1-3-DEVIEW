@@ -7,15 +7,15 @@ import { getPosts } from "@services/post/getPosts";
 import { getUserPosts } from "@services/user/getUserPosts";
 import { useCallback, useRef } from "react";
 import { CgArrowsExchangeAltV } from "react-icons/cg";
+import { useSortStore } from "@stores/sortStore";
 type PostPageUserPostListProps = {
-  sort: "latest" | "views";
   id?: string;
-  setSort: React.Dispatch<React.SetStateAction<"latest" | "views">>;
   setUserId?: React.Dispatch<React.SetStateAction<string>>;
 };
-export const PostPageList = ({ sort, id, setUserId, setSort }: PostPageUserPostListProps) => {
+export const PostPageList = ({ id, setUserId }: PostPageUserPostListProps) => {
+  const { sort } = useSortStore();
+  const { setSort } = useSortStore();
   const fc = sort === "views" ? getPopularPosts : getPosts;
-
   const headerText = { latest: "최신", views: "인기" };
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useSuspenseInfinite<
     CommonPostResponseProps & { userId?: string }
