@@ -27,7 +27,7 @@ export const HeaderLoginMenu = () => {
   return (
     <div>
       {isLoggedIn ? (
-        <div className="md: absolute right-4 top-2 flex md:static md:flex md:gap-4 2md:space-x-8">
+        <div className="md: absolute right-4 top-4 flex md:static md:flex md:gap-4 2md:space-x-8">
           <Link
             className="primary-btn hidden hover:opacity-80 md:h-10 md:w-24 md:p-1 2md:flex-center"
             type="button"
