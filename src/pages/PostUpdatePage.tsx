@@ -6,6 +6,7 @@ import { CommonPostRequestProps, DevDependency } from "@customTypes/post";
 import { initialState } from "@customTypes/postCreate";
 import { usePostDetail } from "@hooks/usePostDetail";
 import { usePostUpdate } from "@hooks/usePostUpdate";
+import ErrorPage from "@pages/ErrorPage";
 import { postFormReducer, validateForm } from "@utils/postCreate";
 import { customConfirm, errorAlert } from "@utils/sweetAlert/alerts";
 import { FormEvent, useCallback, useEffect, useReducer } from "react";
@@ -65,7 +66,7 @@ export default function PostUpdatePage() {
     return true;
   }, [state]);
 
-  const handleCancel = useCallback(async () => {
+  const onCancel = useCallback(async () => {
     const confirmResult = await customConfirm({
       title: "수정을 취소하시겠습니까?",
       text: "작성 중인 내용은 저장되지 않습니다."
@@ -134,19 +135,24 @@ export default function PostUpdatePage() {
   );
 
   if (isLoading) return <Loading />;
-  if (error) return errorAlert({ title: "오류 발생", text: error.message });
-  if (!post) return errorAlert({ title: "오류 발생", text: "게시글을 찾을 수 없습니다." });
-  if (!post.isAuthor) return errorAlert({ title: "오류 발생", text: "게시글 작성자만 수정할 수 있습니다." });
+  if (error) {
+    errorAlert({ title: "오류 발생", text: error.message });
+    return <ErrorPage />;
+  }
+  if (!post) {
+    errorAlert({ title: "오류 발생", text: "게시글을 찾을 수 없습니다." });
+    return <ErrorPage />;
+  }
+  if (!post.isAuthor) {
+    errorAlert({ title: "오류 발생", text: "게시글 작성자만 수정할 수 있습니다." });
+    return <ErrorPage />;
+  }
 
   return (
     <form onSubmit={onSubmit} className="m-auto flex max-w-[1440px] flex-col gap-12 px-4 py-12">
       <h1 className="text-20 font-semibold md:text-24">게시글 수정하기</h1>
 
-      {isPending && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/50">
-          <div className="bg-white rounded-lg p-4">수정 중...</div>
-        </div>
-      )}
+      {isPending && <Loading />}
 
       <TitleContainer
         category="제목"
@@ -176,7 +182,7 @@ export default function PostUpdatePage() {
       <EditorContainer value={state.code} onChange={(newValue) => dispatch({ type: "SET_CODE", payload: newValue })} />
 
       <div className="flex w-full justify-end gap-6">
-        <ActionBtn content="수정 취소" type="reset" onClick={handleCancel} />
+        <ActionBtn content="수정 취소" type="reset" onClick={onCancel} />
         <ActionBtn color="primary" content={isPending ? "수정 중..." : "수정하기"} type="submit" />
       </div>
     </form>

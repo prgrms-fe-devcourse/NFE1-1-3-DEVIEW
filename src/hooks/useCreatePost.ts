@@ -13,18 +13,9 @@ export function useCreatePost() {
   return useMutation({
     mutationKey: ["post", "create"],
     mutationFn: (data: CreatePostRequestProps) => {
-      // // 요청 전 데이터 확인
-      // console.log("Mutation Request Data:", {
-      //   title: data.title,
-      //   detail: data.detail,
-      //   code: data.code,
-      //   devDependencies: data.devDependencies,
-      //   deVersions: data.devVersions
-      // });
       return createPost(data);
     },
     onSuccess: (data) => {
-      console.log("Mutation Success Data:", data);
       // 게시물 목록 캐시 무효화
       queryClient.invalidateQueries({ queryKey: ["posts"] });
       // 새로운 게시물을 캐시에 직접 추가
