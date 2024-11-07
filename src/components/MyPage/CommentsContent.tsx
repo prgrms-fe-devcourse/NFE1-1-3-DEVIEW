@@ -39,7 +39,6 @@ export const CommentsContent = () => {
   }
 
   if (!data || data.pages[0].comments.length === 0) return <NoContent type="comment" />;
-  console.log(data);
 
   return (
     <div className="">

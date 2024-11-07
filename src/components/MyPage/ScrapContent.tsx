@@ -39,7 +39,7 @@ export const ScrapContent = () => {
   }
 
   if (!data || data.pages[0].posts.length === 0) return <NoContent type="scrap" />;
-  
+
   return (
     <div className="">
       <p className="p-2 py-4 text-16 md:text-20">{data.pages[0].totalPosts}개의 스크랩</p>

@@ -49,6 +49,7 @@ export default function PostCreatePage() {
           devDependencies: validIndices.map((index) => state.devDependencies[index]),
           devVersions: validIndices.map((index) => state.devVersions[index])
         };
+
         await createPostMutation.mutateAsync(postData);
         customToast({ title: "질문이 등록되었습니다." });
         navigate(-1);
