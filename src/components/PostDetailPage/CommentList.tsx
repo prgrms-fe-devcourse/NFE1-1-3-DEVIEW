@@ -31,7 +31,11 @@ export const CommentList = () => {
 
   // 로딩 상태
   if (isLoading) {
-    return <Loading />;
+    return (
+      <div className="flex">
+        <Loading />
+      </div>
+    );
   }
 
   if (error) {
