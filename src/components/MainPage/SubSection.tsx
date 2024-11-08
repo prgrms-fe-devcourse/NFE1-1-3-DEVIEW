@@ -8,7 +8,7 @@ export const SubSection = () => {
     <div className="bg-lightyellow flex-center">
       <div className="flex w-full max-w flex-col">
         <div className="px-4 pt-10 text-20 font-semibold md:px-10 md:text-24">답변을 기다리는 질문</div>
-        <ErrorBoundary fallback={<SubBannerSkeleton isError={true} />}>
+        <ErrorBoundary fallbackRender={({ error }) => <SubBannerSkeleton error={error.message} isError={true} />}>
           <Suspense fallback={<SubBannerSkeleton />}>
             <SubBannerWrap />
           </Suspense>
