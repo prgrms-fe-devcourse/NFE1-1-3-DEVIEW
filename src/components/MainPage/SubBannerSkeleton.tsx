@@ -1,17 +1,44 @@
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Autoplay, Pagination } from "swiper/modules";
+import { SubBannerDefault } from "@components/MainPage/SubBannerDefault";
+
 type SubBannerProps = {
+  error?: string;
   isError?: boolean;
 };
 
-export const SubBannerSkeleton = ({ isError = false }: SubBannerProps) => {
+export const SubBannerSkeleton = ({ error, isError = false }: SubBannerProps) => {
   const bgColors = isError ? "bg-pink" : "bg-lightgray animate-pulse";
+  const content =
+    error === "답변이 없는 최근 게시물이 없습니다." ? (
+      <SubBannerDefault color="secondary" />
+    ) : (
+      <div className={` ${bgColors} h-52 truncate rounded-lg text-20 shadow md:text-24`}>{error}</div>
+    );
   return (
-    <div className="flex w-full gap-12 p-4">
-      <div
-        className={`relative flex w-full break-words md:w-[calc(50%-24px)] ${bgColors} h-52 flex-col justify-between rounded-lg p-5 pb-10 text-white-pure shadow`}
-      ></div>
-      <div
-        className={`relative hidden w-[calc(50%-24px)] break-words md:flex ${bgColors} h-52 flex-col justify-between rounded-lg p-5 pb-10 text-white-pure shadow`}
-      ></div>
+    <div className="flex w-full">
+      <Swiper
+        pagination={true}
+        modules={[Pagination, Autoplay]}
+        className="w-full px-4 py-10 md:px-10"
+        spaceBetween={48}
+        slidesPerView={1}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false
+        }}
+        breakpoints={{
+          768: {
+            slidesPerView: 2
+          }
+        }}
+      >
+        <SwiperSlide className="transition-transform md:hover:scale-105">{content}</SwiperSlide>
+
+        <SwiperSlide className="transition-transform md:hover:scale-105">{content}</SwiperSlide>
+      </Swiper>
     </div>
   );
 };

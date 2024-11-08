@@ -1,7 +1,9 @@
 import { COMMENTS_QUERY_KEY } from "@constants/queryKey";
 import { CommonCommentResponseProps } from "@customTypes/comment";
 import { useThumbComment } from "@hooks/useThumbComment";
+import { useUserStore } from "@stores/userStore";
 import { InfiniteData, useQueryClient } from "@tanstack/react-query";
+import { errorAlert } from "@utils/sweetAlert/alerts";
 import { FaRegThumbsUp } from "react-icons/fa6";
 import { useParams } from "react-router-dom";
 type CommentInteractionProps = {
@@ -9,6 +11,7 @@ type CommentInteractionProps = {
 };
 
 export const CommentInteraction = ({ commentId }: CommentInteractionProps) => {
+  const { isLoggedIn } = useUserStore();
   const { id: postId } = useParams<{ id: string }>();
   const queryClient = useQueryClient();
   const { mutate: thumbMutation, isPending } = useThumbComment();
@@ -24,6 +27,10 @@ export const CommentInteraction = ({ commentId }: CommentInteractionProps) => {
   const thumbsCount = currentComment?.thumbsCount ?? 0;
 
   const handleThumbClick = () => {
+    if (!isLoggedIn) {
+      errorAlert({ title: "댓글 따봉 오류 발생", text: "로그인 해야 댓글에 따봉을 날릴 수 있어요!" });
+      return;
+    }
     thumbMutation({ commentId });
   };
 
