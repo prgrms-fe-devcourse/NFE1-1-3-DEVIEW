@@ -15,7 +15,7 @@ export const SubBannerSkeleton = ({ error, isError = false }: SubBannerProps) =>
     error === "답변이 없는 최근 게시물이 없습니다." ? (
       <SubBannerDefault color="secondary" />
     ) : (
-      <div className={` ${bgColors} h-52 rounded-lg shadow`}>{error}</div>
+      <div className={` ${bgColors} h-52 truncate rounded-lg text-20 shadow md:text-24`}>{error}</div>
     );
   return (
     <div className="flex w-full">
