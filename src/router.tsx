@@ -1,8 +1,3 @@
-import { Footer } from "@components/Common/Footer";
-import { Header } from "@components/Common/Header";
-import { ProtectedRoute } from "@components/Common/ProtectedRoute";
-import { ScrollToTop } from "@components/Common/ScrollToTop";
-import { createBrowserRouter, Outlet } from "react-router-dom";
 import {
   AdminPage,
   ErrorPage,
@@ -17,6 +12,11 @@ import {
   RegisterPage,
   SearchPage
 } from "./pages";
+import { Header } from "@components/Common/Header";
+import { Footer } from "@components/Common/Footer";
+import { ProtectedRoute } from "@components/Common/ProtectedRoute";
+import { ScrollToTop } from "@components/Common/ScrollToTop";
+import { createBrowserRouter, Outlet } from "react-router-dom";
 
 export const router = createBrowserRouter([
   {

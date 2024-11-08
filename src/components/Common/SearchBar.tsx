@@ -3,6 +3,7 @@ import { IoMdSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { useFilterStore } from "@stores/searchFiltersStore";
 import { IoCloseSharp } from "react-icons/io5";
+import { errorAlert } from "@utils/sweetAlert/alerts";
 
 type SearchBarProps = {
   onFocus: () => void;
@@ -36,7 +37,10 @@ export const SearchBar = ({ onFocus, onCloseFilter }: SearchBarProps) => {
         setQuery("");
         clearFilters();
       } else {
-        alert("검색어 입력 또는 필터를 선택해주세요.");
+        errorAlert({
+          title: `검색어를 입력하거나 
+          필터를 선택해주세요.`
+        });
       }
     };
 
