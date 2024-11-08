@@ -1,35 +1,6 @@
 # DEVIEW
 
-Deview는 개발자, 취준생들을 위한 코드리뷰 웹사이트로, React와 TypeScript를 기반으로 구축된 반응형 웹 애플리케이션입니다.
-
-# Stack
--
-  ## Front-End
-    <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
-    <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
-    <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
-    <img src="https://img.shields.io/badge/Zustand-593D88?style=for-the-badge&logo=zustand&logoColor=white" alt="Zustand" />
-    <img src="https://img.shields.io/badge/Tanstack%20Query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white" alt="Tanstack Query" />
-    <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white" alt="Axios" />
-    <img src="https://img.shields.io/badge/React%20Router-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white" alt="React Router" />
-    <img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="TailwindCSS" />
-    
-    
-    ## Back-End    
-    <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="NodeJS" />
-    <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express" />
-    <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" />
-
-# Github
-
-### Front-End
-
-[GitHub - prgrms-fe-devcourse/NFE1-1-3-DEVIEW](https://github.com/prgrms-fe-devcourse/NFE1-1-3-DEVIEW)
-
-### Back-End
-
-[GitHub - shlee9999/deview-backend: deview 프로젝트의 backend 레포지토리](https://github.com/shlee9999/deview-backend)
-
+Deview는 개발자, 취준생들을 위한 코드리뷰 웹사이트로, React와 TypeScript를 기반으로 구축된 반응형 웹 애플리케이션입니다.       
 # Production
 
 [Deview](https://nfe-1-1-3-deview.vercel.app/)
@@ -38,8 +9,6 @@ Deview는 개발자, 취준생들을 위한 코드리뷰 웹사이트로, React�
 
 [DEV 3차 DEVIEW (Copy)](<https://www.figma.com/design/ukWNFZRnocaboeFxzK4ZVK/DEV-3%EC%B0%A8-DEVIEW-(Copy)?t=QNjvt1YWxlzDctuy-0>)
 
-# ReadMe
-
 # ⭐ _Deview ReadMe_ ⭐
 
 ![alt text](image.png)
@@ -47,26 +16,6 @@ Deview는 개발자, 취준생들을 위한 코드리뷰 웹사이트로, React�
 - 배포 URL : https://nfe-1-1-3-deview.vercel.app/
 - Test ID : test1234
 - Test PW : test1234
-
-## ✨ 프로젝트 소개
-
-- Deview는 개발자들을 위한 코드리뷰 웹사이트로, React와 TypeScript를 기반으로 구축된 반응형 웹 애플리케이션입니다.
-
-## 👪 팀원 구성
-
----
-
-### Front-End
-
-- 민정아
-- 송웅규
-- 이가은
-- 이성훈
-- 조천산
-
-### Back-End
-
-- 이성훈
 
 ## ♻️ 개발 환경
 
@@ -84,6 +33,8 @@ Deview는 개발자, 취준생들을 위한 코드리뷰 웹사이트로, React�
 <img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="TailwindCSS" />
 
 **백엔드**
+
+[GitHub - shlee9999/deview-backend: deview 프로젝트의 backend 레포지토리](https://github.com/shlee9999/deview-backend)
 
 <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="NodeJS" />
 <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express" />
@@ -323,51 +274,6 @@ GitHub Flow를 채택한 주요 이유와 특징을 체계적으로 설명하겠
 ## **🙋‍♂️ 역할 분담**
 
 ---
-
-### _민정아_
-
-- 담당 페이지
-  - 검색 페이지, 랭킹 페이지
-- 기능
-  - 헤더, 알림, 검색 및 검색 목록, 랭킹 목록
-
-### _송웅규_
-
-- 담당 페이지
-  - 메인 페이지 , 게시글 목록/특정 유저의 게시글 목록페이지
-- 기능
-  - 반응형 슬라이드 메인배너 , 게시글 리스트 공용 컴포넌트 , 메인페이지 대체 / 에러 스켈레톤 UI
-
-### _이가은_
-
-- 담당 페이지
-  - MyPage, Footer
-- 기능
-  - UserProfile, UserPosts, UserComments, UserScraps, UserInfo(정보 조회, 정보 수정), CodeViewer, highlighting
-
-### _이성훈_
-
-**Front-End**
-
-- 담당 페이지
-  로그인 페이지, 회원가입 페이지, 관리자 페이지, 에러 페이지
-- 기능
-  로그인, 회원가입
-- API
-  백엔드 통신을 위한 모든 API 설계(services 폴더 전부)
-
-**Back-End**
-
-- 모든 백엔드 전임
-
-### _조천산_
-
-- 담당 페이지
-  - 게시물 작성 페이지, 게시물 상세 페이지
-- 기능
-  - 게시글 [작성, 수정, 신고, 좋아요, 스크랩, 삭제], 댓글 [작성, 수정, 추천, 삭제], 댓글 리스트(무한 스크롤)
-
-
 |                                                                   👩‍💻 민정아                                                                    |                                                                                         👨‍💻 송웅규                                                                                          |                                                                                   👩‍💻 이가은                                                                                    |                                                                              👨‍💻 이성훈                                                                               |                                                                     👨‍💻 조천산                                                                     |
 | :--------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------: |
 |                                           <img src="프로필이미지주소.jpg" width="200" height="200"/>                                           |                                                                 <img src="프로필이미지주소.jpg" width="200" height="200"/>                                                                 |                                                           <img src="프로필이미지주소.jpg" width="200" height="200"/>                                                           |                                                      <img src="프로필이미지주소.jpg" width="200" height="200"/>                                                      |                                            <img src="프로필이미지주소.jpg" width="200" height="200"/>                                             |
