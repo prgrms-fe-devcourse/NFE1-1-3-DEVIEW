@@ -304,7 +304,9 @@ optimistic update
 
 ### [MainPage]
 
-<img src="./.github/assets/images/image-1.png" alt="메인페이지1" width="400" /> <img src="./.github/assets/images/반응형.gif" alt="반응형" width="400" /> <img src="./.github/assets/images/image-3.png" alt="스켈레톤" width="400" /> <img src="./.github/assets/images/image-4.png" alt="스켈레톤" width="400" />
+<img src="./.github/assets/images/image-1.png" alt="메인페이지1" width="500" />
+<img src="./.github/assets/images/반응형.gif" alt="반응형" width="500" />
+<img src="./.github/assets/images/image-3.png" alt="스켈레톤" width="500" /> <img src="./.github/assets/images/image-4.png" alt="스켈레톤" width="500" />
 
 - 게시물 조회
   - 배너
@@ -318,7 +320,7 @@ optimistic update
 
 ### [PostPage]
 
-<img src="./.github/assets/images/게시글스크롤.gif" alt="데모 시연" width="400" />
+<img src="./.github/assets/images/게시글스크롤.gif" alt="데모 시연" width="500" />
 
 - 게시물 리스트 조회
   - 정렬 토글버튼을 통한 인기/최신 게시글 변경
@@ -327,7 +329,7 @@ optimistic update
 
 ### [RankPage]
 
-<img src="./.github/assets/images/랭킹.gif" alt="랭킹" width="400" />
+<img src="./.github/assets/images/랭킹.gif" alt="랭킹" width="500" />
 
 - 유저 랭킹
   - 해당 유저가 단 댓글에 추천수가 많은 순으로 순위 결정
@@ -336,7 +338,7 @@ optimistic update
 
 ### [SearchPage]
 
-<img src="./.github/assets/images/검색.gif" alt="검색" width="400" />
+<img src="./.github/assets/images/검색.gif" alt="검색" width="500" />
 
 - 검색 기능
   - 검색어를 입력하거나 필터를 선택해 검색할 수 있음
@@ -345,7 +347,7 @@ optimistic update
 
 ### [LoginPage]
 
-<img src="./.github/assets/images/로그인회원가입.gif" alt="로그인회원가입" width="400" />
+<img src="./.github/assets/images/로그인회원가입.gif" alt="로그인회원가입" width="500" />
 
 - 로그인 기능
   - 아이디
@@ -361,7 +363,7 @@ optimistic update
 
 ### [PostCreatePage]
 
-<img src="./.github/assets/images/게시물생성.gif" alt="게시물생성" width="400" />
+<img src="./.github/assets/images/게시물생성.gif" alt="게시물생성" width="500" />
 
 - 게시글 작성
   - 게시글 제목
@@ -373,7 +375,7 @@ optimistic update
 
 ### [PostDetailPage]
 
-<img src="./.github/assets/images/게시글수정삭제.gif" alt="게시글수정삭제" width="400" />
+<img src="./.github/assets/images/게시글수정삭제.gif" alt="게시글수정삭제" width="500" />
 
 - 게시글 세부
   - 게시글 제목
@@ -403,7 +405,7 @@ optimistic update
 
 ### [Alarm]
 
-<img src="./.github/assets/images/알림.gif" alt="알림" width="400" />
+<img src="./.github/assets/images/알림.gif" alt="알림" width="500" />
 
 - 내 게시물에 댓글 달릴 경우
 - 내 게시물에 추천
@@ -412,7 +414,7 @@ optimistic update
 
 ### [ErrorPage]
 
-<img src="./.github/assets/images/에러페이지.png" alt="에러페이지" width="400" />
+<img src="./.github/assets/images/에러페이지.png" alt="에러페이지" width="500" />
 
 - 에러 페이지
 
