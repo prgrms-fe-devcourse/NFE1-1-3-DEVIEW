@@ -106,7 +106,7 @@ export default function PostCreatePage() {
         explain="질문하시고 싶은 내용을 잘 전달할 수 있는 제목을 선택해주세요."
         placeholder="제목은 50자 이내로 작성해주세요."
         value={state.title}
-        maxLength={50}
+        maxLength={100}
         onChange={(e) => dispatch({ type: "SET_TITLE", payload: e.target.value })}
       />
 
