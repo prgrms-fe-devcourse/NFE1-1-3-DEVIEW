@@ -77,7 +77,7 @@ export const CommentList = () => {
               {comment.isMine && (
                 <CommentEditDelete
                   commentId={comment._id}
-                  isEditing={editingCommentId === comment._id} // isEditing prop 추가
+                  isEditing={editingCommentId === comment._id}
                   onEditStateChange={(isEditing) => {
                     setEditingCommentId(isEditing ? comment._id : null);
                   }}

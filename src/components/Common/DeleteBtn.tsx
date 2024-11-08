@@ -6,12 +6,7 @@ type DeleteButtonProps = {
 };
 
 export const DeleteBtn = ({ onClick, disabled }: DeleteButtonProps) => (
-  <button
-    type="button"
-    onClick={onClick}
-    disabled={disabled}
-    className="text-red-500 hover:text-red-600 disabled:opacity-50"
-  >
-    <RiDeleteBinLine className="h-4 w-4 md:h-5 md:w-5" />
+  <button type="button" onClick={onClick} disabled={disabled} className="disabled:opacity-50">
+    <RiDeleteBinLine className="h-4 w-4 transition-transform duration-200 ease-in-out hover:scale-110 hover:fill-pink md:h-5 md:w-5" />
   </button>
 );

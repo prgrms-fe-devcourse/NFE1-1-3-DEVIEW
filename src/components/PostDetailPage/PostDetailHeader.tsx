@@ -16,6 +16,7 @@ export const PostDetailHeader = () => {
         commentCount={postDetail.commentsCount}
         userId={postDetail.author.userId}
         _id={postDetail.author._id}
+        updatedAt={postDetail.updatedAt}
       />
       <LanVersionTagList devDependencies={postDetail.devDependencies} devVersions={postDetail.devVersions} />
     </div>

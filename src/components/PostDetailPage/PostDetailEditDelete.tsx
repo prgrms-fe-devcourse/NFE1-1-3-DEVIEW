@@ -11,11 +11,11 @@ export const PostDetailEditDelete = () => {
   const { mutate: deletePostMutate, isPending } = usePostDelete({
     onSuccess: () => {
       successAlert({ title: "삭제 성공", text: "게시글이 삭제되었습니다." });
+      navigate(-1);
     },
     onError: (error) => {
       errorAlert({ title: "삭제 실패", text: error.message });
-    },
-    redirectTo: "/"
+    }
   });
 
   const onClickDelete = async () => {
