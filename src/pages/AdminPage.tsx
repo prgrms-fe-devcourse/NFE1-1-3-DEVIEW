@@ -38,7 +38,7 @@ export default function AdminPage() {
   if (!data || data.pages[0].posts?.length === 0) return <NoContent type="post" />;
 
   return (
-    <div className="p-10">
+    <div className="mx-auto max-w px-4 py-12">
       <h2 className="mb-4 text-24">관리자 페이지</h2>
       <h3 className="mb-4 text-20">숨겨진 게시물 목록</h3>
       {data?.pages.map((page, pageIndex) => (
