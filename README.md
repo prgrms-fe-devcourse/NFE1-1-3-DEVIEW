@@ -306,9 +306,9 @@ optimistic update
 ### [MainPage]
 
 <img src="./.github/assets/images/image-1.png" alt="메인페이지1" width="300" />
-<img src="./.github/assets/images/image-2.png" alt="메인페이지2" width="300" />
-<img src="./.github/assets/images/image-3.png" alt="메인페이지3" width="300" />
-<img src="./.github/assets/images/image-4.png" alt="메인페이지4" width="300" />
+<img src="./.github/assets/images/반응형.gif" alt="반응형" width="300" />
+<img src="./.github/assets/images/image-3.png" alt="스켈레톤" width="300" />
+<img src="./.github/assets/images/image-4.png" alt="스켈레톤" width="300" />
 
 - 게시물 조회
   - 배너
@@ -322,9 +322,7 @@ optimistic update
 
 ### [PostPage]
 
-![alt text](image-5.png)
-
-![alt text](image-6.png)
+<img src="./.github/assets/images/게시글스크롤.gif" alt="데모 시연" width="300" />
 
 - 게시물 리스트 조회
   - 정렬 토글버튼을 통한 인기/최신 게시글 변경
@@ -333,9 +331,7 @@ optimistic update
 
 ### [RankPage]
 
-![alt text](image-7.png)
-
-![alt text](image-8.png)
+<img src="./.github/assets/images/랭킹.gif" alt="랭킹" width="300" />
 
 - 유저 랭킹
   - 해당 유저가 단 댓글에 추천수가 많은 순으로 순위 결정
@@ -344,32 +340,22 @@ optimistic update
 
 ### [SearchPage]
 
-![alt text](image-9.png)
-
-![alt text](image-10.png)
+<img src="./.github/assets/images/검색.gif" alt="검색" width="300" />
 
 - 검색 기능
   - 검색어를 입력하거나 필터를 선택해 검색할 수 있음
   - 필터만 선택 가능하고 최대 3개 선택할 수 있음
   - 검색 목록 클릭하면 해당 PostDetailPage로 이동
 
-![alt text](image-11.png)
-
 ### [LoginPage]
 
-![alt text](image-12.png)
-
-![alt text](image-13.png)
+<img src="./.github/assets/images/로그인회원가입.gif" alt="로그인회원가입" width="300" />
 
 - 로그인 기능
   - 아이디
   - 비밀번호
 
 ### [RegisterPage]
-
-![alt text](image-14.png)
-
-![alt text](image-15.png)
 
 - 회원가입 기능
   - 아이디
@@ -379,7 +365,7 @@ optimistic update
 
 ### [PostCreatePage]
 
-![alt text](image-16.png)
+<img src="./.github/assets/images/게시물생성.gif" alt="게시물생성" width="300" />
 
 - 게시글 작성
   - 게시글 제목
@@ -391,13 +377,7 @@ optimistic update
 
 ### [PostDetailPage]
 
-![alt text](image-17.png)
-
-![alt text](image-18.png)
-
-![alt text](image-19.png)
-
-![alt text](image-20.png)
+<img src="./.github/assets/images/게시글수정삭제.gif" alt="게시글수정삭제" width="300" />
 
 - 게시글 세부
   - 게시글 제목
@@ -411,25 +391,11 @@ optimistic update
 
 ### [PostUpdatePage]
 
-![alt text](image-21.png)
-
 - 게시글 수정
   - 게시글 제목, 내용, 언어 및 버전, 코드 수정
   -
 
 ### [MyPage]
-
-![alt text](image-22.png)
-
-![alt text](image-23.png)
-
-![alt text](image-24.png)
-
-![alt text](image-25.png)
-
-![alt text](image-26.png)
-
-![alt text](image-27.png)
 
 - 마이페이지
   - 프로필 (회원가입하면 랜덤 지정)
@@ -441,9 +407,7 @@ optimistic update
 
 ### [Alarm]
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/31991cbe-bdde-406f-95db-d2ae505d7863/image.png)
-
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/8ce50ec8-abb8-464d-a13c-65155548cfa0/image.png)
+<img src="./.github/assets/images/알림.gif" alt="알림" width="300" />
 
 - 내 게시물에 댓글 달릴 경우
 - 내 게시물에 추천
@@ -452,9 +416,7 @@ optimistic update
 
 ### [ErrorPage]
 
-![alt text](image-28.png)
-
-![alt text](image-29.png)
+<img src="./.github/assets/images/에러페이지.png" alt="에러페이지" width="300" />
 
 - 에러 페이지
 
