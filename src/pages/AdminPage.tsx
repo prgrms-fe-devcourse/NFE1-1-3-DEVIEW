@@ -28,7 +28,7 @@ export default function AdminPage() {
   );
   if (isLoading)
     return (
-      <div className="h-[calc(100vh-112px)] flex-center">
+      <div className="flex h-[calc(100vh-20rem)] items-center justify-center">
         <Loading />
       </div>
     );
