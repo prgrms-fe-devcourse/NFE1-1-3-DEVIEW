@@ -12,7 +12,6 @@ Deview는 개발자, 취준생들을 위한 코드리뷰 웹사이트로, React�
 
 # ⭐ _Deview ReadMe_ ⭐
 
-![alt text](image.png)
 
 - 배포 URL : https://nfe-1-1-3-deview.vercel.app/
 - Test ID : test1234
