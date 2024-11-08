@@ -1,6 +1,7 @@
 # DEVIEW
 
-Deview는 개발자, 취준생들을 위한 코드리뷰 웹사이트로, React와 TypeScript를 기반으로 구축된 반응형 웹 애플리케이션입니다.       
+Deview는 개발자, 취준생들을 위한 코드리뷰 웹사이트로, React와 TypeScript를 기반으로 구축된 반응형 웹 애플리케이션입니다.
+
 # Production
 
 [Deview](https://nfe-1-1-3-deview.vercel.app/)
@@ -23,14 +24,7 @@ Deview는 개발자, 취준생들을 위한 코드리뷰 웹사이트로, React�
 
 **프론트엔드**
 
-<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
-<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
-<img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
-<img src="https://img.shields.io/badge/Zustand-593D88?style=for-the-badge&logo=zustand&logoColor=white" alt="Zustand" />
-<img src="https://img.shields.io/badge/Tanstack%20Query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white" alt="Tanstack Query" />
-<img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white" alt="Axios" />
-<img src="https://img.shields.io/badge/React%20Router-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white" alt="React Router" />
-<img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="TailwindCSS" />
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" /> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" /> <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" /> <img src="https://img.shields.io/badge/Zustand-593D88?style=for-the-badge&logo=zustand&logoColor=white" alt="Zustand" /> <img src="https://img.shields.io/badge/Tanstack%20Query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white" alt="Tanstack Query" /> <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white" alt="Axios" /> <img src="https://img.shields.io/badge/React%20Router-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white" alt="React Router" /> <img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="TailwindCSS" />
 
 **백엔드**
 
@@ -41,6 +35,7 @@ Deview는 개발자, 취준생들을 위한 코드리뷰 웹사이트로, React�
 <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" />
 
 ### 협업 도구
+
 <img src="https://img.shields.io/badge/Github Projects-181717?style=for-the-badge&logo=github&logoColor=white" alt="Github Projects" />
 
 ### 인프라 & 도구
@@ -65,6 +60,7 @@ Deview는 개발자, 취준생들을 위한 코드리뷰 웹사이트로, React�
   - **Chore**: 빌드 업무 수정, 패키지 매니저 수정
   - **Style** : 코드 포맷팅, 세미콜론 누락, 기능 코드 변경이 없는 경우
 - 코드 컨벤션
+
   1. 컴포넌트
 
      1. rfc
@@ -97,6 +93,7 @@ Deview는 개발자, 취준생들을 위한 코드리뷰 웹사이트로, React�
         2. user + List(단수명 + List)
   5. 콜백함수 → 화살표
   6. 주석
+
      1. anchor?
      2. Better Comments vscode 확장
      3. 기본 주석 색상 바꾸기 - settings.json에 다음 추가
@@ -114,6 +111,7 @@ Deview는 개발자, 취준생들을 위한 코드리뷰 웹사이트로, React�
             ]
           },
         ```
+
   7. 폴더 네이밍
      1. 컴포넌트 파일 명명규칙
      2. 컴포넌트 이외의 파일 명명규칙
@@ -274,13 +272,13 @@ GitHub Flow를 채택한 주요 이유와 특징을 체계적으로 설명하겠
 ## **🙋‍♂️ 역할 분담**
 
 ---
+
 |                                                                   👩‍💻 민정아                                                                    |                                                                                         👨‍💻 송웅규                                                                                          |                                                                                   👩‍💻 이가은                                                                                    |                                                                              👨‍💻 이성훈                                                                               |                                                                     👨‍💻 조천산                                                                     |
 | :--------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------: |
 |                                           <img src="프로필이미지주소.jpg" width="200" height="200"/>                                           |                                                                 <img src="프로필이미지주소.jpg" width="200" height="200"/>                                                                 |                                                           <img src="프로필이미지주소.jpg" width="200" height="200"/>                                                           |                                                      <img src="프로필이미지주소.jpg" width="200" height="200"/>                                                      |                                            <img src="프로필이미지주소.jpg" width="200" height="200"/>                                             |
 | **담당 페이지** <br> - 검색 페이지 <br> - 랭킹 페이지 <br><br> **주요 기능** <br> - 헤더 <br> - 알림 <br> - 검색 및 검색 목록 <br> - 랭킹 목록 | **담당 페이지** <br> - 메인 페이지 <br> - 게시글 목록 <br> - 유저 게시글 목록 <br><br> **주요 기능** <br> - 반응형 슬라이드 메인배너 <br> - 게시글 리스트 공용 컴포넌트 <br> - 스켈레톤 UI | **담당 페이지** <br> - MyPage <br> - Footer <br><br> **주요 기능** <br> - UserProfile <br> - UserPosts <br> - UserComments <br> - UserScraps <br> - UserInfo <br> - CodeViewer | **Front-End** <br> **담당 페이지** <br> - 로그인 페이지 <br> - 회원가입 페이지 <br> - 관리자 페이지 <br> - 에러 페이지 <br><br> **Back-End** <br> - 모든 백엔드 전임 | **담당 페이지** <br> - 게시물 작성 페이지 <br> - 게시물 상세 페이지 <br><br> **주요 기능** <br> - 게시글 CRUD <br> - 댓글 CRUD <br> - 무한 스크롤 |
 |              [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](GitHub주소)               |                                    [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](GitHub주소)                                     |                              [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](GitHub주소)                               |                         [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](GitHub주소)                          |                [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](GitHub주소)                |
 |            [![Gmail](https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:이메일주소)             |                                  [![Gmail](https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:이메일주소)                                   |                            [![Gmail](https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:이메일주소)                             |                       [![Gmail](https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:이메일주소)                        |              [![Gmail](https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:이메일주소)              |
-
 
 ## **📅 개발 기간 및 작업 관리**
 
