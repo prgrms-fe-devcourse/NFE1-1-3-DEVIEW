@@ -6,13 +6,15 @@ import { scrapPost } from "@services/post/scrapPost";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { IoBookmark, IoBookmarkOutline } from "react-icons/io5";
 import { PiSiren } from "react-icons/pi";
-import { customPrompt, successAlert } from "@utils/sweetAlert/alerts";
+import { customPrompt, errorAlert, successAlert } from "@utils/sweetAlert/alerts";
+import { useUserStore } from "@stores/userStore";
 type PostLikeScrapProps = {
   postId: string;
   post: TPostDetail;
 };
 
 export const PostDetailInteraction = ({ postId, post }: PostLikeScrapProps) => {
+  const { isLoggedIn } = useUserStore();
   const { mutate: likeMutate } = usePostLikeScrap({
     actionKey: "liked",
     countKey: "likesCount",
@@ -30,14 +32,26 @@ export const PostDetailInteraction = ({ postId, post }: PostLikeScrapProps) => {
   });
 
   const onLikeClick = () => {
+    if (!isLoggedIn) {
+      errorAlert({ title: "게시물 신고 오류", text: "로그인 해야 좋아요를 누를 수 있어요!" });
+      return;
+    }
     likeMutate({ postId });
   };
 
   const onScrapClick = () => {
+    if (!isLoggedIn) {
+      errorAlert({ title: "게시물 신고 오류", text: "로그인 해야 게시물을 스크랩 할 수 있어요!" });
+      return;
+    }
     scrapMutate({ postId });
   };
 
   const onReportClick = async () => {
+    if (!isLoggedIn) {
+      errorAlert({ title: "게시물 신고 오류", text: "로그인 해야 부적절한 게시물을 신고할 수 있어요!" });
+      return;
+    }
     const { value: reason } = await customPrompt({
       title: "신고 사유",
 
