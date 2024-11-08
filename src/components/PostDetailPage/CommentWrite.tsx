@@ -7,7 +7,7 @@ import { useCallback, useState } from "react";
 import { useParams } from "react-router-dom";
 
 export const CommentWrite = () => {
-  const { userInfo } = useUserStore();
+  const { userInfo, isLoggedIn } = useUserStore();
   const { id: postId } = useParams<{ id: string }>();
   const [content, setContent] = useState("");
 
@@ -16,8 +16,11 @@ export const CommentWrite = () => {
       setContent("");
       customToast({ title: "댓글이 작성되었습니다.", text: "댓글이 성공적으로 작성되었습니다." });
     },
-    onError: () => {
-      errorAlert({ title: "댓글 작성 중 오류가 발생했습니다.", text: "댓글 내용을 입력해주세요." });
+    onError: (error: Error) => {
+      errorAlert({
+        title: "댓글 작성 중 오류가 발생했습니다.",
+        text: isLoggedIn ? error.message : "로그인 해야 댓글을 달 수 있어요!"
+      });
     }
   });
 
