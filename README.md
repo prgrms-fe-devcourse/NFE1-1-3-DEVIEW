@@ -305,13 +305,13 @@ optimistic update
 
 ### [MainPage]
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/214ef1d3-741a-4db4-8ef3-9a2fa9d139a2/image.png)
+![alt text](image-1.png)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/8cf1272d-bef8-41ef-8d2c-0fb740f64aa3/image.png)
+![alt text](image-2.png)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/16794b80-8053-4be4-b1a1-218496dafabc/image.png)
+![alt text](image-3.png)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/53bfb8cf-1967-413c-b8c3-9d312a75af96/image.png)
+![alt text](image-4.png)
 
 - 게시물 조회
   - 배너
@@ -325,9 +325,9 @@ optimistic update
 
 ### [PostPage]
 
-![{8DDA7F94-70C3-4A88-A495-70ACCFB02FB9}.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/e2741cc5-e519-4dec-a7e7-4780935e00c2/8DDA7F94-70C3-4A88-A495-70ACCFB02FB9.png)
+![alt text](image-5.png)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/d3ab8a19-3185-48e3-bb8b-2ce263c5ca1f/image.png)
+![alt text](image-6.png)
 
 - 게시물 리스트 조회
   - 정렬 토글버튼을 통한 인기/최신 게시글 변경
@@ -336,9 +336,9 @@ optimistic update
 
 ### [RankPage]
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/6b23a9f9-1146-4514-8e24-acb2cfba56ae/image.png)
+![alt text](image-7.png)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/cf757a05-89e4-40e7-bdf5-c1b588e0369c/image.png)
+![alt text](image-8.png)
 
 - 유저 랭킹
   - 해당 유저가 단 댓글에 추천수가 많은 순으로 순위 결정
@@ -347,22 +347,22 @@ optimistic update
 
 ### [SearchPage]
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/b5f3d78c-32f2-40f1-9f0e-6fe79d0e3a39/image.png)
+![alt text](image-9.png)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/e6eecedd-e3c7-4622-9834-390e085ec4a0/image.png)
+![alt text](image-10.png)
 
 - 검색 기능
   - 검색어를 입력하거나 필터를 선택해 검색할 수 있음
   - 필터만 선택 가능하고 최대 3개 선택할 수 있음
   - 검색 목록 클릭하면 해당 PostDetailPage로 이동
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/e810ffb9-feab-469c-b397-d39cd9a18c93/image.png)
+![alt text](image-11.png)
 
 ### [LoginPage]
 
-![{655702FF-D910-4FE5-81EC-1A5AD7CE9C8D}.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/0d3a45bf-c77e-491d-bea6-2786c3bd36d2/655702FF-D910-4FE5-81EC-1A5AD7CE9C8D.png)
+![alt text](image-12.png)
 
-![{1AEB9061-3F8B-4056-979E-4F6F738FB313}.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/4d05721e-7f9f-49fd-9a67-6eb59c64d670/1AEB9061-3F8B-4056-979E-4F6F738FB313.png)
+![alt text](image-13.png)
 
 - 로그인 기능
   - 아이디
@@ -370,9 +370,9 @@ optimistic update
 
 ### [RegisterPage]
 
-![{AB190A99-CC3D-4A9D-9CF2-34B858EEB340}.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/c0927d51-4f8f-48b9-9236-f9b264280b34/AB190A99-CC3D-4A9D-9CF2-34B858EEB340.png)
+![alt text](image-14.png)
 
-![{9A0C94AA-1CD8-4ACD-A569-CBD34C9C355E}.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/2a451998-8d5c-4958-a129-b94d10729931/9A0C94AA-1CD8-4ACD-A569-CBD34C9C355E.png)
+![alt text](image-15.png)
 
 - 회원가입 기능
   - 아이디
@@ -382,7 +382,7 @@ optimistic update
 
 ### [PostCreatePage]
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/cb3926a6-e091-4f60-8b77-a3fbbec014d7/image.png)
+![alt text](image-16.png)
 
 - 게시글 작성
   - 게시글 제목
@@ -394,13 +394,13 @@ optimistic update
 
 ### [PostDetailPage]
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/b406665a-89aa-4d0e-8bfc-8f863c6b6915/image.png)
+![alt text](image-17.png)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/898fee55-f0c9-48a4-96bb-f1c65364d46b/image.png)
+![alt text](image-18.png)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/8e180660-712a-439b-b8b0-f3266714ffe3/image.png)
+![alt text](image-19.png)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/1577732a-1cb1-41d1-84be-132ffcabe3c5/image.png)
+![alt text](image-20.png)
 
 - 게시글 세부
   - 게시글 제목
@@ -414,7 +414,7 @@ optimistic update
 
 ### [PostUpdatePage]
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/4b6c2707-9960-4bfd-b9fd-4120193b0105/image.png)
+![alt text](image-21.png)
 
 - 게시글 수정
   - 게시글 제목, 내용, 언어 및 버전, 코드 수정
@@ -422,17 +422,17 @@ optimistic update
 
 ### [MyPage]
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/6ff6b787-2d9b-4d50-96a8-acbd9bda801e/image.png)
+![alt text](image-22.png)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/67d24a5d-274a-4721-9d3c-591a8d5e9cd2/image.png)
+![alt text](image-23.png)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/767e0d85-c876-453b-926a-345151595f9f/image.png)
+![alt text](image-24.png)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/dc9bc76e-ace1-4699-99fa-59d84e342fbf/image.png)
+![alt text](image-25.png)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/dbbeb61a-38d0-457b-a910-905b35e58677/image.png)
+![alt text](image-26.png)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/5ceb4ee5-b9b1-453a-99ca-fcffe239ea2a/image.png)
+![alt text](image-27.png)
 
 - 마이페이지
   - 프로필 (회원가입하면 랜덤 지정)
@@ -455,9 +455,9 @@ optimistic update
 
 ### [ErrorPage]
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/b154b5a6-5c70-403f-8dce-370786a2c1fe/image.png)
+![alt text](image-28.png)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/dbc49794-b983-4f69-8afa-b5c54d5f9b82/165d3043-5a62-4bbc-a9f6-5669264ddbce/image.png)
+![alt text](image-29.png)
 
 - 에러 페이지
 
