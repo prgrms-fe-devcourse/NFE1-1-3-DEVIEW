@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { TPostDetail } from "@customTypes/post";
 import { POST_DETAIL_QUERY_KEY } from "@constants/queryKey";
+import { errorAlert } from "@utils/sweetAlert/alerts";
 
 type ToggleActionParams = {
   postId: string;
@@ -42,10 +43,11 @@ export function usePostLikeScrap<T extends "liked" | "scraped">({ actionKey, cou
 
       return { previousPost };
     },
-    onError: (_, variables, context) => {
+    onError: (error: Error, variables, context) => {
       if (context?.previousPost) {
         queryClient.setQueryData([POST_DETAIL_QUERY_KEY, variables.postId], context.previousPost);
       }
+      errorAlert({ title: "게시물 좋아요 오류", text: error.message });
     },
     onSuccess: (newData, variables) => {
       queryClient.setQueryData<TPostDetail>([POST_DETAIL_QUERY_KEY, variables.postId], (oldData) => {

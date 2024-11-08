@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { register } from "@services/auth/register";
 import { UserInfo } from "@customTypes/userInfo";
 import { Radio } from "@components/Common/Radio";
+import { errorAlert } from "@utils/sweetAlert/alerts";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -30,6 +31,8 @@ export default function RegisterPage() {
 
     const isValid = isIdValid && isPasswordValid && isConfirmPasswordValid && isNameValid;
 
+    const errorTitle = "회원 가입에 실패했습니다.";
+
     if (isValid) {
       register({
         group,
@@ -43,13 +46,13 @@ export default function RegisterPage() {
         })
         .catch((error) => {
           console.error(error);
-          alert("회원 가입에 실패했습니다.");
+          errorAlert({ title: errorTitle, text: error.message });
         });
     } else {
-      if (!isIdValid) alert(AUTH_INPUT_VALIDATION.id.errorMessage);
-      else if (!isPasswordValid) alert(AUTH_INPUT_VALIDATION.password.errorMessage);
-      else if (!isConfirmPasswordValid) alert("비밀번호가 일치하지 않습니다.");
-      else if (!isNameValid) alert(AUTH_INPUT_VALIDATION.name.errorMessage);
+      if (!isIdValid) errorAlert({ title: errorTitle, text: AUTH_INPUT_VALIDATION.id.errorMessage });
+      else if (!isPasswordValid) errorAlert({ title: errorTitle, text: AUTH_INPUT_VALIDATION.password.errorMessage });
+      else if (!isConfirmPasswordValid) errorAlert({ title: errorTitle, text: "비밀번호가 일치하지 않습니다." });
+      else if (!isNameValid) errorAlert({ title: errorTitle, text: AUTH_INPUT_VALIDATION.name.errorMessage });
     }
   };
   return (

@@ -1,6 +1,7 @@
 import { PasswordInput } from "@components/Common/PasswordInput";
 import { checkPassword } from "@services/auth/checkPassword";
 import { useMutation } from "@tanstack/react-query";
+import { errorAlert } from "@utils/sweetAlert/alerts";
 
 type CheckPasswordProps = {
   onSuccess: () => void;
@@ -13,7 +14,7 @@ export const CheckPassword = ({ onSuccess }: CheckPasswordProps) => {
       onSuccess();
     },
     onError: (error: Error) => {
-      alert(error.message);
+      errorAlert({ title: "비밀번호 확인 오류", text: error.message });
     }
   });
 

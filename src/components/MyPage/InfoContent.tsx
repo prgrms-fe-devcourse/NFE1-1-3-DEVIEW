@@ -53,7 +53,7 @@ export const InfoContent = () => {
     if (username !== userInfo?.username) {
       const isNameValid = AUTH_INPUT_VALIDATION.name.regexp.test(username);
       if (!isNameValid) {
-        alert(AUTH_INPUT_VALIDATION.name.errorMessage);
+        errorAlert({ title: "사용자 정보 수정 오류", text: AUTH_INPUT_VALIDATION.name.errorMessage });
         isValid = false;
       }
     }
@@ -61,7 +61,7 @@ export const InfoContent = () => {
     if (password.trim() !== "") {
       const isPasswordValid = AUTH_INPUT_VALIDATION.password.regexp.test(password);
       if (!isPasswordValid) {
-        alert(AUTH_INPUT_VALIDATION.password.errorMessage);
+        errorAlert({ title: "사용자 정보 수정 오류", text: AUTH_INPUT_VALIDATION.password.errorMessage });
         isValid = false;
       } else {
         updatedData.password = password;

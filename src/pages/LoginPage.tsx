@@ -1,3 +1,4 @@
+import { customToast, errorAlert } from "@utils/sweetAlert/alerts";
 import { Logo } from "@components/Common/Logo";
 import { IdInput } from "@components/Common/IdInput";
 import { PasswordInput } from "@components/Common/PasswordInput";
@@ -28,13 +29,14 @@ export default function LoginPage() {
           AccessTokenStorage.setToken(data.accessToken);
           setUserInfo(data.userInfo);
           navigate("/");
+          customToast({ title: "로그인에 성공했습니다." });
         })
-        .catch((error) => alert(error));
+        .catch((error) => errorAlert({ title: "로그인 중 오류가 발생했습니다.", text: error.message }));
     } else if (!isIdValid) {
-      alert(AUTH_INPUT_VALIDATION.id.errorMessage);
+      errorAlert({ title: "로그인 중 오류가 발생했습니다.", text: AUTH_INPUT_VALIDATION.id.errorMessage });
       ($form["userId"] as HTMLInputElement).focus();
-    } else if (isPasswordValid) {
-      alert(AUTH_INPUT_VALIDATION.password.errorMessage);
+    } else if (!isPasswordValid) {
+      errorAlert({ title: "로그인 중 오류가 발생했습니다.", text: AUTH_INPUT_VALIDATION.password.errorMessage });
       ($form["password"] as HTMLInputElement).focus();
     }
   };
