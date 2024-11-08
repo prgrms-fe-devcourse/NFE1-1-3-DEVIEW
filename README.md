@@ -305,13 +305,10 @@ optimistic update
 
 ### [MainPage]
 
-![alt text](image-1.png)
-
-![alt text](image-2.png)
-
-![alt text](image-3.png)
-
-![alt text](image-4.png)
+<img src="./.github/assets/images/image-1.png" alt="메인페이지1" width="800" />
+<img src="./.github/assets/images/image-2.png" alt="메인페이지2" width="800" />
+<img src="./.github/assets/images/image-3.png" alt="메인페이지3" width="800" />
+<img src="./.github/assets/images/image-4.png" alt="메인페이지4" width="800" />
 
 - 게시물 조회
   - 배너
