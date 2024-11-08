@@ -134,7 +134,12 @@ export default function PostUpdatePage() {
     [state, postId, onValidation, updatePost]
   );
 
-  if (isLoading) return <Loading />;
+  if (isLoading)
+    return (
+      <div className="flex h-[calc(100vh-20rem)] items-center justify-center">
+        <Loading />
+      </div>
+    );
   if (error) {
     errorAlert({ title: "오류 발생", text: error.message });
     return <ErrorPage />;
@@ -152,7 +157,11 @@ export default function PostUpdatePage() {
     <form onSubmit={onSubmit} className="m-auto flex max-w-[1440px] flex-col gap-12 px-4 py-12">
       <h1 className="text-20 font-semibold md:text-24">게시글 수정하기</h1>
 
-      {isPending && <Loading />}
+      {isPending && (
+        <div className="flex h-[calc(100vh-20rem)] items-center justify-center">
+          <Loading />
+        </div>
+      )}
 
       <TitleContainer
         category="제목"

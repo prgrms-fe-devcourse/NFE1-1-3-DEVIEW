@@ -99,7 +99,11 @@ export default function PostCreatePage() {
     <form onSubmit={onSubmit} className="m-auto flex max-w flex-col gap-12 p-4 py-12">
       <h1 className="text-20 font-semibold md:text-24">공개 질문하기</h1>
 
-      {createPostMutation.isPending && <Loading />}
+      {createPostMutation.isPending && (
+        <div className="flex h-[calc(100vh-20rem)] items-center justify-center">
+          <Loading />
+        </div>
+      )}
 
       <TitleContainer
         category="제목"

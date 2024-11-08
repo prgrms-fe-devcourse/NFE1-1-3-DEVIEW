@@ -17,7 +17,11 @@ export default function PostDetailPage() {
   }
 
   if (isLoading) {
-    return <Loading />;
+    return (
+      <div className="flex h-[calc(100vh-20rem)] items-center justify-center">
+        <Loading />
+      </div>
+    );
   }
 
   if (isError) {

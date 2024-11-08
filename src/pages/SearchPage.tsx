@@ -47,7 +47,7 @@ export default function SearchPage() {
 
   if (isLoading)
     return (
-      <div className="flex">
+      <div className="flex h-[calc(100vh-20rem)] items-center justify-center">
         <Loading />
       </div>
     );
