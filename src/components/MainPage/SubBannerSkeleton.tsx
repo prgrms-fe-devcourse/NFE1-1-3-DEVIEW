@@ -1,8 +1,8 @@
-import { Swiper, SwiperSlide } from "swiper/react";
+import { SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Autoplay, Pagination } from "swiper/modules";
 import { SubBannerDefault } from "@components/MainPage/SubBannerDefault";
+import { SubBannerSlide } from "@components/MainPage/SubBannerSlide";
 
 type SubBannerProps = {
   error?: string;
@@ -18,27 +18,9 @@ export const SubBannerSkeleton = ({ error, isError = false }: SubBannerProps) =>
       <div className={` ${bgColors} h-52 truncate rounded-lg text-20 shadow md:text-24`}>{error}</div>
     );
   return (
-    <div className="flex w-full">
-      <Swiper
-        pagination={true}
-        modules={[Pagination, Autoplay]}
-        className="w-full px-4 py-10 md:px-10"
-        spaceBetween={48}
-        slidesPerView={1}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false
-        }}
-        breakpoints={{
-          768: {
-            slidesPerView: 2
-          }
-        }}
-      >
-        <SwiperSlide className="transition-transform md:hover:scale-105">{content}</SwiperSlide>
-
-        <SwiperSlide className="transition-transform md:hover:scale-105">{content}</SwiperSlide>
-      </Swiper>
-    </div>
+    <SubBannerSlide>
+      <SwiperSlide className="transition-transform md:hover:scale-105">{content}</SwiperSlide>
+      <SwiperSlide className="transition-transform md:hover:scale-105">{content}</SwiperSlide>
+    </SubBannerSlide>
   );
 };
